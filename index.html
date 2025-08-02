@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joshua Ogallo - Fullstack Software Engineer</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B5CF6',
+            secondary: '#C4B5FD'
+          },
+          borderRadius: {
+            'none': '0px',
+            'sm': '4px',
+            DEFAULT: '8px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '24px',
+            '3xl': '32px',
+            'full': '9999px',
+            'button': '8px'
+          },
+          fontFamily: {
+            'poppins': ['Poppins', 'sans-serif'],
+            'lato': ['Lato', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+    .text-shadow-lg {
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    @keyframes slideInRight {
+      0% {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    * {
+      font-family: 'Lato', sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+    }
+    .gradient-bg {
+      background: linear-gradient(125deg, rgba(139, 92, 246, 0.15) 0%, rgba(30, 64, 175, 0.25) 100%),
+      radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 50%),
+      radial-gradient(circle at bottom left, rgba(99, 102, 241, 0.15), transparent 50%);
+      position: relative;
+      overflow: hidden;
+    }
+    .gradient-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+      filter: blur(100px);
+    }
+    .neon-glow {
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3),
+      0 0 40px rgba(139, 92, 246, 0.2),
+      0 0 60px rgba(139, 92, 246, 0.1);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .neon-border {
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+    }
+    .hover-glow:hover {
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+      transform: translateY(-5px);
+    }
+    .card-gradient {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    :root {
+      color-scheme: light dark;
+    }
+    .dark body {
+      background-color: #111827;
+      color: #fff;
+    }
+    .dark .skill-card,
+    .dark .project-card {
+      background-color: #1f2937;
+      border-color: #374151;
+    }
+    .dark .contact-input {
+      background-color: #1f2937;
+      border-color: #374151;
+      color: #fff;
+    }
+    .dark .bg-secondary\/30 {
+      background-color: rgba(31, 41, 55, 0.3);
+    }
+    .dark .text-gray-900 {
+      color: #fff;
+    }
+    .dark .text-gray-600,
+    .dark .text-gray-700 {
+      color: #9ca3af;
+    }
+    .dark .border-gray-100 {
+      border-color: #374151;
+    }
+    .dark .bg-gray-100 {
+      background-color: #1f2937;
+    }
+    .dark .text-gray-500 {
+      color: #6b7280;
+    }
+    .typing-animation {
+      border-right: 2px solid #007AFF;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50% { border-color: #007AFF; }
+      51%, 100% { border-color: transparent; }
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .skill-card {
+      transition: all 0.3s ease;
+    }
+    .skill-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 122, 255, 0.1);
+    }
+    .project-card {
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    .project-overlay {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(99, 102, 241, 0.8));
+      opacity: 0;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(4px);
+    }
+    .project-card:hover .project-overlay {
+      opacity: 1;
+      backdrop-filter: blur(8px);
+    }
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #007AFF;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .shape {
+      position: absolute;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape:nth-child(1) {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    .shape:nth-child(2) {
+      top: 60%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+    .shape:nth-child(3) {
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    .progress-bar {
+      transition: width 1s ease-out;
+    }
+    .contact-input {
+      transition: all 0.3s ease;
+    }
+    .contact-input:focus {
+      border-color: #007AFF;
+      box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+    }
+    .scroll-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 3rem;
+      height: 3rem;
+      background: #007AFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    .scroll-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .scroll-to-top:hover {
+      background: #0056b3;
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 font-inter">
+<nav class="fixed top-0 w-full glass-effect z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <img src="img/joshua.png" alt="Profile" class="w-12 h-12 rounded-xl object-cover shadow-lg">
+      </div>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="nav-link text-gray-700 hover:text-primary font-medium">Home</a>
+        <a href="#projects" class="nav-link text-gray-700 hover:text-primary font-medium">Projects</a>
+        <a href="#skills" class="nav-link text-gray-700 hover:text-primary font-medium">Skills</a>
+        <a href="#contact" class="nav-link text-gray-700 hover:text-primary font-medium">Contact</a>
+      </div>
+      <button class="md:hidden w-8 h-8 flex items-center justify-center" id="mobile-menu-btn">
+        <div class="w-5 h-5 flex items-center justify-center">
+          <i class="ri-menu-line ri-lg"></i>
+        </div>
+      </button>
+    </div>
+  </div>
+  <div class="md:hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 hidden" id="mobile-menu">
+    <div class="px-6 py-4 space-y-4">
+      <a href="#home" class="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium">Home</a>
+      <a href="#projects" class="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium">Projects</a>
+      <a href="#skills" class="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium">Skills</a>
+      <a href="#contact" class="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium">Contact</a>
+      <button id="mobile-theme-toggle" class="w-full text-left py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium">
+        <i class="ri-sun-line ri-lg mr-2 dark:hidden"></i>
+        <i class="ri-moon-line ri-lg mr-2 hidden dark:block"></i>
+        <span class="dark:hidden">Light Mode</span>
+        <span class="hidden dark:block">Dark Mode</span>
+      </button>
+    </div>
+  </div>
+</nav>
+<section id="home" class="min-h-screen flex items-center relative overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="img/hero.png" alt="Background" class="w-full h-full object-cover opacity-50">
+    <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-transparent"></div>
+    <div class="absolute w-96 h-96 rounded-full bg-primary/5 blur-[120px] top-0 right-0"></div>
+    <div class="absolute w-96 h-96 rounded-full bg-pink-500/5 blur-[120px] bottom-0 left-0"></div>
+    <div class="absolute w-72 h-72 rounded-full bg-purple-500/5 blur-[100px] top-1/2 left-1/3"></div>
+  </div>
+  <div class="fixed left-8 top-1/2 -translate-y-1/2 flex flex-col gap-6 z-20">
+    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+      <div class="w-5 h-5 flex items-center justify-center">
+        <i class="ri-github-fill text-gray-700"></i>
+      </div>
+    </a>
+    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+      <div class="w-5 h-5 flex items-center justify-center">
+        <i class="ri-linkedin-fill text-gray-700"></i>
+      </div>
+    </a>
+    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+      <div class="w-5 h-5 flex items-center justify-center">
+        <i class="ri-twitter-x-fill text-gray-700"></i>
+      </div>
+    </a>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 py-32 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="p-12 backdrop-blur-xl bg-white/95 rounded-3xl shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1),inset_-4px_-4px_8px_rgba(255,255,255,0.9)] fade-in relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-white/60 via-white/40 to-transparent pointer-events-none"></div>
+        <div class="relative space-y-8">
+          <div class="space-y-6">
+            <h2 class="text-3xl font-bold text-gray-800/90 mb-2">Joshua Ogallo</h2>
+            <h1 class="text-5xl lg:text-6xl font-bold text-gray-900/90 leading-tight tracking-tight mb-4">
+              Full Stack<br>Software Engineer
+            </h1>
+            <div class="text-lg text-gray-700/90 mb-8">
+              <span id="typing-text" class="typing-animation">JavaScript • Java • Spring • React</span>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button class="bg-gradient-to-r from-primary to-purple-500 text-white px-8 py-3 !rounded-full font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105 whitespace-nowrap shadow-[0_4px_20px_rgba(139,92,246,0.3)]">
+                View My Work
+              </button>
+              <button class="border border-gray-200 text-gray-700 px-8 py-3 !rounded-full font-medium hover:bg-gray-50 transition-all duration-300 whitespace-nowrap backdrop-blur-sm">
+                Download CV
+              </button>
+            </div>
+            <div class="mt-16 grid grid-cols-2 gap-8">
+              <div>
+                <div class="text-4xl font-bold text-gray-900/90 mb-2">40+</div>
+                <div class="text-sm text-gray-700/90">Complete Projects spanning web apps, APIs, automation tools, and experimental AI builds</div>
+              </div>
+              <div>
+                <div class="text-4xl font-bold text-gray-900/90 mb-2">3</div>
+                <div class="text-sm text-gray-700/90">Years Experience with hands-on expertise building scalable products and collaborating with cross-functional teams</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -bottom-32 -right-32 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-32 -left-32 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      </div>
+      <div class="flex justify-center lg:justify-end relative" id="hero-image">
+        <img src="img/joshua.png"
+             alt="Joshua Ogallo"
+             class="w-[600px] h-[800px] object-cover object-top rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+        <div class="absolute w-full h-full inset-0 bg-gradient-to-t from-[#0B0F1F] via-transparent to-transparent rounded-3xl"></div>
+        <div class="absolute w-32 h-32 rounded-full bg-blue-500/20 blur-3xl -top-10 -right-10 animate-pulse"></div>
+        <div class="absolute w-24 h-24 rounded-full bg-purple-500/20 blur-2xl bottom-20 -left-10 animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="skills" class="py-20 bg-secondary/30">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-5xl font-black text-gray-900 mb-4 font-poppins tracking-tight">Technical Expertise</h2>
+      <p class="text-2xl text-gray-600 font-medium tracking-wide">Specialized in modern technologies and frameworks</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      <div class="text-center">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div class="w-8 h-8 flex items-center justify-center">
+            <i class="ri-computer-line ri-xl text-primary"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Frontend Development</h3>
+        <p class="text-gray-600">Modern UI/UX with React, Vue.js, and responsive design</p>
+      </div>
+      <div class="text-center">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div class="w-8 h-8 flex items-center justify-center">
+            <i class="ri-server-line ri-xl text-primary"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Backend Development</h3>
+        <p class="text-gray-600">Scalable APIs with Java Spring, Node.js, and microservices</p>
+      </div>
+      <div class="text-center">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div class="w-8 h-8 flex items-center justify-center">
+            <i class="ri-database-2-line ri-xl text-primary"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Database Management</h3>
+        <p class="text-gray-600">PostgreSQL, MongoDB, Redis, and data optimization</p>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div class="skill-card glass-card p-6 rounded-xl neon-glow transform hover:-translate-y-2 transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-javascript-line ri-lg text-yellow-600"></i>
+            </div>
+          </div>
+          <h4 class="font-semibold text-gray-900">JavaScript</h4>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="progress-bar bg-yellow-500 h-2 rounded-full" style="width: 95%"></div>
+        </div>
+      </div>
+      <div class="skill-card glass-card p-6 rounded-xl neon-glow transform hover:-translate-y-2 transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-reactjs-line ri-lg text-blue-600"></i>
+            </div>
+          </div>
+          <h4 class="font-semibold text-gray-900">React</h4>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="progress-bar bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
+        </div>
+      </div>
+      <div class="skill-card glass-card p-6 rounded-xl neon-glow transform hover:-translate-y-2 transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-cup-line ri-lg text-red-600"></i>
+            </div>
+          </div>
+          <h4 class="font-semibold text-gray-900">Java</h4>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="progress-bar bg-red-500 h-2 rounded-full" style="width: 88%"></div>
+        </div>
+      </div>
+      <div class="skill-card glass-card p-6 rounded-xl neon-glow transform hover:-translate-y-2 transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-leaf-line ri-lg text-green-600"></i>
+            </div>
+          </div>
+          <h4 class="font-semibold text-gray-900">Spring</h4>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="progress-bar bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+        </div>
+      </div>
+      <div class="skill-card glass-card p-6 rounded-xl neon-glow transform hover:-translate-y-2 transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-nodejs-line ri-lg text-green-600"></i>
+            </div>
+          </div>
+          <h4 class="font-semibold text-gray-900">Node.js</h4>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="progress-bar bg-green-500 h-2 rounded-full" style="width: 82%"></div>
+        </div>
+      </div>
+      <div class="skill-card glass-card p-6 rounded-xl neon-glow transform hover:-translate-y-2 transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-database-2-line ri-lg text-blue-600"></i>
+            </div>
+          </div>
+          <h4 class="font-semibold text-gray-900">PostgreSQL</h4>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="progress-bar bg-blue-500 h-2 rounded-full" style="width: 80%"></div>
+        </div>
+      </div>
+      <div class="skill-card glass-card p-6 rounded-xl neon-glow transform hover:-translate-y-2 transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-vuejs-line ri-lg text-purple-600"></i>
+            </div>
+          </div>
+          <h4 class="font-semibold text-gray-900">Vue.js</h4>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="progress-bar bg-purple-500 h-2 rounded-full" style="width: 78%"></div>
+        </div>
+      </div>
+      <div class="skill-card glass-card p-6 rounded-xl neon-glow transform hover:-translate-y-2 transition-all duration-300">
+        <div class="flex items-center mb-4">
+          <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-3">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-git-branch-line ri-lg text-gray-600"></i>
+            </div>
+          </div>
+          <h4 class="font-semibold text-gray-900">Git</h4>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="progress-bar bg-gray-500 h-2 rounded-full" style="width: 92%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="projects" class="py-20 relative bg-gray-50/50">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(139,92,246,0.15),rgba(255,255,255,0)_50%),radial-gradient(circle_at_80%_20%,rgba(196,181,253,0.15),rgba(255,255,255,0)_50%)]"></div>
+  <div class="absolute inset-0 backdrop-blur-[100px]"></div>
+  <div class="max-w-7xl mx-auto px-6 relative">
+    <div class="text-center mb-16">
+      <h2 class="text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 mb-4 font-poppins tracking-tight">Featured Projects</h2>
+      <p class="text-2xl text-gray-600 font-medium tracking-wide">A showcase of my recent work and contributions</p>
+    </div>
+    <div class="flex justify-center mb-16">
+      <div class="flex bg-white/10 backdrop-blur-lg rounded-2xl p-2 border border-white/20 shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1),inset_-4px_-4px_8px_rgba(255,255,255,0.1)]">
+        <button class="filter-btn px-8 py-3 rounded-xl font-medium transition-all duration-500 bg-primary text-white shadow-[4px_4px_8px_rgba(0,0,0,0.1),-4px_-4px_8px_rgba(255,255,255,0.1)] hover:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.15)]" data-filter="all">All Projects</button>
+        <button class="filter-btn px-8 py-3 rounded-xl font-medium transition-all duration-500 text-gray-600 hover:text-primary hover:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),inset_-2px_-2px_4px_rgba(255,255,255,0.1)]" data-filter="web">Web Apps</button>
+        <button class="filter-btn px-8 py-3 rounded-xl font-medium transition-all duration-500 text-gray-600 hover:text-primary hover:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),inset_-2px_-2px_4px_rgba(255,255,255,0.1)]" data-filter="mobile">Mobile</button>
+        <button class="filter-btn px-8 py-3 rounded-xl font-medium transition-all duration-500 text-gray-600 hover:text-primary hover:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),inset_-2px_-2px_4px_rgba(255,255,255,0.1)]" data-filter="api">APIs</button>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12" id="projects-grid">
+      <div class="project-card bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-500 group border border-white/20 shadow-[20px_20px_60px_rgba(0,0,0,0.08),-20px_-20px_60px_rgba(255,255,255,0.08),inset_4px_4px_10px_rgba(255,255,255,0.1),inset_-4px_-4px_10px_rgba(0,0,0,0.05)] hover:shadow-[10px_10px_30px_rgba(0,0,0,0.1),-10px_-10px_30px_rgba(255,255,255,0.1),inset_2px_2px_5px_rgba(255,255,255,0.15),inset_-2px_-2px_5px_rgba(0,0,0,0.08)]" data-category="web">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=modern%20e-commerce%20web%20application%20interface%2C%20clean%20product%20catalog%20design%2C%20shopping%20cart%20functionality%2C%20professional%20web%20development%2C%20responsive%20design%2C%20contemporary%20UI%2FUX%2C%20high-quality%20web%20application%20screenshot&width=400&height=250&seq=project-1&orientation=landscape"
+               alt="E-commerce Platform"
+               class="w-full h-48 object-cover object-top">
+          <div class="project-overlay absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/90 to-purple-600/90 opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div class="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-xl shadow-[inset_2px_2px_4px_rgba(255,255,255,0.2)]">
+                <div class="w-7 h-7 flex items-center justify-center">
+                  <i class="ri-external-link-line ri-lg"></i>
+                </div>
+              </div>
+              <p class="font-medium text-lg tracking-wide">View Project</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-3 font-poppins tracking-wide group-hover:text-primary transition-colors duration-300">E-commerce Platform</h3>
+          <p class="text-gray-600 mb-6 text-lg leading-relaxed">Full-stack e-commerce solution with React frontend and Spring Boot backend</p>
+          <div class="flex flex-wrap gap-3 mb-6">
+            <span class="px-4 py-2 bg-gray-50 text-primary text-sm rounded-xl shadow-[2px_2px_4px_#bebebe,-2px_-2px_4px_#ffffff] font-medium">React</span>
+            <span class="px-4 py-2 bg-gray-50 text-primary text-sm rounded-xl shadow-[2px_2px_4px_#bebebe,-2px_-2px_4px_#ffffff] font-medium">Spring Boot</span>
+            <span class="px-4 py-2 bg-gray-50 text-primary text-sm rounded-xl shadow-[2px_2px_4px_#bebebe,-2px_-2px_4px_#ffffff] font-medium">PostgreSQL</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div class="w-10 h-10 bg-gray-50 rounded-xl shadow-[2px_2px_4px_#bebebe,-2px_-2px_4px_#ffffff] flex items-center justify-center hover:shadow-[inset_2px_2px_4px_#bebebe,inset_-2px_-2px_4px_#ffffff] transition-all duration-300 cursor-pointer group">
+                <div class="w-5 h-5 flex items-center justify-center">
+                  <i class="ri-github-line ri-lg text-gray-600 group-hover:text-primary transition-colors"></i>
+                </div>
+              </div>
+              <div class="w-10 h-10 bg-gray-50 rounded-xl shadow-[2px_2px_4px_#bebebe,-2px_-2px_4px_#ffffff] flex items-center justify-center hover:shadow-[inset_2px_2px_4px_#bebebe,inset_-2px_-2px_4px_#ffffff] transition-all duration-300 cursor-pointer group">
+                <div class="w-5 h-5 flex items-center justify-center">
+                  <i class="ri-external-link-line ri-lg text-gray-600 group-hover:text-primary transition-colors"></i>
+                </div>
+              </div>
+            </div>
+            <span class="text-sm font-medium text-primary bg-gray-50 px-4 py-2 rounded-xl shadow-[2px_2px_4px_#bebebe,-2px_-2px_4px_#ffffff]">2024</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-500 group border border-white/20 shadow-[20px_20px_60px_rgba(0,0,0,0.08),-20px_-20px_60px_rgba(255,255,255,0.08),inset_4px_4px_10px_rgba(255,255,255,0.1),inset_-4px_-4px_10px_rgba(0,0,0,0.05)] hover:shadow-[10px_10px_30px_rgba(0,0,0,0.1),-10px_-10px_30px_rgba(255,255,255,0.1),inset_2px_2px_5px_rgba(255,255,255,0.15),inset_-2px_-2px_5px_rgba(0,0,0,0.08)]" data-category="mobile">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=mobile%20task%20management%20application%20interface%2C%20clean%20todo%20app%20design%2C%20productivity%20mobile%20app%2C%20modern%20mobile%20UI%20design%2C%20task%20tracking%20interface%2C%20contemporary%20mobile%20application%20screenshot&width=400&height=250&seq=project-2&orientation=landscape"
+               alt="Task Management App"
+               class="w-full h-48 object-cover object-top">
+          <div class="project-overlay absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/90 to-purple-600/90 opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div class="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-xl shadow-[inset_2px_2px_4px_rgba(255,255,255,0.2)]">
+                <div class="w-7 h-7 flex items-center justify-center">
+                  <i class="ri-external-link-line ri-lg"></i>
+                </div>
+              </div>
+              <p class="font-medium text-lg tracking-wide">View Project</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Task Management App</h3>
+          <p class="text-gray-600 mb-4">Cross-platform mobile app for productivity and task tracking</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">React Native</span>
+            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">Node.js</span>
+            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">MongoDB</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div class="w-10 h-10 bg-gray-50 rounded-xl shadow-[2px_2px_4px_#bebebe,-2px_-2px_4px_#ffffff] flex items-center justify-center hover:shadow-[inset_2px_2px_4px_#bebebe,inset_-2px_-2px_4px_#ffffff] transition-all duration-300 cursor-pointer group">
+                <div class="w-5 h-5 flex items-center justify-center">
+                  <i class="ri-github-line ri-lg text-gray-600 group-hover:text-primary transition-colors"></i>
+                </div>
+              </div>
+              <div class="w-10 h-10 bg-gray-50 rounded-xl shadow-[2px_2px_4px_#bebebe,-2px_-2px_4px_#ffffff] flex items-center justify-center hover:shadow-[inset_2px_2px_4px_#bebebe,inset_-2px_-2px_4px_#ffffff] transition-all duration-300 cursor-pointer group">
+                <div class="w-5 h-5 flex items-center justify-center">
+                  <i class="ri-external-link-line ri-lg text-gray-600 group-hover:text-primary transition-colors"></i>
+                </div>
+              </div>
+            </div>
+            <span class="text-sm font-medium text-primary bg-gray-50 px-4 py-2 rounded-xl shadow-[2px_2px_4px_#bebebe,-2px_-2px_4px_#ffffff]">2024</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-500 group border border-white/20 shadow-[20px_20px_60px_rgba(0,0,0,0.08),-20px_-20px_60px_rgba(255,255,255,0.08),inset_4px_4px_10px_rgba(255,255,255,0.1),inset_-4px_-4px_10px_rgba(0,0,0,0.05)] hover:shadow-[10px_10px_30px_rgba(0,0,0,0.1),-10px_-10px_30px_rgba(255,255,255,0.1),inset_2px_2px_5px_rgba(255,255,255,0.15),inset_-2px_-2px_5px_rgba(0,0,0,0.08)]" data-category="api">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=API%20documentation%20interface%2C%20RESTful%20web%20services%2C%20microservices%20architecture%20diagram%2C%20backend%20development%2C%20API%20endpoints%20visualization%2C%20modern%20software%20architecture%2C%20technical%20documentation%20design&width=400&height=250&seq=project-3&orientation=landscape"
+               alt="Payment API"
+               class="w-full h-48 object-cover object-top">
+          <div class="project-overlay absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/90 to-purple-600/90 opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div class="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-xl shadow-[inset_2px_2px_4px_rgba(255,255,255,0.2)]">
+                <div class="w-7 h-7 flex items-center justify-center">
+                  <i class="ri-external-link-line ri-lg"></i>
+                </div>
+              </div>
+              <p class="font-medium text-lg tracking-wide">View Project</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Payment Processing API</h3>
+          <p class="text-gray-600 mb-4">Secure RESTful API for payment processing and transaction management</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">Java</span>
+            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Spring Security</span>
+            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Redis</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-github-line ri-lg text-gray-600 hover:text-primary cursor-pointer"></i>
+              </div>
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-external-link-line ri-lg text-gray-600 hover:text-primary cursor-pointer"></i>
+              </div>
+            </div>
+            <span class="text-sm text-gray-500">2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-500 group border border-white/20 shadow-[20px_20px_60px_rgba(0,0,0,0.08),-20px_-20px_60px_rgba(255,255,255,0.08),inset_4px_4px_10px_rgba(255,255,255,0.1),inset_-4px_-4px_10px_rgba(0,0,0,0.05)] hover:shadow-[10px_10px_30px_rgba(0,0,0,0.1),-10px_-10px_30px_rgba(255,255,255,0.1),inset_2px_2px_5px_rgba(255,255,255,0.15),inset_-2px_-2px_5px_rgba(0,0,0,0.08)]" data-category="web">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=data%20analytics%20dashboard%20interface%2C%20business%20intelligence%20visualization%2C%20charts%20and%20graphs%2C%20modern%20dashboard%20design%2C%20data%20visualization%20web%20application%2C%20professional%20analytics%20platform&width=400&height=250&seq=project-4&orientation=landscape"
+               alt="Analytics Dashboard"
+               class="w-full h-48 object-cover object-top">
+          <div class="project-overlay absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/90 to-purple-600/90 opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div class="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-xl shadow-[inset_2px_2px_4px_rgba(255,255,255,0.2)]">
+                <div class="w-7 h-7 flex items-center justify-center">
+                  <i class="ri-external-link-line ri-lg"></i>
+                </div>
+              </div>
+              <p class="font-medium text-lg tracking-wide">View Project</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Analytics Dashboard</h3>
+          <p class="text-gray-600 mb-4">Real-time data visualization platform with interactive charts</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Vue.js</span>
+            <span class="px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full">D3.js</span>
+            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">Express</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-github-line ri-lg text-gray-600 hover:text-primary cursor-pointer"></i>
+              </div>
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-external-link-line ri-lg text-gray-600 hover:text-primary cursor-pointer"></i>
+              </div>
+            </div>
+            <span class="text-sm text-gray-500">2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-500 group border border-white/20 shadow-[20px_20px_60px_rgba(0,0,0,0.08),-20px_-20px_60px_rgba(255,255,255,0.08),inset_4px_4px_10px_rgba(255,255,255,0.1),inset_-4px_-4px_10px_rgba(0,0,0,0.05)] hover:shadow-[10px_10px_30px_rgba(0,0,0,0.1),-10px_-10px_30px_rgba(255,255,255,0.1),inset_2px_2px_5px_rgba(255,255,255,0.15),inset_-2px_-2px_5px_rgba(0,0,0,0.08)]" data-category="web">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=social%20media%20platform%20interface%2C%20modern%20social%20networking%20app%20design%2C%20user%20profiles%20and%20feeds%2C%20contemporary%20social%20media%20UI%2C%20community%20platform%20design%2C%20professional%20social%20application&width=400&height=250&seq=project-5&orientation=landscape"
+               alt="Social Platform"
+               class="w-full h-48 object-cover object-top">
+          <div class="project-overlay absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/90 to-purple-600/90 opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div class="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-xl shadow-[inset_2px_2px_4px_rgba(255,255,255,0.2)]">
+                <div class="w-7 h-7 flex items-center justify-center">
+                  <i class="ri-external-link-line ri-lg"></i>
+                </div>
+              </div>
+              <p class="font-medium text-lg tracking-wide">View Project</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Social Media Platform</h3>
+          <p class="text-gray-600 mb-4">Community-driven platform with real-time messaging and content sharing</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">React</span>
+            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Socket.io</span>
+            <span class="px-3 py-1 bg-gray-100 text-gray-800 text-sm rounded-full">AWS</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-github-line ri-lg text-gray-600 hover:text-primary cursor-pointer"></i>
+              </div>
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-external-link-line ri-lg text-gray-600 hover:text-primary cursor-pointer"></i>
+              </div>
+            </div>
+            <span class="text-sm text-gray-500">2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-500 group border border-white/20 shadow-[20px_20px_60px_rgba(0,0,0,0.08),-20px_-20px_60px_rgba(255,255,255,0.08),inset_4px_4px_10px_rgba(255,255,255,0.1),inset_-4px_-4px_10px_rgba(0,0,0,0.05)] hover:shadow-[10px_10px_30px_rgba(0,0,0,0.1),-10px_-10px_30px_rgba(255,255,255,0.1),inset_2px_2px_5px_rgba(255,255,255,0.15),inset_-2px_-2px_5px_rgba(0,0,0,0.08)]" data-category="api">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=microservices%20architecture%20diagram%2C%20distributed%20systems%20design%2C%20cloud%20infrastructure%2C%20containerized%20applications%2C%20modern%20software%20architecture%2C%20technical%20system%20design%2C%20DevOps%20infrastructure&width=400&height=250&seq=project-6&orientation=landscape"
+               alt="Microservices Architecture"
+               class="w-full h-48 object-cover object-top">
+          <div class="project-overlay absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/90 to-purple-600/90 opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div class="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-xl shadow-[inset_2px_2px_4px_rgba(255,255,255,0.2)]">
+                <div class="w-7 h-7 flex items-center justify-center">
+                  <i class="ri-external-link-line ri-lg"></i>
+                </div>
+              </div>
+              <p class="font-medium text-lg tracking-wide">View Project</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Microservices Architecture</h3>
+          <p class="text-gray-600 mb-4">Scalable microservices system with containerized deployment</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Spring Cloud</span>
+            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Docker</span>
+            <span class="px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full">Kubernetes</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-github-line ri-lg text-gray-600 hover:text-primary cursor-pointer"></i>
+              </div>
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-external-link-line ri-lg text-gray-600 hover:text-primary cursor-pointer"></i>
+              </div>
+            </div>
+            <span class="text-sm text-gray-500">2022</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact" class="py-20 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"></div>
+  <div class="absolute w-[800px] h-[800px] rounded-full bg-primary/5 blur-[120px] -top-1/2 -right-1/4"></div>
+  <div class="absolute w-[600px] h-[600px] rounded-full bg-secondary/5 blur-[100px] -bottom-1/4 -left-1/4"></div>
+  <div class="max-w-6xl mx-auto px-6 relative">
+    <div class="text-center mb-16">
+      <h2 class="text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 mb-4 font-poppins tracking-tight">Let's Create Something Amazing</h2>
+      <p class="text-2xl text-gray-600 font-medium tracking-wide">Ready to transform your vision into reality? Connect with me.</p>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-16">
+      <div class="space-y-8 bg-white/10 backdrop-blur-xl p-8 rounded-2xl border border-white/20 shadow-[16px_16px_32px_rgba(0,0,0,0.1),-16px_-16px_32px_rgba(255,255,255,0.8),inset_4px_4px_8px_rgba(0,0,0,0.05),inset_-4px_-4px_8px_rgba(255,255,255,0.9)] hover:shadow-[8px_8px_16px_rgba(0,0,0,0.15),-8px_-8px_16px_rgba(255,255,255,0.9),inset_2px_2px_4px_rgba(0,0,0,0.08),inset_-2px_-2px_4px_rgba(255,255,255,0.95)] transition-all duration-500">
+        <div class="flex items-start space-x-6 group">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center shadow-[5px_5px_10px_rgba(0,0,0,0.1),-5px_-5px_10px_rgba(255,255,255,0.9),inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.05)] group-hover:shadow-[3px_3px_6px_rgba(0,0,0,0.15),-3px_-3px_6px_rgba(255,255,255,0.95),inset_1px_1px_2px_rgba(255,255,255,0.95),inset_-1px_-1px_2px_rgba(0,0,0,0.08)] transition-all duration-300">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-mail-line ri-xl text-primary group-hover:scale-110 transition-transform duration-300"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 mb-2 font-poppins tracking-wide">Email</h3>
+            <p class="text-gray-600 text-lg">joshua.ogallo@email.com</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-6 group">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center shadow-[5px_5px_10px_rgba(0,0,0,0.1),-5px_-5px_10px_rgba(255,255,255,0.9),inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.05)] group-hover:shadow-[3px_3px_6px_rgba(0,0,0,0.15),-3px_-3px_6px_rgba(255,255,255,0.95),inset_1px_1px_2px_rgba(255,255,255,0.95),inset_-1px_-1px_2px_rgba(0,0,0,0.08)] transition-all duration-300">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-linkedin-line ri-xl text-primary group-hover:scale-110 transition-transform duration-300"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 mb-2 font-poppins tracking-wide">LinkedIn</h3>
+            <p class="text-gray-600 text-lg">linkedin.com/in/joshuaogallo</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-6 group">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center shadow-[5px_5px_10px_rgba(0,0,0,0.1),-5px_-5px_10px_rgba(255,255,255,0.9),inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.05)] group-hover:shadow-[3px_3px_6px_rgba(0,0,0,0.15),-3px_-3px_6px_rgba(255,255,255,0.95),inset_1px_1px_2px_rgba(255,255,255,0.95),inset_-1px_-1px_2px_rgba(0,0,0,0.08)] transition-all duration-300">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-github-line ri-xl text-primary group-hover:scale-110 transition-transform duration-300"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 mb-2 font-poppins tracking-wide">GitHub</h3>
+            <p class="text-gray-600 text-lg">github.com/joshuaogallo</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-6 group">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary/10 to-purple-500/10 rounded-2xl flex items-center justify-center shadow-[5px_5px_10px_rgba(0,0,0,0.1),-5px_-5px_10px_rgba(255,255,255,0.9),inset_2px_2px_4px_rgba(255,255,255,0.9),inset_-2px_-2px_4px_rgba(0,0,0,0.05)] group-hover:shadow-[3px_3px_6px_rgba(0,0,0,0.15),-3px_-3px_6px_rgba(255,255,255,0.95),inset_1px_1px_2px_rgba(255,255,255,0.95),inset_-1px_-1px_2px_rgba(0,0,0,0.08)] transition-all duration-300">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-map-pin-line ri-xl text-primary group-hover:scale-110 transition-transform duration-300"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 mb-2 font-poppins tracking-wide">Location</h3>
+            <p class="text-gray-600 text-lg">Nairobi, Kenya</p>
+          </div>
+        </div>
+      </div>
+      <form class="space-y-8 bg-white/10 backdrop-blur-xl p-8 rounded-2xl border border-white/20 shadow-[16px_16px_32px_rgba(0,0,0,0.1),-16px_-16px_32px_rgba(255,255,255,0.8),inset_4px_4px_8px_rgba(0,0,0,0.05),inset_-4px_-4px_8px_rgba(255,255,255,0.9)] hover:shadow-[8px_8px_16px_rgba(0,0,0,0.15),-8px_-8px_16px_rgba(255,255,255,0.9),inset_2px_2px_4px_rgba(0,0,0,0.08),inset_-2px_-2px_4px_rgba(255,255,255,0.95)] transition-all duration-500" id="contact-form">
+        <div class="relative group">
+          <label class="block text-lg font-medium bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600 mb-3">Name</label>
+          <input type="text"
+                 class="contact-input w-full px-6 py-4 bg-white/5 backdrop-blur-xl !rounded-xl text-gray-800 placeholder-gray-400 shadow-[4px_4px_8px_rgba(0,0,0,0.1),-4px_-4px_8px_rgba(255,255,255,0.9),inset_2px_2px_4px_rgba(0,0,0,0.05),inset_-2px_-2px_4px_rgba(255,255,255,0.9)] focus:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.95),inset_1px_1px_2px_rgba(0,0,0,0.08),inset_-1px_-1px_2px_rgba(255,255,255,0.95)] border-none outline-none transition-all duration-300"
+                 placeholder="Your full name"
+                 required>
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+          <input type="email"
+                 class="contact-input w-full px-6 py-4 bg-white/5 backdrop-blur-xl !rounded-xl text-gray-800 placeholder-gray-400 shadow-[4px_4px_8px_rgba(0,0,0,0.1),-4px_-4px_8px_rgba(255,255,255,0.9),inset_2px_2px_4px_rgba(0,0,0,0.05),inset_-2px_-2px_4px_rgba(255,255,255,0.9)] focus:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.95),inset_1px_1px_2px_rgba(0,0,0,0.08),inset_-1px_-1px_2px_rgba(255,255,255,0.95)] border-none outline-none transition-all duration-300"
+                 placeholder="your.email@example.com"
+                 required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+          <input type="text"
+                 class="contact-input w-full px-6 py-4 bg-white/5 backdrop-blur-xl !rounded-xl text-gray-800 placeholder-gray-400 shadow-[4px_4px_8px_rgba(0,0,0,0.1),-4px_-4px_8px_rgba(255,255,255,0.9),inset_2px_2px_4px_rgba(0,0,0,0.05),inset_-2px_-2px_4px_rgba(255,255,255,0.9)] focus:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.95),inset_1px_1px_2px_rgba(0,0,0,0.08),inset_-1px_-1px_2px_rgba(255,255,255,0.95)] border-none outline-none transition-all duration-300"
+                 placeholder="Project inquiry"
+                 required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+          <textarea rows="5"
+                    class="contact-input w-full px-6 py-4 bg-white/5 backdrop-blur-xl !rounded-xl text-gray-800 placeholder-gray-400 shadow-[4px_4px_8px_rgba(0,0,0,0.1),-4px_-4px_8px_rgba(255,255,255,0.9),inset_2px_2px_4px_rgba(0,0,0,0.05),inset_-2px_-2px_4px_rgba(255,255,255,0.9)] focus:shadow-[2px_2px_4px_rgba(0,0,0,0.15),-2px_-2px_4px_rgba(255,255,255,0.95),inset_1px_1px_2px_rgba(0,0,0,0.08),inset_-1px_-1px_2px_rgba(255,255,255,0.95)] border-none outline-none resize-none transition-all duration-300"
+                    placeholder="Tell me about your project..."
+                    required></textarea>
+        </div>
+        <button type="submit"
+                class="w-full bg-gradient-to-r from-primary to-purple-600 text-white px-8 py-4 !rounded-xl font-medium hover:shadow-[0_10px_20px_rgba(139,92,246,0.3)] transition-all duration-300 transform hover:translate-y-[-2px] hover:scale-[1.02] whitespace-nowrap backdrop-blur-xl relative overflow-hidden group">
+          <span class="relative z-10">Send Message</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 blur-xl transform scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+<footer class="bg-gray-900 text-white py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">Joshua Ogallo</h3>
+        <p class="text-gray-400 mb-4">Fullstack Software Engineer passionate about creating innovative digital solutions.</p>
+        <div class="flex space-x-4">
+          <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <div class="w-5 h-5 flex items-center justify-center">
+              <i class="ri-linkedin-fill ri-lg"></i>
+            </div>
+          </div>
+          <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <div class="w-5 h-5 flex items-center justify-center">
+              <i class="ri-github-fill ri-lg"></i>
+            </div>
+          </div>
+          <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+            <div class="w-5 h-5 flex items-center justify-center">
+              <i class="ri-twitter-fill ri-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Quick Links</h4>
+        <div class="space-y-2">
+          <a href="#home" class="block text-gray-400 hover:text-white transition-colors">Home</a>
+          <a href="#projects" class="block text-gray-400 hover:text-white transition-colors">Projects</a>
+          <a href="#skills" class="block text-gray-400 hover:text-white transition-colors">Skills</a>
+          <a href="#contact" class="block text-gray-400 hover:text-white transition-colors">Contact</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Services</h4>
+        <div class="space-y-2">
+          <p class="text-gray-400">Web Development</p>
+          <p class="text-gray-400">Mobile Apps</p>
+          <p class="text-gray-400">API Development</p>
+          <p class="text-gray-400">Database Design</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">© 2024 Joshua Ogallo. All rights reserved.</p>
+        <p class="text-gray-400 text-sm mt-4 md:mt-0">Built with passion and modern technologies</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="scroll-to-top" id="scroll-to-top">
+  <div class="w-6 h-6 flex items-center justify-center">
+    <i class="ri-arrow-up-line ri-lg"></i>
+  </div>
+</div>
+<script id="theme-toggle-script">
+  document.addEventListener('DOMContentLoaded', function() {
+    const themeToggleBtn = document.getElementById('mobile-theme-toggle');
+    const htmlElement = document.documentElement;
+    if (!themeToggleBtn) {
+      return;
+    }
+    function setTheme(isDark) {
+      if (isDark) {
+        htmlElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+    if (localStorage.getItem('theme') === 'dark' ||
+      (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setTheme(true);
+    }
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = htmlElement.classList.toggle('dark');
+      setTheme(isDark);
+    });
+  });
+</script>
+<script id="mobile-menu-script">
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  });
+</script>
+<script id="typing-animation-script">
+  document.addEventListener('DOMContentLoaded', function() {
+    const typingElement = document.getElementById('typing-text');
+    const skills = ['JavaScript • Java • Spring • React', 'Node.js • Vue.js • PostgreSQL • MongoDB', 'Docker • AWS • Microservices • APIs'];
+    let currentSkillIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    function typeSkill() {
+      const currentSkill = skills[currentSkillIndex];
+      if (!isDeleting) {
+        typingElement.textContent = currentSkill.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+        if (currentCharIndex === currentSkill.length) {
+          setTimeout(() => {
+            isDeleting = true;
+          }, 2000);
+        }
+      } else {
+        typingElement.textContent = currentSkill.substring(0, currentCharIndex - 1);
+        currentCharIndex--;
+        if (currentCharIndex === 0) {
+          isDeleting = false;
+          currentSkillIndex = (currentSkillIndex + 1) % skills.length;
+        }
+      }
+      const speed = isDeleting ? 50 : 100;
+      setTimeout(typeSkill, speed);
+    }
+    typeSkill();
+  });
+</script>
+<script id="project-filter-script">
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-primary', 'text-white');
+          b.classList.add('text-gray-600');
+        });
+        this.classList.add('bg-primary', 'text-white');
+        this.classList.remove('text-gray-600');
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeIn 0.5s ease-out';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+<script id="smooth-scroll-script">
+  document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  });
+</script>
+<script id="scroll-to-top-script">
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+<script id="contact-form-script">
+  document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      setTimeout(() => {
+        submitBtn.textContent = 'Message Sent!';
+        submitBtn.classList.add('bg-green-500');
+        submitBtn.classList.remove('bg-primary');
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('bg-green-500');
+          submitBtn.classList.add('bg-primary');
+          this.reset();
+        }, 2000);
+      }, 1000);
+    });
+  });
+</script>
+<script id="scroll-animations-script">
+  document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+          if (entry.target.classList.contains('progress-bar')) {
+            const width = entry.target.style.width;
+            entry.target.style.width = '0%';
+            setTimeout(() => {
+              entry.target.style.width = width;
+            }, 200);
+          }
+          if (entry.target.id === 'hero-image') {
+            entry.target.style.animation = 'slideInRight 1.2s ease forwards';
+          }
+        }
+      });
+    }, observerOptions);
+    const animateElements = document.querySelectorAll('.skill-card, .project-card, .progress-bar, #hero-image');
+    animateElements.forEach(el => observer.observe(el));
+  });
+</script>
+</body>
+</html>
