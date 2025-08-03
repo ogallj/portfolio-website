@@ -39,3 +39,49 @@
 git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
 cd YOUR-REPO-NAME
 # open index.html in your browser
+```
+
+---
+
+## 📁 Structure
+
+```
+.
+├── index.html
+├── src/
+├── img/
+│   └── readmehero.png
+└── ...
+```
+
+---
+
+## 📨 Reach Out
+
+**Joshua Ogallo**  
+📧 joshuawogallo@gmail.com
+
+---
+
+<div align="center">
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+<br/>
+<a href="https://app.netlify.com/sites/ogallo/deploys"><img src="https://api.netlify.com/api/v1/badges/72a567e7-9e3c-45b6-91ef-588f7c6e97df/deploy-status" alt="Netlify Status"></a>
+
+</div>
+
+---
+
+<style>
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+</style>
