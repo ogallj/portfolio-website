@@ -1,49 +1,41 @@
-<h1 align="center">Joshua Ogallo — Portfolio 🚀</h1>
-
-<p align="center">
-  A sleek, animated, and future-forward personal portfolio website designed to showcase my journey, skills and projects as a creative developer & innovator.
-  Built for hackathon excellence and crafted with premium attention to visual detail.
-</p>
+<h1 align="center">🚀 Joshua Ogallo — Portfolio</h1>
+<p align="center"><em>A futuristic hackathon-ready personal portfolio crafted with precision, motion and flair.</em></p>
 
 <br/>
 
 <div align="center">
-  
-**🌍 Live Demo:**  
-<https://ogallo.netlify.app/>
-
+  <img src="img/readmehero.png" width="100%" style="animation: glitch 4s infinite;">
 </div>
 
----
+<br/>
 
-## ✨ Highlights
-
-- ⚡ Futuristic and minimal design aesthetics  
-- 📱 Fully responsive (mobile-first) layout  
-- 🎨 Smooth animations & micro-interactions  
-- 🧰 Sections → Hero, About, Skills, Projects, Contact  
-- 💼 Built for hackathons, clients, and personal brand visibility  
+<p align="center">
+  A slick, animated showcase built using <strong>HTML5</strong>, <strong>Tailwind CSS</strong> and <strong>JavaScript</strong> to highlight my skills, projects and creative build ethos — geared towards both hackathon judges and real-world clients.
+</p>
 
 ---
 
-## 💡 Tech Stack
+## ⚡ Features
 
-| Role              | Technology           |
-|-------------------|----------------------|
-| Markup            | **HTML5**            |
-| Styling           | **TailwindCSS**      |
-| Interactivity     | **JavaScript (ES6)** |
+- ⚙️ Clean, expressive & futuristic design
+- 📱 Fully responsive (mobile-first)
+- ✨ Glitch/neon-style hover animations
+- 🛠️ Sections → Hero, About, Skills, Projects, Contact
+- 🌍 Live demo hosted on Netlify
 
 ---
 
-## 🚀 Run Locally
+## 💻 Tech Stack
+
+| Markup  | Styling        | Script        |
+|--------|----------------|---------------|
+| HTML5  | Tailwind CSS   | JavaScript ES6|
+
+---
+
+## 🔽 Local Setup
 
 ```bash
-# 1. Clone the project
 git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
-
-# 2. Go inside
 cd YOUR-REPO-NAME
-
-# 3. Open with your browser
-#    (double click index.html OR use Live Server)
+# open index.html in your browser
