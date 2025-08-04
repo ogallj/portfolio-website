@@ -62,7 +62,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 <br/>
-<a href="https://app.netlify.com/sites/ogallo/deploys"><img src="https://api.netlify.com/api/v1/badges/72a567e7-9e3c-45b6-91ef-588f7c6e97df/deploy-status" alt="Netlify Status"></a>
+<a href="https://ogallo.netlify.app/"><img src="https://cdn.pixabay.com/photo/2021/06/26/18/11/live-6366830_1280.png" alt="Netlify Status"></a>
 
 </div>
 
