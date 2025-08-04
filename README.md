@@ -33,13 +33,6 @@
 
 ---
 
-## 🔽 Local Setup
-
-```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
-cd YOUR-REPO-NAME
-# open index.html in your browser
-```
 
 ---
 
