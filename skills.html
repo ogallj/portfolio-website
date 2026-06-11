@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills & Expertise - Joshua Odero Ogallo</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B5CF6',
+            secondary: '#C4B5FD'
+          },
+          borderRadius: {
+            'none': '0px',
+            'sm': '4px',
+            DEFAULT: '8px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '24px',
+            '3xl': '32px',
+            'full': '9999px',
+            'button': '8px'
+          },
+          fontFamily: {
+            'poppins': ['Nexa', 'sans-serif'],
+            'lato': ['Quicksand', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-lato">
+
+<!-- Navigation Navbar -->
+<nav class="fixed top-0 w-full glass-effect z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="index.html" class="flex items-center space-x-3">
+          <img src="img/joshua.jpeg" alt="Profile" class="w-10 h-10 rounded-xl object-cover shadow-lg border border-primary/20">
+          <span class="font-poppins font-bold text-gray-900 dark:text-white tracking-wide">Joshua Odero Ogallo</span>
+        </a>
+      </div>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Home</a>
+        <a href="about.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary font-medium">About</a>
+        <a href="projects.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Projects</a>
+        <a href="skills.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Skills</a>
+        <a href="contact.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Contact</a>
+        <a href="Joshua Odero Ogallo CV.pdf" download class="px-4 py-2 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary dark:text-purple-400 font-bold transition-all text-sm flex items-center space-x-1.5 shadow-sm border border-primary/10">
+          <i class="ri-download-line"></i>
+          <span>Resume</span>
+        </a>
+        
+        <!-- Theme Switcher -->
+        <button id="desktop-theme-toggle" class="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-gray-850 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-all shadow-sm">
+          <i class="ri-sun-line theme-sun-icon"></i>
+          <i class="ri-moon-line theme-moon-icon hidden"></i>
+        </button>
+      </div>
+      <button class="md:hidden w-8 h-8 flex items-center justify-center text-gray-700 dark:text-gray-300" id="mobile-menu-btn">
+        <i class="ri-menu-line ri-lg"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div class="md:hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 hidden" id="mobile-menu">
+    <div class="px-6 py-4 space-y-4">
+      <a href="index.html" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Home</a>
+      <a href="about.html" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium">About</a>
+      <a href="projects.html" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Projects</a>
+      <a href="skills.html" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Skills</a>
+      <a href="contact.html" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Contact</a>
+      <a href="Joshua Odero Ogallo CV.pdf" download class="block text-primary dark:text-purple-400 hover:text-primary font-medium flex items-center">
+        <i class="ri-download-line mr-2"></i>Download CV
+      </a>
+      <button id="mobile-theme-toggle" class="w-full text-left py-2 text-gray-700 dark:text-gray-300 hover:text-primary font-medium flex items-center">
+        <i class="ri-sun-line theme-sun-icon mr-2"></i>
+        <i class="ri-moon-line theme-moon-icon mr-2 hidden"></i>
+        <span class="theme-text">Light Mode</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<section class="pt-32 pb-12 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-6 text-center space-y-4">
+    <span class="text-primary font-poppins font-bold tracking-widest text-sm uppercase">Technical Inventory</span>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-950 dark:text-white font-poppins">Skills & Expertise</h1>
+    <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+      Detailed breakdown of my skills in software engineering, frontend styling, UI/UX systems, and artificial intelligence integration.
+    </p>
+  </div>
+</section>
+
+<!-- Skills Grid Section -->
+<section class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12">
+      
+      <!-- Category 1: Frontend Development -->
+      <div class="space-y-6 animate-on-scroll">
+        <div class="flex items-center space-x-3 mb-2 border-b border-gray-100 dark:border-gray-800 pb-3">
+          <div class="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500">
+            <i class="ri-computer-line ri-lg"></i>
+          </div>
+          <h2 class="text-2xl font-bold font-poppins text-gray-900 dark:text-white">Frontend Development</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Designing sleek, high-fidelity browser interfaces with responsive rendering, clean modules, and styling frameworks.</p>
+        
+        <div class="space-y-4">
+          <!-- Skill: React -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>React / Redux / Context API</span>
+              <span class="text-primary">95%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-blue-500 h-2 rounded-full" data-width="95%" style="width: 95%"></div>
+            </div>
+          </div>
+          <!-- Skill: Vue.js -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>Vue.js / Pinia</span>
+              <span class="text-primary">82%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-blue-500 h-2 rounded-full" data-width="82%" style="width: 82%"></div>
+            </div>
+          </div>
+          <!-- Skill: Javascript -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>TypeScript & Modern ES6+ JavaScript</span>
+              <span class="text-primary">90%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-blue-500 h-2 rounded-full" data-width="90%" style="width: 90%"></div>
+            </div>
+          </div>
+          <!-- Skill: Styling -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>Tailwind CSS & CSS Grid/Flexbox</span>
+              <span class="text-primary">95%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-blue-500 h-2 rounded-full" data-width="95%" style="width: 95%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 2: UI/UX & Interactive Design -->
+      <div class="space-y-6 animate-on-scroll">
+        <div class="flex items-center space-x-3 mb-2 border-b border-gray-100 dark:border-gray-800 pb-3">
+          <div class="w-10 h-10 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-500">
+            <i class="ri-pantone-line ri-lg"></i>
+          </div>
+          <h2 class="text-2xl font-bold font-poppins text-gray-900 dark:text-white">UI/UX Design</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Structuring cohesive page systems, consistent component styling, micro-animations, and high-fidelity mockups.</p>
+        
+        <div class="space-y-4">
+          <!-- Skill: Prototyping -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>Figma Prototyping & Wireframing</span>
+              <span class="text-primary">88%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-purple-500 h-2 rounded-full" data-width="88%" style="width: 88%"></div>
+            </div>
+          </div>
+          <!-- Skill: Micro-animations -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>Micro-animations & CSS Transitions</span>
+              <span class="text-primary">92%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-purple-500 h-2 rounded-full" data-width="92%" style="width: 92%"></div>
+            </div>
+          </div>
+          <!-- Skill: Layouts -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>Responsive Web Layouts & Usability Testing</span>
+              <span class="text-primary">95%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-purple-500 h-2 rounded-full" data-width="95%" style="width: 95%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3: AI Enthusiast & Integrations -->
+      <div class="space-y-6 animate-on-scroll">
+        <div class="flex items-center space-x-3 mb-2 border-b border-gray-100 dark:border-gray-800 pb-3">
+          <div class="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500">
+            <i class="ri-cpu-line ri-lg"></i>
+          </div>
+          <h2 class="text-2xl font-bold font-poppins text-gray-900 dark:text-white">AI-Assisted Development</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Utilizing generative AI models to simplify complex development tasks, automate debugging, and optimize coding efficiency.</p>
+        
+        <div class="space-y-4">
+          <!-- Skill: AI Coding Assistants -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>AI Coding Assistants (Cursor, VS Code Copilot)</span>
+              <span class="text-primary">95%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-emerald-500 h-2 rounded-full" data-width="95%" style="width: 95%"></div>
+            </div>
+          </div>
+          <!-- Skill: Prompt Engineering -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>Prompt Engineering for Code Generation & Review</span>
+              <span class="text-primary">92%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-emerald-500 h-2 rounded-full" data-width="92%" style="width: 92%"></div>
+            </div>
+          </div>
+          <!-- Skill: Task Automation -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>AI-Enabled Task Automation & Scripting</span>
+              <span class="text-primary">90%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-emerald-500 h-2 rounded-full" data-width="90%" style="width: 90%"></div>
+            </div>
+          </div>
+          <!-- Skill: Code Translation -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>AI-Assisted Debugging & Code Translation</span>
+              <span class="text-primary">92%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-emerald-500 h-2 rounded-full" data-width="92%" style="width: 92%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 4: Web Developer & Backend System -->
+      <div class="space-y-6 animate-on-scroll">
+        <div class="flex items-center space-x-3 mb-2 border-b border-gray-100 dark:border-gray-800 pb-3">
+          <div class="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-500">
+            <i class="ri-server-line ri-lg"></i>
+          </div>
+          <h2 class="text-2xl font-bold font-poppins text-gray-900 dark:text-white">Web Architecture & Backend</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Constructing stable rest interfaces, database schema adjustments, and containerization for deployments.</p>
+        
+        <div class="space-y-4">
+          <!-- Skill: Java Spring -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>Java & Spring Boot / Spring Security</span>
+              <span class="text-primary">85%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-amber-500 h-2 rounded-full" data-width="85%" style="width: 85%"></div>
+            </div>
+          </div>
+          <!-- Skill: Node.js -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>Node.js / Express</span>
+              <span class="text-primary">88%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-amber-500 h-2 rounded-full" data-width="88%" style="width: 88%"></div>
+            </div>
+          </div>
+          <!-- Skill: DB -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>Databases (PostgreSQL / MongoDB / Redis)</span>
+              <span class="text-primary">85%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-amber-500 h-2 rounded-full" data-width="85%" style="width: 85%"></div>
+            </div>
+          </div>
+          <!-- Skill: DevOps -->
+          <div>
+            <div class="flex justify-between mb-1 text-sm font-medium">
+              <span>Docker & Git / Webpack Build Pipeline</span>
+              <span class="text-primary">90%</span>
+            </div>
+            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+              <div class="progress-bar bg-amber-500 h-2 rounded-full" data-width="90%" style="width: 90%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI Technologies Spotlight -->
+<section class="py-24 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 space-y-4">
+      <span class="text-primary font-poppins font-bold tracking-widest text-sm uppercase">AI Toolkit</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-950 dark:text-white font-poppins">AI-Powered Development Spotlight</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-450 max-w-2xl mx-auto">
+        Specializing in leveraging models to accelerate coding tasks and simplify development.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass-card p-8 rounded-2xl border border-gray-150 dark:border-gray-800 text-center space-y-4">
+        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mx-auto">
+          <i class="ri-code-s-slash-line ri-lg"></i>
+        </div>
+        <h3 class="text-xl font-bold font-poppins">AI Coding Assistants</h3>
+        <p class="text-sm text-gray-650 dark:text-gray-450 leading-relaxed">
+          Utilizing Cursor, GitHub Copilot, and ChatGPT to write boilerplate code, refactor legacy functions, and auto-generate test suites rapidly.
+        </p>
+      </div>
+
+      <div class="glass-card p-8 rounded-2xl border border-gray-150 dark:border-gray-800 text-center space-y-4">
+        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mx-auto">
+          <i class="ri-terminal-box-line ri-lg"></i>
+        </div>
+        <h3 class="text-xl font-bold font-poppins">Developer Automation</h3>
+        <p class="text-sm text-gray-650 dark:text-gray-450 leading-relaxed">
+          Using LLMs to generate build tools, Webpack loaders, CI/CD scripts, and shell commands, minimizing manual operations and configuration time.
+        </p>
+      </div>
+
+      <div class="glass-card p-8 rounded-2xl border border-gray-150 dark:border-gray-800 text-center space-y-4">
+        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary mx-auto">
+          <i class="ri-question-answer-line ri-lg"></i>
+        </div>
+        <h3 class="text-xl font-bold font-poppins">Prompt Design for Coding</h3>
+        <p class="text-sm text-gray-650 dark:text-gray-450 leading-relaxed">
+          Structuring high-context prompt templates to quickly diagnose runtime bugs, translate syntax between languages, and audit code quality.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4 font-poppins">Joshua Odero Ogallo</h3>
+        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Software Engineer focused on bridging responsive frontends, interactive UI/UX, and modern web architectures.</p>
+        <div class="flex space-x-4">
+          <a href="https://www.linkedin.com/in/joshua-ogallo-9a2628251/" target="_blank" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
+            <i class="ri-linkedin-fill"></i>
+          </a>
+          <a href="https://github.com/ogallj" target="_blank" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
+            <i class="ri-github-fill"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 font-poppins">Portfolio Directory</h4>
+        <div class="space-y-2 text-sm text-gray-400">
+          <a href="index.html" class="block hover:text-white transition-colors">Home</a>
+          <a href="about.html" class="block hover:text-white transition-colors">About & Journey</a>
+          <a href="projects.html" class="block hover:text-white transition-colors">Projects Showcase</a>
+          <a href="skills.html" class="block hover:text-white transition-colors">Skills & Tech Stack</a>
+          <a href="contact.html" class="block hover:text-white transition-colors">Contact Me</a>
+          <a href="Joshua Odero Ogallo CV.pdf" download class="block text-primary hover:text-white transition-colors flex items-center space-x-1">
+            <i class="ri-download-line"></i>
+            <span>Download CV</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 font-poppins">Specializations</h4>
+        <div class="space-y-2 text-sm text-gray-400">
+          <p>Frontend Engineering</p>
+          <p>UI/UX Design</p>
+          <p>AI-Enthusiast</p>
+          <p>Web Development</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-850 pt-8 text-center md:text-left">
+      <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+        <p>© 2026 Joshua Odero Ogallo. All rights reserved.</p>
+        <p class="mt-2 md:mt-0">Premium Portfolio Engineered with Tailwind & Webpack</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top button -->
+<div class="scroll-to-top" id="scroll-to-top">
+  <i class="ri-arrow-up-line ri-lg"></i>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

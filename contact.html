@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Joshua Odero Ogallo</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B5CF6',
+            secondary: '#C4B5FD'
+          },
+          borderRadius: {
+            'none': '0px',
+            'sm': '4px',
+            DEFAULT: '8px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '24px',
+            '3xl': '32px',
+            'full': '9999px',
+            'button': '8px'
+          },
+          fontFamily: {
+            'poppins': ['Nexa', 'sans-serif'],
+            'lato': ['Quicksand', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-lato">
+
+<!-- Navigation Navbar -->
+<nav class="fixed top-0 w-full glass-effect z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="index.html" class="flex items-center space-x-3">
+          <img src="img/joshua.jpeg" alt="Profile" class="w-10 h-10 rounded-xl object-cover shadow-lg border border-primary/20">
+          <span class="font-poppins font-bold text-gray-900 dark:text-white tracking-wide">Joshua Odero Ogallo</span>
+        </a>
+      </div>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Home</a>
+        <a href="about.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary font-medium">About</a>
+        <a href="projects.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Projects</a>
+        <a href="skills.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Skills</a>
+        <a href="contact.html" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Contact</a>
+        <a href="Joshua Odero Ogallo CV.pdf" download class="px-4 py-2 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary dark:text-purple-400 font-bold transition-all text-sm flex items-center space-x-1.5 shadow-sm border border-primary/10">
+          <i class="ri-download-line"></i>
+          <span>Resume</span>
+        </a>
+        
+        <!-- Theme Switcher -->
+        <button id="desktop-theme-toggle" class="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-gray-850 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-all shadow-sm">
+          <i class="ri-sun-line theme-sun-icon"></i>
+          <i class="ri-moon-line theme-moon-icon hidden"></i>
+        </button>
+      </div>
+      <button class="md:hidden w-8 h-8 flex items-center justify-center text-gray-700 dark:text-gray-300" id="mobile-menu-btn">
+        <i class="ri-menu-line ri-lg"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div class="md:hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 hidden" id="mobile-menu">
+    <div class="px-6 py-4 space-y-4">
+      <a href="index.html" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Home</a>
+      <a href="about.html" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium">About</a>
+      <a href="projects.html" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Projects</a>
+      <a href="skills.html" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Skills</a>
+      <a href="contact.html" class="block text-gray-700 dark:text-gray-300 hover:text-primary font-medium">Contact</a>
+      <a href="Joshua Odero Ogallo CV.pdf" download class="block text-primary dark:text-purple-400 hover:text-primary font-medium flex items-center">
+        <i class="ri-download-line mr-2"></i>Download CV
+      </a>
+      <button id="mobile-theme-toggle" class="w-full text-left py-2 text-gray-700 dark:text-gray-300 hover:text-primary font-medium flex items-center">
+        <i class="ri-sun-line theme-sun-icon mr-2"></i>
+        <i class="ri-moon-line theme-moon-icon mr-2 hidden"></i>
+        <span class="theme-text">Light Mode</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<section class="pt-32 pb-12 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
+  <div class="max-w-7xl mx-auto px-6 text-center space-y-4">
+    <span class="text-primary font-poppins font-bold tracking-widest text-sm uppercase">Collaboration</span>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-950 dark:text-white font-poppins">Get In Touch</h1>
+    <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+      Ready to start a new project or collaborate on intelligent web interfaces? Drop a message.
+    </p>
+  </div>
+</section>
+
+<!-- Contact Form and Details Section -->
+<section class="py-12 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      
+      <!-- Contact Info Cards -->
+      <div class="space-y-8 animate-on-scroll">
+        <h2 class="text-2xl font-bold font-poppins text-gray-950 dark:text-white mb-6">Contact Information</h2>
+        
+        <!-- Card 1: Email -->
+        <div class="glass-card p-6 rounded-2xl border border-gray-150 dark:border-gray-800 shadow-md hover-glow transition-all flex items-start space-x-6 group">
+          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-105 transition-transform duration-300">
+            <i class="ri-mail-line ri-xl"></i>
+          </div>
+          <div>
+            <h3 class="font-bold font-poppins text-gray-950 dark:text-white">Email Address</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Direct inquiries or feedback</p>
+            <a href="mailto:ogallo254@gmail.com" class="text-primary hover:underline text-sm font-medium block mt-2">ogallo254@gmail.com</a>
+          </div>
+        </div>
+
+        <!-- Card 2: LinkedIn -->
+        <div class="glass-card p-6 rounded-2xl border border-gray-150 dark:border-gray-800 shadow-md hover-glow transition-all flex items-start space-x-6 group">
+          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-105 transition-transform duration-300">
+            <i class="ri-linkedin-line ri-xl"></i>
+          </div>
+          <div>
+            <h3 class="font-bold font-poppins text-gray-950 dark:text-white">LinkedIn Profile</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Professional network connections</p>
+            <a href="https://www.linkedin.com/in/joshua-ogallo-9a2628251/" target="_blank" class="text-primary hover:underline text-sm font-medium block mt-2">linkedin.com/in/joshua-ogallo-9a2628251/</a>
+          </div>
+        </div>
+
+        <!-- Card 3: GitHub -->
+        <div class="glass-card p-6 rounded-2xl border border-gray-150 dark:border-gray-800 shadow-md hover-glow transition-all flex items-start space-x-6 group">
+          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-105 transition-transform duration-300">
+            <i class="ri-github-line ri-xl"></i>
+          </div>
+          <div>
+            <h3 class="font-bold font-poppins text-gray-950 dark:text-white">GitHub Account</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Open source code repos</p>
+            <a href="https://github.com/ogallj" target="_blank" class="text-primary hover:underline text-sm font-medium block mt-2">github.com/ogallj</a>
+          </div>
+        </div>
+
+        <!-- Card 4: Location -->
+        <div class="glass-card p-6 rounded-2xl border border-gray-150 dark:border-gray-800 shadow-md hover-glow transition-all flex items-start space-x-6 group">
+          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:scale-105 transition-transform duration-300">
+            <i class="ri-map-pin-line ri-xl"></i>
+          </div>
+          <div>
+            <h3 class="font-bold font-poppins text-gray-950 dark:text-white">Location</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Based in Kenya</p>
+            <span class="text-sm text-gray-700 dark:text-gray-300 font-medium block mt-2">Nairobi, Kenya</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="glass-card p-8 rounded-3xl border border-gray-150 dark:border-gray-800 shadow-lg animate-on-scroll">
+        <h2 class="text-2xl font-bold font-poppins text-gray-950 dark:text-white mb-6">Send a Message</h2>
+        
+        <form class="space-y-6" id="contact-form">
+          <!-- Input: Name -->
+          <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Name</label>
+            <input type="text" name="name" class="contact-input w-full px-5 py-3 rounded-xl bg-gray-50 dark:bg-gray-950 border border-gray-250 dark:border-gray-800 text-gray-800 dark:text-white focus:outline-none" placeholder="Your full name" required>
+          </div>
+
+          <!-- Input: Email -->
+          <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Email</label>
+            <input type="email" name="email" class="contact-input w-full px-5 py-3 rounded-xl bg-gray-50 dark:bg-gray-950 border border-gray-250 dark:border-gray-800 text-gray-800 dark:text-white focus:outline-none" placeholder="your.email@example.com" required>
+          </div>
+
+          <!-- Input: Subject -->
+          <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Subject</label>
+            <input type="text" name="subject" class="contact-input w-full px-5 py-3 rounded-xl bg-gray-50 dark:bg-gray-950 border border-gray-250 dark:border-gray-800 text-gray-800 dark:text-white focus:outline-none" placeholder="Project collaboration inquiry" required>
+          </div>
+
+          <!-- Input: Message -->
+          <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Message</label>
+            <textarea name="message" rows="5" class="contact-input w-full px-5 py-3 rounded-xl bg-gray-50 dark:bg-gray-950 border border-gray-250 dark:border-gray-800 text-gray-800 dark:text-white focus:outline-none resize-none" placeholder="Detail your project specifications..." required></textarea>
+          </div>
+
+          <!-- Button -->
+          <button type="submit" class="w-full bg-gradient-to-r from-primary to-purple-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+            Send Message
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4 font-poppins">Joshua Odero Ogallo</h3>
+        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Software Engineer focused on bridging responsive frontends, interactive UI/UX, and modern web architectures.</p>
+        <div class="flex space-x-4">
+          <a href="https://www.linkedin.com/in/joshua-ogallo-9a2628251/" target="_blank" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
+            <i class="ri-linkedin-fill"></i>
+          </a>
+          <a href="https://github.com/ogallj" target="_blank" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors">
+            <i class="ri-github-fill"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 font-poppins">Portfolio Directory</h4>
+        <div class="space-y-2 text-sm text-gray-400">
+          <a href="index.html" class="block hover:text-white transition-colors">Home</a>
+          <a href="about.html" class="block hover:text-white transition-colors">About & Journey</a>
+          <a href="projects.html" class="block hover:text-white transition-colors">Projects Showcase</a>
+          <a href="skills.html" class="block hover:text-white transition-colors">Skills & Tech Stack</a>
+          <a href="contact.html" class="block hover:text-white transition-colors">Contact Me</a>
+          <a href="Joshua Odero Ogallo CV.pdf" download class="block text-primary hover:text-white transition-colors flex items-center space-x-1">
+            <i class="ri-download-line"></i>
+            <span>Download CV</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 font-poppins">Specializations</h4>
+        <div class="space-y-2 text-sm text-gray-400">
+          <p>Frontend Engineering</p>
+          <p>UI/UX Design</p>
+          <p>AI-Enthusiast</p>
+          <p>Web Development</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-850 pt-8 text-center md:text-left">
+      <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+        <p>© 2026 Joshua Odero Ogallo. All rights reserved.</p>
+        <p class="mt-2 md:mt-0">Premium Portfolio Engineered with Tailwind & Webpack</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top button -->
+<div class="scroll-to-top" id="scroll-to-top">
+  <i class="ri-arrow-up-line ri-lg"></i>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
