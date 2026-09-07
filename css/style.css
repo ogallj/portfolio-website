@@ -788,3 +788,303 @@ body {
   }
 }
 
+/* ==========================================================================
+   Graphic Design Portfolio & Editorial Visual Systems
+   ========================================================================== */
+
+/* Modern Graphic Design Filter Card & Command Panel */
+.design-filter-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(212, 175, 55, 0.35);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.06), 0 0 25px rgba(212, 175, 55, 0.12);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.design-filter-card:hover {
+  border-color: rgba(212, 175, 55, 0.65);
+  box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.08), 0 0 35px rgba(212, 175, 55, 0.2);
+}
+
+.filter-card-header {
+  padding: 1.25rem 1.75rem;
+  background: linear-gradient(180deg, rgba(254, 243, 199, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.75);
+}
+
+.filter-tab-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: 9999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #4B5563;
+  background: #F9FAFB;
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.filter-tab-pill:hover {
+  color: #B91C1C;
+  background: #FEF2F2;
+  border-color: rgba(220, 38, 38, 0.35);
+  transform: translateY(-2px);
+}
+
+.filter-tab-pill.active {
+  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 60%, #D4AF37 100%) !important;
+  color: #FFFFFF !important;
+  font-weight: 700;
+  border-color: rgba(254, 240, 138, 0.6) !important;
+  box-shadow: 0 6px 18px -2px rgba(220, 38, 38, 0.35), 0 0 12px rgba(212, 175, 55, 0.3);
+  transform: scale(1.02);
+}
+
+.filter-tab-pill .tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.06);
+  color: #6B7280;
+  transition: all 0.25s ease;
+}
+
+.filter-tab-pill.active .tab-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+.sub-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Satoshi', sans-serif;
+  color: #64748B;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sub-tag-chip:hover {
+  color: #DC2626;
+  background: #FFF1F2;
+  border-color: rgba(220, 38, 38, 0.35);
+  transform: translateY(-1px);
+}
+
+.sub-tag-chip.active {
+  background: linear-gradient(135deg, #DC2626, #B91C1C) !important;
+  color: #FFFFFF !important;
+  border-color: #991B1B !important;
+  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.3);
+}
+
+.sub-tag-chip.active i {
+  color: #FDE047 !important;
+}
+
+/* Editorial Project Card Variations */
+.editorial-card {
+  position: relative;
+  border-radius: 1.5rem;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.editorial-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.4), rgba(212, 175, 55, 0.5), rgba(245, 158, 11, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.editorial-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 0 25px 50px -10px rgba(220, 38, 38, 0.12), 0 0 30px rgba(212, 175, 55, 0.22);
+}
+
+.editorial-card:hover::after {
+  opacity: 1;
+}
+
+.editorial-card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  background-color: #0F172A;
+}
+
+.editorial-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-card:hover .editorial-card-img-wrap img {
+  transform: scale(1.05);
+}
+
+.card-palette-dot {
+  display: inline-block;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 9999px;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.card-palette-dot:hover {
+  transform: scale(1.3);
+  z-index: 10;
+}
+
+/* Color Swatch Chip */
+.color-swatch-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.75rem;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1E293B;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-swatch-chip:hover {
+  transform: translateY(-2px);
+  border-color: #DC2626;
+  background: #FEF2F2;
+}
+
+.color-swatch-circle {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Case Study Modal */
+.case-study-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.case-study-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.case-study-dialog {
+  background: #FFFFFF;
+  border-radius: 1.5rem;
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  max-width: 950px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.95) translateY(20px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.case-study-modal.open .case-study-dialog {
+  transform: scale(1) translateY(0);
+}
+
+/* Tripartite Synergy Visualizer (Hybrid Skillset) */
+.synergy-node {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.synergy-node:hover {
+  transform: translateY(-6px);
+  border-color: rgba(220, 38, 38, 0.6);
+  box-shadow: 0 15px 35px rgba(220, 38, 38, 0.12), 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.synergy-connector {
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .synergy-connector::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -2rem;
+    width: 2rem;
+    height: 2px;
+    background: linear-gradient(90deg, #DC2626, #D4AF37);
+    z-index: 1;
+  }
+}
+
+/* Accessibility & Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+

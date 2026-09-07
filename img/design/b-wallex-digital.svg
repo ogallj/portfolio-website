@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="digi-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#05070F"/>
+      <stop offset="100%" stop-color="#140B13"/>
+    </linearGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <filter id="phone-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="30" stdDeviation="30" flood-color="#DC2626" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#digi-bg)"/>
+
+  <!-- Left Header -->
+  <g transform="translate(80, 100)">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#FDE047" letter-spacing="3">DIGITAL CAMPAIGN &amp; APP VISUALS</text>
+    <text x="0" y="44" font-family="'Clash Display', sans-serif" font-size="44" font-weight="700" fill="#FFFFFF">Cross-Platform Digital Presence</text>
+    <text x="0" y="80" font-family="'Satoshi', sans-serif" font-size="16" fill="#94A3B8" max-width="500">Social promo banners, merchant dashboard visuals, and high-conversion mobile screens.</text>
+  </g>
+
+  <!-- Mobile App Mockup (Center Left) -->
+  <g transform="translate(120, 240)" filter="url(#phone-glow)">
+    <rect width="320" height="490" rx="36" fill="#090D16" stroke="#334155" stroke-width="4"/>
+    <!-- Screen -->
+    <rect x="12" y="12" width="296" height="466" rx="28" fill="#0F172A"/>
+    <!-- Dynamic Island -->
+    <rect x="100" y="22" width="120" height="22" rx="11" fill="#000000"/>
+    
+    <!-- App Header -->
+    <g transform="translate(30, 65)">
+      <polygon points="12,3 24,9 24,22 12,28 0,22 0,9" fill="none" stroke="#DC2626" stroke-width="2"/>
+      <text x="32" y="19" font-family="'Clash Display', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">B-Wallex</text>
+    </g>
+
+    <!-- App Balance Card -->
+    <g transform="translate(25, 110)">
+      <rect width="270" height="130" rx="18" fill="linear-gradient(135deg, #DC2626, #B91C1C, #991B1B)"/>
+      <text x="20" y="32" font-family="'Satoshi', sans-serif" font-size="11" fill="#FECACA">Settlement Balance</text>
+      <text x="20" y="65" font-family="'Plus Jakarta Sans', sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">$48,920.50</text>
+      <text x="20" y="90" font-family="'Satoshi', sans-serif" font-size="10" fill="#FEF08A">↑ +18.4% this week</text>
+      <!-- Gold Chip icon -->
+      <circle cx="230" cy="40" r="16" fill="url(#gold-grad)" opacity="0.8"/>
+    </g>
+
+    <!-- Quick Action Icons -->
+    <g transform="translate(30, 260)">
+      <circle cx="30" cy="20" r="20" fill="#1E293B"/>
+      <text x="30" y="25" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#FDE047" text-anchor="middle">⇄</text>
+      <circle cx="95" cy="20" r="20" fill="#1E293B"/>
+      <text x="95" y="25" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#FDE047" text-anchor="middle">💳</text>
+      <circle cx="160" cy="20" r="20" fill="#1E293B"/>
+      <text x="160" y="25" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#FDE047" text-anchor="middle">📊</text>
+      <circle cx="225" cy="20" r="20" fill="#1E293B"/>
+      <text x="225" y="25" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#FDE047" text-anchor="middle">⚙</text>
+    </g>
+
+    <!-- Transaction List -->
+    <g transform="translate(25, 330)">
+      <rect width="270" height="42" rx="10" fill="#1E293B"/>
+      <text x="16" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Shopify Settlement</text>
+      <text x="250" y="26" font-family="'Satoshi', sans-serif" font-size="12" font-weight="700" fill="#22C55E" text-anchor="end">+$1,450</text>
+      
+      <rect y="50" width="270" height="42" rx="10" fill="#1E293B"/>
+      <text x="16" y="76" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">Global Wire Transfer</text>
+      <text x="250" y="76" font-family="'Satoshi', sans-serif" font-size="12" font-weight="700" fill="#22C55E" text-anchor="end">+$3,200</text>
+    </g>
+  </g>
+
+  <!-- Right Side: Instagram / LinkedIn Promotional Launch Posts -->
+  <g transform="translate(540, 240)">
+    <!-- Post 1 (Square) -->
+    <g filter="url(#phone-glow)">
+      <rect width="320" height="320" rx="18" fill="#0F172A" stroke="url(#gold-grad)" stroke-width="1.5"/>
+      <path d="M0,0 L320,180 L320,320 L0,320 Z" fill="#DC2626" opacity="0.2"/>
+      <g transform="translate(30, 40)">
+        <polygon points="18,4 36,14 36,33 18,42 0,33 0,14" fill="none" stroke="url(#gold-grad)" stroke-width="2.5"/>
+        <text x="50" y="28" font-family="'Clash Display', sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">B-Wallex</text>
+        <text x="0" y="110" font-family="'Clash Display', sans-serif" font-size="32" font-weight="700" fill="#FFFFFF" line-height="1.1">INSTANT</text>
+        <text x="0" y="145" font-family="'Playfair Display', serif" font-style="italic" font-size="30" fill="#FDE047">BORDERLESS</text>
+        <text x="0" y="180" font-family="'Clash Display', sans-serif" font-size="32" font-weight="700" fill="#FFFFFF">PAYMENTS.</text>
+        <rect x="0" y="215" width="160" height="36" rx="18" fill="url(#gold-grad)"/>
+        <text x="80" y="238" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#0F172A" text-anchor="middle">LAUNCH NOW →</text>
+      </g>
+    </g>
+
+    <!-- Post 2 (Banner format) -->
+    <g transform="translate(0, 350)" filter="url(#phone-glow)">
+      <rect width="580" height="140" rx="16" fill="linear-gradient(90deg, #1E293B, #0F172A)" stroke="#DC2626" stroke-width="1.5"/>
+      <g transform="translate(35, 45)">
+        <text x="0" y="18" font-family="'Clash Display', sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">Accept 40+ Currencies Seamlessly</text>
+        <text x="0" y="45" font-family="'Satoshi', sans-serif" font-size="13" fill="#94A3B8">Developer-first SDKs • Instant merchant bank deposits</text>
+      </g>
+      <rect x="420" y="50" width="125" height="40" rx="20" fill="#DC2626"/>
+      <text x="482" y="75" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">API Docs →</text>
+    </g>
+  </g>
+</svg>

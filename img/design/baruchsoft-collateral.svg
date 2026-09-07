@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="coll-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="gold-bright" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <filter id="coll-shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="20" stdDeviation="25" flood-color="#0F172A" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#coll-bg)"/>
+
+  <g transform="translate(80, 60)">
+    <text x="0" y="0" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#DC2626" letter-spacing="2">MARKETING COLLATERAL &amp; STATIONERY</text>
+    <text x="0" y="32" font-family="'Clash Display', sans-serif" font-size="28" font-weight="700" fill="#0F172A">Baruchsoft Enterprise Brand Suite</text>
+  </g>
+
+  <!-- Brochure Mockup (Trifold open) -->
+  <g transform="translate(80, 140)" filter="url(#coll-shadow)">
+    <rect width="640" height="420" rx="8" fill="#FFFFFF"/>
+    <!-- Fold lines -->
+    <line x1="213" y1="0" x2="213" y2="420" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="426" y1="0" x2="426" y2="420" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="4 4"/>
+
+    <!-- Panel 1 (Cover / Inside flap) -->
+    <g transform="translate(25, 40)">
+      <polygon points="18,4 36,14 36,33 18,42 0,33 0,14" fill="none" stroke="#EAB308" stroke-width="2.5"/>
+      <text x="0" y="80" font-family="'Clash Display', sans-serif" font-size="18" font-weight="700" fill="#0F172A">NEXT-GEN</text>
+      <text x="0" y="105" font-family="'Clash Display', sans-serif" font-size="18" font-weight="700" fill="#DC2626">SOFTWARE</text>
+      <text x="0" y="140" font-family="'Satoshi', sans-serif" font-size="11" fill="#64748B">Reliable infrastructure built for ambitious technology enterprises.</text>
+      <rect x="0" y="190" width="160" height="120" rx="6" fill="#0F172A"/>
+      <circle cx="80" cy="250" r="30" fill="#EAB308" opacity="0.3"/>
+      <text x="80" y="254" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">SOLUTIONS</text>
+    </g>
+
+    <!-- Panel 2 (Center) -->
+    <g transform="translate(240, 40)">
+      <text x="0" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="800" fill="#0F172A">SERVICES PORTFOLIO</text>
+      <g transform="translate(0, 50)" font-family="'Satoshi', sans-serif" font-size="10" fill="#475569">
+        <text x="0" y="0" font-weight="700" fill="#DC2626">01 / Cloud Engineering</text>
+        <text x="0" y="18">Scalable microservices, Kubernetes orchestration.</text>
+
+        <text x="0" y="50" font-weight="700" fill="#DC2626">02 / API &amp; Fintech Gateways</text>
+        <text x="0" y="68">Bank-grade authentication and webhook pipelines.</text>
+
+        <text x="0" y="100" font-weight="700" fill="#DC2626">03 / Enterprise UX Systems</text>
+        <text x="0" y="118">Design systems and accessible portals.</text>
+      </g>
+    </g>
+
+    <!-- Panel 3 (Back/Front cover) -->
+    <g transform="translate(450, 0)">
+      <rect width="190" height="420" rx="0 8 8 0" fill="#0F172A"/>
+      <g transform="translate(30, 80)">
+        <polygon points="25,5 50,20 50,48 25,62 0,48 0,20" fill="url(#gold-bright)"/>
+        <text x="0" y="110" font-family="'Clash Display', sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">Baruchsoft</text>
+        <text x="0" y="130" font-family="'Satoshi', sans-serif" font-size="11" fill="#FDE047" letter-spacing="2">CAPABILITY OVERVIEW</text>
+        <line x1="0" y1="160" x2="130" y2="160" stroke="#DC2626" stroke-width="2"/>
+        <text x="0" y="220" font-family="'Satoshi', sans-serif" font-size="10" fill="#94A3B8">info@baruchsoft.com</text>
+        <text x="0" y="240" font-family="'Satoshi', sans-serif" font-size="10" fill="#94A3B8">+254 (0) 700 123 456</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Business Cards Stack & Lanyard (Right side) -->
+  <g transform="translate(760, 180)" filter="url(#coll-shadow)">
+    <!-- Card Back -->
+    <rect width="360" height="210" rx="12" fill="#0F172A" stroke="url(#gold-bright)" stroke-width="2"/>
+    <g transform="translate(100, 75)">
+      <polygon points="20,0 40,12 40,36 20,48 0,36 0,12" fill="url(#gold-bright)"/>
+      <text x="50" y="32" font-family="'Clash Display', sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">Baruchsoft</text>
+      <text x="50" y="48" font-family="'Satoshi', sans-serif" font-size="9" fill="#94A3B8" letter-spacing="1.5">ENTERPRISE SYSTEMS</text>
+    </g>
+
+    <!-- Card Front Floating Over -->
+    <g transform="translate(30, 160)" filter="url(#coll-shadow)">
+      <rect width="360" height="210" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
+      <rect x="0" y="0" width="8" height="210" rx="4 0 0 4" fill="#DC2626"/>
+      <g transform="translate(35, 45)">
+        <text x="0" y="18" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="800" fill="#0F172A">JOSHUA ODERO</text>
+        <text x="0" y="36" font-family="'Satoshi', sans-serif" font-size="11" font-weight="600" fill="#EAB308">Lead Systems &amp; Visual Architect</text>
+        <line x1="0" y1="52" x2="180" y2="52" stroke="#E2E8F0" stroke-width="1.5"/>
+        <g transform="translate(0, 75)" font-family="'Satoshi', sans-serif" font-size="10" fill="#64748B">
+          <text x="0" y="0">E: joshua.ogallo@baruchsoft.com</text>
+          <text x="0" y="18">W: www.baruchsoft.com</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="hub-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A0C08"/>
+      <stop offset="50%" stop-color="#2D150B"/>
+      <stop offset="100%" stop-color="#0D0604"/>
+    </linearGradient>
+    <linearGradient id="gold-leaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="35%" stop-color="#D4AF37"/>
+      <stop offset="70%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </linearGradient>
+    <filter id="hub-shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="25" stdDeviation="30" flood-color="#D4AF37" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#hub-bg)"/>
+
+  <!-- Left Side: Copy -->
+  <g transform="translate(100, 160)">
+    <rect x="0" y="0" width="220" height="34" rx="17" fill="#D4AF37" fill-opacity="0.15" stroke="#D4AF37" stroke-opacity="0.5"/>
+    <circle cx="18" cy="17" r="4" fill="#FDE047"/>
+    <text x="32" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#FDE047" letter-spacing="1.5">HOSPITALITY BRANDING</text>
+
+    <text x="0" y="95" font-family="'Clash Display', sans-serif" font-size="52" font-weight="700" fill="#FFFFFF" letter-spacing="-1">The Hub</text>
+    <text x="210" y="95" font-family="'Playfair Display', serif" font-style="italic" font-size="44" fill="#D4AF37">Dining &amp; Lounge</text>
+
+    <text x="0" y="145" font-family="'Satoshi', sans-serif" font-size="19" fill="#E2E8F0">Luxury Lakeside Restaurant Identity, Menu Suite &amp; Signage</text>
+    <text x="0" y="175" font-family="'Satoshi', sans-serif" font-size="15" fill="#94A3B8">Artisan Menus • Table Tent Cards • Promotional Posters • Branded Coasters</text>
+
+    <g transform="translate(0, 230)" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#F8FAFC">
+      <circle cx="12" cy="12" r="6" fill="#D4AF37"/>
+      <text x="32" y="17">Embossed Gold Foil Leather Menu Folio</text>
+
+      <circle cx="12" cy="52" r="6" fill="#DC2626"/>
+      <text x="32" y="57">Cocktail Speciality Cards &amp; Seasonal Table Tents</text>
+
+      <circle cx="12" cy="92" r="6" fill="#D4AF37"/>
+      <text x="32" y="97">Outdoor Lakeside Monument Signage</text>
+    </g>
+
+    <g transform="translate(0, 390)">
+      <rect x="0" y="0" width="70" height="28" rx="6" fill="#2D150B"/>
+      <text x="35" y="18" font-family="'Satoshi', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">2024</text>
+      <rect x="80" y="0" width="120" height="28" rx="6" fill="#2D150B"/>
+      <text x="140" y="18" font-family="'Satoshi', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Print Design</text>
+      <rect x="210" y="0" width="140" height="28" rx="6" fill="#2D150B"/>
+      <text x="280" y="18" font-family="'Satoshi', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Stationery &amp; Menu</text>
+    </g>
+  </g>
+
+  <!-- Right Side: Luxury Leather Menu Card Mockup & Table Stand -->
+  <g transform="translate(680, 140)">
+    <!-- Main Menu Folio (Perspective) -->
+    <g transform="translate(80, 20) rotate(5)" filter="url(#hub-shadow)">
+      <rect width="360" height="520" rx="14" fill="#170A06" stroke="url(#gold-leaf)" stroke-width="2.5"/>
+      <!-- Inner Pearl Menu Page -->
+      <rect x="25" y="25" width="310" height="470" rx="8" fill="#FDFBF7" stroke="#E2E8F0" stroke-width="1"/>
+      
+      <!-- Menu Header -->
+      <g transform="translate(55, 65)">
+        <circle cx="125" cy="20" r="24" fill="none" stroke="url(#gold-leaf)" stroke-width="2"/>
+        <text x="125" y="26" font-family="'Playfair Display', serif" font-style="italic" font-size="22" font-weight="700" fill="#92400E" text-anchor="middle">H</text>
+
+        <text x="125" y="70" font-family="'Playfair Display', serif" font-size="24" font-weight="700" fill="#1C1917" text-anchor="middle">THE HUB</text>
+        <text x="125" y="88" font-family="'Satoshi', sans-serif" font-size="9" font-weight="700" fill="#B45309" letter-spacing="3" text-anchor="middle">LAKESIDE DINING &amp; GRILL</text>
+        
+        <line x1="25" y1="110" x2="225" y2="110" stroke="url(#gold-leaf)" stroke-width="1"/>
+
+        <!-- Menu Section: Signature Grill -->
+        <g transform="translate(0, 130)" font-family="'Plus Jakarta Sans', sans-serif">
+          <text x="0" y="15" font-size="12" font-weight="800" fill="#92400E" letter-spacing="1">SIGNATURE DISHES</text>
+
+          <text x="0" y="45" font-size="12" font-weight="700" fill="#1C1917">Lake Victoria Tilapia</text>
+          <text x="250" y="45" font-size="12" font-weight="700" fill="#B45309" text-anchor="end">KSh 1,400</text>
+          <text x="0" y="60" font-family="'Satoshi', sans-serif" font-size="9" fill="#78716C">Fresh herbs, garlic butter reduction, ugali</text>
+
+          <text x="0" y="90" font-size="12" font-weight="700" fill="#1C1917">Smoked Beef Ribeye</text>
+          <text x="250" y="90" font-size="12" font-weight="700" fill="#B45309" text-anchor="end">KSh 1,850</text>
+          <text x="0" y="105" font-family="'Satoshi', sans-serif" font-size="9" fill="#78716C">Dry aged, rosemary jus, grilled plantains</text>
+
+          <text x="0" y="135" font-size="12" font-weight="800" fill="#92400E" letter-spacing="1">CRAFT COCKTAILS</text>
+          <text x="0" y="165" font-size="12" font-weight="700" fill="#1C1917">Sunset Swahili Dawa</text>
+          <text x="250" y="165" font-size="12" font-weight="700" fill="#B45309" text-anchor="end">KSh 750</text>
+          <text x="0" y="180" font-family="'Satoshi', sans-serif" font-size="9" fill="#78716C">Vodka, raw honey, lime, crushed ginger</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="summit-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B132B"/>
+      <stop offset="60%" stop-color="#1C2541"/>
+      <stop offset="100%" stop-color="#0B132B"/>
+    </linearGradient>
+    <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="amber-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <filter id="summit-shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="25" stdDeviation="30" flood-color="#2563EB" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#summit-bg)"/>
+
+  <!-- Left Side: Copy -->
+  <g transform="translate(100, 160)">
+    <rect x="0" y="0" width="220" height="34" rx="17" fill="#2563EB" fill-opacity="0.2" stroke="#38BDF8" stroke-opacity="0.6"/>
+    <circle cx="18" cy="17" r="4" fill="#FDE047"/>
+    <text x="32" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#FDE047" letter-spacing="1.5">EVENT BRANDING &amp; PRINT</text>
+
+    <text x="0" y="95" font-family="'Clash Display', sans-serif" font-size="50" font-weight="700" fill="#FFFFFF" letter-spacing="-1">Student Safety</text>
+    <text x="345" y="95" font-family="'Playfair Display', serif" font-style="italic" font-size="44" fill="#FDE047">Summit</text>
+
+    <text x="0" y="145" font-family="'Satoshi', sans-serif" font-size="19" fill="#94A3B8">National Youth Security &amp; Campus Leadership Conference</text>
+    <text x="0" y="175" font-family="'Satoshi', sans-serif" font-size="15" fill="#64748B">Stage Backdrop • Conference Badges • Roll-up Banners • Delegate Booklets</text>
+
+    <g transform="translate(0, 230)" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#E2E8F0">
+      <circle cx="12" cy="12" r="6" fill="#38BDF8"/>
+      <text x="32" y="17">Authoritative Shield &amp; Laurel Wreath Emblem</text>
+
+      <circle cx="12" cy="52" r="6" fill="#FDE047"/>
+      <text x="32" y="57">VIP &amp; Delegate Lanyard Accreditation Badges</text>
+
+      <circle cx="12" cy="92" r="6" fill="#38BDF8"/>
+      <text x="32" y="97">Stage Keynote Backdrop &amp; Venue Directional Wayfinding</text>
+    </g>
+
+    <g transform="translate(0, 390)">
+      <rect x="0" y="0" width="70" height="28" rx="6" fill="#1E293B"/>
+      <text x="35" y="18" font-family="'Satoshi', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">2024</text>
+      <rect x="80" y="0" width="120" height="28" rx="6" fill="#1E293B"/>
+      <text x="140" y="18" font-family="'Satoshi', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Event Graphics</text>
+      <rect x="210" y="0" width="130" height="28" rx="6" fill="#1E293B"/>
+      <text x="275" y="18" font-family="'Satoshi', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Roll-up Banners</text>
+    </g>
+  </g>
+
+  <!-- Right Side: Conference Badge & Event Poster Preview -->
+  <g transform="translate(680, 140)">
+    <!-- Event Poster (Perspective) -->
+    <g transform="translate(180, 20) rotate(8)" filter="url(#summit-shadow)">
+      <rect width="280" height="420" rx="10" fill="#0A0F1D" stroke="#38BDF8" stroke-width="2"/>
+      <g transform="translate(30, 45)">
+        <polygon points="25,5 48,16 48,42 25,58 2,42 2,16" fill="url(#shield-grad)"/>
+        <text x="60" y="36" font-family="'Clash Display', sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">SUMMIT 24</text>
+        
+        <text x="0" y="110" font-family="'Clash Display', sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">CREATING</text>
+        <text x="0" y="140" font-family="'Playfair Display', serif" font-style="italic" font-size="26" fill="#FDE047">SAFER</text>
+        <text x="0" y="170" font-family="'Clash Display', sans-serif" font-size="28" font-weight="700" fill="#38BDF8">CAMPUSES.</text>
+
+        <line x1="0" y1="210" x2="220" y2="210" stroke="#334155" stroke-width="1.5"/>
+        <text x="0" y="240" font-family="'Satoshi', sans-serif" font-size="11" fill="#94A3B8">OCTOBER 18–20 • NAIROBI</text>
+        <text x="0" y="260" font-family="'Satoshi', sans-serif" font-size="10" fill="#64748B">Keynotes • Roundtables • Workshops</text>
+      </g>
+    </g>
+
+    <!-- Delegate Lanyard Badge (Hanging front) -->
+    <g transform="translate(20, 140) rotate(-6)" filter="url(#summit-shadow)">
+      <!-- Lanyard Ribbon -->
+      <path d="M120,-60 L120,0" stroke="#2563EB" stroke-width="20" stroke-linecap="round"/>
+      <rect x="110" y="-8" width="20" height="16" rx="4" fill="#94A3B8"/>
+      
+      <!-- Badge Pouch -->
+      <rect width="220" height="340" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+      <rect x="0" y="0" width="220" height="80" rx="14 14 0 0" fill="#0B132B"/>
+      
+      <polygon points="25,12 45,22 45,45 25,58 5,45 5,22" fill="url(#shield-grad)"/>
+      <text x="55" y="38" font-family="'Clash Display', sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">SAFETY SUMMIT</text>
+
+      <!-- Badge Photo Placeholder -->
+      <g transform="translate(60, 100)">
+        <rect width="100" height="100" rx="12" fill="#E2E8F0"/>
+        <circle cx="50" cy="40" r="20" fill="#94A3B8"/>
+        <path d="M20,90 Q50,65 80,90" fill="#94A3B8"/>
+      </g>
+
+      <text x="110" y="230" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="800" fill="#0F172A" text-anchor="middle">JOSHUA OGALLO</text>
+      <text x="110" y="250" font-family="'Satoshi', sans-serif" font-size="11" font-weight="600" fill="#64748B" text-anchor="middle">TECH &amp; MEDIA LEAD</text>
+      
+      <!-- VIP Badge Pill -->
+      <rect x="50" y="275" width="120" height="30" rx="15" fill="#2563EB"/>
+      <text x="110" y="295" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle">DELEGATE VIP</text>
+    </g>
+  </g>
+</svg>

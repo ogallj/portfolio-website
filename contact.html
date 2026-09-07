@@ -60,11 +60,12 @@
           <span class="font-poppins font-bold text-gray-900 tracking-wide">Joshua Odero Ogallo</span>
         </a>
       </div>
-      <div class="hidden md:flex items-center space-x-8">
+      <div class="hidden md:flex items-center space-x-7">
         <a href="index.html" class="nav-link text-gray-700 hover:text-primary font-medium">Home</a>
         <a href="about.html" class="nav-link text-gray-700 hover:text-primary font-medium">About</a>
         <a href="projects.html" class="nav-link text-gray-700 hover:text-primary font-medium">Projects</a>
         <a href="skills.html" class="nav-link text-gray-700 hover:text-primary font-medium">Skills</a>
+        <a href="graphic-design.html" class="nav-link text-gray-700 hover:text-primary font-medium">Graphic Design</a>
         <a href="contact.html" class="nav-link text-gray-700 hover:text-primary font-medium">Contact</a>
         <a href="Joshua Odero Ogallo CV.pdf" download class="nav-resume-btn text-sm">
           <i class="ri-download-line"></i>
@@ -84,6 +85,7 @@
       <a href="about.html" class="block text-gray-700 hover:text-primary font-medium">About</a>
       <a href="projects.html" class="block text-gray-700 hover:text-primary font-medium">Projects</a>
       <a href="skills.html" class="block text-gray-700 hover:text-primary font-medium">Skills</a>
+      <a href="graphic-design.html" class="block text-gray-700 hover:text-primary font-medium">Graphic Design</a>
       <a href="contact.html" class="block text-gray-700 hover:text-primary font-medium">Contact</a>
       <a href="Joshua Odero Ogallo CV.pdf" download class="block text-red-600 hover:text-red-700 font-medium flex items-center">
         <i class="ri-download-line mr-2"></i>Download CV
@@ -179,16 +181,28 @@
             <input type="email" name="email" class="contact-input w-full px-5 py-3 rounded-xl bg-amber-50/40 border border-amber-500/30 text-gray-900 focus:outline-none focus:border-red-600" placeholder="your.email@example.com" required>
           </div>
 
+          <!-- Input: Service Category -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Service Interest</label>
+            <select id="service-select" name="service" class="contact-input w-full px-5 py-3 rounded-xl bg-amber-50/40 border border-amber-500/30 text-gray-900 focus:outline-none focus:border-red-600">
+              <option value="software-web">Software Engineering / Web App Development</option>
+              <option value="ui-ux">UI/UX Design Systems &amp; Prototyping</option>
+              <option value="graphic-design">Graphic Design &amp; Brand Identity</option>
+              <option value="marketing-print">Marketing Collateral, Banners &amp; Print</option>
+              <option value="general">General Collaboration / Inquiries</option>
+            </select>
+          </div>
+
           <!-- Input: Subject -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-            <input type="text" name="subject" class="contact-input w-full px-5 py-3 rounded-xl bg-amber-50/40 border border-amber-500/30 text-gray-900 focus:outline-none focus:border-red-600" placeholder="Project collaboration inquiry" required>
+            <input type="text" id="contact-subject" name="subject" class="contact-input w-full px-5 py-3 rounded-xl bg-amber-50/40 border border-amber-500/30 text-gray-900 focus:outline-none focus:border-red-600" placeholder="Project collaboration inquiry" required>
           </div>
 
           <!-- Input: Message -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-            <textarea name="message" rows="5" class="contact-input w-full px-5 py-3 rounded-xl bg-amber-50/40 border border-amber-500/30 text-gray-900 focus:outline-none focus:border-red-600 resize-none" placeholder="Detail your project specifications..." required></textarea>
+            <textarea id="contact-message" name="message" rows="5" class="contact-input w-full px-5 py-3 rounded-xl bg-amber-50/40 border border-amber-500/30 text-gray-900 focus:outline-none focus:border-red-600 resize-none" placeholder="Detail your project specifications..." required></textarea>
           </div>
 
           <!-- Button -->
@@ -223,9 +237,10 @@
         <h4 class="font-semibold mb-4 font-poppins text-amber-400">Portfolio Directory</h4>
         <div class="space-y-2 text-sm text-amber-100/80">
           <a href="index.html" class="block hover:text-amber-300 transition-colors">Home</a>
-          <a href="about.html" class="block hover:text-amber-300 transition-colors">About & Journey</a>
+          <a href="about.html" class="block hover:text-amber-300 transition-colors">About &amp; Journey</a>
           <a href="projects.html" class="block hover:text-amber-300 transition-colors">Projects Showcase</a>
-          <a href="skills.html" class="block hover:text-amber-300 transition-colors">Skills & Tech Stack</a>
+          <a href="skills.html" class="block hover:text-amber-300 transition-colors">Skills &amp; Tech Stack</a>
+          <a href="graphic-design.html" class="block hover:text-amber-300 transition-colors">Graphic Design Portfolio</a>
           <a href="contact.html" class="block hover:text-amber-300 transition-colors">Contact Me</a>
           <a href="Joshua Odero Ogallo CV.pdf" download class="block text-yellow-300 hover:text-amber-200 transition-colors flex items-center space-x-1">
             <i class="ri-download-line"></i>
@@ -258,5 +273,32 @@
 </div>
 
 <script src="js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceParam = urlParams.get('service');
+    const projectParam = urlParams.get('project');
+    const serviceSelect = document.getElementById('service-select');
+    const subjectInput = document.getElementById('contact-subject');
+    const messageInput = document.getElementById('contact-message');
+
+    if (serviceParam === 'graphic-design' && serviceSelect) {
+      serviceSelect.value = 'graphic-design';
+      if (subjectInput && !subjectInput.value) {
+        subjectInput.value = 'Graphic Design & Visual Identity Inquiry';
+      }
+    }
+
+    if (projectParam && subjectInput) {
+      subjectInput.value = `Inquiry regarding ${projectParam}`;
+      if (serviceSelect) {
+        serviceSelect.value = 'graphic-design';
+      }
+      if (messageInput) {
+        messageInput.placeholder = `I am interested in a design project similar to ${projectParam}...`;
+      }
+    }
+  });
+</script>
 </body>
 </html>

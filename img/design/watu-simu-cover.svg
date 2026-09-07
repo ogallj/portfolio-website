@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="watu-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#180404"/>
+      <stop offset="50%" stop-color="#2D0A0A"/>
+      <stop offset="100%" stop-color="#0A0303"/>
+    </linearGradient>
+    <linearGradient id="fire-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="40%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#DC2626"/>
+    </linearGradient>
+    <linearGradient id="phone-screen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B"/>
+      <stop offset="100%" stop-color="#312E81"/>
+    </linearGradient>
+    <filter id="campaign-shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="25" stdDeviation="30" flood-color="#DC2626" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#watu-bg)"/>
+
+  <!-- Dynamic Energy Rays & Circular Badges in Background -->
+  <circle cx="950" cy="400" r="300" fill="#DC2626" opacity="0.2" filter="blur(80px)"/>
+  <circle cx="950" cy="400" r="160" fill="#F59E0B" opacity="0.15" filter="blur(50px)"/>
+
+  <g opacity="0.15" stroke="#FDE047" stroke-width="1.5">
+    <line x1="950" y1="400" x2="650" y2="100"/>
+    <line x1="950" y1="400" x2="600" y2="250"/>
+    <line x1="950" y1="400" x2="550" y2="400"/>
+    <line x1="950" y1="400" x2="600" y2="550"/>
+    <line x1="950" y1="400" x2="650" y2="700"/>
+  </g>
+
+  <!-- Left Side: Campaign Copy & Brand Lockup -->
+  <g transform="translate(100, 160)">
+    <!-- Badge -->
+    <rect x="0" y="0" width="240" height="34" rx="17" fill="#DC2626" fill-opacity="0.2" stroke="#DC2626" stroke-opacity="0.6"/>
+    <circle cx="18" cy="17" r="4" fill="#FDE047"/>
+    <text x="32" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#FDE047" letter-spacing="1.5">RETAIL &amp; TELCO CAMPAIGN</text>
+
+    <!-- Main Campaign Headline -->
+    <text x="0" y="95" font-family="'Clash Display', sans-serif" font-size="56" font-weight="700" fill="#FFFFFF" letter-spacing="-1">Watu Simu</text>
+    <text x="330" y="95" font-family="'Playfair Display', serif" font-style="italic" font-size="44" fill="#FDE047">Campaign</text>
+
+    <text x="0" y="145" font-family="'Satoshi', sans-serif" font-size="20" fill="#FCA5A5">Affordable 4G/5G Smartphone Retail Financing Drive</text>
+    <text x="0" y="175" font-family="'Satoshi', sans-serif" font-size="15" fill="#94A3B8">Campaign Identity • In-Store Posters • Social Carousels • Digital Ad Variations</text>
+
+    <!-- Value Proposition Ribbons -->
+    <g transform="translate(0, 230)">
+      <!-- Offer 1 -->
+      <rect x="0" y="0" width="380" height="54" rx="14" fill="#1F1212" stroke="#DC2626" stroke-width="1.5"/>
+      <text x="24" y="34" font-family="'Clash Display', sans-serif" font-size="20" font-weight="700" fill="#FDE047">LIPA MDOGO MDOGO</text>
+      <text x="255" y="33" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">KSH 60 / DAY</text>
+
+      <!-- Offer 2 -->
+      <g transform="translate(0, 70)">
+        <rect x="0" y="0" width="380" height="54" rx="14" fill="#1F1212" stroke="#D4AF37" stroke-width="1.5"/>
+        <text x="24" y="34" font-family="'Clash Display', sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">ZERO HIDDEN FEES</text>
+        <text x="235" y="33" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="800" fill="#FDE047">INSTANT ACCESS</text>
+      </g>
+    </g>
+
+    <!-- Meta Tags -->
+    <g transform="translate(0, 410)">
+      <rect x="0" y="0" width="70" height="28" rx="6" fill="#2D1212"/>
+      <text x="35" y="18" font-family="'Satoshi', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">2024</text>
+
+      <rect x="80" y="0" width="130" height="28" rx="6" fill="#2D1212"/>
+      <text x="145" y="18" font-family="'Satoshi', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Retail Campaign</text>
+
+      <rect x="220" y="0" width="120" height="28" rx="6" fill="#2D1212"/>
+      <text x="280" y="18" font-family="'Satoshi', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Social Media Kit</text>
+    </g>
+  </g>
+
+  <!-- Right Side: Dynamic Smartphone Devices & Starburst Badge -->
+  <g transform="translate(700, 140)">
+    <!-- Back Smartphone -->
+    <g transform="translate(180, 50) rotate(14)" filter="url(#campaign-shadow)">
+      <rect width="250" height="500" rx="34" fill="#0A0A0A" stroke="#475569" stroke-width="4"/>
+      <rect x="10" y="10" width="230" height="480" rx="26" fill="url(#phone-screen)"/>
+      <!-- Screen Graphic -->
+      <circle cx="125" cy="200" r="80" fill="#DC2626" opacity="0.6"/>
+      <text x="125" y="320" font-family="'Clash Display', sans-serif" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">SAMSUNG A15</text>
+      <text x="125" y="350" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="700" fill="#FDE047" text-anchor="middle">5G READY</text>
+    </g>
+
+    <!-- Front Smartphone -->
+    <g transform="translate(20, 20) rotate(-6)" filter="url(#campaign-shadow)">
+      <rect width="260" height="520" rx="36" fill="#0A0A0A" stroke="url(#fire-grad)" stroke-width="4"/>
+      <rect x="10" y="10" width="240" height="500" rx="28" fill="#0F172A"/>
+      
+      <!-- Top Dynamic Island -->
+      <rect x="80" y="20" width="80" height="18" rx="9" fill="#000000"/>
+      
+      <!-- Campaign UI Graphic inside Phone -->
+      <g transform="translate(20, 60)">
+        <text x="100" y="25" font-family="'Clash Display', sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="middle">WATU SIMU</text>
+        <!-- Device Hero -->
+        <rect y="45" width="200" height="180" rx="16" fill="url(#watu-bg)" stroke="#DC2626" stroke-width="1.5"/>
+        <circle cx="100" cy="135" r="50" fill="url(#fire-grad)" opacity="0.3"/>
+        <text x="100" y="130" font-family="'Clash Display', sans-serif" font-size="24" font-weight="700" fill="#FFFFFF" text-anchor="middle">UPGRADE</text>
+        <text x="100" y="155" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#FDE047" text-anchor="middle">TODAY</text>
+        
+        <!-- Pricing Pill -->
+        <rect y="240" width="200" height="60" rx="14" fill="#DC2626"/>
+        <text x="100" y="265" font-family="'Satoshi', sans-serif" font-size="11" font-weight="700" fill="#FEE2E2" text-anchor="middle">DEPOSIT FROM ONLY</text>
+        <text x="100" y="290" font-family="'Clash Display', sans-serif" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">KSH 1,999/-</text>
+
+        <!-- CTAs inside Phone -->
+        <rect y="315" width="200" height="40" rx="20" fill="url(#fire-grad)"/>
+        <text x="100" y="340" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#0A0A0A" text-anchor="middle">APPLY IN STORE</text>
+      </g>
+    </g>
+
+    <!-- Big Starburst Promo Badge -->
+    <g transform="translate(180, 360)">
+      <circle cx="60" cy="60" r="60" fill="url(#fire-grad)" filter="url(#campaign-shadow)"/>
+      <circle cx="60" cy="60" r="52" fill="#0A0A0A"/>
+      <text x="60" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle">GET</text>
+      <text x="60" y="72" font-family="'Clash Display', sans-serif" font-size="22" font-weight="700" fill="#FDE047" text-anchor="middle">4G/5G</text>
+      <text x="60" y="90" font-family="'Satoshi', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">FREE DATA</text>
+    </g>
+  </g>
+</svg>

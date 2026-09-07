@@ -32,10 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
       const isHome = href === 'index.html' || href === '/';
       const isHomePath = currentPath === '/' || currentPath.endsWith('/') || currentPath.endsWith('index.html') || currentPath === '';
 
+      const hrefBase = href ? href.replace('.html', '').replace('/', '') : '';
+      const pathBase = currentPath.replace('.html', '').replace('/', '');
+
       if (isHome && isHomePath) {
         link.classList.add('text-primary', 'active');
         link.classList.remove('text-gray-700');
-      } else if (!isHome && href && currentPath.endsWith(href)) {
+      } else if (!isHome && hrefBase && (currentPath.endsWith(href) || pathBase === hrefBase || currentPath.includes(hrefBase))) {
         link.classList.add('text-primary', 'active');
         link.classList.remove('text-gray-700');
       } else {
@@ -55,10 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const typingElement = document.getElementById('typing-text');
   if (typingElement) {
     const skills = [
-      'Frontend Development • UI/UX • AI Enthusiast • Web Developer',
-      'React • TypeScript • Tailwind CSS • Vanilla JS',
-      'AI-Assisted Coding • Workflow Automation • Prompting',
-      'Beautiful Interfaces • Micro-animations • Responsive Layouts'
+      'Software Engineering • UI/UX Design • Graphic Design • AI Enthusiast',
+      'I build digital products and design the visual systems behind them',
+      'Brand Identities • Vector Logo Systems • Marketing Collateral',
+      'React • Vue.js • TypeScript • Tailwind CSS • Webpack',
+      'Interactive Interfaces • Design Systems • Micro-animations'
     ];
     let currentSkillIndex = 0;
     let currentCharIndex = 0;

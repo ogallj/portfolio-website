@@ -23,6 +23,10 @@ module.exports = merge(common, {
       filename: 'skills.html',
     }),
     new HtmlWebpackPlugin({
+      template: './graphic-design.html',
+      filename: 'graphic-design.html',
+    }),
+    new HtmlWebpackPlugin({
       template: './contact.html',
       filename: 'contact.html',
     }),
@@ -31,6 +35,7 @@ module.exports = merge(common, {
         { from: 'img', to: 'img' },
         { from: 'css', to: 'css' },
         { from: 'js/vendor', to: 'js/vendor' },
+        { from: 'js/design-projects.js', to: 'js/design-projects.js' },
         { from: 'icon.svg', to: 'icon.svg' },
         { from: 'favicon.ico', to: 'favicon.ico' },
         { from: 'robots.txt', to: 'robots.txt' },
