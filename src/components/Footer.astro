@@ -1,0 +1,16 @@
+---
+import Arrow from './Arrow.astro';
+import { profile } from '../data/portfolio';
+---
+<footer class="site-footer">
+  <div class="footer-top frame">
+    <div><p>Have something in mind?</p><h2>Let’s make<br />it happen.</h2></div>
+    <a class="round-link" href="/contact/" aria-label="Discuss a project or opportunity"><Arrow /></a>
+  </div>
+  <div class="footer-bottom frame">
+    <a href={`mailto:${profile.email}`}>{profile.email}</a>
+    <div class="footer-socials"><a href={profile.github} target="_blank" rel="noreferrer">GitHub <Arrow /></a><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href={profile.cv} download>CV <Arrow /></a></div>
+    <p>Nairobi, Kenya · © {new Date().getUTCFullYear()}</p>
+  </div>
+  <div class="footer-signature" aria-hidden="true">OGALLO.</div>
+</footer>

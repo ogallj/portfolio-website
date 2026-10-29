@@ -1,0 +1,38 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '@fontsource-variable/archivo/wght.css';
+import '@fontsource-variable/manrope/wght.css';
+import '../styles/global.css';
+interface Props { title: string; description?: string; theme?: string; footer?: boolean; noindex?: boolean }
+const { title, description = 'Joshua Ogallo — software engineer and digital creative based in Nairobi. Explore business systems, websites, and digital creative & marketing work.', theme = 'default', footer = true, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#eaf0f7" />
+    <meta name="description" content={description} />
+    <title>{title} — Joshua Ogallo</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:title" content={`${title} — Joshua Ogallo`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/social-preview.png', Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="color-scheme" content="light" />
+  </head>
+  <body data-theme={theme}>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header />
+    <main id="main"><slot /></main>
+    {footer && <Footer />}
+    <button type="button" class="motion-toggle" data-motion-toggle aria-pressed="false"><span class="motion-bars" aria-hidden="true"><i></i><i></i><i></i></span><span data-motion-label>Pause motion</span></button>
+    <script>import '../scripts/site';</script>
+  </body>
+</html>

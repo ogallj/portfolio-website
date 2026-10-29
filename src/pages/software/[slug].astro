@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import Arrow from '../../components/Arrow.astro';
+import ProjectCover from '../../components/ProjectCover.astro';
+import { projects } from '../../data/portfolio';
+export function getStaticPaths() { return projects.map((project, index) => ({ params: { slug: project.slug }, props: { project, next: projects[(index + 1) % projects.length] } })); }
+const { project, next } = Astro.props;
+---
+<Base title={project.title} description={`${project.title}: ${project.summary} A software project in Joshua Ogallo's portfolio.`} theme="project">
+  <section class="project-heading page-heading frame"><a class="back-link" href="/software/">← All software work</a><h1 data-reveal>{project.title}</h1><div class="heading-bottom"><p>{project.category}</p>{project.liveUrl && <a class="text-link" href={project.liveUrl} target="_blank" rel="noreferrer">Visit website <Arrow /></a>}</div></section>
+  <div class="project-hero-image frame" data-reveal><ProjectCover project={project} priority /></div>
+  <section class="project-story section-space frame" aria-labelledby="overview-title"><div><h2 id="overview-title">The overview</h2><ul class="focus-list">{project.focus.map(item => <li>{item}</li>)}</ul></div><div><p class="project-overview" data-reveal>{project.overview}</p><p>For more about my contribution and the thinking behind this project, let’s talk.</p><a class="text-link" href={`/contact/?topic=software&project=${encodeURIComponent(project.title)}`}>Discuss this project <Arrow diagonal={false} /></a></div></section>
+  <section class="next-project section-space frame" aria-labelledby="next-project-title"><p>Continue exploring</p><a href={`/software/${next.slug}/`}><h2 id="next-project-title">{next.title}</h2><Arrow /></a></section>
+</Base>

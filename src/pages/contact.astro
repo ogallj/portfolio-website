@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Arrow from '../components/Arrow.astro';
+import { profile } from '../data/portfolio';
+---
+<Base title="Let’s talk" theme="contact" footer={false}>
+  <section class="contact-heading page-heading frame"><p class="page-context">A project, an opportunity, or a hello.</p><h1 data-reveal>Good things<br />start here.</h1></section>
+  <section class="contact-layout frame" aria-labelledby="contact-title"><div class="contact-details"><h2 id="contact-title">Let’s talk.</h2><p>Tell me what you’re thinking.<br />We’ll take it from there.</p><a class="contact-email" href={`mailto:${profile.email}`}>{profile.email} <Arrow /></a><button class="copy-email text-link" data-copy-email data-email={profile.email}>Copy email address <span aria-hidden="true">+</span></button><p class="copy-status" data-copy-status role="status"></p><div class="contact-profiles"><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href={profile.github} target="_blank" rel="noreferrer">GitHub <Arrow /></a><a href={profile.cv} download>Download CV <Arrow /></a></div><p class="contact-location">Nairobi, Kenya</p></div>
+  <form class="inquiry-form" data-inquiry-form>
+    <div class="field-pair"><div class="form-field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required maxlength="120" placeholder="How should I call you?" /></div><div class="form-field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" /></div></div>
+    <div class="form-field"><label for="topic">What’s on your mind?</label><select id="topic" name="topic" required><option value="" disabled selected>Choose a conversation</option><option>Software project</option><option>Creative & marketing</option><option>Opportunity</option><option>Something else</option></select></div>
+    <div class="form-field"><label for="message">A little about it</label><textarea id="message" name="message" rows="5" required maxlength="5000" placeholder="The idea, the brief, or the role you have in mind."></textarea></div>
+    <p class="form-explanation">This opens a draft in your email app. You review and send it from there.</p><button class="button-primary" type="submit" data-inquiry-submit disabled>Open email draft <Arrow /></button><p class="form-status" role="status" data-form-status></p>
+    <noscript><p>You can also email <a href={`mailto:${profile.email}`}>{profile.email}</a> directly.</p></noscript>
+  </form></section>
+  <div class="contact-signoff frame"><span>Joshua Ogallo</span><span>Software engineering × Digital creative</span><a href="/">Back to home <Arrow /></a></div>
+</Base>

@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import Arrow from '../../components/Arrow.astro';
+import ProjectCover from '../../components/ProjectCover.astro';
+import { projects } from '../../data/portfolio';
+---
+<Base title="Software engineering" theme="software" description="Business systems and websites by Joshua Ogallo. Explore B-Commerce, B-Officio, Symu, MCC and selected website work.">
+  <section class="page-heading frame software-heading">
+    <p class="page-context">The software portfolio</p>
+    <h1 data-reveal>Software<br />for people.</h1>
+    <div class="heading-bottom"><p>Business systems and websites.<br />Built with people on the other side of the screen.</p><a class="text-link" href="/creative-marketing/">Looking for creative work? <Arrow diagonal={false} /></a></div>
+    <div class="heading-sculpture" aria-hidden="true"><span>{`{`}</span><i>+</i><span>{`}`}</span></div>
+  </section>
+  <section class="software-collection section-space frame" aria-labelledby="software-collection-title" data-project-collection>
+    <div class="collection-toolbar"><h2 id="software-collection-title">Selected work</h2><div class="project-filters" role="group" aria-label="Filter software projects"><button data-filter="all" aria-pressed="true">All work <span>{projects.length}</span></button><button data-filter="system" aria-pressed="false">Systems <span>{projects.filter(p => p.kind === 'system').length}</span></button><button data-filter="website" aria-pressed="false">Websites <span>{projects.filter(p => p.kind === 'website').length}</span></button></div></div>
+    <p class="sr-only" role="status" data-filter-status>{projects.length} projects shown</p>
+    <div class="project-grid">{projects.map(project => <article class="project-card" data-kind={project.kind} data-reveal>
+      <a href={`/software/${project.slug}/`} class="project-card-link"><ProjectCover project={project} /><div class="project-card-meta"><div><h3>{project.title}</h3><p>{project.category}</p></div><span class="project-card-arrow"><Arrow /></span></div></a>
+    </article>)}</div>
+    <div class="collection-note"><p>Each project has its own context. Explore an overview, or get in touch for a conversation about the work.</p><a class="text-link" href="https://github.com/ogallj" target="_blank" rel="noreferrer">GitHub profile <Arrow /></a></div>
+  </section>
+</Base>

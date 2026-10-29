@@ -4,3 +4,8 @@
 node_modules
 dist
 .cache
+.astro/
+.taste-skill/inspect/
+.taste-skill/lint/
+.taste-skill/scenes/
+artifacts/

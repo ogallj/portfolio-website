@@ -1,0 +1,14 @@
+---
+import type { Project } from '../data/portfolio';
+interface Props { project: Project; priority?: boolean }
+const { project, priority = false } = Astro.props;
+const names: Record<string,string[]> = { commerce: ['B', 'Commerce'], officio: ['B', 'Officio'], salesforce: ['symu', 'Salesforce'], finance: ['symu', 'Finance'] };
+---
+<div class:list={['project-cover', `cover--${project.art}`, { 'cover--screenshot': !!project.image }]}>
+  {project.image ? <img src={project.image} alt={`${project.title} — project screenshot`} width="1440" height="900" loading={priority ? 'eager' : 'lazy'} decoding="async" /> : <>
+    <div class="cover-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="cover-word" aria-hidden="true">{(names[project.art] || [project.title]).map(word => <span>{word}</span>)}</div>
+    <span class="cover-caption">{project.category}</span>
+    <span class="cover-art-note">Project artwork</span>
+  </>}
+</div>
