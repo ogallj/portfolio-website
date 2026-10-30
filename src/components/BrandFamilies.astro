@@ -1,0 +1,116 @@
+---
+import BrandMark from './BrandMark.astro';
+import { logoAssets, cocaColaMarks, ungaFoodMarks, ungaFarmcareMarks } from '../data/brand-logos';
+const nameOf = (id: string) => logoAssets.find(mark => mark.id === id)!.name;
+const divisions = [
+  { id: 'unga-limited', title: 'Food & nutrition', marks: ungaFoodMarks },
+  { id: 'unga-farmcare', title: 'FarmCare', marks: ungaFarmcareMarks },
+];
+---
+<div class="brand-families frame">
+  <article class="brand-world brand-world--coca" aria-labelledby="coca-family-title">
+    <div class="parent-identity">
+      <div class="parent-signature" data-reveal><BrandMark id="coca-cola-africa" /></div>
+      <h3 id="coca-family-title">Coca-Cola Africa</h3>
+      <p>Brand experience across the beverage portfolio.</p>
+    </div>
+    <div class="brand-register" data-reveal>
+      <span class="family-progress" data-family-line aria-hidden="true"></span>
+      <p class="register-heading">Within the brand family</p>
+      <ul class="product-register" aria-label="Brands within the Coca-Cola portfolio">
+        {cocaColaMarks.map(id => <li><span class="product-signature"><BrandMark id={id} decorative /></span><span class="product-name">{nameOf(id)}</span></li>)}
+      </ul>
+    </div>
+  </article>
+  <article class="brand-world brand-world--unga" aria-labelledby="unga-family-title">
+    <div class="parent-identity">
+      <div class="parent-signature" data-reveal><BrandMark id="unga" /></div>
+      <h3 id="unga-family-title">UNGA Group</h3>
+      <p>Two divisions. One connected brand family.</p>
+    </div>
+    <div class="brand-register" data-reveal>
+      <span class="family-progress" data-family-line aria-hidden="true"></span>
+      <p class="register-heading">Within the brand family</p>
+      {divisions.map(division => <section class="division-register" id={division.id} aria-labelledby={`${division.id}-title`}>
+        <div class="division-heading"><BrandMark id={division.id} /><h4 id={`${division.id}-title`}>{division.title}</h4></div>
+        <ul class="product-register" aria-label={`${nameOf(division.id)} brands`}>
+          {division.marks.map(id => <li><span class="product-signature"><BrandMark id={id} decorative /></span><span class="product-name">{nameOf(id)}</span></li>)}
+        </ul>
+      </section>)}
+    </div>
+  </article>
+</div>
+
+<style>
+  .brand-world { --family-accent: #c72e32; display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); column-gap: clamp(50px,7vw,120px); padding-block: clamp(48px,6vw,90px); border-top: 1px solid var(--line); align-items: start; }
+  .brand-world--unga { --family-accent: #3b684c; }
+  .parent-identity { position: sticky; top: 65px; min-width: 0; }
+  .parent-signature { display: flex; align-items: center; min-height: 180px; margin-bottom: 30px; }
+  .parent-signature :global(.brand-mark) { width: 100%; max-width: 360px; height: 155px; object-fit: contain; object-position: left center; }
+  .brand-world--unga .parent-signature :global(.brand-mark) { max-width: 285px; height: 185px; }
+  .parent-identity h3 { font-size: clamp(32px,3.7vw,58px); max-width: 400px; line-height: 1.04; }
+  .parent-identity > p { color: var(--muted); font-size: 15px; line-height: 1.65; margin-top: 22px; max-width: 260px; }
+  .brand-register { min-width: 0; border-left: 1px solid var(--line); padding-left: clamp(28px,3.7vw,60px); position: relative; }
+  .brand-register::before { content: ''; position: absolute; left: -2px; top: 0; width: 3px; height: 32px; background: var(--family-accent); }
+  .family-progress { position: absolute; top: 0; bottom: 0; left: -2px; width: 3px; background: var(--family-accent); transform-origin: top; }
+  .register-heading { font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 28px; }
+  .product-register { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: clamp(20px,3vw,48px); }
+  .product-register li { display: grid; grid-template-columns: 92px minmax(0,1fr); gap: 17px; align-items: center; min-width: 0; min-height: 90px; padding-block: 18px; }
+  .product-signature { display: grid; place-items: center; width: 92px; height: 47px; }
+  .product-signature :global(.brand-mark) { width: 100%; height: 42px; object-fit: contain; }
+  .product-signature :global(.brand-mark--compact) { max-width: 58px; }
+  .product-name { font-size: 13px; line-height: 1.5; color: var(--muted); overflow-wrap: anywhere; }
+  .division-register { scroll-margin-top: 55px; }
+  .division-register + .division-register { border-top: 1px solid var(--line); padding-top: 34px; margin-top: 24px; }
+  .division-heading { display: flex; align-items: center; justify-content: space-between; gap: 26px; margin-bottom: 15px; min-height: 70px; }
+  .division-heading :global(.brand-mark) { width: 145px; height: 58px; object-fit: contain; object-position: left center; }
+  .division-heading h4 { font-size: 19px; letter-spacing: -.025em; line-height: 1.2; font-weight: 500; }
+  @media (max-width: 1150px) {
+    .brand-world { grid-template-columns: minmax(0,.75fr) minmax(0,1.25fr); column-gap: 45px; }
+    .brand-register { padding-left: 30px; }
+    .product-register { column-gap: 22px; }
+    .product-register li { grid-template-columns: 76px minmax(0,1fr); gap: 13px; }
+    .product-signature { width: 76px; }
+  }
+  @media (max-width: 800px) {
+    .brand-world { grid-template-columns: 1fr; row-gap: 43px; padding-block: 48px 52px; }
+    .parent-identity { position: static; display: grid; grid-template-columns: 1.15fr 1fr; column-gap: 45px; align-items: center; }
+    .parent-signature { grid-row: span 2; margin: 0; min-height: 150px; }
+    .parent-identity h3 { font-size: 38px; align-self: end; }
+    .parent-identity > p { font-size: 14px; margin-top: 15px; align-self: start; }
+    .brand-world--unga .parent-signature :global(.brand-mark) { height: 150px; max-width: 230px; }
+    .brand-register { margin-left: 8px; padding-left: 28px; }
+    .product-register li { grid-template-columns: 100px minmax(0,1fr); gap: 22px; }
+    .product-signature { width: 100px; }
+    .product-name { font-size: 14px; }
+  }
+  @media (max-width: 500px) {
+    .brand-world { padding-block: 38px 45px; row-gap: 34px; }
+    .parent-identity { display: block; }
+    .parent-signature { min-height: 125px; margin-bottom: 22px; }
+    .parent-signature :global(.brand-mark) { max-width: 285px; height: 115px; }
+    .brand-world--unga .parent-signature :global(.brand-mark) { max-width: 215px; height: 145px; }
+    .parent-identity h3 { font-size: 38px; }
+    .parent-identity > p { margin-top: 13px; }
+    .brand-register { margin-left: 0; padding-left: 20px; }
+    .register-heading { margin-bottom: 15px; font-size: 12px; }
+    .product-register { column-gap: 19px; }
+    .product-register li { display: flex; flex-direction: column; gap: 10px; align-items: start; min-height: 108px; padding-block: 17px; }
+    .product-signature { width: 84px; height: 38px; }
+    .product-signature :global(.brand-mark) { height: 36px; object-position: left center; }
+    .product-signature :global(.brand-mark--compact) { max-width: 45px; }
+    .product-name { font-size: 12px; }
+    .division-heading { gap: 18px; margin-bottom: 8px; }
+    .division-heading :global(.brand-mark) { width: 120px; height: 54px; }
+    .division-heading h4 { font-size: 17px; max-width: 110px; }
+    .division-register + .division-register { padding-top: 26px; margin-top: 18px; }
+  }
+  @media (max-width: 360px) {
+    .parent-identity h3 { font-size: 33px; }
+    .brand-register { padding-left: 17px; }
+    .division-heading { gap: 14px; }
+    .division-heading :global(.brand-mark) { width: 106px; }
+    .division-heading h4 { font-size: 16px; }
+    .product-register { column-gap: 15px; }
+  }
+</style>

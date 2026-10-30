@@ -1,14 +1,24 @@
 ---
 import type { Project } from '../data/portfolio';
-interface Props { project: Project; priority?: boolean }
-const { project, priority = false } = Astro.props;
+import { systemMockups } from '../data/system-media';
+import WebsiteCover from './WebsiteCover.astro';
+interface Props { project: Project; priority?: boolean; sizes?: string }
+const { project, priority = false, sizes = '(max-width: 700px) 100vw, 50vw' } = Astro.props;
+const mockup = project.mockup ? systemMockups[project.mockup] : undefined;
+if (project.mockup && !mockup) throw new Error(`Missing system mockup: ${project.mockup}`);
 const names: Record<string,string[]> = { commerce: ['B', 'Commerce'], officio: ['B', 'Officio'], salesforce: ['symu', 'Salesforce'], finance: ['symu', 'Finance'] };
 ---
-<div class:list={['project-cover', `cover--${project.art}`, { 'cover--screenshot': !!project.image }]}>
-  {project.image ? <img src={project.image} alt={`${project.title} — project screenshot`} width="1440" height="900" loading={priority ? 'eager' : 'lazy'} decoding="async" /> : <>
+<div class:list={['project-cover', `cover--${project.art}`, { 'cover--mockup': !!mockup, 'cover--website': !!project.website, 'cover--screenshot': !!project.image && !mockup && !project.website }]}>
+  {mockup ? <img class="system-mockup" src={mockup.src} srcset={mockup.sources.map(source => `${source.src} ${source.width}w`).join(', ')} sizes={sizes} alt={mockup.alt} width={mockup.width} height={mockup.height} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} decoding="async" /> : project.website ? <WebsiteCover project={project} priority={priority} sizes={sizes} /> : project.image ? <img src={project.image} alt={`${project.title} — project screenshot`} width="1440" height="900" loading={priority ? 'eager' : 'lazy'} decoding="async" /> : <>
     <div class="cover-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="cover-word" aria-hidden="true">{(names[project.art] || [project.title]).map(word => <span>{word}</span>)}</div>
     <span class="cover-caption">{project.category}</span>
     <span class="cover-art-note">Project artwork</span>
   </>}
 </div>
+
+<style>
+  .project-cover.cover--mockup { aspect-ratio: 1; padding: 0; background: #e8e9e9; }
+  .project-cover.cover--mockup > .system-mockup { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; object-position: center; transform: none; transition: none; }
+  .project-cover.cover--website { aspect-ratio: 4 / 3; padding: 0; background: transparent; }
+</style>

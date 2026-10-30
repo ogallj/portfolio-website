@@ -1,0 +1,150 @@
+---
+import Arrow from './Arrow.astro';
+import WebsiteCover from './WebsiteCover.astro';
+import { projects } from '../data/portfolio';
+import { websiteAssets, websiteMediaLabel } from '../data/website-media';
+const websites = projects.filter(project => project.kind === 'website');
+const domainOf = (url: string) => new URL(url).hostname.replace(/^www\./, '');
+---
+<div class="website-exhibition" data-web-exhibition>
+  <div class="exhibition-heading">
+    <h2 id="websites-title">Worlds on<br />the web.</h2>
+    <div><p>A campaign. A community. An entirely different world.<br />Explore the places I’ve helped bring to the web.</p><span>{websites.length} websites in the collection</span></div>
+  </div>
+  <div class="website-theatre">
+    <nav class="website-index" aria-label="Choose a website to preview">
+      <p class="website-index-label">Explore the collection</p>
+      <ol>{websites.map((project, index) => <li><a href={`#web-${project.slug}`} data-web-select={project.slug} aria-current={index === 0 ? 'true' : undefined} aria-controls={`web-${project.slug}`}><span class="web-index-title">{project.title}</span><span class="web-index-domain">{domainOf(project.liveUrl!)}</span><span class="web-index-mark" aria-hidden="true"></span></a></li>)}</ol>
+    </nav>
+    <div class="website-stage" data-web-stage>
+      {websites.map((project, index) => {
+        const asset = websiteAssets[project.website!];
+        return <article class="website-panel" id={`web-${project.slug}`} data-web-panel={project.slug} data-kind="website" data-active={index === 0 ? 'true' : undefined} aria-labelledby={`web-${project.slug}-title`} tabindex="-1">
+          <div class="website-artboard" style={`--artboard:${asset.background}`}>
+            <div class="website-poster"><WebsiteCover project={project} sizes="(max-width: 800px) 100vw, 65vw" /></div>
+            <div class="website-live-viewport" data-web-live-viewport hidden>
+              <iframe data-web-frame data-live-src={project.liveUrl} title={`${project.title} live website preview`} sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer" tabindex="-1" loading="lazy"></iframe>
+            </div>
+          </div>
+          <div class="website-image-caption"><span data-web-media-label={websiteMediaLabel(asset.kind, asset.archived)}>{websiteMediaLabel(asset.kind, asset.archived)}</span><span>{domainOf(project.liveUrl!)}</span></div>
+          <div class="website-feature-caption">
+            <p class="website-category">{project.category}</p>
+            <h3 id={`web-${project.slug}-title`}>{project.title}</h3>
+            <p class="website-summary">{project.summary}</p>
+            <div class="website-feature-actions">
+              {asset.liveStatus !== 'unavailable' ? <a class="visit-website" href={project.liveUrl} target="_blank" rel="noreferrer">Visit website <Arrow /></a> : <span class="website-availability">Live site unavailable</span>}
+              <a href={`/software/${project.slug}/`}>Project overview</a>
+              {asset.embedAllowed && <button type="button" data-web-live aria-pressed="false" hidden>Preview live site</button>}
+            </div>
+            <p class="web-live-note" data-web-live-note role="status"></p>
+          </div>
+        </article>;
+      })}
+      <div class="website-stage-controls" data-web-controls hidden>
+        <span class="website-position" data-web-position>1 / {websites.length}</span>
+        <div><button type="button" data-web-previous aria-label="Previous website"><Arrow diagonal={false} /></button><button type="button" data-web-next aria-label="Next website"><Arrow diagonal={false} /></button></div>
+      </div>
+      <p class="sr-only" data-web-announcement role="status" aria-atomic="true"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initWebsiteExhibitions } from '../scripts/websites';
+  initWebsiteExhibitions();
+</script>
+
+<style>
+  .website-exhibition { --exhibition-ink: #f1f5fb; --exhibition-muted: #b1c0d5; background: #132035; color: var(--exhibition-ink); margin-inline: calc(-1 * var(--gutter)); padding: clamp(60px,7vw,110px) var(--gutter) clamp(60px,7vw,110px); --focus: #9db6ff; }
+  .exhibition-heading { display: grid; grid-template-columns: 1.2fr 1fr; gap: 12%; align-items: end; margin-bottom: clamp(45px,5vw,80px); }
+  .exhibition-heading h2 { font-size: clamp(58px,7.5vw,118px); line-height: .95; }
+  .exhibition-heading p { font-size: 17px; line-height: 1.65; color: var(--exhibition-muted); max-width: 400px; }
+  .exhibition-heading > div > span { display: block; font-size: 12px; margin-top: 25px; color: var(--exhibition-muted); }
+  .website-theatre { display: grid; grid-template-columns: minmax(0,1.85fr) minmax(250px,1fr); grid-template-areas: 'stage index'; gap: clamp(35px,5vw,80px); align-items: start; }
+  .website-stage { min-width: 0; grid-area: stage; }
+  .website-panel { min-width: 0; scroll-margin-top: 40px; }
+  .website-panel + .website-panel { margin-top: 70px; }
+  .website-artboard { background: var(--artboard,#eaf0f7); padding: clamp(14px,2.4vw,36px); position: relative; overflow: hidden; border-radius: 5px 42px 5px 5px; box-shadow: 0 25px 55px #050f2033; }
+  .website-poster { overflow: hidden; box-shadow: 0 8px 25px #09152820; }
+  .website-live-viewport { aspect-ratio: 1.6; position: relative; overflow: hidden; background: #fff; }
+  .website-live-viewport iframe { width: 1440px; height: 900px; border: 0; display: block; transform-origin: top left; pointer-events: none; }
+  .website-image-caption { display: flex; justify-content: space-between; gap: 15px; padding-top: 17px; color: var(--exhibition-muted); font-size: 10px; line-height: 1.5; }
+  .website-image-caption > span:last-child { overflow-wrap: anywhere; text-align: right; }
+  .website-feature-caption { padding-top: 28px; }
+  .website-category { font-size: 12px; color: var(--exhibition-muted); margin-bottom: 13px; }
+  .website-feature-caption h3 { font-size: clamp(32px,3.5vw,56px); line-height: 1.04; max-width: 750px; }
+  .website-summary { color: var(--exhibition-muted); font-size: 15px; line-height: 1.65; max-width: 570px; margin-top: 20px; }
+  .website-feature-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 25px; margin-top: 26px; font-size: 12px; }
+  .website-feature-actions > a,.website-feature-actions > button { min-height: 44px; display: inline-flex; align-items: center; }
+  .visit-website { font-weight: 650; gap: 13px; }
+  .visit-website :global(.arrow-icon) { width: 17px; height: 17px; }
+  .website-feature-actions > a:not(.visit-website),.website-feature-actions > button { color: var(--exhibition-muted); }
+  .website-feature-actions > button { font: inherit; background: none; border: none; padding: 0; }
+  .website-feature-actions > a:hover,.website-feature-actions > button:hover { text-decoration: underline; text-underline-offset: 5px; }
+  .web-live-note { color: var(--exhibition-muted); font-size: 11px; margin-top: 12px; max-width: 550px; }
+  .web-live-note:empty { display: none; }
+  .website-index { min-width: 0; grid-area: index; }
+  .website-index-label { font-size: 12px; color: var(--exhibition-muted); margin-bottom: 16px; }
+  .website-index ol { margin: 0; padding: 0; list-style: none; }
+  .website-index a { display: grid; position: relative; padding: 18px 22px 18px 0; border-top: 1px solid #42516a; }
+  .web-index-title { font: 450 clamp(18px,1.6vw,24px)/1.2 var(--display); letter-spacing: -.025em; color: #bcc9db; }
+  .web-index-domain { margin-top: 8px; font-size: 10px; color: #a9bad2; overflow-wrap: anywhere; }
+  .web-index-mark { width: 7px; height: 7px; border-radius: 50%; background: #9db6ff; position: absolute; right: 0; top: 25px; opacity: 0; }
+  .website-index a[aria-current] .web-index-title { color: #fff; font-weight: 600; }
+  .website-index a[aria-current] .web-index-mark { opacity: 1; }
+  .website-index a:hover .web-index-title { color: #fff; }
+  .website-stage-controls { border-top: 1px solid #42516a; margin-top: 29px; padding-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+  .website-position { font-size: 12px; color: var(--exhibition-muted); }
+  .website-stage-controls > div { display: flex; gap: 12px; }
+  .website-stage-controls button { display: grid; place-items: center; width: 45px; height: 45px; padding: 0; border: 1px solid #61718c; color: white; background: none; border-radius: 50%; }
+  .website-stage-controls button :global(.arrow-icon) { width: 18px; height: 18px; }
+  .website-stage-controls button:first-child :global(.arrow-icon) { transform: rotate(180deg); }
+  .website-stage-controls button:hover { background: #293e5f; }
+  .website-exhibition[data-enhanced][data-stage-fits] .website-stage { position: sticky; top: 30px; }
+  .website-exhibition[data-enhanced] .website-panel:not([data-active]) { display: none; }
+  .website-exhibition[data-enhanced] .website-panel + .website-panel { margin-top: 0; }
+  @media (max-width: 1000px) {
+    .website-theatre { grid-template-columns: minmax(0,1.5fr) minmax(220px,1fr); gap: 35px; }
+    .exhibition-heading { gap: 8%; }
+    .exhibition-heading p { font-size: 15px; }
+    .website-feature-caption h3 { font-size: 35px; }
+  }
+  @media (max-width: 800px) {
+    .exhibition-heading { grid-template-columns: 1fr; gap: 28px; margin-bottom: 34px; }
+    .exhibition-heading h2 { font-size: 67px; }
+    .exhibition-heading p { max-width: 500px; }
+    .website-theatre { display: flex; flex-direction: column; gap: 30px; }
+    .website-stage { width: 100%; }
+    .website-exhibition[data-enhanced][data-stage-fits] .website-stage { position: static; }
+    .website-index { width: 100%; order: -1; }
+    .website-index-label { margin-bottom: 14px; }
+    .website-index ol { display: flex; overflow-x: auto; gap: 24px; padding: 8px 7px 12px; scroll-snap-type: x proximity; scrollbar-color: #8199bf #25374f; scrollbar-width: thin; }
+    .website-index li { flex: 0 0 190px; scroll-snap-align: start; }
+    .website-index a { height: 100%; min-height: 88px; padding: 14px 0 10px; border-top-width: 2px; }
+    .website-index a[aria-current] { border-top-color: #9db6ff; }
+    .web-index-title { font-size: 19px; padding-right: 15px; }
+    .web-index-mark { display: none; }
+    .website-artboard { padding: 22px; border-top-right-radius: 36px; }
+    .website-feature-caption h3 { font-size: 43px; }
+  }
+  @media (max-width: 500px) {
+    .website-exhibition { padding-block: 48px 55px; }
+    .exhibition-heading h2 { font-size: 57px; }
+    .exhibition-heading p { font-size: 14px; }
+    .exhibition-heading p br { display: none; }
+    .exhibition-heading > div > span { margin-top: 18px; font-size: 11px; }
+    .website-index li { flex-basis: 164px; }
+    .web-index-title { font-size: 18px; }
+    .website-artboard { padding: 14px; border-top-right-radius: 26px; }
+    .website-feature-caption { padding-top: 23px; }
+    .website-feature-caption h3 { font-size: 35px; }
+    .website-summary { font-size: 14px; margin-top: 17px; }
+    .website-feature-actions { gap: 4px 24px; margin-top: 20px; }
+    .website-image-caption { font-size: 9px; padding-top: 14px; }
+  }
+  @media (max-width: 360px) {
+    .exhibition-heading h2 { font-size: 49px; }
+    .website-feature-caption h3 { font-size: 31px; }
+    .website-feature-actions { column-gap: 18px; font-size: 11px; }
+  }
+</style>

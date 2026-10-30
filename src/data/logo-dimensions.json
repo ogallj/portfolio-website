@@ -1,0 +1,217 @@
+{
+  "coca-cola-africa": {
+    "width": 600,
+    "height": 132,
+    "revision": "13dce969e925"
+  },
+  "coca-cola": {
+    "width": 600,
+    "height": 373,
+    "revision": "8fd693099970"
+  },
+  "sprite": {
+    "width": 457,
+    "height": 400,
+    "revision": "210b8b3f59f0"
+  },
+  "fanta": {
+    "width": 559,
+    "height": 400,
+    "revision": "ba189a4355b0"
+  },
+  "minute-maid": {
+    "width": 511,
+    "height": 400,
+    "revision": "8d4e48e68992"
+  },
+  "dasani": {
+    "width": 600,
+    "height": 190,
+    "revision": "c401ee5e2296"
+  },
+  "unga": {
+    "width": 600,
+    "height": 328,
+    "revision": "48059baa46c1"
+  },
+  "unga-limited": {
+    "width": 600,
+    "height": 193,
+    "revision": "dc67a5b4ee8a"
+  },
+  "hostess": {
+    "width": 600,
+    "height": 102,
+    "revision": "64b73dd6d5b5"
+  },
+  "exe": {
+    "width": 600,
+    "height": 343,
+    "revision": "7988cc6c4324"
+  },
+  "famila": {
+    "width": 600,
+    "height": 195,
+    "revision": "53f5494fe719"
+  },
+  "jogoo": {
+    "width": 600,
+    "height": 282,
+    "revision": "895f41c1cc90"
+  },
+  "amana": {
+    "width": 600,
+    "height": 238,
+    "revision": "2047ee76bcbc"
+  },
+  "hodari": {
+    "width": 469,
+    "height": 93,
+    "revision": "898677fe3f10"
+  },
+  "unga-farmcare": {
+    "width": 600,
+    "height": 293,
+    "revision": "f66c51ec7923"
+  },
+  "afya-bora": {
+    "width": 600,
+    "height": 343,
+    "revision": "ef080ca5d30b"
+  },
+  "almatix": {
+    "width": 600,
+    "height": 235,
+    "revision": "ba0d3259a6ef"
+  },
+  "champion": {
+    "width": 600,
+    "height": 347,
+    "revision": "ac5bcd5b5743"
+  },
+  "fugo": {
+    "width": 600,
+    "height": 344,
+    "revision": "78d0c156b28f"
+  },
+  "k9": {
+    "width": 476,
+    "height": 400,
+    "revision": "e5c8ad4be625"
+  },
+  "leoxy": {
+    "width": 600,
+    "height": 177,
+    "revision": "36ec032ec76c"
+  },
+  "nemazole": {
+    "width": 600,
+    "height": 238,
+    "revision": "30b65da830ea"
+  },
+  "viminera": {
+    "width": 600,
+    "height": 337,
+    "revision": "1eacd43c52ca"
+  },
+  "tns": {
+    "width": 600,
+    "height": 391,
+    "revision": "fa87635554c7"
+  },
+  "junction": {
+    "width": 600,
+    "height": 122,
+    "revision": "9a5f8c521098"
+  },
+  "sga": {
+    "width": 600,
+    "height": 208,
+    "revision": "cf5c9475f56c"
+  },
+  "hillaxx": {
+    "width": 600,
+    "height": 325,
+    "revision": "8d2d74b220b3"
+  },
+  "uhai": {
+    "width": 600,
+    "height": 273,
+    "revision": "bd71c8e8ab7c"
+  },
+  "villagecan": {
+    "width": 600,
+    "height": 279,
+    "revision": "846db4a895f2"
+  },
+  "cga": {
+    "width": 600,
+    "height": 253,
+    "revision": "0462565710ae"
+  },
+  "instaveg": {
+    "width": 600,
+    "height": 200,
+    "revision": "ee595928b14e"
+  },
+  "tembea": {
+    "width": 600,
+    "height": 299,
+    "revision": "d0d2c7f783d5"
+  },
+  "mcc": {
+    "width": 442,
+    "height": 400,
+    "revision": "3385973d209a"
+  },
+  "biospark": {
+    "width": 600,
+    "height": 199,
+    "revision": "2cea0e6d72ce"
+  },
+  "the-hub": {
+    "width": 600,
+    "height": 128,
+    "revision": "cce1312e4739"
+  },
+  "jooust": {
+    "width": 335,
+    "height": 286,
+    "revision": "4c3a21deeac3"
+  },
+  "kws": {
+    "width": 171,
+    "height": 73,
+    "revision": "9e9258618e7b"
+  },
+  "havencrest": {
+    "width": 600,
+    "height": 387,
+    "revision": "26522cfffaf3"
+  },
+  "innoecofood": {
+    "width": 600,
+    "height": 220,
+    "revision": "895f76e3e45e"
+  },
+  "baruchsoft": {
+    "width": 600,
+    "height": 217,
+    "revision": "52b1daa4aafd"
+  },
+  "socialmeds": {
+    "width": 600,
+    "height": 176,
+    "revision": "d998fd952d12"
+  },
+  "ogre": {
+    "width": 600,
+    "height": 218,
+    "revision": "e0dbcfe59e8f"
+  },
+  "freelancer": {
+    "width": 440,
+    "height": 107,
+    "revision": "289bc9a8636e"
+  }
+}

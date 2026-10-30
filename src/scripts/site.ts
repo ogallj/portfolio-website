@@ -1,12 +1,13 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { createInquiryHref } from '../lib/inquiry.mjs';
+import { initMotion } from './motion';
 
 gsap.registerPlugin(ScrollTrigger);
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 let userPaused = false;
 try { userPaused = localStorage.getItem('portfolio-motion') === 'paused'; } catch { /* Preferences remain usable without storage. */ }
-let motionContext: gsap.Context | undefined;
+let disposeMotion: (() => void) | undefined;
 let disposeScene: (() => void) | undefined;
 let disposed = false;
 const pauseButton = document.querySelector<HTMLButtonElement>('[data-motion-toggle]');
@@ -18,20 +19,10 @@ function setMotion() {
   pauseButton?.setAttribute('aria-pressed', String(paused));
   if (label) label.textContent = reduce.matches ? 'Reduced motion' : paused ? 'Resume motion' : 'Pause motion';
   if (pauseButton) { pauseButton.disabled = reduce.matches; pauseButton.title = reduce.matches ? 'Your device’s reduced-motion preference is enabled.' : 'Turn decorative motion on or off'; }
-  motionContext?.revert();
-  motionContext = undefined;
+  disposeMotion?.();
+  disposeMotion = undefined;
   if (!paused) {
-    motionContext = gsap.context(() => {
-      const hero = document.querySelector('.hero');
-      if (hero) {
-        gsap.from('.hero-first,.hero-last', { y: 65, opacity: 0, duration: 1.2, stagger: .12, ease: 'power3.out', clearProps: 'opacity,transform' });
-        gsap.to('.hero-name', { y: -45, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: .6 } });
-        gsap.to('.hero-intro', { y: -30, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: .6 } });
-      }
-      document.querySelectorAll<HTMLElement>('[data-reveal]').forEach(element => {
-        gsap.from(element, { y: 28, opacity: 0, duration: .85, ease: 'power3.out', clearProps: 'opacity,transform', scrollTrigger: { trigger: element, start: 'top 96%', once: true } });
-      });
-    });
+    disposeMotion = initMotion();
   }
   window.dispatchEvent(new CustomEvent('portfolio:motion', { detail: { paused } }));
 }
@@ -55,11 +46,17 @@ function applyProjectFilter(requested: string, updateUrl = false) {
     card.hidden = !visible;
     if (visible) { shown++; gsap.set(card, { clearProps: 'opacity,transform' }); }
   });
+  document.querySelectorAll<HTMLElement>('[data-project-group]').forEach(group => {
+    group.hidden = ![...group.querySelectorAll<HTMLElement>('[data-kind]')].some(card => !card.hidden);
+  });
+  window.dispatchEvent(new CustomEvent('portfolio:filter'));
   const status = document.querySelector('[data-filter-status]');
   if (status) status.textContent = `${shown} ${kind === 'website' ? 'websites' : kind === 'system' ? 'systems' : 'projects'} shown`;
   if (updateUrl) {
     const url = new URL(location.href);
     if (kind === 'all') url.searchParams.delete('view'); else url.searchParams.set('view', kind);
+    if (kind === 'website' && url.hash === '#systems') url.hash = '#websites';
+    if (kind === 'system' && (url.hash === '#websites' || url.hash.startsWith('#web-'))) url.hash = '#systems';
     history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
   }
   ScrollTrigger.refresh();
@@ -108,7 +105,7 @@ document.querySelector<HTMLButtonElement>('[data-copy-email]')?.addEventListener
 window.addEventListener('pagehide', event => {
   // A cached document retains its filter selection and unfinished contact draft.
   if (event.persisted) return;
-  disposed = true; motionContext?.revert(); disposeScene?.();
+  disposed = true; disposeMotion?.(); disposeScene?.();
 });
 window.addEventListener('pageshow', event => { if (event.persisted) ScrollTrigger.refresh(); });
 document.fonts.ready.then(() => ScrollTrigger.refresh());

@@ -1,0 +1,402 @@
+{
+  "community-cbe": {
+    "sourceUrl": "https://communitycbe.africa/",
+    "kind": "imagery",
+    "fit": "contain",
+    "alt": "A student enjoying a school meal in Community CBE’s published campaign imagery.",
+    "background": "#d3e4c5",
+    "ink": "#153326",
+    "accent": "#6f9312",
+    "embedAllowed": true,
+    "liveStatus": "available",
+    "width": 1299,
+    "height": 1211,
+    "revision": "e8f6935dea7f",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/community-cbe-640.webp?v=e8f6935dea7f"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/community-cbe-1000.webp?v=e8f6935dea7f"
+      },
+      {
+        "width": 1299,
+        "src": "/images/websites/community-cbe-1299.webp?v=e8f6935dea7f"
+      }
+    ],
+    "src": "/images/websites/community-cbe-1299.webp?v=e8f6935dea7f",
+    "checkedAt": "2026-10-30"
+  },
+  "innoecofood": {
+    "sourceUrl": "https://innoecofood.eu/",
+    "kind": "imagery",
+    "fit": "cover",
+    "alt": "Aquaculture production tanks pictured on the INNOECOFOOD website.",
+    "background": "#dce9e5",
+    "ink": "#143c38",
+    "accent": "#23906b",
+    "embedAllowed": true,
+    "liveStatus": "available",
+    "width": 1378,
+    "height": 918,
+    "revision": "6bc3f6f1737d",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/innoecofood-640.webp?v=6bc3f6f1737d"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/innoecofood-1000.webp?v=6bc3f6f1737d"
+      },
+      {
+        "width": 1378,
+        "src": "/images/websites/innoecofood-1378.webp?v=6bc3f6f1737d"
+      }
+    ],
+    "src": "/images/websites/innoecofood-1378.webp?v=6bc3f6f1737d",
+    "checkedAt": "2026-10-30"
+  },
+  "community-virtual-hub": {
+    "sourceUrl": "https://www.cvh.africa/",
+    "kind": "imagery",
+    "fit": "contain",
+    "alt": "Community Virtual Hub’s published food-system learning banner and partner identities.",
+    "background": "#f8f7f3",
+    "ink": "#183f32",
+    "accent": "#a5c53e",
+    "embedAllowed": true,
+    "liveStatus": "available",
+    "width": 2048,
+    "height": 683,
+    "revision": "be35d826527f",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/community-virtual-hub-640.webp?v=be35d826527f"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/community-virtual-hub-1000.webp?v=be35d826527f"
+      },
+      {
+        "width": 1600,
+        "src": "/images/websites/community-virtual-hub-1600.webp?v=be35d826527f"
+      }
+    ],
+    "src": "/images/websites/community-virtual-hub-1600.webp?v=be35d826527f",
+    "checkedAt": "2026-10-30"
+  },
+  "the-hub-homa-bay": {
+    "sourceUrl": "https://thehub-homabay.co.ke/",
+    "kind": "imagery",
+    "fit": "cover",
+    "alt": "The restaurant terrace photographed on The Hub Homa Bay’s public website.",
+    "background": "#e8d4bc",
+    "ink": "#382d28",
+    "accent": "#8a453c",
+    "embedAllowed": false,
+    "liveStatus": "available",
+    "width": 1044,
+    "height": 586,
+    "revision": "5e3f6be4c083",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/the-hub-homa-bay-640.webp?v=5e3f6be4c083"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/the-hub-homa-bay-1000.webp?v=5e3f6be4c083"
+      },
+      {
+        "width": 1044,
+        "src": "/images/websites/the-hub-homa-bay-1044.webp?v=5e3f6be4c083"
+      }
+    ],
+    "src": "/images/websites/the-hub-homa-bay-1044.webp?v=5e3f6be4c083",
+    "checkedAt": "2026-10-30"
+  },
+  "mustard-christian-centre": {
+    "sourceUrl": "https://www.mcc-kenya.org/",
+    "kind": "imagery",
+    "fit": "contain",
+    "alt": "An eagle above mountain scenery in Mustard Christian Centre’s published website imagery.",
+    "background": "#e9d9ba",
+    "ink": "#442138",
+    "accent": "#90394e",
+    "embedAllowed": false,
+    "liveStatus": "available",
+    "width": 1024,
+    "height": 1024,
+    "revision": "b7ff14de2058",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/mustard-christian-centre-640.webp?v=b7ff14de2058"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/mustard-christian-centre-1000.webp?v=b7ff14de2058"
+      },
+      {
+        "width": 1024,
+        "src": "/images/websites/mustard-christian-centre-1024.webp?v=b7ff14de2058"
+      }
+    ],
+    "src": "/images/websites/mustard-christian-centre-1024.webp?v=b7ff14de2058",
+    "checkedAt": "2026-10-30"
+  },
+  "tns-solutions": {
+    "sourceUrl": "https://thetnssols.com/",
+    "kind": "screenshot",
+    "fit": "cover",
+    "alt": "The T&S Solutions website in a retained project screenshot.",
+    "background": "#d7ebe2",
+    "ink": "#1e3f32",
+    "accent": "#237451",
+    "embedAllowed": true,
+    "liveStatus": "available",
+    "width": 1400,
+    "height": 631,
+    "revision": "4ca8a45ec273",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/tns-solutions-640.webp?v=4ca8a45ec273"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/tns-solutions-1000.webp?v=4ca8a45ec273"
+      },
+      {
+        "width": 1400,
+        "src": "/images/websites/tns-solutions-1400.webp?v=4ca8a45ec273"
+      }
+    ],
+    "src": "/images/websites/tns-solutions-1400.webp?v=4ca8a45ec273",
+    "checkedAt": "2026-10-30"
+  },
+  "kwale-scd-integration": {
+    "sourceUrl": "https://kwalescdintergration.vercel.app/",
+    "kind": "imagery",
+    "fit": "contain",
+    "alt": "The heart and pulse graphic published on the Kwale SCD Screening Study website.",
+    "background": "#f2dedb",
+    "ink": "#5c3431",
+    "accent": "#b93339",
+    "embedAllowed": true,
+    "liveStatus": "available",
+    "width": 600,
+    "height": 600,
+    "revision": "5b1f7ea1e1e5",
+    "sources": [
+      {
+        "width": 600,
+        "src": "/images/websites/kwale-scd-integration-600.webp?v=5b1f7ea1e1e5"
+      }
+    ],
+    "src": "/images/websites/kwale-scd-integration-600.webp?v=5b1f7ea1e1e5",
+    "checkedAt": "2026-10-30"
+  },
+  "tom-and-sherrie-foundation": {
+    "sourceUrl": "https://tomandsherriefoundation.org/",
+    "kind": "imagery",
+    "fit": "contain",
+    "alt": "A learner in an Education for all shirt in the Tom and Sherrie Foundation’s published photography.",
+    "background": "#e8decf",
+    "ink": "#473a2f",
+    "accent": "#a87537",
+    "embedAllowed": true,
+    "liveStatus": "available",
+    "width": 291,
+    "height": 500,
+    "revision": "d0e5759b8231",
+    "sources": [
+      {
+        "width": 291,
+        "src": "/images/websites/tom-and-sherrie-foundation-291.webp?v=d0e5759b8231"
+      }
+    ],
+    "src": "/images/websites/tom-and-sherrie-foundation-291.webp?v=d0e5759b8231",
+    "checkedAt": "2026-10-30"
+  },
+  "baruchsoft": {
+    "sourceUrl": "https://www.baruchsoft.co.ke/",
+    "kind": "identity",
+    "fit": "contain",
+    "alt": "BaruchSoft Technologies’ orange and navy identity from its public website.",
+    "background": "#fff8ed",
+    "ink": "#12243a",
+    "accent": "#eb8f13",
+    "embedAllowed": true,
+    "liveStatus": "available",
+    "width": 1280,
+    "height": 1287,
+    "revision": "adf30bda349f",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/baruchsoft-640.webp?v=adf30bda349f"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/baruchsoft-1000.webp?v=adf30bda349f"
+      },
+      {
+        "width": 1280,
+        "src": "/images/websites/baruchsoft-1280.webp?v=adf30bda349f"
+      }
+    ],
+    "src": "/images/websites/baruchsoft-1280.webp?v=adf30bda349f",
+    "checkedAt": "2026-10-30"
+  },
+  "havencrest-agency": {
+    "sourceUrl": "https://kenshaq.baruchsoft.co.ke/",
+    "kind": "imagery",
+    "fit": "cover",
+    "alt": "Automotive showroom imagery published on the Havencrest Agency website.",
+    "background": "#d4e2ee",
+    "ink": "#17324f",
+    "accent": "#e6b63a",
+    "embedAllowed": true,
+    "liveStatus": "available",
+    "width": 2000,
+    "height": 1181,
+    "revision": "e288823ed269",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/havencrest-agency-640.webp?v=e288823ed269"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/havencrest-agency-1000.webp?v=e288823ed269"
+      },
+      {
+        "width": 1600,
+        "src": "/images/websites/havencrest-agency-1600.webp?v=e288823ed269"
+      }
+    ],
+    "src": "/images/websites/havencrest-agency-1600.webp?v=e288823ed269",
+    "checkedAt": "2026-10-30"
+  },
+  "bespoke-city-exclusive": {
+    "sourceUrl": "https://bespoke-city-exclusive.vercel.app/",
+    "kind": "imagery",
+    "fit": "contain",
+    "alt": "A sculptural couture garment in Bespoke City Exclusive’s published fashion imagery.",
+    "background": "#d5d1cb",
+    "ink": "#282825",
+    "accent": "#7a756b",
+    "embedAllowed": true,
+    "liveStatus": "available",
+    "width": 703,
+    "height": 971,
+    "revision": "011e70df1d87",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/bespoke-city-exclusive-640.webp?v=011e70df1d87"
+      },
+      {
+        "width": 703,
+        "src": "/images/websites/bespoke-city-exclusive-703.webp?v=011e70df1d87"
+      }
+    ],
+    "src": "/images/websites/bespoke-city-exclusive-703.webp?v=011e70df1d87",
+    "checkedAt": "2026-10-30"
+  },
+  "uhai-africa": {
+    "sourceUrl": "https://uhai.africa/",
+    "kind": "screenshot",
+    "fit": "cover",
+    "alt": "The Uhai Africa website in a retained project screenshot.",
+    "background": "#e7e3d5",
+    "ink": "#3a3e2c",
+    "accent": "#918659",
+    "embedAllowed": true,
+    "liveStatus": "available",
+    "width": 1400,
+    "height": 620,
+    "revision": "e1c0e10aba77",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/uhai-africa-640.webp?v=e1c0e10aba77"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/uhai-africa-1000.webp?v=e1c0e10aba77"
+      },
+      {
+        "width": 1400,
+        "src": "/images/websites/uhai-africa-1400.webp?v=e1c0e10aba77"
+      }
+    ],
+    "src": "/images/websites/uhai-africa-1400.webp?v=e1c0e10aba77",
+    "checkedAt": "2026-10-30"
+  },
+  "jooust-student-apprentice-hub": {
+    "sourceUrl": "https://jooustsah.co.ke/",
+    "kind": "screenshot",
+    "fit": "cover",
+    "alt": "JOOUST Student Apprentice Hub’s website in a retained project screenshot.",
+    "background": "#e0eadf",
+    "ink": "#204330",
+    "accent": "#4b985e",
+    "embedAllowed": false,
+    "liveStatus": "unknown",
+    "width": 1400,
+    "height": 655,
+    "revision": "4aecf5a3f2f3",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/jooust-student-apprentice-hub-640.webp?v=4aecf5a3f2f3"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/jooust-student-apprentice-hub-1000.webp?v=4aecf5a3f2f3"
+      },
+      {
+        "width": 1400,
+        "src": "/images/websites/jooust-student-apprentice-hub-1400.webp?v=4aecf5a3f2f3"
+      }
+    ],
+    "src": "/images/websites/jooust-student-apprentice-hub-1400.webp?v=4aecf5a3f2f3",
+    "checkedAt": "2026-10-30"
+  },
+  "student-safety-summit": {
+    "sourceUrl": "https://studentsafetysummit.africa/",
+    "kind": "screenshot",
+    "fit": "cover",
+    "alt": "The Student Safety Summit website in a retained project screenshot.",
+    "background": "#e0e7f0",
+    "ink": "#163f65",
+    "accent": "#315fb9",
+    "embedAllowed": false,
+    "liveStatus": "unavailable",
+    "width": 1400,
+    "height": 732,
+    "revision": "12938ca6c701",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/websites/student-safety-summit-640.webp?v=12938ca6c701"
+      },
+      {
+        "width": 1000,
+        "src": "/images/websites/student-safety-summit-1000.webp?v=12938ca6c701"
+      },
+      {
+        "width": 1400,
+        "src": "/images/websites/student-safety-summit-1400.webp?v=12938ca6c701"
+      }
+    ],
+    "src": "/images/websites/student-safety-summit-1400.webp?v=12938ca6c701",
+    "checkedAt": "2026-10-30"
+  }
+}

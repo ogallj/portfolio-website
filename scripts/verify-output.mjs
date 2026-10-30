@@ -1,6 +1,7 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { dirname, extname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { projects } from '../src/data/portfolio.ts';
 
 // Read-only audit of built routes, assets, fragments, and key content safeguards.
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -70,6 +71,9 @@ for (const [path, html] of documents) {
     for (const attribute of tag[0].matchAll(/\b(?:href|src)=["']([^"']+)["']/g)) {
       await checkReference(attribute[1], path, { canonical });
     }
+    for (const attribute of tag[0].matchAll(/\bsrcset=["']([^"']+)["']/g)) {
+      for (const candidate of attribute[1].split(',')) await checkReference(candidate.trim().split(/\s+/)[0], path);
+    }
   }
 }
 for (const path of files.filter(path => extname(path) === '.css')) {
@@ -108,8 +112,28 @@ requireContent(/<button\b[^>]*data-inquiry-submit[^>]*\bdisabled\b/.test(contact
 requireContent(contact.includes('mailto:ogallo254@gmail.com'), 'Contact static email route is missing.');
 requireContent((creative.match(/Portfolio placeholder/g) || []).length === 3, 'Creative collection does not have three explicit placeholder labels.');
 requireContent((creative.match(/Original work coming soon/g) || []).length === 3, 'Creative placeholder cards lack explicit coming-soon labels.');
-requireContent(hub.includes('Project artwork') && !hub.includes('hub.webp'), 'The Hub detail still uses an unverified screenshot.');
-requireContent(!software.includes('hub.webp'), 'Software collection still presents the unverified Hub screenshot.');
+requireContent(!hub.includes('/images/hub.webp') && !software.includes('/images/hub.webp'), 'The obsolete unverified Hub screenshot is still presented.');
+const systems = projects.filter(project => project.kind === 'system');
+requireContent(systems.length === 9, 'Expected nine supplied software systems.');
+for (const system of systems) {
+  const detail = documents.get(resolve(output, `software/${system.slug}/index.html`)) || '';
+  requireContent(!!system.mockup && detail.includes(`/images/systems/${system.mockup}-`), `${system.title}: supplied system mockup is missing.`);
+  requireContent(detail.includes('Project interface mockup') && detail.includes('View full mockup'), `${system.title}: mockup caption or full-size link is missing.`);
+}
+requireContent((software.match(/class="system-mockup"/g) || []).length === systems.length, 'The software gallery does not show all nine system mockups.');
+requireContent(software.includes('In production') && software.includes('evolving toward broader employee management'), 'B-Officio current production scope is missing.');
+const websites = projects.filter(project => project.kind === 'website');
+const websiteMedia = JSON.parse(await readFile(resolve(root, 'src/data/website-assets.json'), 'utf8'));
+requireContent(websites.length === 14, 'Expected fourteen website projects.');
+for (const website of websites) {
+  const detail = documents.get(resolve(output, `software/${website.slug}/index.html`)) || '';
+  const media = websiteMedia[website.website];
+  requireContent(!!media && !!website.liveUrl, `${website.title}: website media or source URL is missing.`);
+  requireContent(software.includes(`data-web-select="${website.slug}"`) && software.includes(`id="web-${website.slug}"`), `${website.title}: website exhibition entry is missing.`);
+  if (media) requireContent(detail.includes(media.src.split('?')[0]), `${website.title}: project-page website image is missing.`);
+}
+requireContent(!/<iframe\b[^>]*\ssrc=/.test(software), 'Website previews load third-party pages before a visitor requests them.');
+requireContent(software.includes('https://innoecofood.eu/'), 'INNOECOFOOD does not use its supplied canonical domain.');
 requireContent(![...documents.values()].some(html => /Source Code|href=["']https:\/\/github\.com\/ogallj\//.test(html)), 'Unexpected project source link or Source Code claim found; inspect provenance.');
 
 console.log(JSON.stringify({ htmlDocuments: documents.size, outputFiles: files.length, internalReferencesChecked: checked, errors, warnings }, null, 2));

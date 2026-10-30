@@ -1,0 +1,10 @@
+---
+import { logoAssets } from '../data/brand-logos';
+import dimensions from '../data/logo-dimensions.json';
+interface Props { id: string; class?: string; eager?: boolean; decorative?: boolean }
+const { id, class: className = '', eager = false, decorative = false } = Astro.props;
+const mark = logoAssets.find(asset => asset.id === id);
+if (!mark) throw new Error(`Unknown brand mark: ${id}`);
+const size = (dimensions as Record<string, { width: number; height: number; revision?: string }>)[id];
+---
+<img class:list={['brand-mark', `brand-mark--${mark.scale || 'standard'}`, className]} src={`/images/brand-marks/${id}.webp${size.revision ? `?v=${size.revision}` : ''}`} alt={decorative ? '' : mark.name} width={size.width} height={size.height} loading={eager ? 'eager' : 'lazy'} decoding="async" />

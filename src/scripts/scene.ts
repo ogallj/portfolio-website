@@ -2,6 +2,14 @@ import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 type MotionEvent = CustomEvent<{ paused: boolean }>;
+type CanvasFrame = {
+  width: number;
+  height: number;
+  left: number;
+  top: number;
+  visibleWidth: number;
+  visibleHeight: number;
+};
 
 /** A rounded rectangular profile, rather than the circular tube of a stock torus. */
 function forgedProfile(): THREE.Vector2[] {
@@ -155,6 +163,84 @@ function createMonogram(): THREE.Group {
   return sculpture;
 }
 
+/** One reversible scroll sequence: present, unfold, then turn into the next scene. */
+function poseMonogram(
+  sculpture: THREE.Group,
+  progress: number,
+  time: number,
+  pointer: THREE.Vector2,
+  mobile: boolean,
+) {
+  const travel = THREE.MathUtils.smootherstep(progress, 0, 1);
+  const unfold = Math.sin(travel * Math.PI);
+  const strength = mobile ? 0.48 : 1;
+  const ambient = mobile ? 0.65 : 1;
+  sculpture.rotation.set(
+    -0.12 + strength * (-0.52 * unfold + 0.36 * travel + pointer.y * 0.12) + Math.sin(time * 0.27) * 0.035 * ambient,
+    -0.24 + strength * (2.15 * travel + pointer.x * 0.22) + Math.sin(time * 0.2) * 0.075 * ambient,
+    -0.105 + strength * (0.28 * unfold - 0.32 * travel) + Math.sin(time * 0.16) * 0.022 * ambient,
+  );
+  sculpture.position.set(
+    strength * (0.12 * unfold - 0.11 * travel),
+    strength * (0.2 * unfold - 0.17 * travel) + Math.sin(time * 0.45) * 0.045 * ambient,
+    -0.8 * strength * travel,
+  );
+  sculpture.scale.setScalar(1 + strength * (0.055 * unfold - 0.12 * travel));
+
+  // The forms briefly breathe apart in depth, preserving the authored interlock.
+  const blue = sculpture.children[0];
+  const silver = sculpture.children[1];
+  blue.position.set(-0.15 * unfold * strength, -0.08 * unfold * strength, 0.5 * unfold * strength);
+  blue.rotation.set(0, -0.18 * unfold * strength, -0.09 * unfold * strength);
+  silver.position.set(0.18 * unfold * strength, 0.12 * unfold * strength, -0.42 * unfold * strength);
+  silver.rotation.set(0.12 * unfold * strength, 0.32 * unfold * strength, 0.11 * unfold * strength);
+}
+
+/** Fits projected mesh bounds into the part of the canvas the hero actually reveals. */
+function createCameraFramer(camera: THREE.OrthographicCamera, sculpture: THREE.Group) {
+  const meshes = sculpture.children.filter((object): object is THREE.Mesh => object instanceof THREE.Mesh);
+  meshes.forEach(mesh => mesh.geometry.computeBoundingBox());
+  const corner = new THREE.Vector3();
+  camera.updateMatrixWorld(true);
+  return (frame: CanvasFrame) => {
+    sculpture.updateMatrixWorld(true);
+    let extentX = 0;
+    let extentY = 0;
+    for (const mesh of meshes) {
+      const bounds = mesh.geometry.boundingBox!;
+      for (let index = 0; index < 8; index += 1) {
+        corner.set(
+          index & 1 ? bounds.max.x : bounds.min.x,
+          index & 2 ? bounds.max.y : bounds.min.y,
+          index & 4 ? bounds.max.z : bounds.min.z,
+        ).applyMatrix4(mesh.matrixWorld).applyMatrix4(camera.matrixWorldInverse);
+        extentX = Math.max(extentX, Math.abs(corner.x));
+        extentY = Math.max(extentY, Math.abs(corner.y));
+      }
+    }
+    const viewHeight = Math.max(
+      4.45,
+      extentY * 2.2 * frame.height / frame.visibleHeight,
+      extentX * 2.2 * frame.height / frame.visibleWidth,
+    );
+    const unit = viewHeight / frame.height;
+    const centerX = (frame.width / 2 - frame.left - frame.visibleWidth / 2) * unit;
+    const centerY = (frame.top + frame.visibleHeight / 2 - frame.height / 2) * unit;
+    const halfWidth = frame.width * unit / 2;
+    const left = centerX - halfWidth;
+    const right = centerX + halfWidth;
+    const top = centerY + viewHeight / 2;
+    const bottom = centerY - viewHeight / 2;
+    if (Math.abs(camera.left - left) > 0.00001 || Math.abs(camera.right - right) > 0.00001 || Math.abs(camera.top - top) > 0.00001 || Math.abs(camera.bottom - bottom) > 0.00001) {
+      camera.left = left;
+      camera.right = right;
+      camera.top = top;
+      camera.bottom = bottom;
+      camera.updateProjectionMatrix();
+    }
+  };
+}
+
 /**
  * Creates the original JO sculpture. The host's SVG remains the fallback until
  * data-ready="true". Caller owns the host and must call the returned disposer.
@@ -191,6 +277,10 @@ export async function initScene(host: HTMLElement): Promise<() => void> {
   camera.position.set(0.45, 0.45, 8);
   camera.lookAt(0, 0.08, 0);
   const sculpture = createMonogram();
+  const fitCamera = createCameraFramer(camera, sculpture);
+  let canvasFrame: CanvasFrame = { width: 1, height: 1, left: 0, top: 0, visibleWidth: 1, visibleHeight: 1 };
+  const hero = host.closest<HTMLElement>('.hero');
+  const stillPointer = new THREE.Vector2();
   scene.add(sculpture);
 
   renderer.setClearColor(0x000000, 0);
@@ -249,18 +339,16 @@ export async function initScene(host: HTMLElement): Promise<() => void> {
     const reduced = reduceQuery.matches;
     const progress = reduced ? 0 : scrollProgress;
     const time = reduced ? 0 : elapsed;
-    const x = reduced ? 0 : smoothPointer.x;
-    const y = reduced ? 0 : smoothPointer.y;
-    sculpture.rotation.set(
-      -0.12 + Math.sin(time * 0.27) * 0.045 + y * 0.075,
-      -0.24 + Math.sin(time * 0.2) * 0.14 + x * 0.15 + progress * 0.52,
-      -0.105 + Math.sin(time * 0.16) * 0.025 - progress * 0.12,
-    );
-    sculpture.position.y = Math.sin(time * 0.45) * 0.045 - progress * 0.16;
+    poseMonogram(sculpture, progress, time, reduced ? stillPointer : smoothPointer, mobileQuery.matches);
+    const sweep = Math.sin(THREE.MathUtils.smootherstep(progress, 0, 1) * Math.PI);
+    const strength = mobileQuery.matches ? 0.48 : 1;
+    key.position.x = -3.5 + sweep * 2.8 * strength;
+    rim.position.set(3 - progress * 2.4 * strength, 1 + sweep * 1.1 * strength, -3);
   };
   const render = () => {
     if (disposed || lost) return;
     try {
+      fitCamera(canvasFrame);
       renderer.render(scene, camera);
       if (!ready) {
         ready = true;
@@ -309,13 +397,15 @@ export async function initScene(host: HTMLElement): Promise<() => void> {
     if (disposed || lost) return;
     const width = Math.max(1, host.clientWidth);
     const height = Math.max(1, host.clientHeight);
-    const aspect = width / height;
-    const viewHeight = Math.max(4.45, 4.4 / aspect);
-    camera.left = -viewHeight * aspect / 2;
-    camera.right = viewHeight * aspect / 2;
-    camera.top = viewHeight / 2;
-    camera.bottom = -viewHeight / 2;
-    camera.updateProjectionMatrix();
+    const hostBounds = host.getBoundingClientRect();
+    const boundary = hero?.getBoundingClientRect() ?? hostBounds;
+    const ratioX = width / Math.max(1, hostBounds.width);
+    const ratioY = height / Math.max(1, hostBounds.height);
+    const left = THREE.MathUtils.clamp((boundary.left - hostBounds.left) * ratioX, 0, width - 1);
+    const top = THREE.MathUtils.clamp((boundary.top - hostBounds.top) * ratioY, 0, height - 1);
+    const right = THREE.MathUtils.clamp((boundary.right - hostBounds.left) * ratioX, left + 1, width);
+    const bottom = THREE.MathUtils.clamp((boundary.bottom - hostBounds.top) * ratioY, top + 1, height);
+    canvasFrame = { width, height, left, top, visibleWidth: right - left, visibleHeight: bottom - top };
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobileQuery.matches ? 1 : 1.5));
     renderer.setSize(width, height, false);
     readProgress();
@@ -378,7 +468,7 @@ export async function initScene(host: HTMLElement): Promise<() => void> {
   const intersection = new IntersectionObserver((entries) => {
     inView = entries[0]?.isIntersecting ?? false;
     syncMotion();
-  }, { rootMargin: '80px' });
+  }, { threshold: 0.01 });
   intersection.observe(host);
   window.addEventListener('pointermove', onPointer, { passive: true });
   window.addEventListener('pointerout', onPointerLeave, { passive: true });

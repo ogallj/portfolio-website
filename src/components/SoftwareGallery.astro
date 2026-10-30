@@ -1,0 +1,101 @@
+---
+import Arrow from './Arrow.astro';
+import ProjectCover from './ProjectCover.astro';
+import WebsiteExhibition from './WebsiteExhibition.astro';
+import { projects } from '../data/portfolio';
+const systems = projects.filter(project => project.kind === 'system');
+const websites = projects.filter(project => project.kind === 'website');
+---
+<section class="software-gallery section-space frame" aria-labelledby="software-collection-title" data-project-collection>
+  <div class="collection-toolbar gallery-toolbar">
+    <h2 id="software-collection-title">Selected work</h2>
+    <div class="project-filters" role="group" aria-label="Filter software projects">
+      <button data-filter="all" aria-pressed="true">All work <span>{projects.length}</span></button>
+      <button data-filter="system" aria-pressed="false">Systems <span>{systems.length}</span></button>
+      <button data-filter="website" aria-pressed="false">Websites <span>{websites.length}</span></button>
+    </div>
+  </div>
+  <p class="sr-only" role="status" data-filter-status>{projects.length} projects shown</p>
+  <section class="work-group" data-project-group="system" aria-labelledby="systems-title" id="systems">
+    <div class="work-group-heading"><h2 id="systems-title">Systems.</h2><p>Commerce, people, payments,<br />health, and hospitality.</p></div>
+    <div class="systems-gallery">
+      {systems.map((project, index) => <article class:list={['system-case', { 'system-case--lead': index === 0 }]} data-kind="system">
+        <a href={`/software/${project.slug}/`} class="system-case-link" aria-labelledby={`${project.slug}-title`}>
+          <div class="case-visual" data-reveal><ProjectCover project={project} sizes={index === 0 ? '(max-width: 700px) 100vw, 65vw' : '(max-width: 700px) 100vw, 50vw'} /></div>
+          <div class="case-description">
+            <div class="case-category"><p>{project.category}</p>{project.status && <span class="case-status">{project.status}</span>}</div>
+            <h3 id={`${project.slug}-title`}>{project.title}</h3>
+            <p class="case-summary">{project.summary}</p>
+            <span class="case-action">Explore project <span class="case-arrow"><Arrow /></span></span>
+          </div>
+        </a>
+      </article>)}
+    </div>
+  </section>
+  <section class="work-group website-work-group" data-project-group="website" aria-labelledby="websites-title" id="websites">
+    <WebsiteExhibition />
+  </section>
+  <div class="collection-note gallery-note"><p>A closer look at the work, from the systems behind an organization to the websites people meet first.</p><a class="text-link" href="https://github.com/ogallj" target="_blank" rel="noreferrer">GitHub profile <Arrow /></a></div>
+</section>
+
+<style>
+  .software-gallery { background: var(--paper); }
+  .gallery-toolbar { padding-bottom: 24px; border-bottom: 1px solid var(--line); margin-bottom: 75px; }
+  .work-group { scroll-margin-top: 40px; }
+  .work-group-heading { display: flex; align-items: end; justify-content: space-between; gap: 36px; margin-bottom: 45px; }
+  .work-group-heading h2 { font-size: clamp(48px,6vw,90px); }
+  .work-group-heading > p { font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 290px; }
+  .systems-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: clamp(25px,4vw,64px); row-gap: clamp(60px,7vw,110px); }
+  .system-case { min-width: 0; }
+  .system-case-link { display: block; }
+  .case-visual { overflow: hidden; background: #e8e9e9; }
+  .case-description { padding-top: 27px; }
+  .case-category { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-bottom: 13px; }
+  .case-category > p { font-size: 13px; color: var(--muted); }
+  .case-status { font-size: 11px; font-weight: 600; color: #29533f; display: inline-flex; align-items: center; gap: 7px; }
+  .case-status::before { content: ''; width: 5px; height: 5px; background: currentColor; border-radius: 50%; }
+  .case-description h3 { font-size: clamp(29px,3vw,45px); line-height: 1.07; max-width: 520px; }
+  .case-summary { color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 450px; margin-top: 18px; }
+  .case-action { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 13px; font-weight: 650; padding-top: 24px; }
+  .case-arrow { display: grid; place-items: center; width: 43px; height: 43px; border: 1px solid var(--line); border-radius: 50%; transition: transform 220ms var(--ease-out),background 180ms ease,color 180ms ease; }
+  .case-arrow :global(.arrow-icon) { width: 17px; height: 17px; }
+  .system-case--lead { grid-column: 1 / -1; }
+  .system-case--lead .system-case-link { display: grid; grid-template-columns: minmax(0,1.65fr) minmax(0,1fr); column-gap: clamp(30px,5vw,80px); align-items: center; }
+  .system-case--lead .case-description { padding: 20px 0; }
+  .system-case--lead h3 { font-size: clamp(42px,5.1vw,78px); letter-spacing: -.06em; }
+  .system-case--lead .case-summary { font-size: 18px; margin-top: 28px; max-width: 310px; }
+  .system-case--lead .case-action { margin-top: 45px; }
+  .website-work-group { border-top: 1px solid var(--line); padding-top: clamp(60px,7vw,100px); margin-top: clamp(90px,10vw,155px); }
+  .work-group[hidden] + .website-work-group { border-top: 0; padding-top: 0; margin-top: 0; }
+  .gallery-note { border-top: 1px solid var(--line); margin-top: 85px; }
+  @media (hover: hover) and (pointer: fine) {
+    .system-case-link:hover .case-arrow { transform: translate(2px,-2px); background: var(--ink); color: var(--paper); }
+  }
+  @media (max-width: 1000px) {
+    .system-case--lead .system-case-link { grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); gap: 30px; }
+    .system-case--lead .case-summary { font-size: 16px; }
+    .system-case--lead .case-action { margin-top: 20px; }
+  }
+  @media (max-width: 700px) {
+    .gallery-toolbar { margin-bottom: 44px; }
+    .work-group-heading { display: block; margin-bottom: 30px; }
+    .work-group-heading h2 { font-size: 53px; }
+    .work-group-heading > p { margin-top: 20px; font-size: 14px; }
+    .systems-gallery { grid-template-columns: 1fr; gap: 55px; }
+    .system-case--lead .system-case-link { display: block; }
+    .system-case--lead .case-description { padding: 25px 0 0; }
+    .system-case--lead h3 { font-size: 40px; }
+    .system-case--lead .case-summary { font-size: 15px; margin-top: 18px; max-width: 450px; }
+    .system-case--lead .case-action { margin-top: 0; }
+    .case-description h3 { font-size: 34px; }
+    .case-description { padding-top: 24px; }
+    .case-summary { font-size: 14px; margin-top: 15px; }
+    .case-action { padding-top: 17px; }
+    .website-work-group { margin-top: 70px; padding-top: 50px; }
+    .gallery-note { margin-top: 55px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case-arrow { transition: none; transform: none !important; }
+  }
+  :global(body[data-motion='paused']) .case-arrow { transform: none !important; }
+</style>

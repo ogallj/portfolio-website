@@ -1,0 +1,16 @@
+---
+import type { Project } from '../data/portfolio';
+import { websiteAssets } from '../data/website-media';
+interface Props { project: Project; priority?: boolean; sizes?: string }
+const { project, priority = false, sizes = '(max-width: 700px) 100vw, 60vw' } = Astro.props;
+const asset = project.website ? websiteAssets[project.website] : undefined;
+if (!asset) throw new Error(`Missing website visual: ${project.slug}`);
+---
+<div class="website-cover" style={`--cover-background:${asset.background}`}>
+  <img src={asset.src} srcset={asset.sources.map(source => `${source.src} ${source.width}w`).join(', ')} sizes={sizes} alt={asset.alt} width={asset.width} height={asset.height} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} decoding="async" />
+</div>
+
+<style>
+  .website-cover { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; position: relative; background: var(--cover-background,#fff); }
+  .website-cover img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: top center; }
+</style>

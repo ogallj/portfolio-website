@@ -1,0 +1,191 @@
+{
+  "b-commerce": {
+    "width": 1254,
+    "height": 1254,
+    "revision": "1b9afea5ff8858c3",
+    "alt": "B-Commerce presentation mockup showing an online storefront on a laptop, tablet, and phone in a sunlit room.",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/systems/b-commerce-640.webp?v=1b9afea5ff8858c3"
+      },
+      {
+        "width": 960,
+        "src": "/images/systems/b-commerce-960.webp?v=1b9afea5ff8858c3"
+      },
+      {
+        "width": 1254,
+        "src": "/images/systems/b-commerce-1254.webp?v=1b9afea5ff8858c3"
+      }
+    ],
+    "src": "/images/systems/b-commerce-1254.webp?v=1b9afea5ff8858c3"
+  },
+  "b-officio": {
+    "width": 1254,
+    "height": 1254,
+    "revision": "a723bec70b3848e7",
+    "alt": "Officio presentation mockup showing a leave management dashboard on a desktop monitor, tablet, and phone.",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/systems/b-officio-640.webp?v=a723bec70b3848e7"
+      },
+      {
+        "width": 960,
+        "src": "/images/systems/b-officio-960.webp?v=a723bec70b3848e7"
+      },
+      {
+        "width": 1254,
+        "src": "/images/systems/b-officio-1254.webp?v=a723bec70b3848e7"
+      }
+    ],
+    "src": "/images/systems/b-officio-1254.webp?v=a723bec70b3848e7"
+  },
+  "b-pos": {
+    "width": 1254,
+    "height": 1254,
+    "revision": "6e2907546de7323a",
+    "alt": "BPOS presentation mockup showing a retail checkout, store overview, and mobile inventory interface beside a receipt printer and barcode scanner.",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/systems/b-pos-640.webp?v=6e2907546de7323a"
+      },
+      {
+        "width": 960,
+        "src": "/images/systems/b-pos-960.webp?v=6e2907546de7323a"
+      },
+      {
+        "width": 1254,
+        "src": "/images/systems/b-pos-1254.webp?v=6e2907546de7323a"
+      }
+    ],
+    "src": "/images/systems/b-pos-1254.webp?v=6e2907546de7323a"
+  },
+  "b-wallex": {
+    "width": 1254,
+    "height": 1254,
+    "revision": "2716570d5f0adf34",
+    "alt": "Bwallex presentation mockup showing a payments dashboard and transaction interfaces on a desktop monitor, tablet, and phone.",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/systems/b-wallex-640.webp?v=2716570d5f0adf34"
+      },
+      {
+        "width": 960,
+        "src": "/images/systems/b-wallex-960.webp?v=2716570d5f0adf34"
+      },
+      {
+        "width": 1254,
+        "src": "/images/systems/b-wallex-1254.webp?v=2716570d5f0adf34"
+      }
+    ],
+    "src": "/images/systems/b-wallex-1254.webp?v=2716570d5f0adf34"
+  },
+  "mcc-cms": {
+    "width": 1254,
+    "height": 1254,
+    "revision": "920b8fb5d185476d",
+    "alt": "MCC Admin presentation mockup showing a church administration dashboard across a desktop monitor, tablet, and phone.",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/systems/mcc-cms-640.webp?v=920b8fb5d185476d"
+      },
+      {
+        "width": 960,
+        "src": "/images/systems/mcc-cms-960.webp?v=920b8fb5d185476d"
+      },
+      {
+        "width": 1254,
+        "src": "/images/systems/mcc-cms-1254.webp?v=920b8fb5d185476d"
+      }
+    ],
+    "src": "/images/systems/mcc-cms-1254.webp?v=920b8fb5d185476d"
+  },
+  "neosave-sentinel": {
+    "width": 1254,
+    "height": 1254,
+    "revision": "19796ba4cabe39bb",
+    "alt": "NeoSave Sentinel presentation mockup showing neonatal ward monitoring and patient observation interfaces with demo data across three devices.",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/systems/neosave-sentinel-640.webp?v=19796ba4cabe39bb"
+      },
+      {
+        "width": 960,
+        "src": "/images/systems/neosave-sentinel-960.webp?v=19796ba4cabe39bb"
+      },
+      {
+        "width": 1254,
+        "src": "/images/systems/neosave-sentinel-1254.webp?v=19796ba4cabe39bb"
+      }
+    ],
+    "src": "/images/systems/neosave-sentinel-1254.webp?v=19796ba4cabe39bb"
+  },
+  "symu-finance": {
+    "width": 1254,
+    "height": 1254,
+    "revision": "8e95a9e8e45d4e11",
+    "alt": "Symu Finance presentation mockup showing finance, reconciliation, and mobile approval interfaces across three devices.",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/systems/symu-finance-640.webp?v=8e95a9e8e45d4e11"
+      },
+      {
+        "width": 960,
+        "src": "/images/systems/symu-finance-960.webp?v=8e95a9e8e45d4e11"
+      },
+      {
+        "width": 1254,
+        "src": "/images/systems/symu-finance-1254.webp?v=8e95a9e8e45d4e11"
+      }
+    ],
+    "src": "/images/systems/symu-finance-1254.webp?v=8e95a9e8e45d4e11"
+  },
+  "symu-system": {
+    "width": 1254,
+    "height": 1254,
+    "revision": "b628e09e5fd3574f",
+    "alt": "Symu presentation mockup showing sales and inventory dashboards on a desktop monitor, tablet, and phone.",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/systems/symu-system-640.webp?v=b628e09e5fd3574f"
+      },
+      {
+        "width": 960,
+        "src": "/images/systems/symu-system-960.webp?v=b628e09e5fd3574f"
+      },
+      {
+        "width": 1254,
+        "src": "/images/systems/symu-system-1254.webp?v=b628e09e5fd3574f"
+      }
+    ],
+    "src": "/images/systems/symu-system-1254.webp?v=b628e09e5fd3574f"
+  },
+  "thehub-rms": {
+    "width": 1254,
+    "height": 1254,
+    "revision": "4c1f8a28c66f3d1c",
+    "alt": "The Hub Homa Bay presentation mockup showing hotel reservations, front desk, and housekeeping interfaces across three devices.",
+    "sources": [
+      {
+        "width": 640,
+        "src": "/images/systems/thehub-rms-640.webp?v=4c1f8a28c66f3d1c"
+      },
+      {
+        "width": 960,
+        "src": "/images/systems/thehub-rms-960.webp?v=4c1f8a28c66f3d1c"
+      },
+      {
+        "width": 1254,
+        "src": "/images/systems/thehub-rms-1254.webp?v=4c1f8a28c66f3d1c"
+      }
+    ],
+    "src": "/images/systems/thehub-rms-1254.webp?v=4c1f8a28c66f3d1c"
+  }
+}

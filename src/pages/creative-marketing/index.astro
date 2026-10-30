@@ -1,16 +1,19 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Arrow from '../../components/Arrow.astro';
-import { brands, creativeServices } from '../../data/portfolio';
+import BrandExperience from '../../components/BrandExperience.astro';
+import KineticForm from '../../components/KineticForm.astro';
+import { creativeServices } from '../../data/portfolio';
 const placeholderAreas = [{ title: 'Brand worlds', text: 'Identity, visual systems & communication', className: 'brand' }, { title: 'Social & digital', text: 'Content designed for the feed and beyond', className: 'social' }, { title: 'Campaign thinking', text: 'Creative that connects the message', className: 'campaign' }];
 ---
 <Base title="Digital creative & marketing" theme="creative" description="Digital creative and marketing work by Joshua Ogallo. Visual communication, brand content, and experience across brands and agencies.">
   <section class="creative-hero page-heading frame">
     <p class="page-context">The digital creative & marketing portfolio</p>
     <h1 data-reveal>Make<br />a mark.</h1>
-    <div class="creative-hero-shape" aria-hidden="true"><span>&amp;</span></div>
-    <div class="heading-bottom"><p>Visual communication, brand content<br />and digital marketing. A distinct side of my practice.</p><a class="text-link" href="#creative-work">Explore this practice <Arrow diagonal={false} /></a></div>
+    <div class="creative-kinetic"><KineticForm variant="warm" /></div>
+    <div class="heading-bottom"><p>Visual communication, brand content<br />and digital marketing. A distinct side of my practice.</p><a class="text-link" href="#brand-experience">Explore the brand world <Arrow diagonal={false} /></a></div>
   </section>
+  <BrandExperience />
   <section class="creative-practice section-space frame" id="creative-work" aria-labelledby="creative-practice-title">
     <div class="section-intro"><h2 id="creative-practice-title" data-reveal>Ideas with<br />somewhere to go.</h2><p data-reveal>From an idea’s first expression to the content people see, I work across the creative and marketing sides of a brand.</p></div>
     <div class="service-list">{creativeServices.map(service => <div class="service-row" data-reveal><h3>{service.title}</h3><p>{service.description}</p></div>)}</div>
@@ -18,6 +21,13 @@ const placeholderAreas = [{ title: 'Brand worlds', text: 'Identity, visual syste
   <section class="creative-gallery section-space" aria-labelledby="creative-gallery-title"><div class="frame section-intro"><h2 id="creative-gallery-title">A growing collection.</h2><p>Selected campaign and design work will be added here. The spaces below are portfolio placeholders, ready for original work.</p></div>
     <div class="creative-placeholder-grid frame">{placeholderAreas.map(area => <article class:list={['creative-placeholder', `placeholder--${area.className}`]} data-reveal><span class="placeholder-status">Portfolio placeholder</span><div class="placeholder-art" aria-hidden="true">{area.className === 'brand' ? <span>Ab.</span> : area.className === 'social' ? <><i></i><i></i><i></i></> : <span>Ideas<br />travel.</span>}</div><div><h3>{area.title}</h3><p>{area.text}</p><span>Original work coming soon</span></div></article>)}</div>
   </section>
-  <section class="brand-experience section-space frame" aria-labelledby="brand-experience-title"><div class="section-intro"><h2 id="brand-experience-title" data-reveal>Brands in<br />my experience.</h2><p>Brand experience across agency, employer, and freelance work. Individual project credits will accompany the work as it is added.</p></div><ul class="brand-list">{brands.map(brand => <li data-reveal>{brand}</li>)}</ul><p class="brand-footnote">Experience also spans subbrands within Coca-Cola Africa and UNGA Group. Specific campaigns and credits will be documented with the portfolio work.</p></section>
   <section class="practice-switch frame"><p>Looking for systems and websites?</p><a href="/software/">Explore software engineering <Arrow /></a></section>
 </Base>
+
+<style>
+  .creative-hero h1 { position: relative; z-index: 1; max-width: 65%; }
+  .creative-kinetic { position: absolute; width: clamp(340px,48vw,740px); right: -2%; top: 65px; }
+  @media (max-width: 850px) { .creative-kinetic { width: 430px; right: -100px; top: 130px; }.creative-hero h1 { max-width: 80%; } }
+  @media (max-width: 600px) { .creative-hero { min-height: 760px; }.creative-hero h1 { max-width: 100%; }.creative-kinetic { width: 320px; right: -50px; top: 295px; }.creative-hero .heading-bottom { margin-top: 240px; } }
+  @media (max-width: 360px) { .creative-kinetic { width: 270px; right: -35px; top: 290px; }.creative-hero .heading-bottom { margin-top: 210px; } }
+</style>

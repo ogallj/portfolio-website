@@ -24,6 +24,9 @@ node scripts/verify-output.mjs # Built internal links, assets, metadata
 ## Content and assets
 
 - `src/data/portfolio.ts`: projects, brand experience, employment roles, profile/contact links.
+- `public/images/System mockups/`: supplied system presentations. Run `npm run assets:systems` after replacing them; the script preserves the complete composition and creates responsive WebPs in `public/images/systems/`, with dimensions, alt text and content revisions in `src/data/system-mockups.json`.
+- `src/data/website-assets.json`: website cover imagery, original source URLs, responsive variants, and current preview availability. `npm run assets:websites` prepares verified public website imagery and retained screenshots; it does not fabricate website captures. The exhibition distinguishes imagery, identities and screenshots in its captions. Live previews load only on request, where the remote site permits embedding, and stop when switching projects, pausing motion or leaving the page.
+- `src/data/brand-logos.ts`: supplied organization logos, parent/subbrand compositions and professional-experience marks. Run `npm run assets:logos` after replacing an image or changing its source inventory; originals stay in `public/images/Logos/` (including its brand-family subfolders) and trimmed web copies are generated in `public/images/brand-marks/`. Content revisions refresh browser caches automatically. The creative collection presents Coca-Cola's brands and separate Unga Limited and FarmCare divisions.
 - `src/pages/software/`: independent software collection and generated individual project pages.
 - `src/pages/creative-marketing/`: independent creative/marketing portfolio with labelled media placeholders.
 - `src/styles/global.css`: colour, type, spacing, responsive compositions and interaction states.
@@ -38,7 +41,7 @@ node scripts/verify-output.mjs # Built internal links, assets, metadata
 
 To add campaign work, replace the labelled placeholder blocks in the creative portfolio with original media and add the precise brand, contribution, agency/employer context and credits. Brand names supplied by the owner are labelled **brand experience**, without implying every engagement was a direct client relationship. Unknown subbrands, metrics, dates and technical stacks are intentionally omitted.
 
-Several software products currently use original typographic cover artwork, labelled “Project artwork”. Add actual screenshots when supplied; never relabel unrelated mockups as project evidence. Project pages are concise overviews until detailed role and process notes are supplied.
+The nine systems use owner-supplied interface mockups, labelled as mockups on project pages and available to open at full size. B-Officio's production scope is leave management; fuller employee management is still evolving. TheHub RMS covers hotel and restaurant operations and is separate from The Hub public website; MCC CMS is likewise separate from the church's public website. Do not use mockup figures as project outcomes or infer personal roles, technical stacks, or additional implemented features from their interfaces.
 
 ## Contact
 
