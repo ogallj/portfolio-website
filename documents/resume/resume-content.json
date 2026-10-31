@@ -1,0 +1,72 @@
+{
+  "name": "Joshua Odero Ogallo",
+  "location": "Kenya",
+  "email": "ogallo254@gmail.com",
+  "phone": "+254 713 135 014",
+  "links": [
+    {"label": "github.com/ogallj", "url": "https://github.com/ogallj"},
+    {"label": "linkedin.com/in/joshua-ogallo-9a2628251", "url": "https://www.linkedin.com/in/joshua-ogallo-9a2628251/"}
+  ],
+  "education": "Bachelor's degree in Software Engineering, Kisii University",
+  "software": {
+    "title": "Frontend Software Engineer",
+    "summary": "Frontend software engineer at Baruchsoft Technologies with contributions to the frontend and UI/UX of business systems and public-facing websites. Works primarily with Next.js, React and Angular, translating business requirements into responsive interfaces and connecting them to backend APIs.",
+    "skills": [
+      {"label": "Frontend", "text": "Next.js, React, Angular, JavaScript, HTML, CSS, Tailwind CSS, Bootstrap"},
+      {"label": "UI and UX", "text": "Interface design, responsive layouts, reusable components, prototyping"},
+      {"label": "Integration and tools", "text": "REST APIs, state management, client-side routing, Git, GitHub; additional knowledge of Java, SQL and PostgreSQL"}
+    ],
+    "experience": [
+      {
+        "company": "Baruchsoft Technologies",
+        "role": "Frontend Software Engineer and Digital Marketer",
+        "bullets": [
+          "Developed frontend interfaces for custom client applications, translating business requirements into responsive web experiences.",
+          "Contributed to frontend development and UI/UX across ecommerce, leave management, payments, finance, church administration and hospitality projects.",
+          "Built with Next.js, React and Angular across the project portfolio, integrating interfaces with backend APIs."
+        ]
+      },
+      {
+        "company": "Independent freelance work",
+        "role": "Freelancer through Freelancer.com",
+        "bullets": ["Deliver freelance frontend, website and creative work through Freelancer.com."]
+      }
+    ],
+    "projects": [
+      {"name": "B-Officio", "text": "Production leave-management system, evolving toward broader employee management."},
+      {"name": "B-Commerce", "text": "Ecommerce system for online shopping."},
+      {"name": "Neosave Sentinel", "text": "Mobile command interface for monitoring neonatal health risks."},
+      {"name": "TheHub RMS", "text": "Hotel and restaurant management, including food ordering and delivery."},
+      {"name": "Community CBE Campaign", "text": "Public-facing circular bio-economy campaign website.", "url": "https://communitycbe.africa/", "label": "communitycbe.africa"},
+      {"name": "INNOECOFOOD", "text": "Public-facing aquaculture research website.", "url": "https://innoecofood.eu/", "label": "innoecofood.eu"}
+    ],
+    "additional": "Digital Creative, Socialmeds Digital Marketing Agency; Digital Marketer, Ogre Digital.",
+    "training": "Java Programming and Software Engineering Fundamentals, Duke University via Coursera; Web Development Bootcamp, PowerLearn Project and Safaricom Hook.",
+    "languages": "English and Kiswahili"
+  },
+  "creative": {
+    "title": "Digital Creative and Marketer",
+    "summary": "Digital creative and marketer with experience at Socialmeds, Ogre Digital and Baruchsoft Technologies. Contributed creative work and ideation to Fanta's Skizia Utamu Challenge, alongside internal organizational campaigns, brand content and visual communication. Brings complementary frontend and UI/UX experience.",
+    "skills": [
+      {"label": "Creative delivery", "text": "Campaign ideation, brand content, graphic design, visual communication"},
+      {"label": "Marketing", "text": "Campaign creative, digital marketing, internal organizational campaigns"},
+      {"label": "Design tools", "text": "Adobe Photoshop, Adobe Illustrator, Adobe InDesign, Affinity"},
+      {"label": "Digital skills", "text": "Website design, frontend development, UI/UX"}
+    ],
+    "experience": [
+      {"company": "Socialmeds Digital Marketing Agency", "role": "Digital Creative", "bullets": []},
+      {"company": "Ogre Digital", "role": "Digital Marketer", "bullets": []},
+      {"company": "Baruchsoft Technologies", "role": "Frontend Software Engineer and Digital Marketer", "bullets": ["Combine digital marketing and visual communication with frontend software engineering and interface design."]},
+      {"company": "Independent freelance work", "role": "Freelancer through Freelancer.com", "bullets": ["Deliver independent work across software and creative projects."]}
+    ],
+    "brands": "Coca-Cola Africa and its subbrands; UNGA Group and its subbrands; Junction Mall; SGA Group; Uhai Africa; T&S Solutions; KWS; The Hub Homa Bay; Mustard Christian Centre; JOOUST.",
+    "brandContext": "Experience includes work through agencies and employers, alongside independent work.",
+    "projects": [
+      {"name": "Fanta Skizia Utamu Challenge", "text": "Contributed campaign ideation and creative work."},
+      {"name": "Internal organizational campaigns", "text": "Delivered creative and marketing work for organizations' internal campaigns."},
+      {"name": "Website and interface design", "text": "Frontend and UI/UX contributions to Community CBE, INNOECOFOOD and other public-facing websites.", "url": "https://communitycbe.africa/", "label": "communitycbe.africa"}
+    ],
+    "training": "Leadership and Personal Development, ALX; Web Development Bootcamp, PowerLearn Project and Safaricom Hook.",
+    "languages": "English and Kiswahili"
+  }
+}

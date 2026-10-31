@@ -124,17 +124,48 @@ requireContent((software.match(/class="system-mockup"/g) || []).length === syste
 requireContent(software.includes('In production') && software.includes('evolving toward broader employee management'), 'B-Officio current production scope is missing.');
 const websites = projects.filter(project => project.kind === 'website');
 const websiteMedia = JSON.parse(await readFile(resolve(root, 'src/data/website-assets.json'), 'utf8'));
+const archivedHomepageSources = new Set([
+  'img/innoecofood.png',
+  'img/technology&strategywebsite.png',
+  'img/uhaiwebsite.png',
+  'img/jooustsahwebsite.png',
+  'img/studentsafetysummit.png',
+]);
 requireContent(websites.length === 14, 'Expected fourteen website projects.');
 for (const website of websites) {
   const detail = documents.get(resolve(output, `software/${website.slug}/index.html`)) || '';
   const media = websiteMedia[website.website];
   requireContent(!!media && !!website.liveUrl, `${website.title}: website media or source URL is missing.`);
   requireContent(software.includes(`data-web-select="${website.slug}"`) && software.includes(`id="web-${website.slug}"`), `${website.title}: website exhibition entry is missing.`);
-  if (media) requireContent(detail.includes(media.src.split('?')[0]), `${website.title}: project-page website image is missing.`);
+  if (media) {
+    requireContent(detail.includes(media.src.split('?')[0]) && software.includes(media.src.split('?')[0]), `${website.title}: homepage screenshot is missing from the collection or project page.`);
+    requireContent(media.kind === 'screenshot' && media.fit === 'contain', `${website.title}: website visuals must be complete homepage screenshots.`);
+    requireContent(/\/images\/websites\/[^/]+-homepage-\d+\.webp(?:\?|$)/.test(media.src), `${website.title}: a homepage derivative is required.`);
+    requireContent(media.alt.includes(website.title) && /homepage screenshot/i.test(media.alt), `${website.title}: homepage alt text must identify the proper project name.`);
+    requireContent(media.sourceUrl === website.liveUrl && media.captureReviewed === true, `${website.title}: homepage source or visual-review provenance is missing.`);
+    const label = media.archived ? 'Archived homepage screenshot' : 'Homepage screenshot';
+    requireContent(detail.includes(label) && software.includes(label), `${website.title}: the homepage caption does not identify its archive status.`);
+    let capture;
+    try { capture = JSON.parse(await readFile(resolve(root, `img/websites/homepages/${website.website}.json`), 'utf8')); }
+    catch { /* Explicitly retained archives remain valid without a new capture. */ }
+    if (capture?.reviewed === true) {
+      requireContent(!media.archived && media.captureSource === capture.input, `${website.title}: the reviewed homepage capture was not selected.`);
+      requireContent(media.capturedAt === capture.capturedAt && media.width === capture.width && media.height === capture.height, `${website.title}: capture time or dimensions do not match the reviewed source.`);
+    } else {
+      requireContent(media.archived && archivedHomepageSources.has(media.captureSource), `${website.title}: an unapproved capture must use an explicitly retained archive.`);
+      requireContent(media.captureSource !== capture?.input, `${website.title}: an unapproved/error-page capture is being presented.`);
+    }
+    if (media.captureSource) {
+      try { requireContent((await stat(resolve(root, media.captureSource))).isFile(), `${website.title}: original homepage screenshot is missing.`); }
+      catch { requireContent(false, `${website.title}: original homepage screenshot is missing.`); }
+    }
+  }
 }
+requireContent(websiteMedia['jooust-student-apprentice-hub']?.liveStatus === 'unknown', 'JOOUST live availability must retain its separately verified unknown status.');
+requireContent(websiteMedia['student-safety-summit']?.liveStatus === 'unavailable', 'Student Safety Summit live availability must retain its separately verified unavailable status.');
 requireContent(!/<iframe\b[^>]*\ssrc=/.test(software), 'Website previews load third-party pages before a visitor requests them.');
 requireContent(software.includes('https://innoecofood.eu/'), 'INNOECOFOOD does not use its supplied canonical domain.');
 requireContent(![...documents.values()].some(html => /Source Code|href=["']https:\/\/github\.com\/ogallj\//.test(html)), 'Unexpected project source link or Source Code claim found; inspect provenance.');
 
-console.log(JSON.stringify({ htmlDocuments: documents.size, outputFiles: files.length, internalReferencesChecked: checked, errors, warnings }, null, 2));
+console.log(JSON.stringify({ htmlDocuments: documents.size, outputFiles: files.length, internalReferencesChecked: checked, homepageScreenshots: Object.values(websiteMedia).filter(media => media.kind === 'screenshot').length, archivedHomepageScreenshots: Object.values(websiteMedia).filter(media => media.archived).length, errors, warnings }, null, 2));
 if (errors.length) process.exitCode = 1;

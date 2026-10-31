@@ -1,0 +1,26 @@
+{
+  "software": {
+    "pdf": "/joshua-ogallo-cv.pdf?v=88d0fbc10180",
+    "word": "/joshua-ogallo-cv.docx?v=fa3fce51c079",
+    "pdfFilename": "Joshua-Ogallo-Software-Engineer-CV.pdf",
+    "wordFilename": "Joshua-Ogallo-Software-Engineer-CV.docx",
+    "pages": 1,
+    "pdfKB": 81,
+    "preview": "/images/resumes/software-800.webp?v=88d0fbc10180",
+    "previewSmall": "/images/resumes/software-400.webp?v=88d0fbc10180",
+    "previewWidth": 800,
+    "previewHeight": 1035
+  },
+  "creative": {
+    "pdf": "/joshua-ogallo-creative-cv.pdf?v=693461ced6a6",
+    "word": "/joshua-ogallo-creative-cv.docx?v=73ca9cbc4a8e",
+    "pdfFilename": "Joshua-Ogallo-Digital-Creative-Marketer-CV.pdf",
+    "wordFilename": "Joshua-Ogallo-Digital-Creative-Marketer-CV.docx",
+    "pages": 1,
+    "pdfKB": 80,
+    "preview": "/images/resumes/creative-800.webp?v=693461ced6a6",
+    "previewSmall": "/images/resumes/creative-400.webp?v=693461ced6a6",
+    "previewWidth": 800,
+    "previewHeight": 1035
+  }
+}

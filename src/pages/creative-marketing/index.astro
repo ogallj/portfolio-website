@@ -4,6 +4,7 @@ import Arrow from '../../components/Arrow.astro';
 import BrandExperience from '../../components/BrandExperience.astro';
 import KineticForm from '../../components/KineticForm.astro';
 import { creativeServices } from '../../data/portfolio';
+import { creativeResume } from '../../data/resumes';
 const placeholderAreas = [{ title: 'Brand worlds', text: 'Identity, visual systems & communication', className: 'brand' }, { title: 'Social & digital', text: 'Content designed for the feed and beyond', className: 'social' }, { title: 'Campaign thinking', text: 'Creative that connects the message', className: 'campaign' }];
 ---
 <Base title="Digital creative & marketing" theme="creative" description="Digital creative and marketing work by Joshua Ogallo. Visual communication, brand content, and experience across brands and agencies.">
@@ -11,7 +12,7 @@ const placeholderAreas = [{ title: 'Brand worlds', text: 'Identity, visual syste
     <p class="page-context">The digital creative & marketing portfolio</p>
     <h1 data-reveal>Make<br />a mark.</h1>
     <div class="creative-kinetic"><KineticForm variant="warm" /></div>
-    <div class="heading-bottom"><p>Visual communication, brand content<br />and digital marketing. A distinct side of my practice.</p><a class="text-link" href="#brand-experience">Explore the brand world <Arrow diagonal={false} /></a></div>
+    <div class="heading-bottom"><p>Visual communication, brand content<br />and digital marketing. A distinct side of my practice.</p><div class="heading-actions"><a class="text-link" href={creativeResume.pdf} download={creativeResume.pdfFilename}>Download creative CV <Arrow /></a><a class="text-link" href="#brand-experience">Explore the brand world <Arrow diagonal={false} /></a></div></div>
   </section>
   <BrandExperience />
   <section class="creative-practice section-space frame" id="creative-work" aria-labelledby="creative-practice-title">

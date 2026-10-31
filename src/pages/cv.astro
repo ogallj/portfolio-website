@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import Arrow from '../components/Arrow.astro';
+import { resumes } from '../data/resumes';
+---
+<Base title="CVs & résumés" description="Download Joshua Ogallo’s software engineering or digital creative and marketing CV. Preview each résumé, with PDF and editable Word versions.">
+  <section class="cv-heading page-heading frame">
+    <p class="page-context">Joshua Odero Ogallo</p>
+    <h1 data-reveal>Experience,<br />on paper.</h1>
+    <div class="heading-bottom"><p>Two focused CVs for two sides of my practice.<br />Choose the one that fits your opportunity.</p><a class="text-link" href="/contact/">Let’s work together <Arrow /></a></div>
+  </section>
+  <section class="cv-collection frame" aria-label="Choose a CV">
+    {resumes.map(resume => <article class:list={['cv-edition', `cv-edition--${resume.id}`]} aria-labelledby={`cv-${resume.id}`}>
+      <div class="cv-info">
+        <h2 id={`cv-${resume.id}`}>{resume.title}</h2>
+        <p class="cv-role">{resume.role}</p>
+        <p class="cv-description">{resume.description}</p>
+        <div class="cv-downloads">
+          <a class="button-primary" href={resume.pdf} download={resume.pdfFilename} aria-label={`Download ${resume.title} CV, PDF`}>Download PDF <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+          <a class="text-link" href={resume.word} download={resume.wordFilename} aria-label={`Download ${resume.title} CV, editable Word document`}>Word (.docx) <Arrow /></a>
+        </div>
+        <p class="cv-file-details">{resume.pages === 1 ? 'One page' : `${resume.pages} pages`} · PDF {resume.pdfKB} KB</p>
+      </div>
+      <a class="cv-preview" href={resume.pdf} aria-label={`View ${resume.title} CV, PDF`}>
+        <div class="cv-paper"><img src={resume.preview} srcset={`${resume.previewSmall} 400w, ${resume.preview} 800w`} sizes="(max-width: 700px) calc(100vw - 96px), (max-width: 1100px) 36vw, 430px" width={resume.previewWidth} height={resume.previewHeight} alt="" loading="lazy" decoding="async" /></div>
+        <span class="cv-preview-caption">View PDF <Arrow /></span>
+      </a>
+      <a class="cv-portfolio text-link" href={resume.portfolio}>Explore this portfolio <Arrow diagonal={false} /></a>
+    </article>)}
+  </section>
+</Base>
+
+<style>
+  .cv-heading { padding-bottom: 60px; }
+  .cv-heading h1 { font-size: clamp(64px, 8vw, 126px); }
+  .cv-collection { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 64px); padding-bottom: clamp(80px, 10vw, 150px); }
+  .cv-edition { --edition: var(--blue); --edition-ground: #d6e2f4; min-width: 0; }
+  .cv-edition--creative { --edition: #96351c; --edition-ground: #f8c9b9; }
+  .cv-info { padding: 30px 0; border-top: 2px solid var(--edition); }
+  .cv-info h2 { font-size: clamp(29px, 3.3vw, 52px); }
+  .cv-role { font-size: 15px; color: var(--edition); font-weight: 700; margin-top: 14px; }
+  .cv-description { max-width: 470px; margin-top: 16px; color: var(--muted); min-height: 78px; }
+  .cv-downloads { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 24px; margin-top: 25px; }
+  .cv-downloads .button-primary { background: var(--edition); gap: 28px; min-height: 56px; padding: 15px 22px; }
+  .cv-downloads .button-primary:hover { background: var(--ink); }
+  .cv-downloads .text-link { font-size: 14px; gap: 16px; }
+  .cv-file-details { font-size: 12px; color: var(--muted); margin-top: 13px; }
+  .cv-preview { display: block; background: var(--edition-ground); padding: clamp(20px, 3vw, 46px) clamp(20px, 4vw, 64px) 0; }
+  .cv-paper { background: white; box-shadow: 0 16px 36px #13203512; }
+  .cv-paper img { width: 100%; height: auto; object-fit: contain; }
+  .cv-preview-caption { display: flex; justify-content: space-between; align-items: center; gap: 20px; min-height: 68px; font-size: 14px; font-weight: 700; }
+  .cv-portfolio { margin-top: 17px; font-size: 14px; }
+  @media (min-width: 701px) { .cv-edition--creative { margin-top: 110px; } }
+  @media (max-width: 1000px) { .cv-description { min-height: 104px; } }
+  @media (max-width: 700px) { .cv-collection { grid-template-columns: 1fr; gap: 52px; }.cv-heading h1 { font-size: clamp(52px, 9vw, 64px); }.cv-info h2 { font-size: 34px; }.cv-description { min-height: 0; }.cv-preview { padding: 24px 26px 0; }.cv-heading { padding-bottom: 42px; } }
+</style>

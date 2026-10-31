@@ -3,13 +3,14 @@ import Base from '../../layouts/Base.astro';
 import Arrow from '../../components/Arrow.astro';
 import SoftwareGallery from '../../components/SoftwareGallery.astro';
 import KineticForm from '../../components/KineticForm.astro';
+import { softwareResume } from '../../data/resumes';
 ---
 <Base title="Software engineering" theme="software" description="Systems and websites by Joshua Ogallo. Explore commerce, people operations, payments, neonatal monitoring, finance and hospitality software.">
   <section class="page-heading frame software-heading">
     <p class="page-context">The software portfolio</p>
     <h1 data-reveal>Software<br />for people.</h1>
     <div class="heading-kinetic"><KineticForm /></div>
-    <div class="heading-bottom"><p>Business systems, health software, and websites.<br />Built with people on the other side of the screen.</p><a class="text-link" href="/creative-marketing/">Looking for creative work? <Arrow diagonal={false} /></a></div>
+    <div class="heading-bottom"><p>Business systems, health software, and websites.<br />Built with people on the other side of the screen.</p><div class="heading-actions"><a class="text-link" href={softwareResume.pdf} download={softwareResume.pdfFilename}>Download software CV <Arrow /></a><a class="text-link" href="/creative-marketing/">Looking for creative work? <Arrow diagonal={false} /></a></div></div>
   </section>
   <SoftwareGallery />
 </Base>

@@ -6,5 +6,7 @@
   "capturedAt": "2026-10-30T08:18:23.511Z",
   "width": 1200,
   "height": 900,
-  "reviewed": false
+  "reviewed": true,
+  "reviewedAt": "2026-11-01",
+  "reviewNote": "Visually reviewed: the correct public homepage, including its navigation and opening content."
 }

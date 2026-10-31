@@ -135,6 +135,10 @@ ul { padding: 0; margin: 0; list-style: none; }
 .heading-bottom { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-top: 55px; }
 .heading-bottom p { font-size: 18px; line-height: 1.5; max-width: 560px; }
 .heading-bottom .text-link { font-size: 14px; }
+.heading-actions { display: flex; flex-direction: column; align-items: start; gap: 2px; flex-shrink: 0; }
+.heading-actions > a:first-child { color: var(--blue); }
+.creative-hero .heading-actions { --focus: var(--ink); }
+.creative-hero .heading-actions > a:first-child { color: var(--ink); }
 .software-heading { background: var(--ground); padding-bottom: 70px; }
 .software-heading h1 { max-width: 78%; }
 .heading-sculpture { position: absolute; top: 175px; right: 5%; display: flex; align-items: center; font: 300 190px/1 var(--display); color: var(--blue); opacity: .16; transform: rotate(-18deg); letter-spacing: -.12em; }
