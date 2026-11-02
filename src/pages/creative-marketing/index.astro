@@ -1,34 +1,177 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Arrow from '../../components/Arrow.astro';
+import BrandMark from '../../components/BrandMark.astro';
 import BrandExperience from '../../components/BrandExperience.astro';
-import KineticForm from '../../components/KineticForm.astro';
+import SpatialExperience from '../../components/SpatialExperience.astro';
 import { creativeServices } from '../../data/portfolio';
 import { creativeResume } from '../../data/resumes';
-const placeholderAreas = [{ title: 'Brand worlds', text: 'Identity, visual systems & communication', className: 'brand' }, { title: 'Social & digital', text: 'Content designed for the feed and beyond', className: 'social' }, { title: 'Campaign thinking', text: 'Creative that connects the message', className: 'campaign' }];
+import dimensions from '../../data/logo-dimensions.json';
+const tools = ['Photoshop', 'Illustrator', 'InDesign', 'Affinity'];
+const brandAssets = ['fanta', 'coca-cola-africa', 'unga'].map(id => {
+  const size = (dimensions as Record<string, { width: number; height: number; revision?: string }>)[id];
+  return { id, src: '/images/brand-marks/' + id + '.webp?v=' + size.revision, width: size.width, height: size.height };
+});
 ---
-<Base title="Digital creative & marketing" theme="creative" description="Digital creative and marketing work by Joshua Ogallo. Visual communication, brand content, and experience across brands and agencies.">
-  <section class="creative-hero page-heading frame">
-    <p class="page-context">The digital creative & marketing portfolio</p>
-    <h1 data-reveal>Make<br />a mark.</h1>
-    <div class="creative-kinetic"><KineticForm variant="warm" /></div>
-    <div class="heading-bottom"><p>Visual communication, brand content<br />and digital marketing. A distinct side of my practice.</p><div class="heading-actions"><a class="text-link" href={creativeResume.pdf} download={creativeResume.pdfFilename}>Download creative CV <Arrow /></a><a class="text-link" href="#brand-experience">Explore the brand world <Arrow diagonal={false} /></a></div></div>
-  </section>
-  <BrandExperience />
-  <section class="creative-practice section-space frame" id="creative-work" aria-labelledby="creative-practice-title">
-    <div class="section-intro"><h2 id="creative-practice-title" data-reveal>Ideas with<br />somewhere to go.</h2><p data-reveal>From an idea’s first expression to the content people see, I work across the creative and marketing sides of a brand.</p></div>
-    <div class="service-list">{creativeServices.map(service => <div class="service-row" data-reveal><h3>{service.title}</h3><p>{service.description}</p></div>)}</div>
-  </section>
-  <section class="creative-gallery section-space" aria-labelledby="creative-gallery-title"><div class="frame section-intro"><h2 id="creative-gallery-title">A growing collection.</h2><p>Selected campaign and design work will be added here. The spaces below are portfolio placeholders, ready for original work.</p></div>
-    <div class="creative-placeholder-grid frame">{placeholderAreas.map(area => <article class:list={['creative-placeholder', `placeholder--${area.className}`]} data-reveal><span class="placeholder-status">Portfolio placeholder</span><div class="placeholder-art" aria-hidden="true">{area.className === 'brand' ? <span>Ab.</span> : area.className === 'social' ? <><i></i><i></i><i></i></> : <span>Ideas<br />travel.</span>}</div><div><h3>{area.title}</h3><p>{area.text}</p><span>Original work coming soon</span></div></article>)}</div>
-  </section>
-  <section class="practice-switch frame"><p>Looking for systems and websites?</p><a href="/software/">Explore software engineering <Arrow /></a></section>
+<Base title="Digital creative & marketing" theme="creative" description="Joshua Ogallo’s creative and marketing practice: campaign ideation, visual communication, brand content and experience across brands and agencies.">
+  <div class="rf-creative-page">
+    <SpatialExperience
+      kind="creative"
+      title={['Creative', '& marketing.']}
+      description="Campaign ideation, visual communication and brand content. Agency, in-house and independent experience."
+      assets={brandAssets}
+      poster={brandAssets[0].src}
+      actions={[{ href: creativeResume.pdf, label: 'Download creative CV', download: creativeResume.pdfFilename }, { href: '#brand-experience', label: 'Brand experience' }]}
+      choices={[{ id: 'ink', label: 'Ink plates' }, { id: 'brands', label: 'Brand experience' }]}
+      target="brand-experience"
+      hold={1.15}
+      caption="An original colour-registration study."
+    />
+
+    <section class="rf-contribution frame" aria-labelledby="fanta-contribution-title">
+      <div class="rf-proof-stage">
+        <div class="rf-proof-layers" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="rf-contribution-mark">
+          <BrandMark id="fanta" decorative />
+          <span>Fanta / Brand experience</span>
+        </div>
+      </div>
+      <div class="rf-contribution-copy" data-enter>
+        <p class="rf-contribution-context">A confirmed contribution</p>
+        <h2 id="fanta-contribution-title">Skizia Utamu<br />Challenge.</h2>
+        <div class="rf-contribution-record"><p>My contribution</p><p>Creative work &amp; ideation.</p></div>
+        <p class="rf-contribution-note">Original campaign material is not yet published here. A fuller project presentation will include the work and individual credits.</p>
+        <a class="rf-inline-link" href="#coca-family-title">View the brand family <Arrow diagonal={false} /></a>
+      </div>
+    </section>
+
+    <BrandExperience />
+
+    <section class="rf-creative-capabilities frame" aria-labelledby="creative-capabilities-title">
+      <div class="rf-capabilities-heading" data-enter>
+        <h2 id="creative-capabilities-title">The practice<br />behind the work.</h2>
+        <p>I bring ideas and visual craft to digital communication, brand content and marketing projects.</p>
+      </div>
+      <div class="rf-capabilities-record rf-ink-ledger">
+        <div class="rf-capability-list">
+          {creativeServices.map(service => <div class="rf-capability-row" data-enter><h3>{service.title}</h3><p>{service.description}</p></div>)}
+        </div>
+        <div class="rf-creative-tools" data-enter>
+          <h3>Tools I work with</h3>
+          <ul aria-label="Creative software">{tools.map(tool => <li>{tool}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="rf-forthcoming frame" id="creative-work" aria-labelledby="creative-work-title" data-creative-forthcoming>
+      <div data-enter>
+        <p class="rf-forthcoming-status">Work in preparation</p>
+        <h2 id="creative-work-title">Original work,<br />coming soon.</h2>
+      </div>
+      <div class="rf-forthcoming-copy" data-enter>
+        <p>Selected campaign and design pieces will appear here with my contribution and the context behind each project.</p>
+        <p>The brand experience above is the current record of this side of my practice.</p>
+      </div>
+    </section>
+
+    <nav class="rf-creative-continuation frame" aria-label="Continue exploring">
+      <a class="rf-continuation-primary" href="/contact/"><span><span>For a creative brief or a new role</span><span>Let’s talk.</span></span><Arrow /></a>
+      <div class="rf-continuation-links">
+        <a href="/cv/#cv-creative">View the creative CV <Arrow diagonal={false} /></a>
+        <a href="/software/">Explore software engineering <Arrow diagonal={false} /></a>
+      </div>
+    </nav>
+  </div>
 </Base>
 
 <style>
-  .creative-hero h1 { position: relative; z-index: 1; max-width: 65%; }
-  .creative-kinetic { position: absolute; width: clamp(340px,48vw,740px); right: -2%; top: 65px; }
-  @media (max-width: 850px) { .creative-kinetic { width: 430px; right: -100px; top: 130px; }.creative-hero h1 { max-width: 80%; } }
-  @media (max-width: 600px) { .creative-hero { min-height: 760px; }.creative-hero h1 { max-width: 100%; }.creative-kinetic { width: 320px; right: -50px; top: 295px; }.creative-hero .heading-bottom { margin-top: 240px; } }
-  @media (max-width: 360px) { .creative-kinetic { width: 270px; right: -35px; top: 290px; }.creative-hero .heading-bottom { margin-top: 210px; } }
+  .rf-creative-page { color: var(--ink); background: var(--ground); }
+  .rf-proof-stage { position: relative; isolation: isolate; perspective: 1100px; transform-style: preserve-3d; margin: 15px 22px 25px 15px; }
+  .rf-proof-layers { position: absolute; inset: 0; transform-style: preserve-3d; pointer-events: none; }
+  .rf-proof-layers > span { position: absolute; inset: 0; clip-path: polygon(0 0,86% 0,100% 15%,100% 100%,0 100%); }
+  .rf-proof-layers > span:nth-child(1) { background: #02b5d0; transform: translate3d(-21px,22px,-38px) rotate(-5deg); }
+  .rf-proof-layers > span:nth-child(2) { background: #e53585; transform: translate3d(17px,17px,-23px) rotate(4deg); }
+  .rf-proof-layers > span:nth-child(3) { background: #f5cc38; transform: translate3d(-3px,30px,-9px) rotate(-2deg); }
+  .rf-contribution { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: clamp(45px, 9vw, 150px); padding-block: clamp(70px, 9vw, 135px); background: var(--ground); }
+  .rf-contribution-mark { position: relative; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: clamp(35px, 5vw, 75px); aspect-ratio: 1.12; background: #fff; transform: translateZ(25px); box-shadow: 0 22px 35px #10202a1c; border: 1px solid #ffffff; }
+  .rf-contribution-mark :global(.brand-mark) { width: min(100%, 235px); height: auto; max-height: 235px; object-fit: contain; }
+  .rf-contribution-mark > span { margin-top: 40px; color: var(--muted); font-size: 11px; }
+  .rf-contribution-copy { min-width: 0; }
+  .rf-contribution-context { color: var(--muted); font-size: 12px; margin-bottom: 20px; }
+  .rf-contribution-copy h2 { font: 450 clamp(38px, 4.1vw, 64px)/1.04 var(--display); letter-spacing: -.05em; }
+  .rf-contribution-record { display: grid; grid-template-columns: .7fr 1.3fr; gap: 20px; padding-top: 23px; border-top: 1px solid var(--line); margin-top: 32px; font-size: 14px; }
+  .rf-contribution-record > p:first-child { color: var(--muted); font-size: 12px; }
+  .rf-contribution-note { font-size: 13px; line-height: 1.65; color: var(--muted); margin-top: 25px; max-width: 48ch; }
+  .rf-inline-link { display: inline-flex; align-items: center; min-height: 44px; gap: 23px; font-size: 12px; margin-top: 14px; }
+  .rf-inline-link :global(.arrow-icon) { width: 16px; height: 16px; }
+  .rf-creative-capabilities { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); column-gap: clamp(55px, 9vw, 145px); padding-block: clamp(75px, 10vw, 150px); background: var(--paper); }
+  .rf-ink-ledger { position: relative; padding: 35px; background: #fff; box-shadow: 8px 9px 0 #d3dce0, 12px 14px 0 #263241; border-top: 3px solid #263241; }
+  .rf-capability-list > .rf-capability-row { position: relative; padding-left: 18px; }
+  .rf-capability-list > .rf-capability-row::before { content: ''; position: absolute; top: 28px; bottom: 28px; left: 0; width: 3px; background: #02b5d0; }
+  .rf-capability-list > .rf-capability-row:first-child::before { top: 0; }
+  .rf-capability-list > .rf-capability-row:nth-child(2)::before { background: #e53585; }
+  .rf-capability-list > .rf-capability-row:nth-child(3)::before { background: #edc535; }
+  .rf-capabilities-heading h2 { font: 450 clamp(36px, 4.3vw, 65px)/1.04 var(--display); letter-spacing: -.05em; }
+  .rf-capabilities-heading p { max-width: 33ch; margin-top: 28px; color: var(--muted); font-size: 16px; line-height: 1.7; }
+  .rf-capability-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 25px; padding-block: 28px; border-top: 1px solid var(--line); }
+  .rf-capability-row:first-child { padding-top: 0; border-top: 0; }
+  .rf-capability-row h3 { font: 500 clamp(20px, 1.8vw, 27px)/1.2 var(--display); letter-spacing: -.03em; }
+  .rf-capability-row p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+  .rf-creative-tools { padding-top: 25px; margin-top: 15px; border-top: 1px solid var(--line); }
+  .rf-creative-tools h3 { font: 500 12px/1.5 var(--body); letter-spacing: 0; color: var(--muted); }
+  .rf-creative-tools ul { display: flex; flex-wrap: wrap; gap: 8px 25px; margin-top: 15px; font-size: 14px; }
+  .rf-forthcoming { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); align-items: end; gap: clamp(45px, 10vw, 155px); padding-block: clamp(65px, 8vw, 115px); scroll-margin-top: 110px; background: #f1f2e9; }
+  .rf-forthcoming::after { content: ''; position: absolute; left: var(--gutter); right: var(--gutter); bottom: 0; height: 10px; background: repeating-linear-gradient(0deg,#b8c4c2 0 1px,#f8faf5 1px 3px); transform: skewX(-24deg); transform-origin: left bottom; }
+  .rf-forthcoming-status { color: var(--blue); font-size: 12px; margin-bottom: 23px; }
+  .rf-forthcoming h2 { font: 450 clamp(37px, 4.3vw, 65px)/1.05 var(--display); letter-spacing: -.05em; }
+  .rf-forthcoming-copy p { color: var(--muted); max-width: 43ch; font-size: 15px; line-height: 1.7; }
+  .rf-forthcoming-copy p + p { font-size: 12px; margin-top: 17px; }
+  .rf-creative-continuation { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(40px, 9vw, 140px); padding-block: 36px 65px; }
+  .rf-continuation-primary { display: flex; justify-content: space-between; align-items: center; gap: 25px; padding-block: 24px; border-top: 1px solid var(--ink); }
+  .rf-continuation-primary > span > span { display: block; }
+  .rf-continuation-primary > span > span:first-child { color: var(--muted); font-size: 12px; margin-bottom: 13px; }
+  .rf-continuation-primary > span > span:last-child { font: 450 clamp(35px, 3.8vw, 58px)/1.05 var(--display); letter-spacing: -.05em; }
+  .rf-continuation-primary > :global(.arrow-icon) { width: 35px; height: 35px; }
+  .rf-continuation-links { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .rf-continuation-links > a { display: inline-flex; align-items: center; justify-content: space-between; gap: 25px; min-height: 44px; width: 100%; font-size: 13px; }
+  .rf-continuation-links :global(.arrow-icon) { width: 17px; height: 17px; }
+  @media (hover: hover) and (pointer: fine) {
+    .rf-continuation-primary:hover { color: var(--blue); }
+  }
+  @media (max-width: 1000px) {
+    .rf-contribution { gap: 50px; }
+    .rf-creative-capabilities { column-gap: 55px; }
+    .rf-capability-row { grid-template-columns: 1fr; gap: 12px; }
+    .rf-contribution-record { grid-template-columns: 1fr; gap: 8px; }
+  }
+  @media (max-width: 700px) {
+    .rf-proof-stage { margin: 6px 16px 24px 10px; }
+    .rf-contribution { grid-template-columns: 1fr; gap: 34px; padding-block: 55px 65px; }
+    .rf-contribution-mark { aspect-ratio: 1.7; padding: 28px; }
+    .rf-contribution-mark :global(.brand-mark) { max-width: 160px; max-height: 130px; }
+    .rf-contribution-mark > span { margin-top: 22px; font-size: 10px; }
+    .rf-contribution-context { font-size: 11px; margin-bottom: 17px; }
+    .rf-contribution-copy h2 { font-size: clamp(37px, 9vw, 54px); }
+    .rf-contribution-record { grid-template-columns: .8fr 1.2fr; gap: 18px; margin-top: 26px; }
+    .rf-contribution-note { font-size: 12px; margin-top: 20px; }
+    .rf-creative-capabilities { grid-template-columns: 1fr; gap: 42px; padding-block: 65px; }
+    .rf-ink-ledger { padding: 25px 22px; margin-right: 10px; }
+    .rf-capabilities-heading h2 { font-size: 38px; }
+    .rf-capabilities-heading p { font-size: 14px; margin-top: 23px; max-width: 39ch; }
+    .rf-capability-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 22px; padding-block: 23px; }
+    .rf-capability-row h3 { font-size: 20px; }
+    .rf-capability-row p { font-size: 12px; }
+    .rf-creative-tools ul { font-size: 13px; gap: 7px 20px; }
+    .rf-forthcoming { grid-template-columns: 1fr; gap: 27px; padding-block: 60px 40px; }
+    .rf-forthcoming h2 { font-size: 38px; }
+    .rf-forthcoming-status { margin-bottom: 19px; }
+    .rf-forthcoming-copy p { font-size: 14px; max-width: 41ch; }
+    .rf-creative-continuation { grid-template-columns: 1fr; gap: 12px; padding-block: 15px 50px; }
+    .rf-continuation-primary > span > span:last-child { font-size: 39px; }
+    .rf-continuation-primary > :global(.arrow-icon) { width: 29px; height: 29px; }
+    .rf-continuation-links { gap: 4px; }
+  }
+  @media (max-width: 360px) {
+    .rf-contribution-record,.rf-capability-row { grid-template-columns: 1fr; gap: 9px; }
+  }
 </style>

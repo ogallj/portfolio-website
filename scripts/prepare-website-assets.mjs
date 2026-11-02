@@ -55,10 +55,10 @@ for (const entry of entries) {
   const info = await sharp(input).metadata();
   if (!info.width || !info.height) throw new Error(`Invalid website image: ${id}`);
   if (!capture.archived && (capture.width !== info.width || capture.height !== info.height)) throw new Error(`Reviewed capture dimensions do not match its image: ${id}`);
-  const revision = createHash('sha256').update(input).update('webp:86').digest('hex').slice(0, 12);
+  const revision = createHash('sha256').update(input).update('webp:lossless-retina-v1').digest('hex').slice(0, 12);
   const sources = [];
-  for (const width of [...new Set([640, 1000, 1600].map(size => Math.min(size, info.width)))]) {
-    const data = await sharp(input).resize({ width, withoutEnlargement: true }).webp({ quality: 86, effort: 5 }).toBuffer();
+  for (const width of [...new Set([640, 1120, 1600, 2240, 2880].map(size => Math.min(size, info.width)))]) {
+    const data = await sharp(input).resize({ width, withoutEnlargement: true }).webp({ lossless: true, effort: 5 }).toBuffer();
     await sharp(data).raw().toBuffer();
     const filename = `${id}-homepage-${width}.webp`;
     await writeFile(resolve(output, filename), data);
@@ -78,10 +78,13 @@ for (const entry of entries) {
     reviewedAt: capture.reviewedAt || null,
     width: info.width,
     height: info.height,
+    captureViewportWidth: capture.viewportWidth || null,
+    captureViewportHeight: capture.viewportHeight || null,
+    captureScale: capture.deviceScaleFactor || 1,
     revision,
     sources,
     src: sources.at(-1).src,
-    checkedAt: '2026-10-30',
+    checkedAt: capture.reviewedAt || '2026-11-01',
   };
 }
 await writeFile(resolve(root, 'src/data/website-assets.json'), `${JSON.stringify(manifest, null, 2)}\n`);

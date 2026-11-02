@@ -7,110 +7,161 @@ const divisions = [
   { id: 'unga-farmcare', title: 'FarmCare', marks: ungaFarmcareMarks },
 ];
 ---
-<div class="brand-families frame">
-  <article class="brand-world brand-world--coca" aria-labelledby="coca-family-title">
-    <div class="parent-identity">
-      <div class="parent-signature" data-reveal><BrandMark id="coca-cola-africa" /></div>
-      <h3 id="coca-family-title">Coca-Cola Africa</h3>
-      <p>Brand experience across the beverage portfolio.</p>
+<div class="rf-brand-families">
+  <article class="rf-family-coca frame" aria-labelledby="coca-family-title">
+    <div class="rf-coca-parent">
+      <p class="rf-family-context">Beverage brand experience</p>
+      <div class="rf-coca-signature"><BrandMark id="coca-cola-africa" decorative /></div>
+      <h3 id="coca-family-title">Coca-Cola<br />Africa.</h3>
+      <p class="rf-family-description">Creative experience across a family of distinct beverage brands.</p>
+      <label class="rf-family-spread"><input type="checkbox" id="coca-spread" /><span>Spread the brand family</span></label>
     </div>
-    <div class="brand-register" data-reveal>
-      <span class="family-progress" data-family-line aria-hidden="true"></span>
-      <p class="register-heading">Within the brand family</p>
-      <ul class="product-register" aria-label="Brands within the Coca-Cola portfolio">
-        {cocaColaMarks.map(id => <li><span class="product-signature"><BrandMark id={id} decorative /></span><span class="product-name">{nameOf(id)}</span></li>)}
+    <div class="rf-coca-register">
+      <p class="rf-register-label">Within the brand family</p>
+      <ul class="rf-beverage-brands" aria-label="Brands within the Coca-Cola Africa family">
+        {cocaColaMarks.map(id => <li><div class="rf-beverage-mark"><BrandMark id={id} decorative /></div><span>{nameOf(id)}</span></li>)}
       </ul>
+      <p class="rf-register-note">Brand experience across the portfolio, including creative work and ideation for Fanta’s Skizia Utamu Challenge.</p>
     </div>
   </article>
-  <article class="brand-world brand-world--unga" aria-labelledby="unga-family-title">
-    <div class="parent-identity">
-      <div class="parent-signature" data-reveal><BrandMark id="unga" /></div>
-      <h3 id="unga-family-title">UNGA Group</h3>
-      <p>Two divisions. One connected brand family.</p>
-    </div>
-    <div class="brand-register" data-reveal>
-      <span class="family-progress" data-family-line aria-hidden="true"></span>
-      <p class="register-heading">Within the brand family</p>
-      {divisions.map(division => <section class="division-register" id={division.id} aria-labelledby={`${division.id}-title`}>
-        <div class="division-heading"><BrandMark id={division.id} /><h4 id={`${division.id}-title`}>{division.title}</h4></div>
-        <ul class="product-register" aria-label={`${nameOf(division.id)} brands`}>
-          {division.marks.map(id => <li><span class="product-signature"><BrandMark id={id} decorative /></span><span class="product-name">{nameOf(id)}</span></li>)}
-        </ul>
-      </section>)}
+
+  <article class="rf-family-unga" aria-labelledby="unga-family-title">
+    <div class="rf-unga-composition frame">
+      <div class="rf-unga-parent">
+        <p class="rf-family-context">Food, nutrition &amp; farm care</p>
+        <h3 id="unga-family-title">UNGA<br />Group.</h3>
+        <div class="rf-unga-signature"><BrandMark id="unga" decorative /></div>
+        <p class="rf-unga-description">The parent group, its two divisions and the brands within each.</p>
+        <label class="rf-family-spread"><input type="checkbox" id="unga-spread" /><span>Spread the divisions</span></label>
+      </div>
+      <div class="rf-unga-divisions">
+        {divisions.map(division => <section class="rf-division" id={division.id} aria-labelledby={division.id + '-title'}>
+          <header class="rf-division-heading">
+            <div class="rf-division-signature"><BrandMark id={division.id} /></div>
+            <h4 id={division.id + '-title'}>{division.title}</h4>
+          </header>
+          <ul class="rf-division-brands" aria-label={nameOf(division.id) + ' brands'}>
+            {division.marks.map(id => <li><div class="rf-product-mark"><BrandMark id={id} decorative /></div><span>{nameOf(id)}</span></li>)}
+          </ul>
+        </section>)}
+      </div>
     </div>
   </article>
 </div>
 
 <style>
-  .brand-world { --family-accent: #c72e32; display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); column-gap: clamp(50px,7vw,120px); padding-block: clamp(48px,6vw,90px); border-top: 1px solid var(--line); align-items: start; }
-  .brand-world--unga { --family-accent: #3b684c; }
-  .parent-identity { position: sticky; top: 65px; min-width: 0; }
-  .parent-signature { display: flex; align-items: center; min-height: 180px; margin-bottom: 30px; }
-  .parent-signature :global(.brand-mark) { width: 100%; max-width: 360px; height: 155px; object-fit: contain; object-position: left center; }
-  .brand-world--unga .parent-signature :global(.brand-mark) { max-width: 285px; height: 185px; }
-  .parent-identity h3 { font-size: clamp(32px,3.7vw,58px); max-width: 400px; line-height: 1.04; }
-  .parent-identity > p { color: var(--muted); font-size: 15px; line-height: 1.65; margin-top: 22px; max-width: 260px; }
-  .brand-register { min-width: 0; border-left: 1px solid var(--line); padding-left: clamp(28px,3.7vw,60px); position: relative; }
-  .brand-register::before { content: ''; position: absolute; left: -2px; top: 0; width: 3px; height: 32px; background: var(--family-accent); }
-  .family-progress { position: absolute; top: 0; bottom: 0; left: -2px; width: 3px; background: var(--family-accent); transform-origin: top; }
-  .register-heading { font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 28px; }
-  .product-register { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: clamp(20px,3vw,48px); }
-  .product-register li { display: grid; grid-template-columns: 92px minmax(0,1fr); gap: 17px; align-items: center; min-width: 0; min-height: 90px; padding-block: 18px; }
-  .product-signature { display: grid; place-items: center; width: 92px; height: 47px; }
-  .product-signature :global(.brand-mark) { width: 100%; height: 42px; object-fit: contain; }
-  .product-signature :global(.brand-mark--compact) { max-width: 58px; }
-  .product-name { font-size: 13px; line-height: 1.5; color: var(--muted); overflow-wrap: anywhere; }
-  .division-register { scroll-margin-top: 55px; }
-  .division-register + .division-register { border-top: 1px solid var(--line); padding-top: 34px; margin-top: 24px; }
-  .division-heading { display: flex; align-items: center; justify-content: space-between; gap: 26px; margin-bottom: 15px; min-height: 70px; }
-  .division-heading :global(.brand-mark) { width: 145px; height: 58px; object-fit: contain; object-position: left center; }
-  .division-heading h4 { font-size: 19px; letter-spacing: -.025em; line-height: 1.2; font-weight: 500; }
-  @media (max-width: 1150px) {
-    .brand-world { grid-template-columns: minmax(0,.75fr) minmax(0,1.25fr); column-gap: 45px; }
-    .brand-register { padding-left: 30px; }
-    .product-register { column-gap: 22px; }
-    .product-register li { grid-template-columns: 76px minmax(0,1fr); gap: 13px; }
-    .product-signature { width: 76px; }
+  .rf-brand-families { min-width: 0; }
+  .rf-family-coca { position: relative; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; align-items: stretch; padding-block: clamp(75px, 9vw, 135px); background: #e9eee8; perspective: 1600px; transform-style: preserve-3d; }
+  .rf-coca-parent,.rf-coca-register { min-width: 0; }
+  .rf-coca-register { padding: clamp(28px, 3vw, 48px); background: #fff; border-top: 5px solid #d84142; border-left: 1px solid #dbe4df; transform: translateZ(30px) rotateY(2deg); transform-origin: left center; box-shadow: 7px 12px 0 #c7d4d0, 0 25px 35px #1b352215; transition: transform 650ms var(--ease-out); }
+  .rf-coca-parent { position: relative; padding: clamp(28px, 3vw, 48px); background: #fff; border-top: 5px solid #d84142; transform: translateZ(30px) rotateY(-2deg); transform-origin: right center; box-shadow: -7px 12px 0 #c7d4d0, 0 25px 35px #1b352215; transition: transform 650ms var(--ease-out); }
+  .rf-family-spread { display: inline-flex; align-items: center; gap: 12px; margin-top: 23px; min-height: 44px; font-size: 12px; line-height: 1.4; cursor: pointer; }
+  .rf-family-spread input { width: 18px; height: 18px; margin: 0; accent-color: var(--blue); cursor: pointer; }
+  .rf-family-spread:focus-within { outline: 3px solid var(--focus,var(--blue)); outline-offset: 5px; }
+  .rf-family-context { font-size: 12px; line-height: 1.5; color: var(--muted); }
+  .rf-coca-signature { display: flex; align-items: center; margin-top: 46px; margin-bottom: 40px; min-height: 85px; }
+  .rf-coca-signature :global(.brand-mark) { width: 100%; max-width: 390px; height: auto; max-height: 100px; object-fit: contain; object-position: left center; }
+  .rf-coca-parent h3 { font: 450 clamp(40px, 5.2vw, 78px)/.98 var(--display); letter-spacing: -.055em; scroll-margin-top: 110px; }
+  .rf-family-description { max-width: 29ch; color: var(--muted); font-size: 14px; line-height: 1.7; margin-top: 26px; }
+  .rf-register-label { color: var(--muted); font-size: 12px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+  .rf-beverage-brands { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 25px; padding-block: 35px 45px; }
+  .rf-beverage-brands > li { min-width: 0; }
+  .rf-family-coca:has(#coca-spread:checked) .rf-coca-parent { transform: translate3d(-8px,0,55px) rotateY(-6deg); }
+  .rf-family-coca:has(#coca-spread:checked) .rf-coca-register { transform: translate3d(8px,0,55px) rotateY(5deg); }
+  .rf-beverage-mark { display: flex; align-items: center; justify-content: flex-start; height: 78px; margin-bottom: 17px; }
+  .rf-beverage-mark :global(.brand-mark) { width: 100%; max-width: 125px; height: 70px; object-fit: contain; object-position: left center; }
+  .rf-beverage-brands > li > span { display: block; color: var(--muted); font-size: 12px; line-height: 1.5; }
+  .rf-register-note { color: var(--muted); font-size: 12px; line-height: 1.7; max-width: 48ch; padding-top: 23px; border-top: 1px solid var(--line); }
+  .rf-family-unga { color: #edf1ed; background: #172a27; --focus: #bdd5f8; padding-block: clamp(70px, 9vw, 140px); }
+  .rf-unga-composition { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.65fr); gap: clamp(45px, 6vw, 95px); align-items: start; perspective: 1600px; transform-style: preserve-3d; }
+  .rf-unga-parent { min-width: 0; transform: translateZ(30px); }
+  .rf-unga-parent > .rf-family-context { color: #b8c9c3; }
+  .rf-unga-parent h3 { font: 450 clamp(45px, 5.8vw, 86px)/.95 var(--display); letter-spacing: -.055em; margin-top: 29px; }
+  .rf-unga-signature { display: flex; align-items: center; justify-content: center; margin-top: 39px; padding: 25px; min-height: 145px; background: #fff; border-top: 4px solid #8da95a; box-shadow: 9px 11px 0 #416b60, 13px 17px 0 #0c1c19; }
+  .rf-unga-signature :global(.brand-mark) { width: 100%; max-width: 250px; height: auto; max-height: 140px; object-fit: contain; }
+  .rf-unga-description { max-width: 29ch; color: #b8c9c3; font-size: 14px; line-height: 1.7; margin-top: 26px; }
+  .rf-unga-divisions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(18px, 2.5vw, 38px); align-items: start; transform-style: preserve-3d; padding-bottom: 28px; }
+  .rf-division { position: relative; min-width: 0; color: var(--ink); background: #fff; padding: clamp(22px, 2.7vw, 40px); scroll-margin-top: 110px; transform: translateZ(20px); border-top: 5px solid #e9c84a; box-shadow: 8px 12px 0 #426f64, 13px 18px 0 #0c1c19, 0 30px 40px #06150e30; transition: transform 650ms var(--ease-out); }
+  .rf-division + .rf-division { margin-top: 70px; border-top-color: #55b5b7; }
+  .rf-family-unga:has(#unga-spread:checked) .rf-division:nth-child(1) { transform: translate3d(-7px,-12px,72px); }
+  .rf-family-unga:has(#unga-spread:checked) .rf-division:nth-child(2) { transform: translate3d(7px,12px,48px); }
+  .rf-division-heading { padding-bottom: 23px; border-bottom: 1px solid var(--line); }
+  .rf-division-signature { display: flex; align-items: center; min-height: 66px; margin-bottom: 21px; }
+  .rf-division-signature :global(.brand-mark) { width: 100%; max-width: 180px; height: 60px; object-fit: contain; object-position: left center; }
+  .rf-division-heading h4 { font: 500 clamp(19px, 1.7vw, 25px)/1.2 var(--display); letter-spacing: -.03em; }
+  .rf-division-brands { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 20px; padding-top: 28px; }
+  .rf-division-brands > li { min-width: 0; }
+  .rf-product-mark { display: flex; align-items: center; height: 45px; margin-bottom: 12px; }
+  .rf-product-mark :global(.brand-mark) { width: 100%; max-width: 100px; height: 40px; object-fit: contain; object-position: left center; }
+  .rf-product-mark :global(.brand-mark--compact) { max-width: 42px; }
+  .rf-division-brands > li > span { color: #52626a; display: block; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+  @media (max-width: 1100px) {
+    .rf-family-coca { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .rf-beverage-brands { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px; padding-block: 28px; }
+    .rf-unga-composition { grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); gap: 40px; }
+    .rf-unga-divisions { gap: 18px; }
+    .rf-division { padding: 24px 20px; }
+    .rf-division-brands { gap: 22px 17px; }
   }
-  @media (max-width: 800px) {
-    .brand-world { grid-template-columns: 1fr; row-gap: 43px; padding-block: 48px 52px; }
-    .parent-identity { position: static; display: grid; grid-template-columns: 1.15fr 1fr; column-gap: 45px; align-items: center; }
-    .parent-signature { grid-row: span 2; margin: 0; min-height: 150px; }
-    .parent-identity h3 { font-size: 38px; align-self: end; }
-    .parent-identity > p { font-size: 14px; margin-top: 15px; align-self: start; }
-    .brand-world--unga .parent-signature :global(.brand-mark) { height: 150px; max-width: 230px; }
-    .brand-register { margin-left: 8px; padding-left: 28px; }
-    .product-register li { grid-template-columns: 100px minmax(0,1fr); gap: 22px; }
-    .product-signature { width: 100px; }
-    .product-name { font-size: 14px; }
+  @media (max-width: 850px) {
+    .rf-unga-composition { grid-template-columns: 1fr; gap: 42px; }
+    .rf-unga-parent { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 45px; align-items: center; }
+    .rf-unga-parent > .rf-family-context { grid-column: 1; }
+    .rf-unga-parent h3 { grid-column: 1; margin-top: 23px; font-size: 62px; }
+    .rf-unga-signature { grid-column: 2; grid-row: 1 / 4; margin: 0; padding: 30px; }
+    .rf-unga-description { grid-column: 1; margin-top: 23px; }
+    .rf-unga-parent .rf-family-spread { grid-column: 1 / -1; }
+    .rf-unga-divisions { gap: 26px; }
+    .rf-division { padding: 30px; }
+    .rf-division-brands { gap: 25px; }
   }
-  @media (max-width: 500px) {
-    .brand-world { padding-block: 38px 45px; row-gap: 34px; }
-    .parent-identity { display: block; }
-    .parent-signature { min-height: 125px; margin-bottom: 22px; }
-    .parent-signature :global(.brand-mark) { max-width: 285px; height: 115px; }
-    .brand-world--unga .parent-signature :global(.brand-mark) { max-width: 215px; height: 145px; }
-    .parent-identity h3 { font-size: 38px; }
-    .parent-identity > p { margin-top: 13px; }
-    .brand-register { margin-left: 0; padding-left: 20px; }
-    .register-heading { margin-bottom: 15px; font-size: 12px; }
-    .product-register { column-gap: 19px; }
-    .product-register li { display: flex; flex-direction: column; gap: 10px; align-items: start; min-height: 108px; padding-block: 17px; }
-    .product-signature { width: 84px; height: 38px; }
-    .product-signature :global(.brand-mark) { height: 36px; object-position: left center; }
-    .product-signature :global(.brand-mark--compact) { max-width: 45px; }
-    .product-name { font-size: 12px; }
-    .division-heading { gap: 18px; margin-bottom: 8px; }
-    .division-heading :global(.brand-mark) { width: 120px; height: 54px; }
-    .division-heading h4 { font-size: 17px; max-width: 110px; }
-    .division-register + .division-register { padding-top: 26px; margin-top: 18px; }
+  @media (max-width: 650px) {
+    .rf-family-coca { grid-template-columns: 1fr; gap: 0; padding-block: 55px; }
+    .rf-coca-signature { margin-top: 30px; margin-bottom: 28px; min-height: 65px; }
+    .rf-coca-signature :global(.brand-mark) { max-width: 300px; max-height: 75px; }
+    .rf-coca-parent h3 { font-size: clamp(36px,9vw,48px); }
+    .rf-coca-parent { padding: 27px; transform: none; margin-right: 14px; box-shadow: 7px 12px 0 #c7d4d0; }
+    .rf-coca-register { padding: 27px; margin-right: 14px; border-left: 0; border-top: 1px solid #dbe4df; transform: none; }
+    .rf-family-coca:has(#coca-spread:checked) .rf-coca-parent { transform: translateZ(15px); }
+    .rf-family-coca:has(#coca-spread:checked) .rf-coca-register { transform: translate3d(0,6px,15px); }
+    .rf-family-description { margin-top: 22px; font-size: 13px; max-width: 35ch; }
+    .rf-register-label { padding-bottom: 19px; font-size: 11px; }
+    .rf-beverage-brands { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 22px; padding-block: 27px; }
+    .rf-beverage-mark { height: 60px; margin-bottom: 12px; }
+    .rf-beverage-mark :global(.brand-mark) { height: 55px; max-width: 108px; }
+    .rf-beverage-brands > li > span { font-size: 11px; }
+    .rf-register-note { font-size: 11px; }
+    .rf-family-unga { padding-block: 55px; }
+    .rf-unga-composition { gap: 34px; }
+    .rf-unga-parent { transform: none; }
+    .rf-unga-parent { gap: 0 25px; }
+    .rf-unga-parent h3 { font-size: 48px; margin-top: 20px; }
+    .rf-unga-parent > .rf-family-context { font-size: 11px; }
+    .rf-unga-signature { padding: 20px; min-height: 115px; }
+    .rf-unga-description { font-size: 12px; margin-top: 20px; }
+    .rf-unga-divisions { grid-template-columns: 1fr; gap: 22px; }
+    .rf-division + .rf-division { margin-top: 18px; }
+    .rf-family-unga:has(#unga-spread:checked) .rf-division:nth-child(n) { transform: translate3d(0,-6px,12px); }
+    .rf-division { padding: 27px; }
+    .rf-division-heading { display: flex; justify-content: space-between; gap: 25px; align-items: center; }
+    .rf-division-signature { min-width: 0; width: 140px; min-height: 54px; margin: 0; }
+    .rf-division-signature :global(.brand-mark) { height: 50px; max-width: 140px; }
+    .rf-division-heading h4 { font-size: 20px; max-width: 135px; }
+    .rf-division-brands { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 23px 20px; }
+    .rf-product-mark :global(.brand-mark) { max-width: 92px; height: 37px; }
   }
-  @media (max-width: 360px) {
-    .parent-identity h3 { font-size: 33px; }
-    .brand-register { padding-left: 17px; }
-    .division-heading { gap: 14px; }
-    .division-heading :global(.brand-mark) { width: 106px; }
-    .division-heading h4 { font-size: 16px; }
-    .product-register { column-gap: 15px; }
+  @media (max-width: 390px) {
+    .rf-unga-parent { display: block; }
+    .rf-unga-signature { margin-top: 27px; max-width: 235px; }
+    .rf-unga-description { max-width: 29ch; }
+    .rf-beverage-brands { gap: 22px 17px; }
+    .rf-division { padding: 23px; }
+    .rf-division-heading { gap: 17px; }
+    .rf-division-signature { width: 115px; flex: 0 1 115px; }
+    .rf-division-heading h4 { font-size: 18px; }
+    .rf-division-brands { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
+  @media (prefers-reduced-motion: reduce) { .rf-coca-parent,.rf-coca-register,.rf-division { transition: none; } }
+  :global(html[data-motion='paused']) .rf-coca-parent,:global(html[data-motion='paused']) .rf-coca-register,:global(html[data-motion='paused']) .rf-division { transition: none; }
+  @supports not selector(:has(*)) { .rf-family-spread { display: none; } }
 </style>

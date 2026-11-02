@@ -19,7 +19,8 @@
     "assets": "node scripts/prepare-assets.mjs && node scripts/prepare-logos.mjs && node scripts/prepare-system-mockups.mjs && node scripts/prepare-website-assets.mjs",
     "assets:websites": "node scripts/prepare-website-assets.mjs",
     "assets:systems": "node scripts/prepare-system-mockups.mjs",
-    "assets:logos": "node scripts/prepare-logos.mjs"
+    "assets:logos": "node scripts/prepare-logos.mjs",
+    "assets:refraction": "node scripts/prepare-refraction-assets.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "5.3.0",

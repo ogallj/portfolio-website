@@ -1,0 +1,35 @@
+{
+  "poster": {
+    "src": "/images/cinematic/refraction-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "bytes": 90766,
+    "source": "plans/assets/joshua-v2-refraction.png",
+    "sha256": "f46cdc39f81be3b8ac3b6c68f715e109fab5b4c0c41ccccf68c2fc2b1bc0aed7"
+  },
+  "desktop": {
+    "src": "/images/cinematic/refraction-plate-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "bytes": 81430,
+    "source": "plans/assets/refraction-clean-plate.png",
+    "sha256": "eb68fb9d806f192f5f978db02f5f9b6006d91095e02a22260bf8c2c6fde7a227"
+  },
+  "mobile": {
+    "src": "/images/cinematic/refraction-mobile-900.webp",
+    "width": 900,
+    "height": 1599,
+    "bytes": 67498,
+    "source": "plans/assets/refraction-mobile-plate.png",
+    "sha256": "0c9f340497bb91a7a4b8dd078d9f5992e1129f4bb90c9d8351135b95b1a8b958"
+  },
+  "social": {
+    "src": "/social-preview.png",
+    "width": 1200,
+    "height": 630,
+    "bytes": 705994,
+    "source": "plans/assets/refraction-home-social-source.jpg",
+    "sha256": "2316119a2f2c19377c887abd26d9eb8dce76e738b613d6d63cfda46ced945c6a",
+    "kind": "production-homepage-capture"
+  }
+}

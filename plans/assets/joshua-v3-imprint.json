@@ -1,0 +1,14 @@
+{
+  "title": "Imprint",
+  "created": "2026-11-01",
+  "status": "Alternative concept for review; not approved or integrated",
+  "generation": "Built-in image_gen; identity-preserving edit",
+  "identitySource": "public/images/joshua.webp",
+  "prompt": "plans/assets/joshua-v3-imprint.prompt.txt",
+  "output": "plans/assets/joshua-v3-imprint.png",
+  "width": 1672,
+  "height": 941,
+  "sha256": "7108c6c3f3394244a446f585b98b7cd84ad60ce26a8a7bd803135bc118b15549",
+  "renderType": "Single raster concept image; not an editable mesh or completed animation",
+  "originalPortraitPreserved": true
+}

@@ -8,14 +8,13 @@ const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 let userPaused = false;
 try { userPaused = localStorage.getItem('portfolio-motion') === 'paused'; } catch { /* Preferences remain usable without storage. */ }
 let disposeMotion: (() => void) | undefined;
-let disposeScene: (() => void) | undefined;
-let disposed = false;
 const pauseButton = document.querySelector<HTMLButtonElement>('[data-motion-toggle]');
 const label = document.querySelector<HTMLElement>('[data-motion-label]');
 
 function setMotion() {
   const paused = userPaused || reduce.matches;
   document.body.dataset.motion = paused ? 'paused' : 'playing';
+  document.documentElement.dataset.motion = paused ? 'paused' : 'playing';
   pauseButton?.setAttribute('aria-pressed', String(paused));
   if (label) label.textContent = reduce.matches ? 'Reduced motion' : paused ? 'Resume motion' : 'Pause motion';
   if (pauseButton) { pauseButton.disabled = reduce.matches; pauseButton.title = reduce.matches ? 'Your device’s reduced-motion preference is enabled.' : 'Turn decorative motion on or off'; }
@@ -29,12 +28,6 @@ function setMotion() {
 pauseButton?.addEventListener('click', () => { userPaused = !userPaused; try { localStorage.setItem('portfolio-motion', userPaused ? 'paused' : 'playing'); } catch { /* Local-only preference. */ } setMotion(); });
 reduce.addEventListener('change', setMotion);
 setMotion();
-
-const stage = document.querySelector<HTMLElement>('[data-scene]');
-if (stage) {
-  // Meaningful content and the SVG are already visible while the renderer loads.
-  import('./scene').then(({ initScene }) => initScene(stage)).then(cleanup => { if (disposed) cleanup(); else disposeScene = cleanup; }).catch(() => { stage.dataset.failed = 'true'; });
-}
 
 function applyProjectFilter(requested: string, updateUrl = false) {
   const kind = ['system', 'website'].includes(requested) ? requested : 'all';
@@ -55,7 +48,7 @@ function applyProjectFilter(requested: string, updateUrl = false) {
   if (updateUrl) {
     const url = new URL(location.href);
     if (kind === 'all') url.searchParams.delete('view'); else url.searchParams.set('view', kind);
-    if (kind === 'website' && url.hash === '#systems') url.hash = '#websites';
+    if (kind === 'website' && (url.hash === '#systems' || url.hash.startsWith('#system-'))) url.hash = '#websites';
     if (kind === 'system' && (url.hash === '#websites' || url.hash.startsWith('#web-'))) url.hash = '#systems';
     history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
   }
@@ -71,7 +64,25 @@ menu?.querySelector('summary')?.addEventListener('click', event => {
   menu.open = !menu.open;
 });
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu?.open) { menu.open = false; menu.querySelector('summary')?.focus(); } });
-document.addEventListener('click', event => { if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) menu.open = false; });
+document.addEventListener('click', event => {
+  if (!menu?.open || !(event.target instanceof Node) || menu.contains(event.target)) return;
+  const restoreFocus = menu.querySelector('nav')?.contains(document.activeElement);
+  menu.open = false;
+  if (restoreFocus) menu.querySelector('summary')?.focus({ preventScroll: true });
+});
+
+const mobileMenuViewport = window.matchMedia('(max-width: 1040px)');
+mobileMenuViewport.addEventListener('change', event => {
+  if (event.matches || !menu) return;
+  const focused = document.activeElement;
+  const transferFocus = menu.contains(focused);
+  const href = focused instanceof HTMLAnchorElement ? focused.getAttribute('href') : null;
+  menu.open = false;
+  if (!transferFocus) return;
+  const header = menu.closest('.site-header');
+  const matching = href ? [...(header?.querySelectorAll<HTMLAnchorElement>('.desktop-nav a,.header-contact,.wordmark') || [])].find(link => link.getAttribute('href') === href && link.getClientRects().length > 0) : undefined;
+  (matching || header?.querySelector<HTMLAnchorElement>('.wordmark'))?.focus({ preventScroll: true });
+});
 
 const form = document.querySelector<HTMLFormElement>('[data-inquiry-form]');
 if (form) {
@@ -105,7 +116,12 @@ document.querySelector<HTMLButtonElement>('[data-copy-email]')?.addEventListener
 window.addEventListener('pagehide', event => {
   // A cached document retains its filter selection and unfinished contact draft.
   if (event.persisted) return;
-  disposed = true; disposeMotion?.(); disposeScene?.();
+  disposeMotion?.();
 });
-window.addEventListener('pageshow', event => { if (event.persisted) ScrollTrigger.refresh(); });
+window.addEventListener('pageshow', event => {
+  if (!event.persisted) return;
+  try { userPaused = localStorage.getItem('portfolio-motion') === 'paused'; } catch { /* Keep the page's preference. */ }
+  setMotion();
+  ScrollTrigger.refresh();
+});
 document.fonts.ready.then(() => ScrollTrigger.refresh());

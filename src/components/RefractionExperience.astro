@@ -1,0 +1,242 @@
+---
+import Arrow from './Arrow.astro';
+import BrandMark from './BrandMark.astro';
+---
+
+<div class="refraction-experience">
+  <section class="refraction-study" data-refraction-study aria-labelledby="refraction-title">
+    <div class="refraction-stage" data-refraction-stage>
+      <div class="refraction-image-stage" aria-hidden="true">
+        <picture class="refraction-poster" data-refraction-poster>
+          <source media="(max-width: 700px)" srcset="/images/cinematic/refraction-mobile-900.webp" />
+          <img src="/images/cinematic/refraction-1600.webp" alt="" width="1600" height="900" fetchpriority="high" decoding="async" />
+        </picture>
+        <div class="refraction-renderer" data-refraction-renderer></div>
+        <div class="refraction-shade"></div>
+      </div>
+
+
+      <div class="refraction-intro" data-refraction-intro>
+        <h1 id="refraction-title"><span>Joshua</span><span>Ogallo</span></h1>
+        <p class="refraction-roles"><span>Software engineer.</span><span>Digital creative &amp; marketer.</span></p>
+        <div class="refraction-direct-links" aria-label="Choose a portfolio">
+          <a href="/software/">Software work <Arrow /></a>
+          <a href="/creative-marketing/">Creative work <Arrow /></a>
+        </div>
+      </div>
+
+      <div class="refraction-caption" data-refraction-caption>
+        <p>B-Commerce.<br />Frontend &amp; UI/UX.</p>
+      </div>
+
+      <div class="refraction-exit" data-refraction-exit>
+        <h2>Explore the work.</h2>
+        <div class="refraction-entrances">
+          <a href="/software/">
+            <span class="refraction-entrance-copy"><span class="refraction-entrance-title">Software<br />engineering</span><span class="refraction-entrance-description">Systems, interfaces and websites.</span></span>
+            <Arrow />
+          </a>
+          <a href="/creative-marketing/">
+            <span class="refraction-entrance-copy"><span class="refraction-entrance-title">Creative<br />&amp; marketing</span><span class="refraction-entrance-description">Ideas, visual communication and brand content.</span></span>
+            <Arrow />
+          </a>
+        </div>
+      </div>
+
+      <div class="refraction-scene-footer">
+        <a href="#refraction-work">Skip to work <Arrow diagonal={false} /></a>
+        <span aria-hidden="true">Scroll to explore <span>↓</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="refraction-work" id="refraction-work" tabindex="-1" aria-labelledby="refraction-work-title">
+    <span id="practices" aria-hidden="true"></span>
+    <div class="refraction-work-heading" data-enter>
+      <h2 id="refraction-work-title">Work, through<br />two perspectives.</h2>
+      <p>Frontend development and UI/UX. Creative ideas and brand communication. Two distinct practices, with a shared attention to detail.</p>
+    </div>
+    <div class="refraction-work-grid">
+      <article class="refraction-case" data-enter aria-labelledby="refraction-commerce-title">
+        <figure class="refraction-case-media">
+          <img src="/images/systems/b-commerce-1254.webp" srcset="/images/systems/b-commerce-640.webp 640w, /images/systems/b-commerce-960.webp 960w, /images/systems/b-commerce-1254.webp 1254w" sizes="(max-width: 700px) calc(100vw - 44px), 45vw" width="1254" height="1254" alt="B-Commerce presentation mockup showing an online storefront on a laptop, tablet and phone in a sunlit room." loading="lazy" decoding="async" />
+          <figcaption>Interface presentation mockup</figcaption>
+        </figure>
+        <div class="refraction-case-copy">
+          <p class="refraction-case-practice">Software engineering</p>
+          <h3 id="refraction-commerce-title">B-Commerce</h3>
+          <p>An ecommerce system for online shopping. My contribution spans frontend development and UI/UX.</p>
+          <a class="refraction-work-link" href="/software/b-commerce/">Explore the project <Arrow /></a>
+        </div>
+      </article>
+
+      <article class="refraction-case refraction-case--creative" data-enter aria-labelledby="refraction-brands-title">
+        <div class="refraction-brand-field" role="img" aria-label="Selected brand experience: Coca-Cola Africa and UNGA Group">
+          <BrandMark id="coca-cola-africa" decorative />
+          <span class="refraction-brand-separator" aria-hidden="true"></span>
+          <BrandMark id="unga" decorative />
+        </div>
+        <div class="refraction-case-copy">
+          <p class="refraction-case-practice">Creative &amp; marketing</p>
+          <h3 id="refraction-brands-title">Brand experience.</h3>
+          <p>Brand experience across Coca-Cola Africa and UNGA Group, alongside a practice in digital creative and marketing.</p>
+          <p class="refraction-brand-context">Experience includes work through agencies and employers.</p>
+          <a class="refraction-work-link" href="/creative-marketing/#brand-experience">Explore the creative practice <Arrow /></a>
+        </div>
+      </article>
+    </div>
+    <div class="refraction-work-footer"><a href="/cv/">View both CVs <Arrow diagonal={false} /></a><a href="/contact/">Discuss a project or opportunity <Arrow /></a></div>
+  </section>
+</div>
+
+<style>
+  .refraction-experience { --refraction-ground: #101820; --refraction-text: #f1f1eb; --refraction-muted: #b9c3cb; --refraction-line: #ffffff38; --refraction-gutter: clamp(22px, 5.2vw, 92px); --focus: #c4d5ff; color: var(--refraction-text); background: var(--refraction-ground); }
+  .refraction-study { position: relative; isolation: isolate; }
+  .refraction-stage { position: relative; }
+  .refraction-image-stage { position: absolute; inset: 0 0 auto; height: 100svh; overflow: hidden; background: var(--refraction-ground); pointer-events: none; }
+  .refraction-poster,.refraction-renderer,.refraction-shade { position: absolute; inset: 0; }
+  .refraction-poster { display: block; }
+  .refraction-renderer { opacity: 0; }
+  .refraction-study[data-refraction-ready='true'][data-refraction-enhanced='true'] .refraction-renderer { opacity: 1; }
+  .refraction-poster img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .refraction-renderer :global(canvas) { display: block; width: 100%; height: 100%; }
+  .refraction-shade { background: linear-gradient(90deg, #0b131aab, #0b131a38 43%, #0b131a00 74%), linear-gradient(0deg, #0b131a91, #0b131a00 38%); }
+  .refraction-intro { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-height: 100svh; padding: clamp(130px, 18vh, 200px) var(--refraction-gutter) 95px; }
+  .refraction-intro h1 { font: 450 clamp(84px, 10.1vw, 164px)/.88 var(--display); letter-spacing: -.075em; max-width: 50%; text-wrap: initial; }
+  .refraction-intro h1 span { display: block; }
+  .refraction-intro h1 span + span { margin-top: 8px; }
+  .refraction-roles { display: flex; flex-direction: column; gap: 2px; margin-top: 32px; font-size: clamp(15px, 1.28vw, 19px); line-height: 1.5; color: #e1e6e8; }
+  .refraction-direct-links { display: flex; align-items: center; flex-wrap: wrap; gap: 0 32px; margin-top: 24px; }
+  .refraction-direct-links a { min-height: 44px; display: inline-flex; align-items: center; gap: 15px; font-size: 13px; font-weight: 600; }
+  .refraction-direct-links :global(.arrow-icon) { width: 15px; height: 15px; }
+  .refraction-caption { position: relative; padding: 60px var(--refraction-gutter); background: var(--refraction-ground); }
+  .refraction-caption p { font: 450 clamp(34px, 4vw, 65px)/1.05 var(--display); letter-spacing: -.05em; }
+  .refraction-exit { position: relative; padding: 55px var(--refraction-gutter) 100px; background: var(--refraction-ground); }
+  .refraction-exit h2 { font-size: clamp(44px, 5.4vw, 86px); margin-bottom: 38px; font-weight: 450; }
+  .refraction-entrances { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 6vw, 90px); }
+  .refraction-entrances > a { transition: color 180ms ease; min-width: 0; min-height: 144px; display: flex; align-items: start; justify-content: space-between; gap: 24px; padding-top: 23px; border-top: 1px solid #d9e2e77a; }
+  .refraction-entrance-copy { min-width: 0; }
+  .refraction-entrance-title { display: block; font: 450 clamp(28px, 3.15vw, 50px)/1.03 var(--display); letter-spacing: -.045em; }
+  .refraction-entrance-description { display: block; margin-top: 18px; font-size: 13px; line-height: 1.5; color: var(--refraction-muted); max-width: 290px; }
+  .refraction-entrances > a > :global(.arrow-icon) { width: 27px; height: 27px; margin-top: 4px; }
+  .refraction-scene-footer { position: absolute; top: calc(100svh - 68px); left: var(--refraction-gutter); right: var(--refraction-gutter); z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 24px; font-size: 11px; color: #d3dce1; }
+  .refraction-scene-footer > a { display: inline-flex; min-height: 44px; align-items: center; gap: 16px; }
+  .refraction-scene-footer > a :global(.arrow-icon) { width: 16px; height: 16px; transform: rotate(90deg); }
+  .refraction-scene-footer > span { display: inline-flex; align-items: center; gap: 14px; margin-right: 160px; }
+  .refraction-scene-footer > span > span { font-size: 19px; }
+
+  /* The complete static page is the default. The director explicitly opts in. */
+  .refraction-study[data-refraction-enhanced='true'] { height: 260svh; }
+  .refraction-study[data-refraction-enhanced='true'] .refraction-stage { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+  .refraction-study[data-refraction-enhanced='true'] .refraction-image-stage { height: 100%; }
+  .refraction-study[data-refraction-enhanced='true'] .refraction-intro { position: absolute; inset: 0; height: 100%; }
+  .refraction-study[data-refraction-enhanced='true'] .refraction-caption { position: absolute; left: 0; top: 49%; z-index: 3; width: min(760px,75%); padding-top: 24px; padding-bottom: 24px; background: linear-gradient(90deg,#0b131af5,#0b131ad9 70%,#0b131a00); opacity: 0; pointer-events: none; }
+  .refraction-study[data-refraction-enhanced='true'] .refraction-exit { position: absolute; bottom: 0; left: 0; right: 0; z-index: 4; padding-top: 125px; background: linear-gradient(0deg, #101820, #101820ed 65%, #10182000); opacity: 0; pointer-events: none; }
+
+  .refraction-work { --focus: #1746ff; padding: clamp(65px, 8vw, 130px) var(--refraction-gutter) 75px; background: #edf0f0; color: #15232c; scroll-margin-top: 100px; }
+  .refraction-work-heading { display: grid; grid-template-columns: 1.2fr 1fr; align-items: end; gap: 10%; margin-bottom: clamp(35px, 5vw, 72px); }
+  .refraction-work-heading h2 { font-size: clamp(44px, 5.6vw, 88px); }
+  .refraction-work-heading > p { font-size: 16px; line-height: 1.6; color: #53616b; max-width: 390px; }
+  .refraction-work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 5vw, 80px); align-items: start; }
+  .refraction-case { min-width: 0; }
+  .refraction-case-media { margin: 0; }
+  .refraction-case-media > img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+  .refraction-case-media > figcaption { margin-top: 12px; color: #53616b; font-size: 10px; line-height: 1.5; }
+  .refraction-brand-field { position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10%; padding: 12%; background: #fafbf7; }
+  .refraction-brand-field::before { content: ""; position: absolute; inset: -35% -30%; z-index: -1; transform: rotate(32deg); border: 1px solid #94b5c58c; box-shadow: 18px 0 30px #a9c8d633, -2px 0 3px #fff; }
+  .refraction-brand-field :global(.brand-mark) { width: 82%; height: 26%; object-fit: contain; }
+  .refraction-brand-field :global(.brand-mark:last-child) { width: 58%; height: 28%; }
+  .refraction-brand-separator { width: 34px; height: 1px; background: #c6cdcb; flex: 0 0 auto; }
+  .refraction-case-copy { padding-top: 28px; }
+  .refraction-case--creative .refraction-case-copy { padding-top: 40px; }
+  .refraction-case-practice { font-size: 12px; color: #53616b; margin-bottom: 12px; }
+  .refraction-case-copy h3 { font-size: clamp(30px, 3.3vw, 52px); margin-bottom: 18px; }
+  .refraction-case-copy > p:not(.refraction-case-practice) { max-width: 470px; color: #53616b; font-size: 15px; line-height: 1.65; }
+  .refraction-case-copy > .refraction-brand-context { margin-top: 13px; font-size: 12px; }
+  .refraction-work-link { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; margin-top: 24px; padding-block: 10px; font-size: 13px; font-weight: 650; }
+  .refraction-work-link :global(.arrow-icon) { width: 20px; height: 20px; }
+  .refraction-work-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 40px; border-top: 1px solid #c2cccf; padding-top: 28px; margin-top: 70px; }
+  .refraction-work-footer a { display: inline-flex; align-items: center; min-height: 44px; gap: 22px; font-size: 14px; font-weight: 600; }
+  .refraction-work-footer :global(.arrow-icon) { width: 18px; height: 18px; }
+  @media (hover: hover) and (pointer: fine) {
+    .refraction-entrances > a:hover { color: #c6d7ff; }
+  }
+  @media (min-width: 701px) and (max-height: 690px) {
+    .refraction-intro { padding-top: 110px; padding-bottom: 75px; }
+    .refraction-intro h1 { font-size: clamp(72px, 9vw, 122px); }
+    .refraction-roles { margin-top: 22px; font-size: 15px; }
+    .refraction-direct-links { margin-top: 16px; }
+    .refraction-exit h2 { font-size: 55px; margin-bottom: 24px; }
+    .refraction-entrance-title { font-size: 34px; }
+    .refraction-study[data-refraction-enhanced='true'] .refraction-exit { padding-top: 70px; padding-bottom: 85px; }
+  }
+  @media (max-width: 1000px) and (min-width: 701px) {
+    .refraction-intro h1 { font-size: 100px; }
+    .refraction-direct-links { flex-direction: column; align-items: flex-start; }
+    .refraction-entrance-description { max-width: 235px; }
+  }
+  @media (max-width: 700px) {
+    .refraction-shade { background: linear-gradient(0deg, #0b131a 0%, #0b131ad9 18%, #0b131a22 57%, #0b131a00 78%), linear-gradient(180deg, #0b131a55, #0b131a00 15%); }
+    .refraction-intro { justify-content: flex-end; padding-top: 42svh; padding-bottom: 82px; }
+    .refraction-intro h1 { font-size: clamp(58px, 17.5vw, 96px); max-width: 100%; line-height: .88; }
+    .refraction-intro h1 span + span { margin-top: 3px; }
+    .refraction-roles { font-size: 13px; line-height: 1.45; gap: 1px; margin-top: 20px; }
+    .refraction-direct-links { gap: 0 26px; margin-top: 13px; }
+    .refraction-direct-links a { font-size: 11px; gap: 12px; }
+    .refraction-direct-links :global(.arrow-icon) { width: 13px; height: 13px; }
+    .refraction-caption { padding-top: 46px; padding-bottom: 46px; }
+    .refraction-caption p { font-size: clamp(31px, 7.4vw, 50px); }
+    .refraction-exit { padding-top: 30px; padding-bottom: 60px; }
+    .refraction-exit h2 { font-size: 44px; margin-bottom: 27px; }
+    .refraction-entrances { grid-template-columns: 1fr; gap: 25px; }
+    .refraction-entrances > a { min-height: 95px; padding-top: 16px; }
+    .refraction-entrance-title { font-size: 28px; }
+    .refraction-entrance-description { font-size: 11px; margin-top: 10px; max-width: 240px; }
+    .refraction-entrances > a > :global(.arrow-icon) { width: 21px; height: 21px; }
+    .refraction-scene-footer { top: calc(100svh - 62px); font-size: 10px; }
+    .refraction-scene-footer > span { display: none; }
+    .refraction-study[data-refraction-enhanced='true'] { height: 200svh; }
+    .refraction-study[data-refraction-enhanced='true'] .refraction-caption { top: auto; bottom: 21%; width: 100%; }
+    .refraction-study[data-refraction-enhanced='true'] .refraction-exit { padding-top: 95px; padding-bottom: 86px; }
+    .refraction-work { padding-top: 65px; padding-bottom: 50px; }
+    .refraction-work-heading { grid-template-columns: 1fr; gap: 23px; margin-bottom: 35px; }
+    .refraction-work-heading h2 { font-size: 44px; }
+    .refraction-work-heading > p { font-size: 14px; max-width: 340px; }
+    .refraction-work-grid { grid-template-columns: 1fr; gap: 50px; }
+    .refraction-brand-field { position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 1.2; }
+    .refraction-case-copy,.refraction-case--creative .refraction-case-copy { padding-top: 22px; }
+    .refraction-case-copy h3 { font-size: 35px; margin-bottom: 15px; }
+    .refraction-case-copy > p:not(.refraction-case-practice) { font-size: 14px; }
+    .refraction-case-copy > .refraction-brand-context { font-size: 12px; }
+    .refraction-work-footer { align-items: flex-start; flex-direction: column; margin-top: 50px; padding-top: 22px; }
+    .refraction-work-footer a { font-size: 13px; }
+  }
+  @media (max-width: 360px) {
+    .refraction-intro h1 { font-size: 56px; }
+    .refraction-direct-links { column-gap: 22px; }
+    .refraction-exit h2 { font-size: 38px; }
+    .refraction-work-heading h2 { font-size: 39px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .refraction-renderer { display: none !important; }
+    .refraction-poster { opacity: 1 !important; }
+    .refraction-intro { opacity: 1 !important; transform: none !important; }
+    .refraction-study[data-refraction-enhanced='true'] { height: auto; }
+    .refraction-study[data-refraction-enhanced='true'] .refraction-stage { position: relative; height: auto; overflow: visible; }
+    .refraction-study[data-refraction-enhanced='true'] .refraction-intro { position: relative; height: auto; }
+    .refraction-study[data-refraction-enhanced='true'] .refraction-image-stage { height: 100svh; }
+    .refraction-study[data-refraction-enhanced='true'] .refraction-caption,.refraction-study[data-refraction-enhanced='true'] .refraction-exit { position: relative; inset: auto; opacity: 1 !important; transform: none !important; pointer-events: auto !important; background: var(--refraction-ground); }
+    .refraction-study[data-refraction-enhanced='true'] .refraction-caption { padding-block: 46px; }
+    .refraction-study[data-refraction-enhanced='true'] .refraction-exit { padding-top: 30px; padding-bottom: 60px; }
+  }
+  :global(body[data-motion='paused']) .refraction-renderer { display: none !important; }
+  :global(body[data-motion='paused']) .refraction-poster { opacity: 1 !important; }
+  :global(body[data-motion='paused']) .refraction-intro { opacity: 1 !important; transform: none !important; }
+  :global(body[data-motion='paused']) .refraction-study[data-refraction-enhanced='true'] { height: auto; }
+  :global(body[data-motion='paused']) .refraction-study[data-refraction-enhanced='true'] .refraction-stage { position: relative; height: auto; overflow: visible; }
+  :global(body[data-motion='paused']) .refraction-study[data-refraction-enhanced='true'] .refraction-intro { position: relative; height: auto; }
+  :global(body[data-motion='paused']) .refraction-study[data-refraction-enhanced='true'] .refraction-image-stage { height: 100svh; }
+  :global(body[data-motion='paused']) .refraction-study[data-refraction-enhanced='true'] .refraction-caption,:global(body[data-motion='paused']) .refraction-study[data-refraction-enhanced='true'] .refraction-exit { position: relative; inset: auto; opacity: 1 !important; transform: none !important; pointer-events: auto !important; background: var(--refraction-ground); }
+  :global(body[data-motion='paused']) .refraction-study[data-refraction-enhanced='true'] .refraction-caption { padding-block: 46px; }
+  :global(body[data-motion='paused']) .refraction-study[data-refraction-enhanced='true'] .refraction-exit { padding-top: 30px; padding-bottom: 60px; }
+</style>

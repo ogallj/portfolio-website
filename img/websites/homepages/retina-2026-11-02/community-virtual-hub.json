@@ -1,0 +1,15 @@
+{
+  "input": "img/websites/homepages/retina-2026-11-02/community-virtual-hub.png",
+  "sourceUrl": "https://www.cvh.africa/",
+  "provider": "Automattic mShots",
+  "providerDocumentation": "https://github.com/Automattic/mShots",
+  "capturedAt": "2026-11-02T19:58:39.641Z",
+  "width": 2880,
+  "height": 2160,
+  "viewportWidth": 1440,
+  "viewportHeight": 1080,
+  "deviceScaleFactor": 2,
+  "reviewed": true,
+  "reviewedAt": "2026-11-02",
+  "reviewNote": "Visually reviewed: correct public homepage navigation and opening content, without obstructing overlays. Original lossless capture at 1440×1080 CSS pixels and device scale factor 2."
+}

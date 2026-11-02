@@ -1,0 +1,14 @@
+{
+  "title": "The Impossible Shadow",
+  "created": "2026-11-01",
+  "status": "Alternative concept for review; not approved or integrated",
+  "generation": "Built-in image_gen; identity-preserving edit",
+  "identitySource": "public/images/joshua.webp",
+  "prompt": "plans/assets/joshua-v4-impossible-shadow.prompt.txt",
+  "output": "plans/assets/joshua-v4-impossible-shadow.png",
+  "width": 1672,
+  "height": 941,
+  "sha256": "6c7d1afa644d4bb74709dc1ef978c0f75f5a576693689c895446b7c96b78d732",
+  "renderType": "Single raster concept image; not an editable mesh or completed animation",
+  "originalPortraitPreserved": true
+}

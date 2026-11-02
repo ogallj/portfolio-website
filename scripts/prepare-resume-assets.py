@@ -33,12 +33,15 @@ for identity, source_name, public_name in [
     shutil.copyfile(pdf, PUBLIC / f"{public_name}.pdf")
     shutil.copyfile(word, PUBLIC / f"{public_name}.docx")
     prefix = TEMP / identity
-    subprocess.run([poppler, "-f", "1", "-singlefile", "-scale-to", "1400", "-png", str(pdf), str(prefix)], check=True)
+    subprocess.run([poppler, "-f", "1", "-singlefile", "-scale-to", "2400", "-png", str(pdf), str(prefix)], check=True)
     with Image.open(prefix.with_suffix(".png")) as image:
         width, height = image.size
-        for target in (400, 800):
+        for target in (400, 800, 1600):
             resized = image.convert("RGB").resize((target, round(height * target / width)), Image.Resampling.LANCZOS)
-            resized.save(PREVIEWS / f"{identity}-{target}.webp", "WEBP", quality=88, method=6)
+            if target == 1600:
+                resized.save(PREVIEWS / f"{identity}-{target}.webp", "WEBP", lossless=True, method=6)
+            else:
+                resized.save(PREVIEWS / f"{identity}-{target}.webp", "WEBP", quality=88, method=6)
     prefix.with_suffix(".png").unlink()
     metadata[identity] = {
         "pdf": f"/{public_name}.pdf?v={pdf_hash}",
@@ -49,8 +52,11 @@ for identity, source_name, public_name in [
         "pdfKB": round(pdf.stat().st_size / 1024),
         "preview": f"/images/resumes/{identity}-800.webp?v={pdf_hash}",
         "previewSmall": f"/images/resumes/{identity}-400.webp?v={pdf_hash}",
+        "previewLarge": f"/images/resumes/{identity}-1600.webp?v={pdf_hash}",
+        "previewLargeWidth": 1600,
+        "previewLargeHeight": round(height * 1600 / width),
         "previewWidth": 800,
         "previewHeight": round(height * 800 / width),
     }
-    print(f"Prepared {identity}: {pages} page(s), PDF, Word and two document previews.")
+    print(f"Prepared {identity}: {pages} page(s), PDF, Word and three document previews.")
 (ROOT / "src/data/resume-assets.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")

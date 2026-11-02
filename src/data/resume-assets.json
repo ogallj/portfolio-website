@@ -9,7 +9,10 @@
     "preview": "/images/resumes/software-800.webp?v=88d0fbc10180",
     "previewSmall": "/images/resumes/software-400.webp?v=88d0fbc10180",
     "previewWidth": 800,
-    "previewHeight": 1035
+    "previewHeight": 1035,
+    "previewLarge": "/images/resumes/software-1600.webp?v=88d0fbc10180",
+    "previewLargeWidth": 1600,
+    "previewLargeHeight": 2071
   },
   "creative": {
     "pdf": "/joshua-ogallo-creative-cv.pdf?v=693461ced6a6",
@@ -21,6 +24,9 @@
     "preview": "/images/resumes/creative-800.webp?v=693461ced6a6",
     "previewSmall": "/images/resumes/creative-400.webp?v=693461ced6a6",
     "previewWidth": 800,
-    "previewHeight": 1035
+    "previewHeight": 1035,
+    "previewLarge": "/images/resumes/creative-1600.webp?v=693461ced6a6",
+    "previewLargeWidth": 1600,
+    "previewLargeHeight": 2071
   }
 }

@@ -1,63 +1,91 @@
-# Joshua Ogallo — design language
+# Joshua Ogallo — Refraction design language
 
-The owner delegated a completely new identity on 29 October 2026, with no paid assets and two separate portfolios. This document describes the implemented system; the research alternatives are in `docs/plans/rebuild-direction.md`.
+A personal portfolio centred on Joshua's recognisable portrait, characteristic glasses and actual work. An optical edge connects the person to two independent, equally important practices: Software engineering and Creative & marketing. The complete compositions must work as still images; motion provides continuity, depth and feedback.
 
-> Architectural name typography frames an original interlocking JO sculpture. Ice blue, ink and cobalt carry the personal/software identity; warm vermilion gives the creative practice its own atmosphere. The two work collections remain independent within one personal practice.
+The accepted homepage keeps the Refraction language. The owner's 2 November correction supersedes the broad spatial-interiors direction with the restraint and continuous pacing of Jesko Jets. Software was rebuilt first; the owner has now explicitly requested the same quality of rebuild for About with a supplied hero video. Further page families wait for their own review. See [Software review](plans/009-software-restraint-review.md) and [About rebuild](plans/013-about-video-rebuild.md).
 
-## Source of truth
+Software uses #f1f2ef surroundings, #242824 ink and #616760 secondary text; Archivo at moderate weight and Manrope for reading. The owner-supplied white geometric video fills its hero behind “A mind for logic. An eye for detail.” A staggered two-line type entrance complements the clip; there is no held scroll sequence. The video is muted, inline and looping, pauses offscreen/when hidden, and honours saved pause and reduced motion with an actual frame poster. No generated display models, chassis, ledges, drawer cabinets, decorative frames or raised selector blocks. Complete project imagery belongs to the work collection. The résumé summary, nine systems, fourteen websites and native PDF/Word actions remain accessible.
 
-Tokens and responsive rules live in [global.css](src/styles/global.css). Shared document structure is in [Base.astro](src/layouts/Base.astro); navigation and footer are shared components. Content is in [portfolio.ts](src/data/portfolio.ts).
+The Software website collection uses a pale green field (#e7ebe5), large complete captures and a native “All websites” directory instead of a long horizontal name strip. Selection controls stay separate from the project actions. The directory is a disclosure containing ordinary links, with viewport-aware sizing, safe focus on selection, Escape and outside dismissal. One dark closing invitation leads to a software inquiry and includes direct email and the real CV preview/downloads. Only Software requests the compact footer variant; the other pages retain their existing full invitation.
+
+Business systems use a two-column product spread: the complete square mockup beside the confirmed scope, frontend/UI/UX contribution and project focus. An “All systems” native directory and previous/next controls replace the old name rail. Its toolbar stays below the shared header while browsing this section; direct project anchors account for both bars. Keep production status specific to B-Officio, original mockups undistorted, and the project/discussion/full-size-image actions distinct. The system viewer uses a brief opacity transition; it has no ScrollTrigger refresh or generated 3D presentation.
+
+The owner has now explicitly extended the restrained rebuild to About. Its hero uses the supplied white hexagon video, graphite typography and native scrolling in place of the glass scene. One documentary portrait introduces the person, equal software/creative passages explain the practice, four date-free factual experience entries lead to both CV editions, and the shared footer closes the page. Use Kenya for About's location as the approved résumé does; the older shared profile's Nairobi value has not been independently confirmed. See [About rebuild](plans/013-about-video-rebuild.md).
+
+The earlier execution blueprint is [plan 006](plans/006-refraction-website-masterplan.md). Historical plans do not override this narrower review scope.
+
+## Sources and shared tokens
+
+[Base](src/layouts/Base.astro) owns the document shell, self-hosted fonts, metadata and early motion preference. [Header](src/components/Header.astro), [Footer](src/components/Footer.astro) and [global.css](src/styles/global.css) provide shared navigation, surfaces and primitives. Page-specific composition stays in scoped component styles. Content comes from [portfolio.ts](src/data/portfolio.ts), with dedicated media, brand and résumé manifests.
 
 | Role | Token / value | Use |
 | --- | --- | --- |
-| Ground | `--ground: #eaf0f7` | Personal pages, scene background |
-| Paper | `--paper: #f9fbfd` | Reading and project-index fields |
-| Ink | `--ink: #132035` | Main text, footer ground |
-| Secondary text | `--muted: #52617a` | Supporting copy |
-| Cobalt | `--blue: #1746ff` | Sculpture, primary links/actions, software entrance |
-| Cobalt hover | `--blue-dark: #1233b3` | Primary control feedback |
-| Vermilion | `--orange: #ff7953` | Creative-portfolio environment |
-| Form / record separation | `--line: #c4cfdf` | Where structure requires it |
+| Ground | --ground: #edf1f2 | Personal and collection surroundings |
+| Paper | --paper: #f8faf9 | Reading, forms and document fields |
+| Ink | --ink: #172128 | Main text |
+| Secondary text | --muted: #52626a | Supporting copy and captions |
+| Ultramarine | --blue: #284cf2 | Primary actions and focus |
+| Action hover | --blue-dark: #1936b8 | Primary control feedback |
+| Night | --night: #101820 | Portrait opening, selected exhibition passages and footer |
+| Silver | --silver: #dbe5e8 | Light/frame surroundings |
+| Structure | --line: #c8d1d4 | Useful separation and records |
+| Optional warm accent | --orange: #f37b53 | Local creative material, not a site-wide hero wash |
 
-Two self-hosted font families are imported by Base: Archivo Variable for display and Manrope Variable for reading/interface text. Large type uses negative tracking; body copy uses natural case and readable measure. Huge letters are content and identity, not a code aesthetic. No mono labels, skill percentages or fake proof badges.
+Archivo Variable sets identity and display type; Manrope Variable handles reading and controls. Both are self-hosted. Large titles use careful wrapping, moderate weight and negative tracking; body text keeps readable measure and natural case. Avoid mono labels, arbitrary numbering, skill percentages and invented proof badges.
 
-## Composition
+Shared gutters are clamp(22px, 5vw, 88px). Maintain visible focus, readable contrast, complete image dimensions and useful content at 320px. Do not solve overflow by hiding meaningful content.
 
-- Shared frame: `--gutter` is `clamp(22px, 5vw, 88px)`. Narrow phones use 22px.
-- Hero: one viewport, with name anchored low and an authored sculpture above/right. Role and a working entry to both portfolios are available immediately.
-- Home work entrances: two substantial distinct fields, each linking to an independent portfolio. Never create one mixed software/campaign grid.
-- Software index: B-Commerce leads in a large image/copy composition, followed by paired system presentations and a separate website collection. Preserve the full square device mockups with no cropping, padding, extra device shells or image tilt. Large captions remain outside each image. Use responsive source variants, quiet arrow feedback, and one column on phones; native filter buttons retain `aria-pressed` and a live count, hiding irrelevant collection headings.
-- Website collection: an ink-blue exhibition with one large featured artboard, oversized project typography, and a complete project index alongside. The stage stays in view on desktop only when it fits the viewport; shorter windows scroll naturally. The index becomes a native horizontal strip on phones. All fourteen projects have server-rendered articles and direct links, with a stacked fallback when scripting is unavailable. Every visual is a genuine homepage screenshot that includes navigation and opening content, preserved in a 4:3 presentation with `object-fit: contain`. Use the twelve reviewed public captures and two explicitly labelled archived homepages; reject the newer JOOUST and Student Safety 404 captures. Standalone photos, logos, artwork and reconstructed interfaces cannot replace a homepage screenshot. Optional live views load a single sandboxed remote page only after a request, where embedding is permitted. Preserve external visit links, and stop previews on selection changes, filtering, page exit, visibility loss, scrolling offscreen and motion pause.
-- Creative portfolio: warm colour field, two full-width brand-family compositions, a full-colour organization-logo gallery, and separate professional-experience marks before service rows and labelled campaign placeholders. Each family has a large parent identity at left and a subordinate, borderless product register at right. UNGA divisions form a middle level within its composition. Product marks stay smaller than parent and division marks, without individual cards or hover lifts; all supplied products remain visible. Stack the parent above the register on mobile. Preserve original mark colours and aspect ratios; prioritize optical balance over equal image widths.
-- Project pages: system mockups occupy a full square beside the overview on wide screens, stacking above it on phones. Label them as interface mockups and provide a full-size image link. Websites retain their complete homepage screenshot and its archive-aware caption. Direct project URLs appear only when known; next-project navigation includes a preview when available.
-- About: portrait, personal practice, factual role records. Unknown employment dates and outcomes stay absent.
-- CVs: a dedicated `/cv/` page with two distinct editions, cobalt for software and a warm field for creative. Show actual document-page previews and native View PDF, Download PDF and editable Word links. Each portfolio hero downloads its matching CV; navigation, Contact and the footer offer both through the shared page. Documents remain readable and accessible without scripting.
+## Composition by purpose
 
-## Motion and input
+- **Home:** [RefractionExperience](src/components/RefractionExperience.astro) opens with portrait, name, roles and direct practice links. One reversible optical handoff leads to two substantial portfolio entrances. A balanced evidence spread places the full B-Commerce mockup beside clearly labelled creative brand experience, followed by a short personal passage. Both practices remain independently reachable.
+- **Software:** a concise role-led opening and immediate Systems/Websites access lead into varied editorial presentations. Use generous complete mockups, caption placement and changing composition scale. Preserve all nine systems and fourteen websites, their existing URLs, filter semantics and direct arrivals.
+- **Websites:** a large screenshot artboard and complete project register form a collection, with selection, previous/next and position feedback. Keep query/hash navigation and a complete server-rendered fallback. The screenshot settles flat and unobstructed; motion belongs to its frame or caption.
+- **Project details:** collection return, title and confirmed contribution precede the evidence and concise scope. Continue within the same collection. System mockups remain full square presentations, flat and uncropped, with full-size access. Websites retain complete contained 4:3 homepage captures and archive-aware labels.
+- **Creative & marketing:** editorial typography, light and generous brand compositions give this portfolio its own expression. The Fanta contribution is creative work and ideation. Original campaign media remains explicitly forthcoming until supplied. A compact work-in-preparation section replaces decorative simulated portfolio pieces.
+- **Brand families:** Coca-Cola Africa remains the dominant parent above its beverage register. UNGA Group remains the parent above its divisions, then their respective products. Subbrands are subordinate, grouped and fully visible. Original mark colours/proportions remain intact; optical balance matters more than equal logo widths. Keep the wider organisation roster distinct from agency/employer experience.
+- **About:** supplied white hexagon video, an oversized two-line introduction and one short type entrance; poster is the baseline. A single portrait sits beside Joshua's introduction and education. Equal practice columns lead to a single composed experience surface, then native PDF/Word access for both CVs. The rejected staggered experience spread is superseded: four original-colour logo/name tabs share one role/contribution stage. Tabs become a visible 2×2 grid on phones; the stage reserves space so selecting another organisation does not move the section below. Keyboard arrows/Home/End activate immediately, pointer changes use a short motion-aware transition, and there is no automatic cycling or scroll interception. All four contributions remain visible without successful enhancement. No dates, invented results or employer implication for Freelancer.com. No glass canvas, pinned journey, duplicate portrait or invented timeline. Silent hero video stops offscreen, on hidden pages, saved pause and OS reduced motion.
+- **CVs:** equally aligned Software and Creative editions, direct PDF/Word actions for both before large previews, actual complete document images and native viewing/downloading. The documents stay readable and undistorted.
+- **Contact:** immediately useful email/copy/professional links beside a calm draft form. Fields and actions stay still. The page explains that an email draft opens for review and sending; it never claims delivery.
+- **404:** clear error text, a still optical frame and equally useful Home/Software/Creative recovery.
 
-Motion is explanatory and spatial: JO turns, tilts and separates through a reversible scroll sequence; orbital lines and the name move at different depths. The two practice panels keep fixed link areas while their artwork moves in perspective and responds to a fine pointer. Software and creative headings use an original twelve-blade kinetic sculpture, with a slow visible-only drift and scroll-driven rotation. The portrait has internal parallax, brand-family connectors grow through their registers, website artwork settles in depth after pointer selection, and the footer signature rises into view. System mockups stay flat and fully visible. Native scrolling and anchors remain in control; no pinned sequences or scroll interception. The DOM choreography is owned by [motion.ts](src/scripts/motion.ts); the original WebGL scene is in [scene.ts](src/scripts/scene.ts).
+The shared fixed header uses an inset capsule, a compact monogram/name lockup, restrained active navigation and a contrasting Contact action. Its light/dark theme tokens adapt to the page. Preserve its exact 88px desktop and 78px mobile heights for the Software sticky toolbar. The native details menu retains every destination, visible focus and Escape/outside dismissal; a breakpoint crossing closes it and moves focus to a visible equivalent. The footer carries the same identity into a quiet dark field with grouped Work, Information and Online links, location, copyright and a back-to-top action. Keep its full contact invitation on other pages and compact variant beneath the dedicated Software closing.
 
-- Shared easing: `--ease-out` and `--ease-in-out` in CSS; GSAP uses `power3.out` for the entrance vocabulary.
-- User pause preference is visible, persisted where storage works, and authoritative while the scene loads.
-- All DOM tweens/listeners belong to a reverted GSAP media context. Pause restores static artwork and also disables page transitions. Small screens use lower travel and rotation, and pointer tracking runs only for a fine mouse. Kinetic CSS drift runs only when its form is visible; hidden documents stop ambient work. No new motion dependency or paid asset is required.
-- Operating-system reduced motion always wins. A deliberate static sculpture remains; reading and navigation still work.
-- One WebGL renderer on the home hero. It pauses when hidden/offscreen, caps DPR, disposes owned resources, and reveals the SVG fallback if initialization/context fails.
-- No cursor replacement, drag-only navigation, autoplay audio, or decorative movement of controls away from input.
-- Native links, native details menu, visible focus, Escape dismissal, and direct email/CV paths.
+The old JO sculpture, radial fan, orbit lines, floating braces and decorative tilted interface planes are outside the production language. Do not introduce them through legacy selectors or duplicate motion controllers.
 
-## Content honesty
+## Motion and ownership
 
-Brands are “brand experience”, including work through agencies/employers. Add direct-client language only when the relationship is supplied. Placeholder campaign media is clearly labelled. Abstract project covers are artwork, not product screenshots. Do not invent feature lists, stacks, dates, outcomes, testimonials, subbrand logos or personal contribution details. “Salesforce” in a product name does not establish Salesforce-platform use.
+The homepage uses a screen-space artistic refraction shader over clean portrait and genuine work textures. It is not a scanned 3D likeness or a physical glass simulation. Names, roles, captions and navigation remain semantic HTML outside the shader.
 
-Homepage PNGs and adjacent provider/source/capture metadata stay in `img/websites/homepages/`. Approval requires visual review of the actual capture, recorded as `reviewed: true` with a date; error pages remain false. Preserve owner-supplied archived originals, including `img/jooustsahwebsite.png` and `img/studentsafetysummit.png`. `npm run assets:websites` is an offline generation step: it selects only approved captures or the explicit archive inventory, keeps full compositions, and records proper project-name alts, source files and provenance in `src/data/website-assets.json`. Screenshot approval does not change separately checked availability or embedding status.
+The single bounded enhanced Home track is 260svh on desktop and 200svh on phones, using a CSS sticky stage and native scrolling. Under 620px viewport height, use normal reading flow so overlays and controls remain reachable; resizing back can enable enhancement. The static document is the default; the director explicitly enables the enhanced layout. There are no additional mandatory pinned journeys through the collections. Preserve Skip to work, direct links, scroll reversal and mid-page arrivals. Focus handoff must exclude links in closed disclosure menus even if they report layout rectangles.
 
-## Check when editing
+- [site.ts](src/scripts/site.ts) owns saved pause state, OS preference, labels and the shared motion event. Base applies the preference early, including to cross-page transitions. OS reduced motion takes precedence.
+- [refraction-director.ts](src/scripts/refraction-director.ts) owns one progress value, overlays, inert states, focus handoff, skip/restore and enhancement lifecycle.
+- [refraction-scene.ts](src/scripts/refraction-scene.ts) owns textures, shader, resizing, rendering and GPU disposal. Keep the current DPR ceilings of 1.5 desktop and 1.25 phone. Render on demand, suspend when hidden/offscreen and dispose superseded textures.
+- [motion.ts](src/scripts/motion.ts) owns short entrance wrappers and desktop decorative-surface parallax. The baseline remains visible; project evidence and reading controls do not move for style. Use independent wrappers when effects need independent transforms.
+- Native multi-page navigation remains authoritative. Shared CSS view transitions provide a brief optical entrance where supported; ordinary links remain the fallback. Do not delay navigation, intercept modified clicks, or animate downloads, external visits and email actions.
+- Shared ease-out is cubic-bezier(.23,1,.32,1); ease-in-out is cubic-bezier(.77,0,.175,1). GSAP entrances use power3.out. Prefer transform and opacity, with deliberate bounded clipping for the optical transition.
+- Fine-pointer motion is limited to the optical artwork. No cursor replacement, drag-only access, autoplay sound or moving controls.
+- Pause/reduced motion restore intentional normal flow with usable links. Hidden overlays are inert; relocate focus only when its focused control disappears, without a scroll jump.
+- Keep setup/cleanup explicit. Distinguish BFCache restoration from permanent disposal. Texture/GPU failure, context loss and script failure leave useful content rather than an empty sticky runway.
 
-- Both portfolios remain independent and reachable from the main navigation.
-- One visible h1, logical heading structure, body at a readable size, no accidental overflow at 320px.
-- Name/role, project evidence, contact and CV remain useful before optional scene rendering.
-- Real media has alt text and dimensions; optimized images are regenerated from preserved source.
-- Links point to known destinations; source buttons are omitted when the source URL is unknown.
-- Motion respects pause/reduced motion and has setup/cleanup; new per-frame work is profiled.
-- Contact makes its email-draft behavior explicit and never claims delivery.
-- Production build, type check, unit tests and built-output link audit pass; inspect the actual rendered result after visual changes.
+Phones have an independently composed portrait asset and reduced optical travel. Utility pages have minimal motion. Development proofs are comparison material, not part of the public navigation or release surface.
+
+## Evidence and content honesty
+
+Brand experience includes work through agencies/employers; it does not establish a direct-client relationship or sole campaign ownership. Preserve confirmed frontend/UI/UX scope without assigning unverified per-project stacks, backend authorship, feature lists, deployment status, dates, results or testimonials. General React/Next.js/Angular skills do not establish a particular project's technology.
+
+B-Officio is production leave management with a broader employee-management roadmap. Neosave's mortality reduction is a goal. TheHub RMS includes hotel and restaurant operations; it differs from The Hub website. MCC CMS differs from MCC's public website. A product name does not establish use of a similarly named platform.
+
+Use the twelve reviewed public homepage captures and two explicit owner archives. Eleven captures were refreshed on 2 November 2026 at a 1440×1080 CSS viewport and 2× device scale (2880×2160 lossless PNG); INNOECOFOOD retains its previous clean reviewed capture because the new service capture is obscured by a promotional popup. JOOUST and Student Safety Summit retain their genuine archives. Export lossless responsive WebP sources without enlargement, including 2240px and 2880px where the source supports them. Expose the original-resolution derivative through a full capture link. Retain capture provenance, archive/unavailable labels and separate live/embed status. Standalone photos, logos, error pages and reconstructed interfaces cannot substitute for homepage screenshots. The offline website asset pipeline selects reviewed captures or the explicit archive inventory; preserve original source files and metadata.
+
+Live previews are opt-in and eligible only. Load at most the selected remote view; stop it when selection, filtering, visibility, viewport or pause state makes it irrelevant. Preserve native external visits.
+
+Keep both résumé editions date-free, with the four established PDF/Word URLs, intentional download filenames and actual document previews. Original creative deliverables and project contribution notes may be added progressively. Clearly label forthcoming material and never simulate missing campaign evidence.
+
+## Verification when extending
+
+Check both full visitor journeys and direct project/query/hash entry, Back/Forward restoration, native downloads, contact prefill, copy feedback and mobile menu. Review desktop, narrow phone, short landscape, zoom and touch compositions, plus no-JS, pause, actual OS reduced motion, failed assets/WebGL and context loss. Capture resting frames as well as motion.
+
+Run fresh type checks, tests, production build and built-output evidence/link audit for the completed change. Verify the lab is absent from release output and obsolete runtime imports are retired. Inspect the actual rendered result after visual changes.
+
+Real-phone GPU/loading profiling and field Core Web Vitals are not established by viewport checks or compilation. Record actual measurements and remaining gaps; proposed budgets are targets until measured. Refine quality to match the device while preserving the intentional static experience.

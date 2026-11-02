@@ -1,16 +1,77 @@
 ---
 import Arrow from './Arrow.astro';
 import { profile } from '../data/portfolio';
+interface Props { variant?: 'full' | 'compact' }
+const { variant = 'full' } = Astro.props;
 ---
-<footer class="site-footer">
-  <div class="footer-top frame">
-    <div><p>Have something in mind?</p><h2>Let’s make<br />it happen.</h2></div>
-    <a class="round-link" href="/contact/" aria-label="Discuss a project or opportunity"><Arrow /></a>
+<footer class:list={['site-footer', 'frame', { 'site-footer--compact': variant === 'compact' }]}>
+  {variant === 'full' && <div class="footer-invitation"><div><p>A project, a role, a new idea.</p><a class="footer-talk" href="/contact/">Let’s talk.<span aria-hidden="true"><Arrow /></span></a></div><div class="footer-direct"><p>Or write directly</p><a class="footer-email" href={`mailto:${profile.email}`}>{profile.email}<Arrow /></a></div></div>}
+  <div class="footer-navigation">
+    <div class="footer-identity"><a href="/" class="footer-mark" aria-label="Joshua Ogallo — home"><span class="footer-monogram" aria-hidden="true">jo.</span><span class="footer-name">Joshua<br />Ogallo</span></a><p class="footer-practice">Software engineering.<br />Digital creative &amp; marketing.</p>{variant === 'compact' && <a class="footer-compact-email" href={`mailto:${profile.email}`}>{profile.email}<Arrow /></a>}</div>
+    <nav class="footer-link-columns" aria-label="Footer navigation">
+      <div class="footer-column"><p>Work</p><a href="/software/">Software</a><a href="/creative-marketing/">Creative &amp; marketing</a></div>
+      <div class="footer-column"><p>Information</p><a href="/about/">About</a><a href="/cv/">CVs &amp; résumés</a><a href="/contact/">Contact</a></div>
+      <div class="footer-column footer-column--social"><p>Online</p><a href={profile.github} target="_blank" rel="noreferrer">GitHub <Arrow /></a><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow /></a></div>
+    </nav>
   </div>
-  <div class="footer-bottom frame">
-    <a href={`mailto:${profile.email}`}>{profile.email}</a>
-    <div class="footer-socials"><a href={profile.github} target="_blank" rel="noreferrer">GitHub <Arrow /></a><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a href="/cv/">CVs & résumés <Arrow /></a></div>
-    <p>Nairobi, Kenya · © {new Date().getUTCFullYear()}</p>
-  </div>
-  <div class="footer-signature" aria-hidden="true">OGALLO.</div>
+  <div class="footer-baseline"><p>{profile.location}</p><p>© {new Date().getUTCFullYear()} Joshua Ogallo</p><a href="#main">Back to top <Arrow diagonal={false} /></a></div>
 </footer>
+<style>
+  .site-footer { --focus:#bfd2ff;color:#edf1f2;background:#101820;padding-top:clamp(70px,8vw,120px);padding-bottom:80px; }
+  .footer-invitation { display:flex;align-items:end;justify-content:space-between;gap:50px;padding-bottom:clamp(55px,6vw,90px); }
+  .footer-invitation > div > p { color:#a9bcc8;font-size:13px;line-height:1.6;margin-bottom:23px; }
+  .footer-talk { display:inline-flex;align-items:center;gap:clamp(30px,4vw,60px);font:390 clamp(60px,7.4vw,112px)/1 var(--display);letter-spacing:-.065em; }
+  .footer-talk > span { display:grid;place-items:center;width:clamp(60px,6vw,88px);aspect-ratio:1;border:1px solid #78909f;border-radius:50%; }
+  .footer-talk :global(.arrow-icon) { width:clamp(24px,2.4vw,36px);height:clamp(24px,2.4vw,36px);transition:transform 180ms var(--ease-out); }
+  .footer-direct { padding-bottom:5px; }
+  .footer-invitation .footer-direct > p { margin-bottom:10px;font-size:11px; }
+  .footer-email { display:inline-flex;align-items:center;gap:25px;min-height:44px;font-size:clamp(15px,1.6vw,24px);letter-spacing:-.025em;overflow-wrap:anywhere; }
+  .footer-email :global(.arrow-icon) { width:17px;height:17px; }
+  .footer-navigation { display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.7fr);align-items:start;gap:10%;padding-top:48px;border-top:1px solid #40525e; }
+  .footer-identity { min-width:0; }
+  .footer-mark { display:inline-flex;align-items:center;gap:24px;min-height:70px; }
+  .footer-monogram { font:700 72px/.85 var(--display);letter-spacing:-.1em;padding-right:7px; }
+  .footer-name { font:430 26px/1.04 var(--display);letter-spacing:-.045em; }
+  .footer-practice { margin-top:24px;color:#a9bcc8;font-size:12px;line-height:1.8; }
+  .footer-compact-email { display:inline-flex;align-items:center;gap:19px;min-height:44px;margin-top:12px;font-size:12px;overflow-wrap:anywhere; }
+  .footer-compact-email :global(.arrow-icon) { width:14px;height:14px; }
+  .footer-link-columns { display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,.9fr);gap:30px; }
+  .footer-column { min-width:0; }
+  .footer-column > p { margin-bottom:15px;color:#93a8b6;font-size:11px;line-height:1.5; }
+  .footer-column > a { display:flex;align-items:center;justify-content:flex-start;gap:15px;width:fit-content;min-height:44px;max-width:100%;padding-block:9px;font-size:12px;line-height:1.6; }
+  .footer-column :global(.arrow-icon) { width:13px;height:13px;color:#93a8b6; }
+  .footer-baseline { display:flex;align-items:center;justify-content:space-between;gap:25px;margin-top:55px;padding-top:23px;border-top:1px solid #2c3c48;color:#93a8b6;font-size:10px;line-height:1.6; }
+  .footer-baseline > a { display:inline-flex;align-items:center;gap:22px;min-height:44px;color:#c3d0d7; }
+  .footer-baseline :global(.arrow-icon) { width:14px;height:14px;transform:rotate(-90deg); }
+  .site-footer--compact { padding-top:28px; }
+  .site-footer--compact .footer-navigation { border-top:0;padding-top:0; }
+  @media (hover:hover) and (pointer:fine) { .footer-talk:hover :global(.arrow-icon) { transform:translate(3px,-3px); }.footer-email:hover,.footer-compact-email:hover,.footer-column > a:hover,.footer-baseline > a:hover { color:#fff;text-decoration:underline;text-underline-offset:5px; } }
+  @media (max-width:1000px) { .footer-invitation { gap:35px; }.footer-navigation { gap:7%;grid-template-columns:minmax(0,.85fr) minmax(0,1.7fr); }.footer-mark { gap:17px; }.footer-monogram { font-size:62px; }.footer-name { font-size:24px; }.footer-link-columns { gap:20px; }.footer-email { font-size:16px;gap:17px; } }
+  @media (max-width:800px) { .footer-invitation { flex-direction:column;align-items:start;gap:35px; }.footer-navigation { grid-template-columns:minmax(0,1fr);gap:40px; }.footer-identity { display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:15px 30px; }.footer-practice { margin-top:0; }.footer-compact-email { grid-column:1/-1;margin-top:0; }.footer-link-columns { gap:35px; } }
+  @media (max-width:600px) {
+    .site-footer { padding-top:60px;padding-bottom:80px; }
+    .footer-invitation { padding-bottom:40px;gap:28px; }
+    .footer-invitation > div > p { font-size:12px;margin-bottom:18px; }
+    .footer-talk { gap:22px;font-size:clamp(42px,11vw,67px); }
+    .footer-talk > span { width:52px; }
+    .footer-talk :global(.arrow-icon) { width:24px;height:24px; }
+    .footer-email { font-size:16px; }
+    .footer-navigation { padding-top:35px;gap:35px; }
+    .footer-identity { display:block; }
+    .footer-mark { gap:22px; }
+    .footer-monogram { font-size:66px; }
+    .footer-name { font-size:26px; }
+    .footer-practice { margin-top:20px;font-size:12px; }
+    .footer-compact-email { margin-top:10px; }
+    .footer-link-columns { grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px 30px; }
+    .footer-column > p { margin-bottom:10px; }
+    .footer-column--social { grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:30px; }
+    .footer-column--social > p { grid-column:1/-1; }
+    .footer-baseline { flex-wrap:wrap;gap:5px 20px;margin-top:35px;padding-top:20px; }
+    .footer-baseline > p { flex:1 1 100%; }
+    .footer-baseline > a { margin-top:5px; }
+    .site-footer--compact { padding-top:25px; }
+  }
+  @media (prefers-reduced-motion:reduce) { .footer-talk :global(.arrow-icon) { transition:none;transform:none !important; } }
+  :global(html[data-motion='paused']) .footer-talk :global(.arrow-icon) { transition:none;transform:none !important; }
+</style>

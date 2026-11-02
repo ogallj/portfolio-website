@@ -1,0 +1,15 @@
+# About experience — unified organisation panel
+
+3 November 2026. The owner rejected the staggered credit spread. This replaces that approach in the existing AboutExperience component; the rest of About is retained. Plan 014 is superseded.
+
+Direction: a quiet sage field, one white surface, four original-colour organisation marks with readable selector labels, and one shared role/contribution stage. The section heading is “Where I’ve contributed.” The selected organisation has a restrained tint and underline; downward arrows indicate the content below. Role, contribution, areas of work and the CV route form the hierarchy. There are no generated models, timelines, current-role badges, dates or new external assets. Independent practice explicitly identifies Freelancer.com as its platform.
+
+The header and content share consistent alignment. All four choices remain visible; phones use a 2×2 selector grid. Reading begins immediately below the mobile choices. The stage reserves the longest contribution’s space so a selection does not shift the following CV section. Original logo proportions and colours are preserved.
+
+The optional controller validates all four unique selector/panel relationships before enhancement. Static HTML contains all four visible contributions and their logos, with the inactive controls hidden. Enhanced mode uses a horizontal tablist, selected/tabindex state, labelled panels and native Tab navigation. Arrow keys and Home/End activate and move focus immediately; pointer changes use a cancellable 220ms opacity/5px transition with the shared ease-out curve. Saved pause and OS reduced motion make it immediate. There is no timer, new dependency, scroll interception or hash rewrite. BFCache retains the component; permanent navigation cleans listeners and animations.
+
+Browser review: 1440×900, 390×844, 320×740 and 768×1024. All four choices show exactly one matching panel and keep #experience unchanged. Reserved surface heights remain identical across choices at each tested width (657px desktop, 931px narrow phone and 767px tablet). No horizontal overflow or text outside the viewport was detected. Keyboard Home/End/wraparound, roving tab stops, Tab into the active panel, rapid pointer changes and global pause cancellation were checked. The initial saved pause preference was preserved. Actual OS settings, JS-disabled browsing, other engines, physical-device performance and real BFCache navigation were not separately exercised; static fallback and lifecycle were inspected in source/output.
+
+Fresh production build emits 30 pages. Output audit checks 1,672 internal references, all four static panel/tab pairs, baseline visible contributions, deferred controls and existing project/CV safeguards with zero errors/warnings. Fresh type diagnostics and whitespace checks are recorded at completion.
+
+Evidence: artifacts/about-dossier/desktop-full.jpg, desktop-section.jpg, mobile.jpg and review.json. The section image is a straight crop of the actual browser screenshot; no UI reconstruction or retouching was used.

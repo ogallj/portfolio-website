@@ -10,7 +10,6 @@ const names: Record<string,string[]> = { commerce: ['B', 'Commerce'], officio: [
 ---
 <div class:list={['project-cover', `cover--${project.art}`, { 'cover--mockup': !!mockup, 'cover--website': !!project.website, 'cover--screenshot': !!project.image && !mockup && !project.website }]}>
   {mockup ? <img class="system-mockup" src={mockup.src} srcset={mockup.sources.map(source => `${source.src} ${source.width}w`).join(', ')} sizes={sizes} alt={mockup.alt} width={mockup.width} height={mockup.height} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : undefined} decoding="async" /> : project.website ? <WebsiteCover project={project} priority={priority} sizes={sizes} /> : project.image ? <img src={project.image} alt={`${project.title} — project screenshot`} width="1440" height="900" loading={priority ? 'eager' : 'lazy'} decoding="async" /> : <>
-    <div class="cover-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="cover-word" aria-hidden="true">{(names[project.art] || [project.title]).map(word => <span>{word}</span>)}</div>
     <span class="cover-caption">{project.category}</span>
     <span class="cover-art-note">Project artwork</span>

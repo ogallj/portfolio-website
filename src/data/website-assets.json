@@ -10,30 +10,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of Community CBE Campaign, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:13.720Z",
+    "capturedAt": "2026-11-02T19:58:34.599Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/community-cbe.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/community-cbe.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "98204ac9a53c",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "a5e39ade8a26",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/community-cbe-homepage-640.webp?v=98204ac9a53c"
+        "src": "/images/websites/community-cbe-homepage-640.webp?v=a5e39ade8a26"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/community-cbe-homepage-1000.webp?v=98204ac9a53c"
+        "width": 1120,
+        "src": "/images/websites/community-cbe-homepage-1120.webp?v=a5e39ade8a26"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/community-cbe-homepage-1200.webp?v=98204ac9a53c"
+        "width": 1600,
+        "src": "/images/websites/community-cbe-homepage-1600.webp?v=a5e39ade8a26"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/community-cbe-homepage-2240.webp?v=a5e39ade8a26"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/community-cbe-homepage-2880.webp?v=a5e39ade8a26"
       }
     ],
-    "src": "/images/websites/community-cbe-homepage-1200.webp?v=98204ac9a53c",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/community-cbe-homepage-2880.webp?v=a5e39ade8a26",
+    "checkedAt": "2026-11-02"
   },
   "innoecofood": {
     "sourceUrl": "https://innoecofood.eu/",
@@ -53,23 +64,26 @@
     "reviewedAt": "2026-11-01",
     "width": 1200,
     "height": 900,
-    "revision": "97a6767ae46f",
+    "captureViewportWidth": null,
+    "captureViewportHeight": null,
+    "captureScale": 1,
+    "revision": "558c87f6d6af",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/innoecofood-homepage-640.webp?v=97a6767ae46f"
+        "src": "/images/websites/innoecofood-homepage-640.webp?v=558c87f6d6af"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/innoecofood-homepage-1000.webp?v=97a6767ae46f"
+        "width": 1120,
+        "src": "/images/websites/innoecofood-homepage-1120.webp?v=558c87f6d6af"
       },
       {
         "width": 1200,
-        "src": "/images/websites/innoecofood-homepage-1200.webp?v=97a6767ae46f"
+        "src": "/images/websites/innoecofood-homepage-1200.webp?v=558c87f6d6af"
       }
     ],
-    "src": "/images/websites/innoecofood-homepage-1200.webp?v=97a6767ae46f",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/innoecofood-homepage-1200.webp?v=558c87f6d6af",
+    "checkedAt": "2026-11-01"
   },
   "community-virtual-hub": {
     "sourceUrl": "https://www.cvh.africa/",
@@ -82,30 +96,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of Community Virtual Hub, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:17.268Z",
+    "capturedAt": "2026-11-02T19:58:39.641Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/community-virtual-hub.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/community-virtual-hub.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "035bef711b29",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "ac2652e184f1",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/community-virtual-hub-homepage-640.webp?v=035bef711b29"
+        "src": "/images/websites/community-virtual-hub-homepage-640.webp?v=ac2652e184f1"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/community-virtual-hub-homepage-1000.webp?v=035bef711b29"
+        "width": 1120,
+        "src": "/images/websites/community-virtual-hub-homepage-1120.webp?v=ac2652e184f1"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/community-virtual-hub-homepage-1200.webp?v=035bef711b29"
+        "width": 1600,
+        "src": "/images/websites/community-virtual-hub-homepage-1600.webp?v=ac2652e184f1"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/community-virtual-hub-homepage-2240.webp?v=ac2652e184f1"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/community-virtual-hub-homepage-2880.webp?v=ac2652e184f1"
       }
     ],
-    "src": "/images/websites/community-virtual-hub-homepage-1200.webp?v=035bef711b29",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/community-virtual-hub-homepage-2880.webp?v=ac2652e184f1",
+    "checkedAt": "2026-11-02"
   },
   "the-hub-homa-bay": {
     "sourceUrl": "https://thehub-homabay.co.ke/",
@@ -118,30 +143,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of The Hub Homa Bay, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:18.099Z",
+    "capturedAt": "2026-11-02T19:58:43.819Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/the-hub-homa-bay.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/the-hub-homa-bay.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "b1443c8ad258",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "640f060c430b",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/the-hub-homa-bay-homepage-640.webp?v=b1443c8ad258"
+        "src": "/images/websites/the-hub-homa-bay-homepage-640.webp?v=640f060c430b"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/the-hub-homa-bay-homepage-1000.webp?v=b1443c8ad258"
+        "width": 1120,
+        "src": "/images/websites/the-hub-homa-bay-homepage-1120.webp?v=640f060c430b"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/the-hub-homa-bay-homepage-1200.webp?v=b1443c8ad258"
+        "width": 1600,
+        "src": "/images/websites/the-hub-homa-bay-homepage-1600.webp?v=640f060c430b"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/the-hub-homa-bay-homepage-2240.webp?v=640f060c430b"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/the-hub-homa-bay-homepage-2880.webp?v=640f060c430b"
       }
     ],
-    "src": "/images/websites/the-hub-homa-bay-homepage-1200.webp?v=b1443c8ad258",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/the-hub-homa-bay-homepage-2880.webp?v=640f060c430b",
+    "checkedAt": "2026-11-02"
   },
   "mustard-christian-centre": {
     "sourceUrl": "https://www.mcc-kenya.org/",
@@ -154,30 +190,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of Mustard Christian Centre, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:19.227Z",
+    "capturedAt": "2026-11-02T19:58:46.838Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/mustard-christian-centre.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/mustard-christian-centre.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "82584bb89ed7",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "ae879ecd2370",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/mustard-christian-centre-homepage-640.webp?v=82584bb89ed7"
+        "src": "/images/websites/mustard-christian-centre-homepage-640.webp?v=ae879ecd2370"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/mustard-christian-centre-homepage-1000.webp?v=82584bb89ed7"
+        "width": 1120,
+        "src": "/images/websites/mustard-christian-centre-homepage-1120.webp?v=ae879ecd2370"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/mustard-christian-centre-homepage-1200.webp?v=82584bb89ed7"
+        "width": 1600,
+        "src": "/images/websites/mustard-christian-centre-homepage-1600.webp?v=ae879ecd2370"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/mustard-christian-centre-homepage-2240.webp?v=ae879ecd2370"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/mustard-christian-centre-homepage-2880.webp?v=ae879ecd2370"
       }
     ],
-    "src": "/images/websites/mustard-christian-centre-homepage-1200.webp?v=82584bb89ed7",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/mustard-christian-centre-homepage-2880.webp?v=ae879ecd2370",
+    "checkedAt": "2026-11-02"
   },
   "tns-solutions": {
     "sourceUrl": "https://thetnssols.com/",
@@ -190,30 +237,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of T&S Solutions, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:20.397Z",
+    "capturedAt": "2026-11-02T19:58:49.853Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/tns-solutions.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/tns-solutions.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "3ab22999ebae",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "c4b1e86dc4f2",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/tns-solutions-homepage-640.webp?v=3ab22999ebae"
+        "src": "/images/websites/tns-solutions-homepage-640.webp?v=c4b1e86dc4f2"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/tns-solutions-homepage-1000.webp?v=3ab22999ebae"
+        "width": 1120,
+        "src": "/images/websites/tns-solutions-homepage-1120.webp?v=c4b1e86dc4f2"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/tns-solutions-homepage-1200.webp?v=3ab22999ebae"
+        "width": 1600,
+        "src": "/images/websites/tns-solutions-homepage-1600.webp?v=c4b1e86dc4f2"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/tns-solutions-homepage-2240.webp?v=c4b1e86dc4f2"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/tns-solutions-homepage-2880.webp?v=c4b1e86dc4f2"
       }
     ],
-    "src": "/images/websites/tns-solutions-homepage-1200.webp?v=3ab22999ebae",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/tns-solutions-homepage-2880.webp?v=c4b1e86dc4f2",
+    "checkedAt": "2026-11-02"
   },
   "kwale-scd-integration": {
     "sourceUrl": "https://kwalescdintergration.vercel.app/",
@@ -226,30 +284,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of Kwale SCD Screening Study, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:20.568Z",
+    "capturedAt": "2026-11-02T19:58:53.203Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/kwale-scd-integration.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/kwale-scd-integration.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "a4b0dc730369",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "c121fb585eaa",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/kwale-scd-integration-homepage-640.webp?v=a4b0dc730369"
+        "src": "/images/websites/kwale-scd-integration-homepage-640.webp?v=c121fb585eaa"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/kwale-scd-integration-homepage-1000.webp?v=a4b0dc730369"
+        "width": 1120,
+        "src": "/images/websites/kwale-scd-integration-homepage-1120.webp?v=c121fb585eaa"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/kwale-scd-integration-homepage-1200.webp?v=a4b0dc730369"
+        "width": 1600,
+        "src": "/images/websites/kwale-scd-integration-homepage-1600.webp?v=c121fb585eaa"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/kwale-scd-integration-homepage-2240.webp?v=c121fb585eaa"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/kwale-scd-integration-homepage-2880.webp?v=c121fb585eaa"
       }
     ],
-    "src": "/images/websites/kwale-scd-integration-homepage-1200.webp?v=a4b0dc730369",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/kwale-scd-integration-homepage-2880.webp?v=c121fb585eaa",
+    "checkedAt": "2026-11-02"
   },
   "tom-and-sherrie-foundation": {
     "sourceUrl": "https://tomandsherriefoundation.org/",
@@ -262,30 +331,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of Tom and Sherrie Foundation, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:22.167Z",
+    "capturedAt": "2026-11-02T19:58:56.999Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/tom-and-sherrie-foundation.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/tom-and-sherrie-foundation.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "803e6591712b",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "98701c574f6b",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/tom-and-sherrie-foundation-homepage-640.webp?v=803e6591712b"
+        "src": "/images/websites/tom-and-sherrie-foundation-homepage-640.webp?v=98701c574f6b"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/tom-and-sherrie-foundation-homepage-1000.webp?v=803e6591712b"
+        "width": 1120,
+        "src": "/images/websites/tom-and-sherrie-foundation-homepage-1120.webp?v=98701c574f6b"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/tom-and-sherrie-foundation-homepage-1200.webp?v=803e6591712b"
+        "width": 1600,
+        "src": "/images/websites/tom-and-sherrie-foundation-homepage-1600.webp?v=98701c574f6b"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/tom-and-sherrie-foundation-homepage-2240.webp?v=98701c574f6b"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/tom-and-sherrie-foundation-homepage-2880.webp?v=98701c574f6b"
       }
     ],
-    "src": "/images/websites/tom-and-sherrie-foundation-homepage-1200.webp?v=803e6591712b",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/tom-and-sherrie-foundation-homepage-2880.webp?v=98701c574f6b",
+    "checkedAt": "2026-11-02"
   },
   "baruchsoft": {
     "sourceUrl": "https://www.baruchsoft.co.ke/",
@@ -298,30 +378,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of BaruchSoft Technologies, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:22.334Z",
+    "capturedAt": "2026-11-02T19:59:00.096Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/baruchsoft.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/baruchsoft.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "2581d15955e9",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "be399e0c53a8",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/baruchsoft-homepage-640.webp?v=2581d15955e9"
+        "src": "/images/websites/baruchsoft-homepage-640.webp?v=be399e0c53a8"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/baruchsoft-homepage-1000.webp?v=2581d15955e9"
+        "width": 1120,
+        "src": "/images/websites/baruchsoft-homepage-1120.webp?v=be399e0c53a8"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/baruchsoft-homepage-1200.webp?v=2581d15955e9"
+        "width": 1600,
+        "src": "/images/websites/baruchsoft-homepage-1600.webp?v=be399e0c53a8"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/baruchsoft-homepage-2240.webp?v=be399e0c53a8"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/baruchsoft-homepage-2880.webp?v=be399e0c53a8"
       }
     ],
-    "src": "/images/websites/baruchsoft-homepage-1200.webp?v=2581d15955e9",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/baruchsoft-homepage-2880.webp?v=be399e0c53a8",
+    "checkedAt": "2026-11-02"
   },
   "havencrest-agency": {
     "sourceUrl": "https://kenshaq.baruchsoft.co.ke/",
@@ -334,30 +425,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of Havencrest Agency Limited, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:23.358Z",
+    "capturedAt": "2026-11-02T19:59:02.765Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/havencrest-agency.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/havencrest-agency.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "c79797eb7981",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "c761882bf925",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/havencrest-agency-homepage-640.webp?v=c79797eb7981"
+        "src": "/images/websites/havencrest-agency-homepage-640.webp?v=c761882bf925"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/havencrest-agency-homepage-1000.webp?v=c79797eb7981"
+        "width": 1120,
+        "src": "/images/websites/havencrest-agency-homepage-1120.webp?v=c761882bf925"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/havencrest-agency-homepage-1200.webp?v=c79797eb7981"
+        "width": 1600,
+        "src": "/images/websites/havencrest-agency-homepage-1600.webp?v=c761882bf925"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/havencrest-agency-homepage-2240.webp?v=c761882bf925"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/havencrest-agency-homepage-2880.webp?v=c761882bf925"
       }
     ],
-    "src": "/images/websites/havencrest-agency-homepage-1200.webp?v=c79797eb7981",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/havencrest-agency-homepage-2880.webp?v=c761882bf925",
+    "checkedAt": "2026-11-02"
   },
   "bespoke-city-exclusive": {
     "sourceUrl": "https://bespoke-city-exclusive.vercel.app/",
@@ -370,30 +472,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of Bespoke City Exclusive, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:23.511Z",
+    "capturedAt": "2026-11-02T19:59:06.361Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/bespoke-city-exclusive.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/bespoke-city-exclusive.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "6932f5974329",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "6b12ccc493d0",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/bespoke-city-exclusive-homepage-640.webp?v=6932f5974329"
+        "src": "/images/websites/bespoke-city-exclusive-homepage-640.webp?v=6b12ccc493d0"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/bespoke-city-exclusive-homepage-1000.webp?v=6932f5974329"
+        "width": 1120,
+        "src": "/images/websites/bespoke-city-exclusive-homepage-1120.webp?v=6b12ccc493d0"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/bespoke-city-exclusive-homepage-1200.webp?v=6932f5974329"
+        "width": 1600,
+        "src": "/images/websites/bespoke-city-exclusive-homepage-1600.webp?v=6b12ccc493d0"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/bespoke-city-exclusive-homepage-2240.webp?v=6b12ccc493d0"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/bespoke-city-exclusive-homepage-2880.webp?v=6b12ccc493d0"
       }
     ],
-    "src": "/images/websites/bespoke-city-exclusive-homepage-1200.webp?v=6932f5974329",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/bespoke-city-exclusive-homepage-2880.webp?v=6b12ccc493d0",
+    "checkedAt": "2026-11-02"
   },
   "uhai-africa": {
     "sourceUrl": "https://uhai.africa/",
@@ -406,30 +519,41 @@
     "fit": "contain",
     "alt": "Homepage screenshot of Uhai Africa, showing its navigation and opening content.",
     "archived": false,
-    "capturedAt": "2026-10-30T08:18:24.448Z",
+    "capturedAt": "2026-11-02T19:59:13.171Z",
     "captureProvider": "Automattic mShots",
-    "captureSource": "img/websites/homepages/uhai-africa.png",
+    "captureSource": "img/websites/homepages/retina-2026-11-02/uhai-africa.png",
     "captureReviewed": true,
-    "reviewedAt": "2026-11-01",
-    "width": 1200,
-    "height": 900,
-    "revision": "c765a396d88f",
+    "reviewedAt": "2026-11-02",
+    "width": 2880,
+    "height": 2160,
+    "captureViewportWidth": 1440,
+    "captureViewportHeight": 1080,
+    "captureScale": 2,
+    "revision": "2d80d1603f35",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/uhai-africa-homepage-640.webp?v=c765a396d88f"
+        "src": "/images/websites/uhai-africa-homepage-640.webp?v=2d80d1603f35"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/uhai-africa-homepage-1000.webp?v=c765a396d88f"
+        "width": 1120,
+        "src": "/images/websites/uhai-africa-homepage-1120.webp?v=2d80d1603f35"
       },
       {
-        "width": 1200,
-        "src": "/images/websites/uhai-africa-homepage-1200.webp?v=c765a396d88f"
+        "width": 1600,
+        "src": "/images/websites/uhai-africa-homepage-1600.webp?v=2d80d1603f35"
+      },
+      {
+        "width": 2240,
+        "src": "/images/websites/uhai-africa-homepage-2240.webp?v=2d80d1603f35"
+      },
+      {
+        "width": 2880,
+        "src": "/images/websites/uhai-africa-homepage-2880.webp?v=2d80d1603f35"
       }
     ],
-    "src": "/images/websites/uhai-africa-homepage-1200.webp?v=c765a396d88f",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/uhai-africa-homepage-2880.webp?v=2d80d1603f35",
+    "checkedAt": "2026-11-02"
   },
   "jooust-student-apprentice-hub": {
     "sourceUrl": "https://jooustsah.co.ke/",
@@ -449,23 +573,30 @@
     "reviewedAt": "2026-11-01",
     "width": 1752,
     "height": 820,
-    "revision": "b467bbbcc7bc",
+    "captureViewportWidth": null,
+    "captureViewportHeight": null,
+    "captureScale": 1,
+    "revision": "eef0982f9a50",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/jooust-student-apprentice-hub-homepage-640.webp?v=b467bbbcc7bc"
+        "src": "/images/websites/jooust-student-apprentice-hub-homepage-640.webp?v=eef0982f9a50"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/jooust-student-apprentice-hub-homepage-1000.webp?v=b467bbbcc7bc"
+        "width": 1120,
+        "src": "/images/websites/jooust-student-apprentice-hub-homepage-1120.webp?v=eef0982f9a50"
       },
       {
         "width": 1600,
-        "src": "/images/websites/jooust-student-apprentice-hub-homepage-1600.webp?v=b467bbbcc7bc"
+        "src": "/images/websites/jooust-student-apprentice-hub-homepage-1600.webp?v=eef0982f9a50"
+      },
+      {
+        "width": 1752,
+        "src": "/images/websites/jooust-student-apprentice-hub-homepage-1752.webp?v=eef0982f9a50"
       }
     ],
-    "src": "/images/websites/jooust-student-apprentice-hub-homepage-1600.webp?v=b467bbbcc7bc",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/jooust-student-apprentice-hub-homepage-1752.webp?v=eef0982f9a50",
+    "checkedAt": "2026-11-01"
   },
   "student-safety-summit": {
     "sourceUrl": "https://studentsafetysummit.africa/",
@@ -485,22 +616,25 @@
     "reviewedAt": "2026-11-01",
     "width": 1554,
     "height": 812,
-    "revision": "86ef3a0609b6",
+    "captureViewportWidth": null,
+    "captureViewportHeight": null,
+    "captureScale": 1,
+    "revision": "84057cd850e0",
     "sources": [
       {
         "width": 640,
-        "src": "/images/websites/student-safety-summit-homepage-640.webp?v=86ef3a0609b6"
+        "src": "/images/websites/student-safety-summit-homepage-640.webp?v=84057cd850e0"
       },
       {
-        "width": 1000,
-        "src": "/images/websites/student-safety-summit-homepage-1000.webp?v=86ef3a0609b6"
+        "width": 1120,
+        "src": "/images/websites/student-safety-summit-homepage-1120.webp?v=84057cd850e0"
       },
       {
         "width": 1554,
-        "src": "/images/websites/student-safety-summit-homepage-1554.webp?v=86ef3a0609b6"
+        "src": "/images/websites/student-safety-summit-homepage-1554.webp?v=84057cd850e0"
       }
     ],
-    "src": "/images/websites/student-safety-summit-homepage-1554.webp?v=86ef3a0609b6",
-    "checkedAt": "2026-10-30"
+    "src": "/images/websites/student-safety-summit-homepage-1554.webp?v=84057cd850e0",
+    "checkedAt": "2026-11-01"
   }
 }

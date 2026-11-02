@@ -1,0 +1,14 @@
+{
+  "input": "img/websites/homepages/retina-2026-11-02/innoecofood.png",
+  "sourceUrl": "https://innoecofood.eu/",
+  "provider": "Automattic mShots",
+  "providerDocumentation": "https://github.com/Automattic/mShots",
+  "capturedAt": "2026-11-02T19:58:37.004Z",
+  "width": 2880,
+  "height": 2160,
+  "viewportWidth": 1440,
+  "viewportHeight": 1080,
+  "deviceScaleFactor": 2,
+  "reviewed": false,
+  "reviewNote": "Rejected: a promotional popup and cookie banner obscure the homepage. Retain the previously reviewed clean capture."
+}

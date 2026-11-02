@@ -1,0 +1,125 @@
+---
+import Arrow from './Arrow.astro';
+import BrandMark from './BrandMark.astro';
+import { experiences } from '../data/portfolio';
+import { experienceLogoIds } from '../data/brand-logos';
+
+const details: Record<string, { label: string; role: string[]; note: string; focus: string[] }> = {
+  'Baruchsoft Technologies': {
+    label: 'Baruchsoft',
+    role: ['Frontend software engineer', '& digital marketer.'],
+    note: 'I contribute frontend interfaces and UI/UX for business systems and websites, alongside digital marketing work.',
+    focus: ['Business systems', 'Public-facing websites', 'Frontend & UI/UX'],
+  },
+  'Socialmeds Digital Marketing Agency': {
+    label: 'Socialmeds Digital',
+    role: ['Digital', 'creative.'],
+    note: 'Digital creative work within an agency, connecting campaign ideas with visual communication.',
+    focus: ['Campaign ideation', 'Visual communication', 'Brand content'],
+  },
+  'Ogre Digital': {
+    label: 'Ogre Digital',
+    role: ['Digital', 'marketer.'],
+    note: 'Digital marketing work spanning brand content and visual communication.',
+    focus: ['Digital marketing', 'Brand communication', 'Creative content'],
+  },
+  'Freelancer.com': {
+    label: 'Independent practice',
+    role: ['Freelance frontend', '& creative work.'],
+    note: 'Independent frontend, website and creative projects through Freelancer.com.',
+    focus: ['Website development', 'Frontend interfaces', 'Creative projects'],
+  },
+};
+---
+<section class="experience-section frame" aria-labelledby="experience-title" data-experience-dossier>
+  <header class="experience-heading" id="experience"><div><p>Experience</p><h2 id="experience-title">Where I’ve<br />contributed.</h2></div><p>Across software teams, creative agencies and independent projects.</p></header>
+  <div class="experience-surface">
+    <div class="experience-tabs" data-experience-tabs aria-label="Choose an organisation" hidden>
+      {experiences.map(experience => {
+        const id = experienceLogoIds[experience.company];
+        return <button type="button" class={'experience-tab experience-tab--' + id} id={'experience-tab-' + id} data-experience-tab={id} aria-controls={'experience-panel-' + id} aria-label={experience.company === 'Freelancer.com' ? 'Independent practice through Freelancer.com' : experience.company}><span class="experience-tab-mark"><BrandMark id={id} decorative /></span><span class="experience-tab-name">{details[experience.company].label}<span aria-hidden="true">↓</span></span></button>;
+      })}
+    </div>
+    <div class="experience-stage">
+      {experiences.map(experience => {
+        const id = experienceLogoIds[experience.company];
+        const detail = details[experience.company];
+        return <article class="experience-panel" id={'experience-panel-' + id} data-experience-panel={id} aria-labelledby={'experience-role-' + id}>
+          <div class="experience-role"><div class="experience-fallback-mark"><BrandMark id={id} decorative /></div><p class="experience-organisation">{experience.company === 'Freelancer.com' ? 'Independent practice through Freelancer.com' : experience.company}</p><h3 id={'experience-role-' + id}>{detail.role.map(line => <span>{line + ' '}</span>)}</h3></div>
+          <div class="experience-contribution"><h4>My contribution</h4><p>{detail.note}</p><ul aria-label="Areas of work">{detail.focus.map(focus => <li>{focus}</li>)}</ul></div>
+        </article>;
+      })}
+    </div>
+    <div class="experience-footer"><p>More about my professional background</p><a href="/cv/">Read the CVs <Arrow /></a></div>
+  </div>
+</section>
+<script>import { initExperienceDossier } from '../scripts/experience-dossier'; initExperienceDossier();</script>
+<style>
+  .experience-section { background:#eef2ed;color:#26362b;padding-block:clamp(75px,7.5vw,115px);--focus:#335343; }
+  .experience-heading { display:flex;align-items:end;justify-content:space-between;gap:60px;margin-bottom:45px;scroll-margin-top:20px; }
+  .experience-heading > div > p { font-size:11px;color:#626e64;margin-bottom:24px; }
+  .experience-heading h2 { font-size:clamp(45px,5.1vw,78px);font-weight:420;line-height:1.04;letter-spacing:-.06em; }
+  .experience-heading > p { max-width:275px;font-size:13px;line-height:1.85;color:#626e64;padding-bottom:5px; }
+  .experience-surface { background:#fcfdfa;border-radius:24px;box-shadow:0 18px 50px #24362a06;overflow:clip; }
+  .experience-tabs { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-inline:48px;border-bottom:1px solid #dbe2d8; }
+  .experience-tab { min-width:0;display:flex;flex-direction:column;align-items:start;gap:18px;padding:28px 24px 23px;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;background:transparent;color:#52624f;text-align:start;cursor:pointer;transition:background 180ms ease,color 180ms ease,border-color 180ms ease; }
+  .experience-tab[aria-selected='true'] { color:#263b2a;border-bottom-color:#365a3c;background:#f0f4ec; }
+  .experience-tab:focus-visible { outline:2px solid #335343;outline-offset:-5px; }
+  .experience-tab-mark { display:flex;align-items:center;width:100%;height:64px; }
+  .experience-tab-mark :global(.brand-mark) { width:172px;max-width:100%;height:auto;max-height:64px;object-fit:contain;object-position:left center; }
+  .experience-tab--ogre .experience-tab-mark :global(.brand-mark) { width:142px; }
+  .experience-tab--freelancer .experience-tab-mark :global(.brand-mark) { width:164px; }
+  .experience-tab-name { display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:36px;font-size:12px;font-weight:550;line-height:1.5; }
+  .experience-tab-name > span { font-size:19px;line-height:1;opacity:.45; }
+  .experience-tab[aria-selected='true'] .experience-tab-name > span { opacity:1; }
+  .experience-panel { display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.85fr);gap:8%;align-items:center;min-height:405px;padding:52px 64px; }
+  .experience-panel:focus-visible { outline:2px solid #335343;outline-offset:-8px; }
+  .experience-panel + .experience-panel { border-top:1px solid #dbe2d8; }
+  .experience-role { min-width:0; }
+  .experience-organisation { font-size:12px;color:#61715f;line-height:1.7;margin-bottom:25px; }
+  .experience-role h3 { font-size:clamp(36px,3.65vw,58px);font-weight:420;line-height:1.12;letter-spacing:-.05em; }
+  .experience-role h3 > span { display:block; }
+  .experience-contribution { max-width:345px;min-width:0; }
+  .experience-contribution h4 { font-family:var(--body);font-size:12px;font-weight:650;line-height:1.6;letter-spacing:0;margin-bottom:15px; }
+  .experience-contribution > p { font-size:14px;color:#61715f;line-height:1.85; }
+  .experience-contribution ul { display:grid;gap:9px;margin-top:23px;font-size:11px;color:#53664f; }
+  .experience-contribution li { display:flex;align-items:baseline;gap:12px; }
+  .experience-contribution li::before { content:'';flex:0 0 auto;width:4px;height:4px;border-radius:50%;background:#78906e;transform:translateY(-2px); }
+  .experience-fallback-mark { display:flex;align-items:center;height:72px;margin-bottom:25px; }
+  .experience-fallback-mark :global(.brand-mark) { max-width:190px;max-height:72px;width:auto;height:auto; }
+  .experience-footer { display:flex;align-items:center;justify-content:space-between;gap:30px;border-top:1px solid #dbe2d8;margin-inline:64px;padding-block:18px; }
+  .experience-footer > p { font-size:11px;color:#61715f; }
+  .experience-footer > a { display:inline-flex;align-items:center;gap:28px;min-height:44px;font-size:12px;font-weight:600; }
+  .experience-footer :global(.arrow-icon) { width:16px;height:16px; }
+  [data-dossier-enhanced] .experience-fallback-mark { display:none; }
+  [data-dossier-enhanced] .experience-panel { border-top:0; }
+  @media (hover:hover) and (pointer:fine) { .experience-tab:hover { background:#f2f6ef;color:#263b2a; }.experience-footer > a:hover { text-decoration:underline;text-underline-offset:5px; } }
+  @media (max-width:1100px) { .experience-tabs { margin-inline:25px; }.experience-tab { padding-inline:18px; }.experience-panel { padding-inline:42px;gap:7%; }.experience-footer { margin-inline:42px; }.experience-tab-name { font-size:11px; } }
+  @media (max-width:900px) { .experience-panel { grid-template-columns:minmax(0,1fr);gap:32px;min-height:515px;padding-block:40px; }.experience-contribution { max-width:560px; }.experience-contribution ul { grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:22px; }.experience-role h3 { font-size:45px; }.experience-organisation { margin-bottom:20px; } }
+  @media (max-width:760px) {
+    .experience-section { padding-block:65px; }
+    .experience-heading { align-items:start;flex-direction:column;gap:25px;margin-bottom:32px; }
+    .experience-heading h2 { font-size:clamp(42px,9.5vw,62px); }
+    .experience-heading > p { max-width:320px;font-size:12px; }
+    .experience-heading > div > p { margin-bottom:23px; }
+    .experience-surface { border-radius:18px; }
+    .experience-tabs { grid-template-columns:repeat(2,minmax(0,1fr));margin-inline:20px;padding-top:10px; }
+    .experience-tab { gap:10px;padding:19px 15px 14px; }
+    .experience-tab-mark { height:49px; }
+    .experience-tab-mark :global(.brand-mark) { max-height:49px; }
+    .experience-tab--ogre .experience-tab-mark :global(.brand-mark) { width:122px; }
+    .experience-tab-name { font-size:11px;gap:6px;min-height:30px; }
+    .experience-tab-name > span { font-size:16px; }
+    .experience-panel { min-height:550px;padding:32px 28px;gap:29px;align-content:start; }
+    .experience-role h3 { font-size:clamp(33px,6.8vw,43px); }
+    .experience-organisation { font-size:10px;line-height:1.7;margin-bottom:20px; }
+    .experience-contribution h4 { font-size:11px;margin-bottom:12px; }
+    .experience-contribution > p { font-size:12px;line-height:1.85; }
+    .experience-contribution ul { grid-template-columns:1fr;gap:8px;margin-top:18px;font-size:10px; }
+    .experience-footer { margin-inline:28px;padding-block:17px;gap:20px; }
+    .experience-footer > p { max-width:145px;font-size:10px;line-height:1.7; }
+    .experience-footer > a { font-size:10px;gap:16px;white-space:nowrap; }
+  }
+  @media (max-width:360px) { .experience-heading h2 { font-size:40px; }.experience-tabs { margin-inline:12px; }.experience-tab { padding-inline:10px; }.experience-tab-name { font-size:10px; }.experience-panel { padding-inline:24px;min-height:575px; }.experience-role h3 { font-size:31px; }.experience-footer { margin-inline:24px;flex-direction:column;align-items:start;gap:3px; }.experience-footer > p { max-width:none; } }
+  @media (prefers-reduced-motion:reduce) { .experience-tab { transition:none; } }
+</style>

@@ -1,0 +1,62 @@
+---
+import Arrow from './Arrow.astro';
+import { softwareResume } from '../data/resumes';
+import { profile } from '../data/portfolio';
+---
+<section class="software-closing frame" id="next-step" aria-labelledby="software-closing-title" tabindex="-1">
+  <a class="software-closing-invitation" href="/contact/?topic=software#direct-contact">
+    <h2 id="software-closing-title">Let’s build<span>what comes next.</span></h2>
+    <span class="software-closing-contact"><span class="software-closing-circle" aria-hidden="true"><Arrow /></span><span>Start a conversation</span></span>
+  </a>
+  <div class="software-closing-details">
+    <div class="software-closing-note"><p>A new software project, a frontend role, or a question about the work. I’d be glad to hear what you have in mind.</p><a href={`mailto:${profile.email}`}>{profile.email} <Arrow /></a></div>
+    <div class="software-closing-cv">
+      <a class="software-closing-preview" href={softwareResume.pdf} aria-label="View software engineering CV, PDF"><img src={softwareResume.preview} srcset={softwareResume.previewSmall + ' 400w, ' + softwareResume.preview + ' 800w'} sizes="96px" width={softwareResume.previewWidth} height={softwareResume.previewHeight} alt="" loading="lazy" decoding="async" /></a>
+      <div class="software-closing-cv-copy"><h3>Software CV</h3><p>Frontend engineering &amp; UI/UX</p><div class="software-closing-downloads"><a href={softwareResume.pdf} download={softwareResume.pdfFilename} aria-label="Download software engineering CV, PDF">Download PDF</a><a href={softwareResume.word} download={softwareResume.wordFilename} aria-label="Download software engineering CV, editable Word document">Word <Arrow /></a></div></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .software-closing { --focus:#bfd2ff; background:#101820; color:#edf1f2; padding-top:clamp(85px,10vw,160px); padding-bottom:clamp(55px,7vw,105px); scroll-margin-top:0; }
+  .software-closing-invitation { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:clamp(35px,5vw,80px); }
+  .software-closing-invitation h2 { font:400 clamp(66px,8.5vw,132px)/1.02 var(--display); letter-spacing:-.06em; text-wrap:initial; }
+  .software-closing-invitation h2 > span { display:block; margin-left:clamp(35px,6vw,100px); white-space:nowrap; }
+  .software-closing-contact { display:flex; flex-direction:column; align-items:center; gap:20px; min-width:0; font-size:11px; white-space:nowrap; }
+  .software-closing-circle { display:grid; place-items:center; width:clamp(108px,12vw,172px); aspect-ratio:1; border:1px solid #b6c5cc; border-radius:50%; }
+  .software-closing-circle :global(.arrow-icon) { width:clamp(35px,3.7vw,53px); height:clamp(35px,3.7vw,53px); transition:transform 180ms var(--ease-out); }
+  .software-closing-details { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10%; align-items:center; margin-top:clamp(65px,7vw,110px); }
+  .software-closing-note { max-width:365px; }
+  .software-closing-note > p { color:#b8c7cf; font-size:15px; line-height:1.75; }
+  .software-closing-note > a { display:inline-flex; align-items:center; gap:22px; min-height:44px; margin-top:20px; color:#b8c7cf; font-size:11px; }
+  .software-closing-note :global(.arrow-icon) { width:15px; height:15px; }
+  .software-closing-cv { display:flex; align-items:center; justify-self:end; gap:27px; min-width:0; width:min(100%,400px); }
+  .software-closing-preview { display:block; flex:0 0 96px; background:#fff; }
+  .software-closing-preview img { display:block; width:100%; height:auto; }
+  .software-closing-cv-copy { min-width:0; }
+  .software-closing-cv h3 { font:450 23px/1.2 var(--display); letter-spacing:-.035em; }
+  .software-closing-cv-copy > p { margin-top:9px; color:#b8c7cf; font-size:11px; line-height:1.6; }
+  .software-closing-downloads { display:flex; flex-wrap:wrap; align-items:center; gap:0 23px; margin-top:15px; }
+  .software-closing-downloads a { display:inline-flex; align-items:center; gap:14px; min-height:44px; font-size:11px; }
+  .software-closing-downloads :global(.arrow-icon) { width:14px; height:14px; }
+  @media (hover:hover) and (pointer:fine) { .software-closing-invitation:hover .software-closing-circle :global(.arrow-icon) { transform:translate(3px,-3px); }.software-closing-note > a:hover,.software-closing-downloads a:hover { color:#fff; text-decoration:underline; text-underline-offset:5px; } }
+  @media (max-width:1050px) and (min-width:701px) { .software-closing-invitation { gap:28px; }.software-closing-invitation h2 { font-size:8.1vw; }.software-closing-invitation h2 > span { margin-left:4vw; }.software-closing-contact { font-size:10px; }.software-closing-details { gap:7%; }.software-closing-cv { gap:22px; }.software-closing-preview { flex-basis:80px; } }
+  @media (max-width:700px) {
+    .software-closing { padding-top:65px; padding-bottom:55px; }
+    .software-closing-invitation { grid-template-columns:minmax(0,1fr); gap:30px; }
+    .software-closing-invitation h2 { font-size:clamp(35px,10.5vw,68px); line-height:1.08; }
+    .software-closing-invitation h2 > span { margin-left:2.5vw; }
+    .software-closing-contact { justify-self:end; flex-direction:row-reverse; gap:20px; font-size:11px; }
+    .software-closing-circle { width:76px; }
+    .software-closing-circle :global(.arrow-icon) { width:31px; height:31px; }
+    .software-closing-details { grid-template-columns:minmax(0,1fr); gap:45px; margin-top:55px; }
+    .software-closing-note { max-width:410px; }
+    .software-closing-note > p { font-size:14px; }
+    .software-closing-cv { justify-self:start; gap:22px; width:100%; }
+    .software-closing-preview { flex-basis:78px; }
+    .software-closing-cv h3 { font-size:22px; }
+    .software-closing-downloads { gap:0 20px; margin-top:10px; }
+  }
+  @media (prefers-reduced-motion:reduce) { .software-closing-circle :global(.arrow-icon) { transition:none; transform:none !important; } }
+  :global(html[data-motion='paused']) .software-closing-circle :global(.arrow-icon) { transition:none; transform:none !important; }
+</style>

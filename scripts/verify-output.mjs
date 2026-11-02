@@ -107,11 +107,18 @@ const contact = documents.get(resolve(output, 'contact/index.html')) || '';
 const creative = documents.get(resolve(output, 'creative-marketing/index.html')) || '';
 const hub = documents.get(resolve(output, 'software/the-hub-homa-bay/index.html')) || '';
 const software = documents.get(resolve(output, 'software/index.html')) || '';
+const home = documents.get(resolve(output, 'index.html')) || '';
+const cvs = documents.get(resolve(output, 'cv/index.html')) || '';
+const about = documents.get(resolve(output, 'about/index.html')) || '';
 await checkReference('/social-preview.png', resolve(output, 'index.html'));
 requireContent(/<button\b[^>]*data-inquiry-submit[^>]*\bdisabled\b/.test(contact), 'Contact draft submit is not disabled in static HTML.');
 requireContent(contact.includes('mailto:ogallo254@gmail.com'), 'Contact static email route is missing.');
-requireContent((creative.match(/Portfolio placeholder/g) || []).length === 3, 'Creative collection does not have three explicit placeholder labels.');
-requireContent((creative.match(/Original work coming soon/g) || []).length === 3, 'Creative placeholder cards lack explicit coming-soon labels.');
+requireContent(creative.includes('data-creative-forthcoming') && /Original work,?\s+coming soon/i.test(creative.replace(/<[^>]+>/g, ' ')), 'Creative collection must clearly label forthcoming original work.');
+requireContent(home.includes('data-refraction-study') && home.includes('/images/cinematic/refraction-1600.webp'), 'Production homepage is missing its optical portrait experience and static poster.');
+requireContent(![...documents.values()].some(html => /data-kinetic|data-depth-planes|data-scene(?:\s|=|>)/.test(html)), 'Obsolete generic sculpture or kinetic markup remains in production.');
+requireContent(!files.some(path => relative(output, path).split(sep).join('/').startsWith('lab/')), 'Review lab must be excluded from production output.');
+for (const [, html] of documents) requireContent((html.match(/<header\b(?=[^>]*\bclass="[^"]*\bsite-header\b)/g) || []).length === 1, 'A production page has missing or duplicate shared headers.');
+for (const file of ['joshua-ogallo-cv.pdf', 'joshua-ogallo-cv.docx', 'joshua-ogallo-creative-cv.pdf', 'joshua-ogallo-creative-cv.docx']) requireContent(cvs.includes(`/${file}`), `CV collection is missing ${file}.`);
 requireContent(!hub.includes('/images/hub.webp') && !software.includes('/images/hub.webp'), 'The obsolete unverified Hub screenshot is still presented.');
 const systems = projects.filter(project => project.kind === 'system');
 requireContent(systems.length === 9, 'Expected nine supplied software systems.');
@@ -121,7 +128,44 @@ for (const system of systems) {
   requireContent(detail.includes('Project interface mockup') && detail.includes('View full mockup'), `${system.title}: mockup caption or full-size link is missing.`);
 }
 requireContent((software.match(/class="system-mockup"/g) || []).length === systems.length, 'The software gallery does not show all nine system mockups.');
-requireContent(software.includes('In production') && software.includes('evolving toward broader employee management'), 'B-Officio current production scope is missing.');
+const officio = systems.find(project => project.slug === 'b-officio');
+requireContent(officio?.status === 'In production' && /leave management/i.test(officio.overview) && /evolving toward.*employee management/i.test(officio.overview) && software.includes(officio.overview), 'B-Officio current production scope is missing.');
+requireContent(software.includes('data-engineering-page') && !software.includes('data-spatial-kind="software"'), 'Software must use its restrained image-led design, without the rejected 3D display.');
+requireContent(software.includes('data-opening-video') && software.includes('/videos/software-geometric.mp4') && software.includes('/images/software/hero-poster.webp') && !software.includes('data-opening-image'), 'Software hero must use the supplied geometric video and its poster, without the former project image.');
+requireContent(/<details\b[^>]*data-web-directory/.test(software), 'Website collection is missing its native project directory.');
+requireContent(/<details\b[^>]*data-system-directory/.test(software) && software.includes('data-system-previous') && software.includes('data-system-next'), 'Systems collection is missing its native directory or browsing controls.');
+requireContent((software.match(/data-system-select=/g)||[]).length === systems.length && (software.match(/data-system-panel=/g)||[]).length === systems.length, 'Each system must have one directory entry and one presentation.');
+requireContent(software.includes('id="next-step"') && software.includes('site-footer--compact') && !software.includes('class="footer-invitation"'), 'Software must have one dedicated closing invitation and a compact footer.');
+requireContent(software.includes('/contact/?topic=software#direct-contact') && software.includes('Joshua-Ogallo-Software-Engineer-CV.pdf') && software.includes('Joshua-Ogallo-Software-Engineer-CV.docx'), 'Software closing is missing its inquiry or native CV downloads.');
+requireContent(home.includes('class="footer-invitation"'), 'The homepage must retain its full footer invitation.');
+for (const [path, html] of documents) {
+  requireContent(html.includes('class="header-shell"') && html.includes('class="mobile-menu"'), `${relative(output, path)}: the shared responsive header is missing.`);
+  if (relative(output, path).split(sep).join('/') === 'contact/index.html') {
+    requireContent(html.includes('class="direct-signoff frame"'), 'Contact must retain its dedicated signoff rather than a repeated contact invitation.');
+  } else {
+    requireContent(html.includes('class="footer-link-columns"') && html.includes('class="footer-baseline"'), `${relative(output, path)}: the shared footer navigation is missing.`);
+  }
+}
+requireContent((software.match(/<h1\b/g)||[]).length===1, 'Software: expected one semantic page title.');
+for (const [route,kind] of [['creative-marketing','creative'],['contact','contact']]) {
+  const html=documents.get(resolve(output,`${route}/index.html`))||'';
+  requireContent(html.includes(`data-spatial-kind="${kind}"`), `${route}: tailored spatial experience is missing.`);
+  requireContent((html.match(/<h1\b/g)||[]).length===1, `${route}: expected one semantic page title.`);
+}
+requireContent(cvs.includes('data-cv-page') && !cvs.includes('data-spatial-kind') && !cvs.includes('data-spatial-root'), 'CVs must use the clean document layout without the rejected glass scene.');
+requireContent((cvs.match(/<h1\b/g)||[]).length === 1 && (cvs.match(/class="cv-edition"/g)||[]).length === 2, 'CVs must keep one title and two equal editions.');
+for (const fragment of ['cv-documents','edition-software','edition-creative','cv-software','cv-creative','document-software','document-creative']) requireContent(cvs.includes(`id="${fragment}"`), `CVs must keep fragment ${fragment}.`);
+requireContent(cvs.includes('software-1600.webp') && cvs.includes('creative-1600.webp'), 'CVs must retain both complete retina document previews.');
+requireContent(about.includes('data-about-page') && about.includes('data-about-video') && about.includes('/videos/about-hexagon.mp4') && about.includes('/images/about/hero-poster.webp'), 'About must use the supplied hexagon video with a real frame poster.');
+requireContent(!about.includes('data-spatial-kind') && !about.includes('data-spatial-root') && !/<canvas\b/.test(about), 'About must not include the rejected glass scene.');
+requireContent((about.match(/<h1\b/g)||[]).length === 1 && (about.match(/data-experience-panel=/g)||[]).length === 4 && (about.match(/data-experience-tab=/g)||[]).length === 4 && about.includes('data-experience-dossier'), 'About must retain one title and the four factual experience entries.');
+requireContent(!/<article\b[^>]*data-experience-panel=[^>]*\shidden(?:\s|=|>)/.test(about), 'About experience must keep every contribution visible in its static fallback.');
+requireContent(/<div\b[^>]*data-experience-tabs[^>]*\shidden(?:\s|=|>)/.test(about), 'About experience controls must wait for successful enhancement.');
+for (const file of ['joshua-ogallo-cv.pdf','joshua-ogallo-cv.docx','joshua-ogallo-creative-cv.pdf','joshua-ogallo-creative-cv.docx']) requireContent(about.includes('/'+file), `About must keep native CV access: ${file}.`);
+for (const project of projects) {
+  const detail=documents.get(resolve(output,`software/${project.slug}/index.html`))||'';
+  requireContent(detail.includes('data-spatial-kind="project"'), `${project.title}: spatial presentation is missing.`);
+}
 const websites = projects.filter(project => project.kind === 'website');
 const websiteMedia = JSON.parse(await readFile(resolve(root, 'src/data/website-assets.json'), 'utf8'));
 const archivedHomepageSources = new Set([
@@ -151,6 +195,12 @@ for (const website of websites) {
     if (capture?.reviewed === true) {
       requireContent(!media.archived && media.captureSource === capture.input, `${website.title}: the reviewed homepage capture was not selected.`);
       requireContent(media.capturedAt === capture.capturedAt && media.width === capture.width && media.height === capture.height, `${website.title}: capture time or dimensions do not match the reviewed source.`);
+      const largest = media.sources.at(-1);
+      requireContent(largest?.width === media.width && media.src === largest?.src, `${website.title}: the original resolution must remain available.`);
+      if (capture.deviceScaleFactor === 2) {
+        requireContent(media.captureScale === 2 && media.width === capture.viewportWidth * 2 && media.height === capture.viewportHeight * 2, `${website.title}: retina capture metadata is inconsistent.`);
+        requireContent(media.sources.some(item => item.width === 2240) && software.includes(`${website.website}-homepage-2240.webp`), `${website.title}: the large viewer is missing its 2x responsive source.`);
+      }
     } else {
       requireContent(media.archived && archivedHomepageSources.has(media.captureSource), `${website.title}: an unapproved capture must use an explicitly retained archive.`);
       requireContent(media.captureSource !== capture?.input, `${website.title}: an unapproved/error-page capture is being presented.`);
@@ -161,11 +211,12 @@ for (const website of websites) {
     }
   }
 }
+requireContent((software.match(/aria-label="View full homepage capture of /g) || []).length === websites.length, 'Each website must offer its full-resolution homepage capture.');
 requireContent(websiteMedia['jooust-student-apprentice-hub']?.liveStatus === 'unknown', 'JOOUST live availability must retain its separately verified unknown status.');
 requireContent(websiteMedia['student-safety-summit']?.liveStatus === 'unavailable', 'Student Safety Summit live availability must retain its separately verified unavailable status.');
 requireContent(!/<iframe\b[^>]*\ssrc=/.test(software), 'Website previews load third-party pages before a visitor requests them.');
 requireContent(software.includes('https://innoecofood.eu/'), 'INNOECOFOOD does not use its supplied canonical domain.');
 requireContent(![...documents.values()].some(html => /Source Code|href=["']https:\/\/github\.com\/ogallj\//.test(html)), 'Unexpected project source link or Source Code claim found; inspect provenance.');
 
-console.log(JSON.stringify({ htmlDocuments: documents.size, outputFiles: files.length, internalReferencesChecked: checked, homepageScreenshots: Object.values(websiteMedia).filter(media => media.kind === 'screenshot').length, archivedHomepageScreenshots: Object.values(websiteMedia).filter(media => media.archived).length, errors, warnings }, null, 2));
+console.log(JSON.stringify({ htmlDocuments: documents.size, outputFiles: files.length, internalReferencesChecked: checked, homepageScreenshots: Object.values(websiteMedia).filter(media => media.kind === 'screenshot').length, archivedHomepageScreenshots: Object.values(websiteMedia).filter(media => media.archived).length, retinaHomepageScreenshots: Object.values(websiteMedia).filter(media => media.captureScale === 2).length, errors, warnings }, null, 2));
 if (errors.length) process.exitCode = 1;

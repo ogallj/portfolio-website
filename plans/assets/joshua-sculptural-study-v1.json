@@ -1,0 +1,16 @@
+{
+  "title": "Joshua sculptural identity portrait — first study",
+  "created": "2026-11-01",
+  "status": "Rejected by the owner; retained as revision history; do not integrate",
+  "generation": "Built-in image_gen tool; identity-preserving image edit",
+  "identitySource": "public/images/joshua.webp",
+  "styleReference": "plans/references/sculptural-portrait-reference.png",
+  "referenceUse": "Visual-language inspiration only; user-supplied third-party reference, not a production site asset",
+  "prompt": "plans/assets/joshua-sculptural-study-v1.prompt.txt",
+  "output": "plans/assets/joshua-sculptural-study-v1.png",
+  "width": 1122,
+  "height": 1402,
+  "sha256": "a695dd7d5571c72badc2c9f521f412806eec2ba4a2593bf32d02681f14fb6d3a",
+  "renderType": "Single flattened raster CGI-style portrait, not an editable mesh or layered animation",
+  "originalPortraitPreserved": true
+}

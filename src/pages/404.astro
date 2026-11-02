@@ -1,5 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
 import Arrow from '../components/Arrow.astro';
+import SpatialExperience from '../components/SpatialExperience.astro';
 ---
-<Base title="Page not found" noindex><section class="page-heading frame error-page"><p>404 — Page not found</p><h1>A little<br />off course.</h1><p>This page may have moved. There’s plenty to explore from here.</p><a href="/" class="button-primary">Back to home <Arrow /></a><a href="/software/" class="text-link">Explore software work <Arrow diagonal={false} /></a></section></Base>
+<Base title="Page not found" theme="error" noindex>
+  <SpatialExperience kind="missing" title={['Page not', 'found.']} description="404. This page may have moved, or the address may be incomplete. There is still plenty to explore." assets={[]} poster="" actions={[{ href: '/', label: 'Back to home' }, { href: '/software/', label: 'Software' }, { href: '/creative-marketing/', label: 'Creative & marketing' }]} target="#recovery" hold={0} />
+  <section class="lost-recovery-section frame" id="recovery" tabindex="-1" aria-labelledby="lost-recovery-title"><h2 id="lost-recovery-title">Find your next perspective.</h2><nav class="lost-recovery" aria-label="Find your way"><a href="/">Home <Arrow /></a><a href="/software/">Software engineering <Arrow /></a><a href="/creative-marketing/">Creative & marketing <Arrow /></a></nav></section>
+</Base>
+<style>
+  .lost-recovery-section { display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10%;padding-block:clamp(55px,7vw,105px);background:var(--paper);scroll-margin-top:90px; }.lost-recovery-section h2 { font-size:clamp(32px,4vw,60px);font-weight:450;max-width:500px; }.lost-recovery { display:grid;gap:3px; }
+  .lost-recovery a { display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:50px;padding-block:8px;font-size:14px;font-weight:600;border-bottom:1px solid var(--line); }.lost-recovery :global(.arrow-icon) { width:18px;height:18px; }
+  @media (hover:hover) and (pointer:fine) { .lost-recovery a:hover { text-decoration:underline;text-underline-offset:5px; } }
+  @media (max-width:750px) { .lost-recovery-section { grid-template-columns:1fr;gap:35px; }.lost-recovery-section h2 { max-width:400px; } }
+</style>

@@ -1,0 +1,19 @@
+{
+  "title": "Refraction",
+  "created": "2026-11-01",
+  "status": "Selected for development; finished asset and animation not approved",
+  "selectedBy": "Portfolio owner",
+  "selectedAt": "2026-11-01",
+  "selectedDirection": "Portrait through optical glass; portrait to optical edge to real work and two portfolios",
+  "developmentScope": "Isolated local /lab/refraction/ motion proof; no production integration approved by this selection",
+  "motionProofBrief": "plans/005-refraction-motion-proof.md",
+  "generation": "Built-in image_gen; identity-preserving edit",
+  "identitySource": "public/images/joshua.webp",
+  "prompt": "plans/assets/joshua-v2-refraction.prompt.txt",
+  "output": "plans/assets/joshua-v2-refraction.png",
+  "width": 1672,
+  "height": 941,
+  "sha256": "f46cdc39f81be3b8ac3b6c68f715e109fab5b4c0c41ccccf68c2fc2b1bc0aed7",
+  "renderType": "Single raster concept image; not an editable mesh or completed animation",
+  "originalPortraitPreserved": true
+}

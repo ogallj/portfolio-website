@@ -2,83 +2,121 @@
 import Base from '../../layouts/Base.astro';
 import Arrow from '../../components/Arrow.astro';
 import ProjectCover from '../../components/ProjectCover.astro';
+import WebsiteCover from '../../components/WebsiteCover.astro';
+import SpatialExperience from '../../components/SpatialExperience.astro';
 import { projects } from '../../data/portfolio';
 import { systemMockups } from '../../data/system-media';
-import WebsiteCover from '../../components/WebsiteCover.astro';
 import { websiteAssets, websiteMediaLabel } from '../../data/website-media';
-export function getStaticPaths() { return projects.map((project, index) => ({ params: { slug: project.slug }, props: { project, next: projects[(index + 1) % projects.length] } })); }
-const { project, next } = Astro.props;
+export function getStaticPaths() {
+  return projects.map(project => {
+    const collection = projects.filter(item => item.kind === project.kind);
+    const position = collection.findIndex(item => item.slug === project.slug);
+    return { params: { slug: project.slug }, props: { project, previous: collection[(position - 1 + collection.length) % collection.length], next: collection[(position + 1) % collection.length] } };
+  });
+}
+const { project, previous, next } = Astro.props;
 const mockup = project.mockup ? systemMockups[project.mockup] : undefined;
 const website = project.website ? websiteAssets[project.website] : undefined;
+const collectionHref = website ? '/software/?view=website#web-' + project.slug : '/software/?view=system#system-' + project.slug;
+const collectionName = website ? 'Website collection' : 'Systems collection';
+const collectionKind = website ? 'website' : 'system';
+const mediaLabel = mockup ? 'Project interface mockup' : website ? websiteMediaLabel(website.kind, website.archived) : 'Project artwork';
+const fullImage = mockup?.src || website?.src;
+const media = mockup || website;
+const sceneAssets = media ? [{src:media.src,width:media.width,height:media.height,id:'project',label:project.title}] : [];
+function splitTitle(title:string):string[] {
+  const words=title.split(' ');
+  if(words.length<2 || title.length<19)return [title];
+  let at=1;let balance=Infinity;
+  for(let i=1;i<words.length;i++){const difference=Math.abs(words.slice(0,i).join(' ').length-words.slice(i).join(' ').length);if(difference<balance){at=i;balance=difference;}}
+  return [words.slice(0,at).join(' '),words.slice(at).join(' ')];
+}
 ---
-<Base title={project.title} description={`${project.title}: ${project.summary} A ${project.kind === 'website' ? 'website' : 'software project'} in Joshua Ogallo's portfolio.`} theme="project">
-  <section class:list={['project-heading', 'page-heading', 'frame', { 'project-heading--website': !!website }]}><a class="back-link" href={website ? `/software/?view=website#web-${project.slug}` : '/software/'}>← {website ? 'Website collection' : 'All software work'}</a><h1 data-reveal>{project.title}</h1><div class="heading-bottom"><p>{project.category}</p>{project.liveUrl && website?.liveStatus !== 'unavailable' && <a class="text-link" href={project.liveUrl} target="_blank" rel="noreferrer">{project.kind === 'system' ? 'Open project' : 'Visit website'} <Arrow /></a>}{website?.liveStatus === 'unavailable' && <span class="website-unavailable">Live site unavailable</span>}</div></section>
-  {mockup ? <section class="system-presentation frame" aria-labelledby="overview-title">
-    <figure class="system-figure"><ProjectCover project={project} priority sizes="(max-width: 850px) 100vw, 65vw" /><figcaption><span>Project interface mockup</span><a href={mockup.src} target="_blank" rel="noreferrer">View full mockup <Arrow /></a></figcaption></figure>
-    <div class="system-context">
-      <h2 id="overview-title">The project</h2>
-      {project.status && <p class="system-status">{project.status}</p>}
-      <p class="system-overview">{project.overview}</p>
-      <ul class="system-focus">{project.focus.map(item => <li>{item}</li>)}</ul>
-      <a class="text-link" href={`/contact/?topic=software&project=${encodeURIComponent(project.title)}`}>Discuss this project <Arrow diagonal={false} /></a>
+<Base title={project.title} description={project.title + ': ' + project.summary + ' Frontend development and UI/UX in Joshua Ogallo’s portfolio.'} theme="project">
+  <SpatialExperience kind="project" title={splitTitle(project.title)} description={`${project.summary} Frontend development and UI/UX.`} assets={sceneAssets} poster={fullImage} actions={[{href:collectionHref,label:collectionName},{href:'/contact/?topic=software&project='+encodeURIComponent(project.title)+'#direct-contact',label:'Discuss this project'}]} target="project-evidence" hold={.85} caption={project.category} />
+
+  <section class:list={['project-evidence', 'frame', { 'project-evidence--website': !!website }]} id="project-evidence" aria-labelledby="project-contribution-title">
+    <figure class="project-evidence-figure">
+      <div class="project-evidence-media">
+        {website ? <WebsiteCover project={project} priority sizes="(max-width: 850px) calc(100vw - 44px), 65vw" /> : <ProjectCover project={project} priority sizes="(max-width: 850px) calc(100vw - 44px), 65vw" />}
+      </div>
+      <figcaption><span>{mediaLabel}</span>{fullImage && <a href={fullImage} target="_blank" rel="noreferrer">{website ? 'View full capture' : 'View full mockup'} <Arrow /></a>}</figcaption>
+    </figure>
+    <div class="project-contribution" data-enter>
+      <p class="project-contribution-label">My contribution</p>
+      <h2 id="project-contribution-title">Frontend<br /> &amp; UI/UX.</h2>
+      <p class="project-contribution-description">Frontend development and interface design, with attention to how the experience looks and works.</p>
+      {project.status && <p class="project-factual-status"><span></span>{project.status}</p>}
+      {project.liveUrl && website?.liveStatus !== 'unavailable' && <a class="project-discuss-link" href={project.liveUrl} target="_blank" rel="noreferrer">{website ? 'Visit website' : 'Open project'} <Arrow /></a>}
+      {website?.liveStatus === 'unavailable' && <p class="project-live-unavailable">Live site unavailable</p>}
+      <a class="project-discuss-link" href={'/contact/?topic=software&project=' + encodeURIComponent(project.title) + '#direct-contact'}>Discuss this project <Arrow /></a>
     </div>
-  </section> : website ? <section class="website-presentation frame" aria-labelledby="overview-title">
-    <figure class="system-figure website-figure"><div class="website-detail-artboard" style={`background:${website.background}`}><WebsiteCover project={project} priority sizes="(max-width: 850px) 100vw, 65vw" /></div><figcaption><span>{websiteMediaLabel(website.kind, website.archived)}</span><a href={`/software/?view=website#web-${project.slug}`}>Explore the collection <Arrow /></a></figcaption></figure>
-    <div class="system-context"><h2 id="overview-title">The website</h2><p class="system-overview">{project.overview}</p><ul class="system-focus">{project.focus.map(item => <li>{item}</li>)}</ul><a class="text-link" href={`/contact/?topic=software&project=${encodeURIComponent(project.title)}`}>Discuss this project <Arrow diagonal={false} /></a></div>
-  </section> : <>
-    <div class="project-hero-image frame" data-reveal><ProjectCover project={project} priority /></div>
-    <section class="project-story section-space frame" aria-labelledby="overview-title"><div><h2 id="overview-title">The overview</h2><ul class="focus-list">{project.focus.map(item => <li>{item}</li>)}</ul></div><div><p class="project-overview" data-reveal>{project.overview}</p><p>For more about my contribution and the thinking behind this project, let’s talk.</p><a class="text-link" href={`/contact/?topic=software&project=${encodeURIComponent(project.title)}`}>Discuss this project <Arrow diagonal={false} /></a></div></section>
-  </>}
-  <section class="project-continuation section-space frame" aria-labelledby="next-project-title">
-    <a href={`/software/${next.slug}/`}>
-      <div class="continuation-copy"><p>Next project</p><h2 id="next-project-title">{next.title}</h2><span>{next.category}</span></div>
-      {(next.mockup || next.website || next.image) && <div class="continuation-preview"><ProjectCover project={next} sizes="(max-width: 600px) 95px, 200px" /></div>}
+  </section>
+
+  <section class="project-reading frame" aria-labelledby="project-scope-title">
+    <div class="project-reading-heading" data-enter><h2 id="project-scope-title">{website ? 'The website.' : 'The system.'}</h2><span>{project.title}</span></div>
+    <div class="project-reading-copy"><p>{project.overview}</p><ul aria-label="Project scope">{project.focus.map(item => <li>{item}</li>)}</ul></div>
+  </section>
+
+  <nav class="project-sequence frame" aria-label={'More ' + (website ? 'websites' : 'systems')}>
+    <div class="project-sequence-top"><p>Continue the collection</p><a href={collectionHref}>Back to {website ? 'websites' : 'systems'} <Arrow diagonal={false} /></a></div>
+    <a class="project-sequence-next" href={'/software/' + next.slug + '/'}>
+      <div class="project-sequence-copy"><span>{'Next ' + collectionKind}</span><h2>{next.title}</h2><p>{next.category}</p></div>
+      <div class="project-sequence-preview"><ProjectCover project={next} sizes="(max-width: 600px) 100px, 280px" /></div>
       <Arrow />
     </a>
-  </section>
+    <a class="project-sequence-previous" href={'/software/' + previous.slug + '/'}><Arrow diagonal={false} /><span>{'Previous ' + collectionKind + ': ' + previous.title}</span></a>
+  </nav>
 </Base>
 
 <style>
-  .system-presentation,.website-presentation { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); gap: clamp(35px,5vw,80px); align-items: start; padding-bottom: clamp(80px,10vw,150px); }
-  .project-heading--website h1 { font-size: clamp(44px,6.5vw,104px); }
-  .website-detail-artboard { padding: clamp(15px,2.6vw,40px); border-radius: 4px 42px 4px 4px; }
-  .website-unavailable { font-size: 14px; color: var(--muted); }
-  .system-figure { margin: 0; min-width: 0; }
-  .system-figure figcaption { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 25px; padding-top: 20px; font-size: 12px; color: var(--muted); }
-  .system-figure figcaption a { display: inline-flex; gap: 12px; min-height: 44px; align-items: center; color: var(--ink); font-weight: 650; }
-  .system-figure figcaption :global(.arrow-icon) { width: 14px; height: 14px; }
-  .system-context { padding-top: 8px; position: sticky; top: 55px; min-width: 0; }
-  .system-context h2 { font-size: 21px; letter-spacing: -.025em; margin-bottom: 27px; }
-  .system-overview { font-size: clamp(21px,2.25vw,34px); line-height: 1.38; letter-spacing: -.035em; }
-  .system-status { display: inline-flex; align-items: center; gap: 8px; color: #29533f; font-size: 13px; font-weight: 650; margin-bottom: 20px; }
-  .system-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-  .system-focus { display: flex; flex-wrap: wrap; gap: 10px 19px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
-  .system-context .text-link { margin-top: 30px; font-size: 14px; }
-  .project-continuation { background: #dce6f4; }
-  .project-continuation > a { display: flex; align-items: center; gap: clamp(25px,4vw,65px); }
-  .continuation-copy { min-width: 0; flex: 1; }
-  .continuation-copy p { font-size: 14px; margin-bottom: 22px; color: var(--muted); }
-  .continuation-copy h2 { font-size: clamp(36px,5vw,78px); max-width: 750px; }
-  .continuation-copy > span { display: block; font-size: 13px; color: var(--muted); margin-top: 23px; }
-  .continuation-preview { width: clamp(120px,17vw,220px); flex: 0 0 auto; }
-  .project-continuation > a > :global(.arrow-icon) { width: 38px; height: 38px; }
-  @media (max-width: 850px) {
-    .system-presentation,.website-presentation { grid-template-columns: 1fr; gap: 50px; }
-    .system-context { position: static; max-width: 680px; }
-    .system-overview { font-size: 28px; }
-  }
-  @media (max-width: 600px) {
-    .system-presentation,.website-presentation { padding-bottom: 65px; gap: 37px; }
-    .system-figure figcaption { font-size: 11px; padding-top: 12px; gap: 5px 15px; }
-    .system-context h2 { font-size: 19px; margin-bottom: 23px; }
-    .system-overview { font-size: 26px; }
-    .system-focus { margin-top: 25px; }
-    .project-continuation > a { flex-wrap: wrap; gap: 25px; }
-    .continuation-copy { flex: 1 1 calc(100% - 120px); }
-    .continuation-copy h2 { font-size: 34px; }
-    .continuation-copy p { font-size: 12px; margin-bottom: 16px; }
-    .continuation-copy > span { font-size: 11px; margin-top: 18px; }
-    .continuation-preview { width: 95px; }
-    .project-continuation > a > :global(.arrow-icon) { width: 26px; height: 26px; }
-  }
+  .project-opening { padding-top: clamp(135px,11.5vw,180px); padding-bottom: 45px; background: var(--paper); }
+  .project-opening-top { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-bottom: clamp(30px,4vw,60px); color: var(--muted); font-size: 12px; }
+  .project-opening-top a { display: inline-flex; align-items: center; gap: 16px; min-height: 44px; }
+  .project-opening-top :global(.arrow-icon) { width: 17px; height: 17px; transform: rotate(180deg); }
+  .project-opening-top > span { border-bottom: 1px solid var(--line); padding-bottom: 5px; }
+  .project-opening h1 { max-width: 1250px; font-size: clamp(50px,7.7vw,116px); font-weight: 450; line-height: 1.01; letter-spacing: -.065em; overflow-wrap: anywhere; }
+  .project-opening-bottom { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 33px; }
+  .project-opening-bottom > p { color: var(--muted); font-size: 14px; }
+  .project-opening-bottom .text-link { font-size: 13px; gap: 20px; }
+  .project-opening-bottom :global(.arrow-icon) { width: 18px; height: 18px; }
+  .project-evidence { display: grid; grid-template-columns: minmax(0,1.65fr) minmax(0,1fr); gap: clamp(40px,6vw,95px); align-items: start; background: var(--paper); padding-bottom: clamp(70px,8vw,125px); }
+  .project-evidence-figure { margin: 0; min-width: 0; }
+  .project-evidence-media { position: relative; }
+  .project-evidence-media :global(.cover--mockup) { aspect-ratio: 1; }
+  .project-evidence-media::after { content: ''; position: absolute; width: 20%; height: 1px; background: #9caeb7; right: 0; bottom: -1px; transform-origin: right; transform: rotate(-18deg); pointer-events: none; }
+  .project-evidence-figure figcaption { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding-top: 17px; color: var(--muted); font-size: 10px; }
+  .project-evidence-figure figcaption a { display: inline-flex; min-height: 44px; align-items: center; gap: 14px; font-size: 11px; color: var(--ink); }
+  .project-evidence-figure figcaption :global(.arrow-icon) { width: 14px; height: 14px; }
+  .project-contribution { min-width: 0; padding-top: 25px; }
+  .project-contribution-label { color: var(--muted); font-size: 12px; margin-bottom: 25px; }
+  .project-contribution h2 { font-size: clamp(36px,4.4vw,65px); font-weight: 450; letter-spacing: -.06em; }
+  .project-contribution-description { font-size: 14px; line-height: 1.7; color: var(--muted); max-width: 300px; margin-top: 25px; }
+  .project-factual-status { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; color: #315f46; font-size: 12px; font-weight: 650; }
+  .project-factual-status > span { width: 5px; height: 5px; background: currentColor; border-radius: 50%; }
+  .project-discuss-link { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; margin-top: 35px; font-size: 13px; font-weight: 650; max-width: 310px; }
+  .project-discuss-link :global(.arrow-icon) { width: 18px; height: 18px; }
+  .project-reading { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.65fr); gap: 10%; padding-top: clamp(50px,6vw,95px); padding-bottom: clamp(65px,8vw,125px); background: var(--ground); }
+  .project-reading-heading h2 { font-size: clamp(30px,3vw,45px); font-weight: 450; margin-bottom: 23px; }
+  .project-reading-heading > span { font-size: 12px; color: var(--muted); }
+  .project-reading-copy > p { max-width: 800px; font-size: clamp(22px,2.45vw,37px); line-height: 1.4; font-family: var(--display); font-weight: 400; letter-spacing: -.035em; }
+  .project-reading-copy ul { display: flex; flex-wrap: wrap; gap: 12px 28px; border-top: 1px solid var(--line); padding-top: 25px; margin-top: 35px; font-size: 12px; color: var(--muted); }
+  .project-sequence { display: block; padding-top: 40px; padding-bottom: 48px; background: #18262e; color: #f0f3f3; --focus: #b4c7ff; }
+  .project-sequence-top { display: flex; align-items: center; justify-content: space-between; gap: 25px; border-bottom: 1px solid #60717a; padding-bottom: 25px; font-size: 12px; color: #bdcbd0; }
+  .project-sequence-top a { display: inline-flex; gap: 18px; align-items: center; min-height: 44px; }
+  .project-sequence-top :global(.arrow-icon) { width: 17px; height: 17px; }
+  .project-sequence-next { display: grid; grid-template-columns: minmax(0,1fr) minmax(130px,280px) 32px; align-items: center; gap: clamp(25px,5vw,80px); padding-block: 45px; }
+  .project-sequence-copy { min-width: 0; }
+  .project-sequence-copy > span { font-size: 11px; color: #bdcbd0; display: block; margin-bottom: 24px; }
+  .project-sequence-copy h2 { font-size: clamp(36px,5.3vw,80px); line-height: 1.03; font-weight: 450; }
+  .project-sequence-copy p { font-size: 12px; color: #bdcbd0; margin-top: 21px; }
+  .project-sequence-preview { min-width: 0; }
+  .project-sequence-next > :global(.arrow-icon) { width: 30px; height: 30px; }
+  .project-sequence-previous { display: inline-flex; align-items: center; gap: 18px; min-height: 44px; font-size: 12px; color: #bdcbd0; }
+  .project-sequence-previous :global(.arrow-icon) { width: 17px; height: 17px; transform: rotate(180deg); }
+  @media (min-width: 851px) and (min-height: 800px) { .project-contribution { position: sticky; top: 120px; } }
+  @media (hover: hover) and (pointer: fine) { .project-opening-top a:hover,.project-evidence-figure figcaption a:hover,.project-discuss-link:hover,.project-sequence-top a:hover,.project-sequence-previous:hover { text-decoration: underline; text-underline-offset: 6px; } }
+  @media (max-width: 1000px) { .project-evidence { gap: 40px; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); }.project-contribution h2 { font-size: 43px; }.project-sequence-next { grid-template-columns: minmax(0,1fr) 200px 25px; gap: 30px; } }
+  @media (max-width: 850px) { .project-evidence { grid-template-columns: 1fr; gap: 33px; }.project-contribution { padding-top: 0; }.project-contribution h2 br { display: none; }.project-contribution h2 { font-size: 39px; }.project-contribution-label { margin-bottom: 18px; }.project-contribution-description { max-width: 550px; margin-top: 20px; }.project-discuss-link { margin-top: 23px; max-width: 550px; }.project-reading { grid-template-columns: 1fr; gap: 28px; }.project-reading-heading > span { display: none; } }
+  @media (max-width: 600px) { .project-opening { padding-top: 125px; padding-bottom: 30px; }.project-opening-top { font-size: 11px; margin-bottom: 25px; }.project-opening h1 { font-size: clamp(43px,11vw,66px); }.project-opening-bottom { align-items: flex-start; flex-direction: column; gap: 10px; margin-top: 25px; }.project-opening-bottom > p { font-size: 13px; }.project-evidence { padding-bottom: 50px; }.project-evidence-figure figcaption { font-size: 9px; }.project-evidence-figure figcaption a { font-size: 10px; }.project-contribution h2 { font-size: 35px; }.project-reading { padding-top: 45px; padding-bottom: 50px; }.project-reading-copy > p { font-size: 25px; }.project-reading-copy ul { font-size: 11px; gap: 10px 20px; margin-top: 25px; }.project-sequence { padding-top: 25px; padding-bottom: 30px; }.project-sequence-top { align-items: flex-start; flex-direction: column; gap: 10px; padding-bottom: 20px; }.project-sequence-next { grid-template-columns: minmax(0,1fr) 100px; gap: 25px; padding-block: 30px; }.project-sequence-copy h2 { font-size: 33px; }.project-sequence-copy > span { margin-bottom: 15px; }.project-sequence-copy p { font-size: 11px; margin-top: 15px; }.project-sequence-next > :global(.arrow-icon) { display: none; }.project-sequence-previous { font-size: 11px; } }
 </style>

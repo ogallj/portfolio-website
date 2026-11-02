@@ -2,22 +2,98 @@
 import Base from '../../layouts/Base.astro';
 import Arrow from '../../components/Arrow.astro';
 import SoftwareGallery from '../../components/SoftwareGallery.astro';
-import KineticForm from '../../components/KineticForm.astro';
+import SoftwareClosing from '../../components/SoftwareClosing.astro';
 import { softwareResume } from '../../data/resumes';
 ---
-<Base title="Software engineering" theme="software" description="Systems and websites by Joshua Ogallo. Explore commerce, people operations, payments, neonatal monitoring, finance and hospitality software.">
-  <section class="page-heading frame software-heading">
-    <p class="page-context">The software portfolio</p>
-    <h1 data-reveal>Software<br />for people.</h1>
-    <div class="heading-kinetic"><KineticForm /></div>
-    <div class="heading-bottom"><p>Business systems, health software, and websites.<br />Built with people on the other side of the screen.</p><div class="heading-actions"><a class="text-link" href={softwareResume.pdf} download={softwareResume.pdfFilename}>Download software CV <Arrow /></a><a class="text-link" href="/creative-marketing/">Looking for creative work? <Arrow diagonal={false} /></a></div></div>
-  </section>
-  <SoftwareGallery />
+<Base title="Software engineering" theme="software" footerVariant="compact" description="Frontend engineering and UI/UX by Joshua Ogallo. Business systems, thoughtful websites, and the experience behind them.">
+  <div class="engineering-page" data-engineering-page>
+    <section class="engineering-opening" data-engineering-opening aria-labelledby="engineering-title">
+      <div class="engineering-opening-stage">
+        <div class="engineering-backdrop" data-opening-backdrop aria-hidden="true">
+          <img src="/images/software/hero-poster.webp" alt="" width="1600" height="900" fetchpriority="high" loading="eager" decoding="async" />
+          <video data-opening-video muted loop playsinline preload="none" poster="/images/software/hero-poster.webp" tabindex="-1"><source src="/videos/software-geometric.mp4" type="video/mp4" /></video>
+        </div>
+        <div class="engineering-introduction"><p>Software engineering &amp; UI/UX</p><p>Joshua Ogallo<span>Nairobi, Kenya</span></p></div>
+        <h1 id="engineering-title"><span class="engineering-title-line"><span>A mind for logic.</span></span><span class="engineering-title-line"><span>An eye for detail.</span></span></h1>
+        <div class="engineering-opening-footer">
+          <p class="engineering-opening-note">I bring frontend engineering and UI/UX together to make complex systems feel clear, intuitive and considered.</p>
+          <div class="engineering-opening-actions"><a class="engineering-scroll" href="#engineering-practice">Explore the practice <span aria-hidden="true">↓</span></a><a class="engineering-cv" href={softwareResume.pdf} download={softwareResume.pdfFilename}>Download software CV <Arrow /></a></div>
+        </div>
+      </div>
+    </section>
+    <section class="engineering-practice frame" id="engineering-practice" aria-labelledby="practice-title">
+      <p class="engineering-section-label">The practice</p>
+      <div class="engineering-practice-statement"><h2 id="practice-title">Complex workflows.<br />Clear interfaces.</h2><div><p>I’m Joshua, a frontend software engineer working across business systems and public-facing websites. My contribution spans the frontend and UI/UX, from the flow of a screen to the details of an interaction.</p><p>Commerce, people, payments, healthcare and hospitality. Different needs, the same attention to clarity.</p></div></div>
+      <div class="engineering-practice-details"><div><span>Experience</span><p>Baruchsoft Technologies<br />Independent &amp; freelance work</p></div><div><span>Practice</span><p>Frontend development<br />UI/UX design</p></div><div><span>Core frameworks</span><p>Next.js, React &amp; Angular</p></div></div>
+    </section>
+    <SoftwareGallery />
+    <SoftwareClosing />
+  </div>
 </Base>
-
+<script>import { initEngineeringExperience } from '../../scripts/software-experience'; initEngineeringExperience();</script>
 <style>
-  .heading-kinetic { position: absolute; width: clamp(280px,36vw,540px); top: 85px; right: 1%; }
-  .software-heading h1,.software-heading .heading-bottom,.software-heading .page-context { position: relative; z-index: 1; }
-  @media (max-width: 800px) { .heading-kinetic { width: 300px; right: -65px; top: 120px; opacity: .6; } }
-  @media (max-width: 500px) { .heading-kinetic { width: 235px; right: -55px; top: 145px; opacity: .3; } }
+  .engineering-page { --ink:#242824;--muted:#616760;--line:#d2d6ce;--focus:#364c40;background:#f1f2ef;color:var(--ink); }
+  :global(body[data-theme='software']) { background:#f1f2ef; }
+  :global(body[data-theme='software'] .site-header) { --header-ground:#f1f2ef;--header-surface:#f8faf5;--header-ink:#242824;--header-muted:#616760;--focus:#364c40; }
+  :global(body[data-theme='software'] .motion-toggle) { background:#f1f2ef;color:#242824;border-color:#c5cbc1;border-radius:24px; }
+  .engineering-opening { position:relative; }
+  .engineering-opening-stage { position:relative;isolation:isolate;display:grid;grid-template-rows:auto 1fr auto;gap:45px;min-height:760px;height:100svh;padding:135px var(--gutter) 65px;overflow:clip; }
+  .engineering-backdrop { position:absolute;inset:0;z-index:-1;pointer-events:none;background:#f1f2ef; }
+  .engineering-backdrop img,.engineering-backdrop video { position:absolute;inset:0;width:100%;height:100%;object-fit:cover; }
+  .engineering-backdrop video { opacity:0;transition:opacity 600ms var(--ease-out); }
+  .engineering-opening[data-video-ready='true']:not([data-video-failed]) .engineering-backdrop video { opacity:1; }
+  .engineering-backdrop::after { content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 78%,#f1f2ef); }
+  .engineering-introduction { display:flex;justify-content:space-between;gap:30px;font-size:11px;line-height:1.6;color:#50574f; }
+  .engineering-introduction > p:last-child { text-align:right; }
+  .engineering-introduction span { display:block; }
+  .engineering-opening h1 { align-self:center;font-size:clamp(65px,8vw,144px);font-weight:420;letter-spacing:-.06em;line-height:1.12;padding-bottom:.08em; }
+  .engineering-title-line { display:block;overflow:hidden; }
+  .engineering-title-line > span { display:block; }
+  .engineering-title-line:last-child { text-align:right; }
+  .engineering-opening-footer { display:flex;justify-content:space-between;align-items:end;gap:50px; }
+  .engineering-opening-note { max-width:340px;font-size:13px;line-height:1.75;color:#50574f; }
+  .engineering-opening-actions { display:flex;gap:clamp(25px,4vw,65px);align-items:center; }
+  .engineering-scroll { display:inline-flex;align-items:center;gap:25px;min-height:48px;font-size:11px; }
+  .engineering-scroll > span { font-size:20px; }
+  .engineering-cv { display:inline-flex;align-items:center;justify-content:space-between;gap:27px;min-height:52px;padding:13px 22px;border-radius:50px;background:#242824;color:#f7f8f5;font-size:11px;--focus:#242824; }
+  .engineering-cv :global(.arrow-icon) { width:16px;height:16px; }
+  :global(html[data-motion='playing']) .engineering-title-line > span { animation:engineering-type-in 950ms var(--ease-out) both; }
+  :global(html[data-motion='playing']) .engineering-title-line:last-child > span { animation-delay:130ms; }
+  @keyframes engineering-type-in { from { transform:translateY(105%); } to { transform:translateY(0); } }
+  :global(html[data-motion='paused']) .engineering-title-line > span { animation:none;transform:none; }
+  .engineering-practice { padding-top:clamp(95px,11vw,175px);padding-bottom:clamp(95px,11vw,175px);scroll-margin-top:115px; }
+  .engineering-section-label { font-size:12px;color:var(--muted);margin-bottom:50px; }
+  .engineering-practice-statement { display:grid;grid-template-columns:1.5fr 1fr;gap:9%;align-items:start; }
+  .engineering-practice h2 { font-size:clamp(48px,5.4vw,84px);font-weight:420;line-height:1.03; }
+  .engineering-practice-statement > div { padding-top:9px;max-width:440px; }
+  .engineering-practice-statement p { font-size:14px;line-height:1.8;color:var(--muted); }
+  .engineering-practice-statement p + p { margin-top:23px; }
+  .engineering-practice-details { display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-top:90px;padding-top:30px;border-top:1px solid var(--line);font-size:12px; }
+  .engineering-practice-details span { display:block;margin-bottom:17px;color:var(--muted);font-size:10px; }
+  @media(hover:hover) and (pointer:fine) { .engineering-scroll:hover { text-decoration:underline;text-underline-offset:5px; }.engineering-cv:hover { background:#3b443b; } }
+  @media(min-width:701px) and (max-height:740px) { .engineering-opening-stage { min-height:660px;padding-top:120px;padding-bottom:40px; }.engineering-opening h1 { font-size:7.4vw; } }
+  @media(max-width:1000px) and (min-width:701px) { .engineering-opening-footer { gap:35px; }.engineering-opening-actions { align-items:flex-end;flex-direction:column;gap:8px; }.engineering-opening-note { font-size:12px;max-width:300px; } }
+  @media(max-width:700px) {
+    .engineering-opening-stage { height:auto;min-height:100svh;padding:120px var(--gutter) 80px;gap:60px; }
+    .engineering-introduction { font-size:10px;gap:20px; }
+    .engineering-introduction > p:first-child { max-width:150px; }
+    .engineering-opening h1 { font-size:clamp(43px,8.6vw,68px);line-height:1.12; }
+    .engineering-title-line:first-child { max-width:95%; }
+    .engineering-title-line:last-child { max-width:95%;margin-left:auto;margin-top:18px; }
+    .engineering-opening-footer { flex-direction:column;align-items:start;gap:30px; }
+    .engineering-opening-note { font-size:12px;max-width:310px; }
+    .engineering-opening-actions { justify-content:space-between;gap:20px;width:100%; }
+    .engineering-scroll { font-size:10px;gap:12px; }
+    .engineering-cv { font-size:10px;gap:15px;padding:12px 17px;min-height:48px; }
+    .engineering-practice { padding-block:80px; }
+    .engineering-section-label { margin-bottom:30px; }
+    .engineering-practice-statement { grid-template-columns:1fr;gap:30px; }
+    .engineering-practice h2 { font-size:clamp(41px,9vw,63px); }
+    .engineering-practice-statement p { font-size:13px; }
+    .engineering-practice-details { grid-template-columns:1fr 1fr;gap:28px;margin-top:45px;font-size:11px; }
+    .engineering-practice-details > div:first-child { grid-column:1/-1; }
+    .engineering-practice-details span { margin-bottom:10px; }
+  }
+  @media(max-width:360px) { .engineering-opening-stage { gap:45px; }.engineering-opening h1 { font-size:39px; }.engineering-opening-actions { align-items:start;flex-direction:column;gap:14px; }.engineering-scroll { min-height:44px; } }
+  @media(prefers-reduced-motion:reduce) { .engineering-title-line > span { animation:none !important;transform:none; } }
 </style>

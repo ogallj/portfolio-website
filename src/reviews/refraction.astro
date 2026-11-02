@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import RefractionStudy from '../components/RefractionStudy.astro';
+---
+<Base title="Refraction — motion study" theme="refraction-study" noindex footer={false} description="The original cinematic portrait and optical motion study for Joshua Ogallo’s portfolio.">
+  <RefractionStudy />
+  <script>
+    import { initRefractionStudy } from '../scripts/refraction-director';
+    const root = document.querySelector<HTMLElement>('[data-refraction-study]');
+    if (root) initRefractionStudy(root);
+  </script>
+</Base>
+<style>
+  :global(body[data-theme='refraction-study']) { background: #101318; color: #f3f5f6; --focus: #a4bfff; }
+  :global(body[data-theme='refraction-study'] > .site-header) { display: none; }
+</style>
