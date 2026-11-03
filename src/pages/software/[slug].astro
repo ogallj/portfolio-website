@@ -3,7 +3,6 @@ import Base from '../../layouts/Base.astro';
 import Arrow from '../../components/Arrow.astro';
 import ProjectCover from '../../components/ProjectCover.astro';
 import WebsiteCover from '../../components/WebsiteCover.astro';
-import SpatialExperience from '../../components/SpatialExperience.astro';
 import { projects } from '../../data/portfolio';
 import { systemMockups } from '../../data/system-media';
 import { websiteAssets, websiteMediaLabel } from '../../data/website-media';
@@ -11,112 +10,118 @@ export function getStaticPaths() {
   return projects.map(project => {
     const collection = projects.filter(item => item.kind === project.kind);
     const position = collection.findIndex(item => item.slug === project.slug);
-    return { params: { slug: project.slug }, props: { project, previous: collection[(position - 1 + collection.length) % collection.length], next: collection[(position + 1) % collection.length] } };
+    return { params: { slug: project.slug }, props: { project, position, total: collection.length, previous: collection[(position - 1 + collection.length) % collection.length], next: collection[(position + 1) % collection.length] } };
   });
 }
-const { project, previous, next } = Astro.props;
+const { project, position, total, previous, next } = Astro.props;
+const isWebsite = project.kind === 'website';
 const mockup = project.mockup ? systemMockups[project.mockup] : undefined;
 const website = project.website ? websiteAssets[project.website] : undefined;
-const collectionHref = website ? '/software/?view=website#web-' + project.slug : '/software/?view=system#system-' + project.slug;
-const collectionName = website ? 'Website collection' : 'Systems collection';
-const collectionKind = website ? 'website' : 'system';
+const collectionKind = isWebsite ? 'website' : 'system';
+const collectionHref = '/software/?view=' + collectionKind + '#' + (isWebsite ? 'web-' : 'system-') + project.slug;
+const collectionName = isWebsite ? 'Website collection' : 'Systems collection';
+const discussionHref = '/contact/?topic=software&project=' + encodeURIComponent(project.title) + '#direct-contact';
 const mediaLabel = mockup ? 'Project interface mockup' : website ? websiteMediaLabel(website.kind, website.archived) : 'Project artwork';
 const fullImage = mockup?.src || website?.src;
-const media = mockup || website;
-const sceneAssets = media ? [{src:media.src,width:media.width,height:media.height,id:'project',label:project.title}] : [];
-function splitTitle(title:string):string[] {
-  const words=title.split(' ');
-  if(words.length<2 || title.length<19)return [title];
-  let at=1;let balance=Infinity;
-  for(let i=1;i<words.length;i++){const difference=Math.abs(words.slice(0,i).join(' ').length-words.slice(i).join(' ').length);if(difference<balance){at=i;balance=difference;}}
-  return [words.slice(0,at).join(' '),words.slice(at).join(' ')];
-}
 ---
-<Base title={project.title} description={project.title + ': ' + project.summary + ' Frontend development and UI/UX in Joshua Ogallo’s portfolio.'} theme="project">
-  <SpatialExperience kind="project" title={splitTitle(project.title)} description={`${project.summary} Frontend development and UI/UX.`} assets={sceneAssets} poster={fullImage} actions={[{href:collectionHref,label:collectionName},{href:'/contact/?topic=software&project='+encodeURIComponent(project.title)+'#direct-contact',label:'Discuss this project'}]} target="project-evidence" hold={.85} caption={project.category} />
+<Base title={project.title} description={project.title + ': ' + project.summary + ' Frontend development and UI/UX in Joshua Ogallo’s portfolio.'} theme="project" footerVariant="compact">
+  <div class:list={['project-page', { 'project-page--website': isWebsite }]} data-project-page data-project-kind={project.kind}>
+    <section class="project-opening frame" data-project-opening aria-labelledby="project-title">
+      <div class="project-backdrop" data-project-backdrop aria-hidden="true"><img src="/images/projects/hero-poster.webp" alt="" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async" /><video data-project-video muted loop playsinline preload="none" poster="/images/projects/hero-poster.webp" tabindex="-1"><source src="/videos/project-hexagon-wave.mp4" type="video/mp4" /></video></div>
+      <div class="project-opening-nav"><a href={collectionHref}><Arrow diagonal={false} />{collectionName}</a><p><span>{isWebsite ? 'Websites' : 'Systems'}</span>{position + 1} / {total}</p></div>
+      <div class="project-introduction"><h1 id="project-title" class:list={{ 'project-title--long': project.title.length > 24 }}>{project.title}</h1><p>{project.summary}</p></div>
+      <div class="project-opening-bottom"><dl><div><dt>Project</dt><dd>{project.category}{project.status && <span class="project-status">{project.status}</span>}</dd></div><div><dt>My contribution</dt><dd>Frontend development &amp; UI/UX</dd></div></dl><a class="project-explore" href="#project-evidence">Explore the project <Arrow diagonal={false} /></a></div>
+    </section>
 
-  <section class:list={['project-evidence', 'frame', { 'project-evidence--website': !!website }]} id="project-evidence" aria-labelledby="project-contribution-title">
-    <figure class="project-evidence-figure">
-      <div class="project-evidence-media">
-        {website ? <WebsiteCover project={project} priority sizes="(max-width: 850px) calc(100vw - 44px), 65vw" /> : <ProjectCover project={project} priority sizes="(max-width: 850px) calc(100vw - 44px), 65vw" />}
-      </div>
-      <figcaption><span>{mediaLabel}</span>{fullImage && <a href={fullImage} target="_blank" rel="noreferrer">{website ? 'View full capture' : 'View full mockup'} <Arrow /></a>}</figcaption>
-    </figure>
-    <div class="project-contribution" data-enter>
-      <p class="project-contribution-label">My contribution</p>
-      <h2 id="project-contribution-title">Frontend<br /> &amp; UI/UX.</h2>
-      <p class="project-contribution-description">Frontend development and interface design, with attention to how the experience looks and works.</p>
-      {project.status && <p class="project-factual-status"><span></span>{project.status}</p>}
-      {project.liveUrl && website?.liveStatus !== 'unavailable' && <a class="project-discuss-link" href={project.liveUrl} target="_blank" rel="noreferrer">{website ? 'Visit website' : 'Open project'} <Arrow /></a>}
-      {website?.liveStatus === 'unavailable' && <p class="project-live-unavailable">Live site unavailable</p>}
-      <a class="project-discuss-link" href={'/contact/?topic=software&project=' + encodeURIComponent(project.title) + '#direct-contact'}>Discuss this project <Arrow /></a>
-    </div>
-  </section>
+    <section class="project-evidence frame" id="project-evidence" tabindex="-1" aria-labelledby="project-visual-title">
+      <div class="project-evidence-heading"><h2 id="project-visual-title">{isWebsite ? 'The homepage.' : 'The interface.'}</h2>{fullImage && <a href={fullImage} target="_blank" rel="noreferrer">{isWebsite ? 'View full capture' : 'View full mockup'} <Arrow /></a>}</div>
+      <figure class="project-evidence-figure"><div class="project-evidence-media">{isWebsite ? <WebsiteCover project={project} sizes="(max-width: 750px) calc(100vw - 44px), (max-width: 1250px) 90vw, 1120px" /> : <ProjectCover project={project} sizes="(max-width: 750px) calc(100vw - 44px), (max-width: 1022px) 90vw, 920px" />}</div><figcaption><span>{mediaLabel}</span><span>{project.title}</span></figcaption></figure>
+    </section>
 
-  <section class="project-reading frame" aria-labelledby="project-scope-title">
-    <div class="project-reading-heading" data-enter><h2 id="project-scope-title">{website ? 'The website.' : 'The system.'}</h2><span>{project.title}</span></div>
-    <div class="project-reading-copy"><p>{project.overview}</p><ul aria-label="Project scope">{project.focus.map(item => <li>{item}</li>)}</ul></div>
-  </section>
+    <section class="project-story frame" aria-labelledby="project-scope-title">
+      <h2 class="project-story-title" id="project-scope-title">Project overview.</h2>
+      <div class="project-story-copy"><p class="project-overview">{project.overview}</p><ul class="project-focus" aria-label="Project scope">{project.focus.map(item => <li>{item}</li>)}</ul><div class="project-actions"><a class="project-discuss" href={discussionHref}>Discuss this project <Arrow /></a>{project.liveUrl && website?.liveStatus !== 'unavailable' && <a class="project-live" href={project.liveUrl} target="_blank" rel="noreferrer">{isWebsite ? 'Visit website' : 'Open project'} <Arrow /></a>}{website?.liveStatus === 'unavailable' && <p class="project-availability">Live site unavailable</p>}</div>{website?.liveStatus === 'unknown' && <p class="project-availability">Live availability unconfirmed.</p>}</div>
+      <div class="project-contribution"><h3 id="project-contribution-title">My contribution</h3><p>Frontend development and interface design, with attention to how the experience looks and works.</p></div>
+    </section>
 
-  <nav class="project-sequence frame" aria-label={'More ' + (website ? 'websites' : 'systems')}>
-    <div class="project-sequence-top"><p>Continue the collection</p><a href={collectionHref}>Back to {website ? 'websites' : 'systems'} <Arrow diagonal={false} /></a></div>
-    <a class="project-sequence-next" href={'/software/' + next.slug + '/'}>
-      <div class="project-sequence-copy"><span>{'Next ' + collectionKind}</span><h2>{next.title}</h2><p>{next.category}</p></div>
-      <div class="project-sequence-preview"><ProjectCover project={next} sizes="(max-width: 600px) 100px, 280px" /></div>
-      <Arrow />
-    </a>
-    <a class="project-sequence-previous" href={'/software/' + previous.slug + '/'}><Arrow diagonal={false} /><span>{'Previous ' + collectionKind + ': ' + previous.title}</span></a>
-  </nav>
+    <nav class="project-sequence frame" aria-label={'More ' + (isWebsite ? 'websites' : 'systems')}>
+      <div class="project-sequence-top"><a href={collectionHref}><Arrow diagonal={false} />Back to {isWebsite ? 'websites' : 'systems'}</a><a class="project-previous" href={'/software/' + previous.slug + '/'} rel="prev"><span>Previous {collectionKind}: {previous.title}</span><Arrow diagonal={false} /></a></div>
+      <a class="project-next" href={'/software/' + next.slug + '/'} rel="next" aria-label={'Next ' + collectionKind + ': ' + next.title}>
+        <div class="project-next-copy"><span>Next {collectionKind}</span><h2>{next.title}</h2><p>{next.category}</p></div><div class="project-next-preview"><ProjectCover project={next} sizes="(max-width: 600px) 100px, 280px" /></div><Arrow />
+      </a>
+    </nav>
+  </div>
 </Base>
-
+<script>import { initProjectExperience } from '../../scripts/project-experience'; initProjectExperience();</script>
 <style>
-  .project-opening { padding-top: clamp(135px,11.5vw,180px); padding-bottom: 45px; background: var(--paper); }
-  .project-opening-top { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-bottom: clamp(30px,4vw,60px); color: var(--muted); font-size: 12px; }
-  .project-opening-top a { display: inline-flex; align-items: center; gap: 16px; min-height: 44px; }
-  .project-opening-top :global(.arrow-icon) { width: 17px; height: 17px; transform: rotate(180deg); }
-  .project-opening-top > span { border-bottom: 1px solid var(--line); padding-bottom: 5px; }
-  .project-opening h1 { max-width: 1250px; font-size: clamp(50px,7.7vw,116px); font-weight: 450; line-height: 1.01; letter-spacing: -.065em; overflow-wrap: anywhere; }
-  .project-opening-bottom { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 33px; }
-  .project-opening-bottom > p { color: var(--muted); font-size: 14px; }
-  .project-opening-bottom .text-link { font-size: 13px; gap: 20px; }
-  .project-opening-bottom :global(.arrow-icon) { width: 18px; height: 18px; }
-  .project-evidence { display: grid; grid-template-columns: minmax(0,1.65fr) minmax(0,1fr); gap: clamp(40px,6vw,95px); align-items: start; background: var(--paper); padding-bottom: clamp(70px,8vw,125px); }
-  .project-evidence-figure { margin: 0; min-width: 0; }
-  .project-evidence-media { position: relative; }
-  .project-evidence-media :global(.cover--mockup) { aspect-ratio: 1; }
-  .project-evidence-media::after { content: ''; position: absolute; width: 20%; height: 1px; background: #9caeb7; right: 0; bottom: -1px; transform-origin: right; transform: rotate(-18deg); pointer-events: none; }
-  .project-evidence-figure figcaption { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding-top: 17px; color: var(--muted); font-size: 10px; }
-  .project-evidence-figure figcaption a { display: inline-flex; min-height: 44px; align-items: center; gap: 14px; font-size: 11px; color: var(--ink); }
-  .project-evidence-figure figcaption :global(.arrow-icon) { width: 14px; height: 14px; }
-  .project-contribution { min-width: 0; padding-top: 25px; }
-  .project-contribution-label { color: var(--muted); font-size: 12px; margin-bottom: 25px; }
-  .project-contribution h2 { font-size: clamp(36px,4.4vw,65px); font-weight: 450; letter-spacing: -.06em; }
-  .project-contribution-description { font-size: 14px; line-height: 1.7; color: var(--muted); max-width: 300px; margin-top: 25px; }
-  .project-factual-status { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; color: #315f46; font-size: 12px; font-weight: 650; }
-  .project-factual-status > span { width: 5px; height: 5px; background: currentColor; border-radius: 50%; }
-  .project-discuss-link { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; margin-top: 35px; font-size: 13px; font-weight: 650; max-width: 310px; }
-  .project-discuss-link :global(.arrow-icon) { width: 18px; height: 18px; }
-  .project-reading { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.65fr); gap: 10%; padding-top: clamp(50px,6vw,95px); padding-bottom: clamp(65px,8vw,125px); background: var(--ground); }
-  .project-reading-heading h2 { font-size: clamp(30px,3vw,45px); font-weight: 450; margin-bottom: 23px; }
-  .project-reading-heading > span { font-size: 12px; color: var(--muted); }
-  .project-reading-copy > p { max-width: 800px; font-size: clamp(22px,2.45vw,37px); line-height: 1.4; font-family: var(--display); font-weight: 400; letter-spacing: -.035em; }
-  .project-reading-copy ul { display: flex; flex-wrap: wrap; gap: 12px 28px; border-top: 1px solid var(--line); padding-top: 25px; margin-top: 35px; font-size: 12px; color: var(--muted); }
-  .project-sequence { display: block; padding-top: 40px; padding-bottom: 48px; background: #18262e; color: #f0f3f3; --focus: #b4c7ff; }
-  .project-sequence-top { display: flex; align-items: center; justify-content: space-between; gap: 25px; border-bottom: 1px solid #60717a; padding-bottom: 25px; font-size: 12px; color: #bdcbd0; }
-  .project-sequence-top a { display: inline-flex; gap: 18px; align-items: center; min-height: 44px; }
-  .project-sequence-top :global(.arrow-icon) { width: 17px; height: 17px; }
-  .project-sequence-next { display: grid; grid-template-columns: minmax(0,1fr) minmax(130px,280px) 32px; align-items: center; gap: clamp(25px,5vw,80px); padding-block: 45px; }
-  .project-sequence-copy { min-width: 0; }
-  .project-sequence-copy > span { font-size: 11px; color: #bdcbd0; display: block; margin-bottom: 24px; }
-  .project-sequence-copy h2 { font-size: clamp(36px,5.3vw,80px); line-height: 1.03; font-weight: 450; }
-  .project-sequence-copy p { font-size: 12px; color: #bdcbd0; margin-top: 21px; }
-  .project-sequence-preview { min-width: 0; }
-  .project-sequence-next > :global(.arrow-icon) { width: 30px; height: 30px; }
-  .project-sequence-previous { display: inline-flex; align-items: center; gap: 18px; min-height: 44px; font-size: 12px; color: #bdcbd0; }
-  .project-sequence-previous :global(.arrow-icon) { width: 17px; height: 17px; transform: rotate(180deg); }
-  @media (min-width: 851px) and (min-height: 800px) { .project-contribution { position: sticky; top: 120px; } }
-  @media (hover: hover) and (pointer: fine) { .project-opening-top a:hover,.project-evidence-figure figcaption a:hover,.project-discuss-link:hover,.project-sequence-top a:hover,.project-sequence-previous:hover { text-decoration: underline; text-underline-offset: 6px; } }
-  @media (max-width: 1000px) { .project-evidence { gap: 40px; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); }.project-contribution h2 { font-size: 43px; }.project-sequence-next { grid-template-columns: minmax(0,1fr) 200px 25px; gap: 30px; } }
-  @media (max-width: 850px) { .project-evidence { grid-template-columns: 1fr; gap: 33px; }.project-contribution { padding-top: 0; }.project-contribution h2 br { display: none; }.project-contribution h2 { font-size: 39px; }.project-contribution-label { margin-bottom: 18px; }.project-contribution-description { max-width: 550px; margin-top: 20px; }.project-discuss-link { margin-top: 23px; max-width: 550px; }.project-reading { grid-template-columns: 1fr; gap: 28px; }.project-reading-heading > span { display: none; } }
-  @media (max-width: 600px) { .project-opening { padding-top: 125px; padding-bottom: 30px; }.project-opening-top { font-size: 11px; margin-bottom: 25px; }.project-opening h1 { font-size: clamp(43px,11vw,66px); }.project-opening-bottom { align-items: flex-start; flex-direction: column; gap: 10px; margin-top: 25px; }.project-opening-bottom > p { font-size: 13px; }.project-evidence { padding-bottom: 50px; }.project-evidence-figure figcaption { font-size: 9px; }.project-evidence-figure figcaption a { font-size: 10px; }.project-contribution h2 { font-size: 35px; }.project-reading { padding-top: 45px; padding-bottom: 50px; }.project-reading-copy > p { font-size: 25px; }.project-reading-copy ul { font-size: 11px; gap: 10px 20px; margin-top: 25px; }.project-sequence { padding-top: 25px; padding-bottom: 30px; }.project-sequence-top { align-items: flex-start; flex-direction: column; gap: 10px; padding-bottom: 20px; }.project-sequence-next { grid-template-columns: minmax(0,1fr) 100px; gap: 25px; padding-block: 30px; }.project-sequence-copy h2 { font-size: 33px; }.project-sequence-copy > span { margin-bottom: 15px; }.project-sequence-copy p { font-size: 11px; margin-top: 15px; }.project-sequence-next > :global(.arrow-icon) { display: none; }.project-sequence-previous { font-size: 11px; } }
+  .project-page { --ink:#26312b;--muted:#5b685e;--line:#cbd4c8;--focus:#365c40;background:#f3f5f0;color:var(--ink); }
+  :global(body[data-theme='project']) { background:#f3f5f0;--focus:#365c40; }
+  :global(body[data-theme='project'] .site-header) { --header-ground:#f3f5f0;--header-surface:#fbfcf9;--header-ink:#26312b;--header-muted:#5b685e;--header-active:#e3e9df; }
+  :global(body[data-theme='project'] .motion-toggle) { --focus:#365c40;background:#f3f5f0;color:#26312b;border-color:#cbd4c8;border-radius:24px; }
+  .project-page ::selection { background:#d2dfca;color:#26312b; }
+  .project-opening { position:relative;isolation:isolate;overflow:clip;display:flex;flex-direction:column;justify-content:space-between;gap:38px;min-height:600px;min-height:max(600px,82svh);padding-top:122px;padding-bottom:42px; }
+  .project-backdrop { position:absolute;inset:0;z-index:-1;pointer-events:none;background:#f3f5f0; }
+  .project-backdrop img,.project-backdrop video { position:absolute;inset:0;width:100%;height:100%;object-fit:cover; }
+  .project-backdrop::after { content:'';position:absolute;inset:0;background:linear-gradient(90deg,#f3f5f0eb,#f3f5f09e 55%,#f3f5f040); }
+  .project-backdrop video { opacity:0;transition:opacity 500ms var(--ease-out); }
+  .project-opening[data-video-ready='true']:not([data-video-failed='true']) .project-backdrop video { opacity:1; }
+  .project-opening-nav { display:flex;align-items:center;justify-content:space-between;gap:30px;font-size:11px; }
+  .project-opening-nav > a { display:inline-flex;align-items:center;gap:15px;min-height:44px; }
+  .project-opening-nav :global(.arrow-icon) { width:17px;height:17px;transform:rotate(180deg); }
+  .project-opening-nav > p { display:flex;align-items:center;gap:25px;font-variant-numeric:tabular-nums;white-space:nowrap; }
+  .project-opening-nav > p > span { color:var(--muted); }
+  .project-introduction { padding-block:8px 15px; }
+  .project-introduction h1 { max-width:19ch;font-size:clamp(55px,8.1vw,124px);font-weight:430;line-height:1.04;letter-spacing:-.04em;overflow-wrap:anywhere; }
+  .project-introduction h1.project-title--long { font-size:clamp(50px,7vw,105px); }
+  .project-introduction > p { max-width:560px;font-size:16px;line-height:1.8;color:var(--muted);margin-top:24px; }
+  .project-opening-bottom { display:flex;align-items:end;justify-content:space-between;gap:35px; }
+  .project-opening-bottom dl { display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:35px 65px;margin:0;max-width:700px; }
+  .project-opening-bottom dt { color:var(--muted);font-size:10px;line-height:1.7;margin-bottom:7px; }
+  .project-opening-bottom dd { margin:0;font-size:12px;line-height:1.7; }
+  .project-status { display:block;margin-top:5px;color:#315a3d;font-size:11px;font-weight:650; }
+  .project-explore { display:inline-flex;align-items:center;gap:25px;min-height:48px;font-size:12px;white-space:nowrap; }
+  .project-explore :global(.arrow-icon) { width:18px;height:18px;transform:rotate(90deg); }
+  .project-evidence { padding-top:65px;padding-bottom:65px;background:#fbfcf9;scroll-margin-top:15px; }
+  .project-evidence-heading { display:flex;align-items:center;justify-content:space-between;gap:35px;margin-bottom:35px; }
+  .project-evidence-heading h2 { font-size:clamp(28px,3vw,44px);font-weight:430;line-height:1.15;letter-spacing:-.035em; }
+  .project-evidence-heading > a { display:inline-flex;align-items:center;gap:18px;min-height:44px;font-size:11px; }
+  .project-evidence-heading :global(.arrow-icon) { width:15px;height:15px; }
+  .project-evidence-figure { max-width:920px;margin-inline:auto; }
+  .project-page--website .project-evidence-figure { max-width:1120px; }
+  .project-evidence-media { width:100%; }
+  .project-evidence-media :global(.cover--mockup) { aspect-ratio:1; }
+  .project-evidence-figure figcaption { display:flex;align-items:start;justify-content:space-between;gap:20px;padding-top:18px;font-size:10px;line-height:1.7;color:var(--muted); }
+  .project-evidence-figure figcaption > span:last-child { text-align:right; }
+  .project-story { display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);column-gap:12%;row-gap:30px;padding-top:70px;padding-bottom:100px;background:#fbfcf9; }
+  .project-story-title { font-size:clamp(33px,3.5vw,50px);font-weight:430;line-height:1.1;letter-spacing:-.04em;max-width:9ch; }
+  .project-contribution { grid-column:1;grid-row:2;align-self:start;max-width:280px; }
+  .project-contribution h3 { font-size:16px;font-weight:550;letter-spacing:-.015em;line-height:1.4; }
+  .project-contribution p { font-size:13px;line-height:1.85;color:var(--muted);margin-top:15px; }
+  .project-story-copy { min-width:0;grid-column:2;grid-row:1 / span 2; }
+  .project-overview { max-width:65ch;font-family:var(--display);font-size:clamp(23px,2.35vw,34px);font-weight:400;line-height:1.45;letter-spacing:-.025em; }
+  .project-focus { display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:30px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.7; }
+  .project-actions { display:flex;align-items:center;flex-wrap:wrap;gap:18px 30px;margin-top:35px; }
+  .project-discuss { display:inline-flex;align-items:center;justify-content:space-between;gap:32px;min-height:52px;padding:14px 21px;border-radius:28px;background:#304c39;color:#fbfcf9;font-size:12px;transition:background 180ms ease; }
+  .project-discuss :global(.arrow-icon) { width:17px;height:17px; }
+  .project-live { display:inline-flex;align-items:center;gap:22px;min-height:44px;font-size:12px; }
+  .project-live :global(.arrow-icon) { width:16px;height:16px; }
+  .project-availability { color:var(--muted);font-size:11px;line-height:1.8; }
+  .project-story-copy > .project-availability { margin-top:15px; }
+  .project-sequence { padding-top:32px;padding-bottom:50px;background:#e6ece3; }
+  .project-sequence-top { display:flex;align-items:center;justify-content:space-between;gap:35px;padding-bottom:24px;border-bottom:1px solid #becabb; }
+  .project-sequence-top > a { display:inline-flex;align-items:center;gap:17px;min-height:44px;max-width:50%;font-size:11px;line-height:1.7; }
+  .project-sequence-top :global(.arrow-icon) { width:16px;height:16px;transform:rotate(180deg); }
+  .project-sequence-top .project-previous { color:var(--muted);text-align:right; }
+  .project-next { display:grid;grid-template-columns:minmax(0,1fr) minmax(160px,280px) 36px;gap:5%;align-items:center;padding-top:40px; }
+  .project-next-copy { min-width:0; }
+  .project-next-copy > span { display:block;color:var(--muted);font-size:11px;margin-bottom:24px; }
+  .project-next-copy h2 { max-width:17ch;font-size:clamp(36px,4.8vw,70px);font-weight:430;line-height:1.06;letter-spacing:-.04em;overflow-wrap:anywhere; }
+  .project-next-copy > p { margin-top:23px;color:var(--muted);font-size:12px;line-height:1.7; }
+  .project-next-preview { min-width:0; }
+  .project-next > :global(.arrow-icon) { width:34px;height:34px; }
+  @media (hover:hover) and (pointer:fine) { .project-opening-nav a:hover,.project-explore:hover,.project-evidence-heading a:hover,.project-live:hover,.project-sequence a:hover .project-next-copy h2,.project-sequence-top a:hover { text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px; }.project-discuss:hover { background:#42634b; } }
+  @media (max-width:1000px) { .project-opening-bottom dl { gap:25px 35px;max-width:570px; }.project-story { column-gap:8%; }.project-next { grid-template-columns:minmax(0,1fr) 220px 28px;gap:5%; }.project-next > :global(.arrow-icon) { width:27px;height:27px; } }
+  @media (max-width:750px) { .project-opening { min-height:min(720px,92svh);padding-top:108px;padding-bottom:35px;gap:35px; }.project-opening-nav { gap:20px;font-size:10px; }.project-opening-nav > a { gap:10px; }.project-opening-nav > p { gap:12px; }.project-introduction { padding-block:5px; }.project-introduction h1,.project-introduction h1.project-title--long { font-size:clamp(44px,11vw,76px);max-width:19ch; }.project-introduction > p { margin-top:22px;font-size:14px;line-height:1.8;max-width:480px; }.project-opening-bottom { align-items:start;flex-direction:column;gap:23px; }.project-opening-bottom dl { width:100%;max-width:560px;gap:25px; }.project-opening-bottom dd { font-size:11px; }.project-opening-bottom dt { font-size:10px; }.project-explore { font-size:11px;gap:20px; }.project-evidence { padding-top:45px;padding-bottom:40px; }.project-evidence-heading { gap:20px;margin-bottom:25px; }.project-evidence-heading h2 { font-size:29px; }.project-evidence-heading > a { gap:12px;font-size:10px; }.project-evidence-figure figcaption { padding-top:15px;font-size:9px;gap:20px; }.project-story { grid-template-columns:1fr;gap:30px;padding-top:35px;padding-bottom:60px; }.project-story-title { max-width:none;font-size:34px;grid-row:1; }.project-story-copy { grid-column:1;grid-row:2; }.project-contribution { grid-column:1;grid-row:3;max-width:460px;margin-top:8px; }.project-contribution p { font-size:12px;margin-top:12px; }.project-overview { font-size:24px;line-height:1.45; }.project-focus { margin-top:24px;padding-top:20px;font-size:11px;gap:12px 23px; }.project-actions { gap:15px 24px;margin-top:28px; }.project-discuss { font-size:11px;gap:26px; }.project-live { font-size:11px; }.project-sequence { padding-top:24px;padding-bottom:35px; }.project-sequence-top { gap:20px;align-items:start;padding-bottom:20px; }.project-sequence-top > a { font-size:10px;gap:12px; }.project-next { grid-template-columns:minmax(0,1fr) 100px;gap:25px;padding-top:30px; }.project-next > :global(.arrow-icon) { display:none; }.project-next-copy > span { font-size:10px;margin-bottom:16px; }.project-next-copy h2 { font-size:30px; }.project-next-copy > p { font-size:10px;margin-top:16px; } }
+  @media (max-width:400px) { .project-opening-nav > p > span { display:none; }.project-evidence-heading { align-items:start;flex-direction:column;gap:8px; }.project-next { grid-template-columns:minmax(0,1fr) 85px;gap:18px; }.project-next-copy h2 { font-size:27px; }.project-sequence-top { flex-direction:column;gap:8px; }.project-sequence-top > a { max-width:100%; }.project-sequence-top .project-previous { text-align:left; }.project-opening-bottom dl { gap:20px; } }
+  @media (prefers-reduced-motion:reduce) { .project-backdrop video { display:none; } }
 </style>

@@ -1,8 +1,8 @@
 # Cinematic portfolio production plan
 
-**Current update:** [015 — About experience panel](015-about-experience-panel.md) replaces the rejected staggered approach in plan 014. The hero and wider About rebuild remain recorded in [013](013-about-video-rebuild.md).
+**Current update:** [019 — Project pages](019-project-detail-rebuild.md) follows the owner-approved [018 — Contact conversation](018-contact-conversation.md), [017 — Creative & marketing rebuild](017-creative-marketing-restraint.md) and [016 — CV reading room](016-cv-reading-room.md). The accepted About experience panel remains in [015](015-about-experience-panel.md).
 
-**Current scope, 2 November 2026:** preserve Home and the restrained Software direction. The owner has explicitly moved on to About with a new supplied hero video. Other page families wait for separate review. Earlier completion notes record implementation, not design approval.
+**Current scope, 3 November 2026:** preserve Home and the reviewed Software, About, CV, Creative and Contact directions. The owner has explicitly moved on to a full rebuild of all individual project overview pages with a supplied video. Earlier completion notes record implementation, not design approval.
 
 Prepared on 1 November 2026 after the owner named Jesko Jets as the quality reference and selected **Refraction — portrait through optical glass**, following a free-first, portrait-and-work production path. The positively reviewed proof is now integrated into the production homepage, and all page families have been rebuilt locally. See plan 007 for actual checks and remaining device-review limits.
 

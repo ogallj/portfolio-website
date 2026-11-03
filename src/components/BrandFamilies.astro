@@ -1,167 +1,124 @@
 ---
 import BrandMark from './BrandMark.astro';
 import { logoAssets, cocaColaMarks, ungaFoodMarks, ungaFarmcareMarks } from '../data/brand-logos';
+
 const nameOf = (id: string) => logoAssets.find(mark => mark.id === id)!.name;
 const divisions = [
   { id: 'unga-limited', title: 'Food & nutrition', marks: ungaFoodMarks },
   { id: 'unga-farmcare', title: 'FarmCare', marks: ungaFarmcareMarks },
 ];
 ---
-<div class="rf-brand-families">
-  <article class="rf-family-coca frame" aria-labelledby="coca-family-title">
-    <div class="rf-coca-parent">
-      <p class="rf-family-context">Beverage brand experience</p>
-      <div class="rf-coca-signature"><BrandMark id="coca-cola-africa" decorative /></div>
-      <h3 id="coca-family-title">Coca-Cola<br />Africa.</h3>
-      <p class="rf-family-description">Creative experience across a family of distinct beverage brands.</p>
-      <label class="rf-family-spread"><input type="checkbox" id="coca-spread" /><span>Spread the brand family</span></label>
-    </div>
-    <div class="rf-coca-register">
-      <p class="rf-register-label">Within the brand family</p>
-      <ul class="rf-beverage-brands" aria-label="Brands within the Coca-Cola Africa family">
-        {cocaColaMarks.map(id => <li><div class="rf-beverage-mark"><BrandMark id={id} decorative /></div><span>{nameOf(id)}</span></li>)}
+<div class="brand-families frame">
+  <article class="bf-family" aria-labelledby="coca-family-title">
+    <header class="bf-parent">
+      <div class="bf-parent-mark bf-parent-mark--coca"><BrandMark id="coca-cola-africa" decorative /></div>
+      <div class="bf-parent-copy">
+        <h3 id="coca-family-title">Coca-Cola Africa</h3>
+        <p>Brand experience across the beverage portfolio.</p>
+      </div>
+    </header>
+    <div class="bf-portfolio">
+      <p class="bf-group-label">Within the brand family</p>
+      <ul class="bf-brand-register bf-brand-register--beverages" aria-label="Brands within the Coca-Cola Africa family">
+        {cocaColaMarks.map(id => <li><div class="bf-product-mark"><BrandMark id={id} decorative /></div><span>{nameOf(id)}</span></li>)}
       </ul>
-      <p class="rf-register-note">Brand experience across the portfolio, including creative work and ideation for Fanta’s Skizia Utamu Challenge.</p>
+      <p class="bf-contribution">Includes creative work and ideation for Fanta's Skizia Utamu Challenge.</p>
     </div>
   </article>
 
-  <article class="rf-family-unga" aria-labelledby="unga-family-title">
-    <div class="rf-unga-composition frame">
-      <div class="rf-unga-parent">
-        <p class="rf-family-context">Food, nutrition &amp; farm care</p>
-        <h3 id="unga-family-title">UNGA<br />Group.</h3>
-        <div class="rf-unga-signature"><BrandMark id="unga" decorative /></div>
-        <p class="rf-unga-description">The parent group, its two divisions and the brands within each.</p>
-        <label class="rf-family-spread"><input type="checkbox" id="unga-spread" /><span>Spread the divisions</span></label>
+  <article class="bf-family bf-family--unga" aria-labelledby="unga-family-title">
+    <header class="bf-parent">
+      <div class="bf-parent-mark bf-parent-mark--unga"><BrandMark id="unga" decorative /></div>
+      <div class="bf-parent-copy">
+        <h3 id="unga-family-title">UNGA Group</h3>
+        <p>Two divisions, with their respective product brands.</p>
       </div>
-      <div class="rf-unga-divisions">
-        {divisions.map(division => <section class="rf-division" id={division.id} aria-labelledby={division.id + '-title'}>
-          <header class="rf-division-heading">
-            <div class="rf-division-signature"><BrandMark id={division.id} /></div>
-            <h4 id={division.id + '-title'}>{division.title}</h4>
-          </header>
-          <ul class="rf-division-brands" aria-label={nameOf(division.id) + ' brands'}>
-            {division.marks.map(id => <li><div class="rf-product-mark"><BrandMark id={id} decorative /></div><span>{nameOf(id)}</span></li>)}
-          </ul>
-        </section>)}
-      </div>
+    </header>
+    <div class="bf-divisions">
+      {divisions.map(division => <section class="bf-division" id={division.id} aria-labelledby={division.id + '-title'}>
+        <header class="bf-division-heading">
+          <div class="bf-division-mark"><BrandMark id={division.id} /></div>
+          <h4 id={division.id + '-title'}>{division.title}</h4>
+        </header>
+        <ul class="bf-brand-register" aria-label={nameOf(division.id) + ' brands'}>
+          {division.marks.map(id => <li><div class="bf-product-mark"><BrandMark id={id} decorative /></div><span>{nameOf(id)}</span></li>)}
+        </ul>
+      </section>)}
     </div>
   </article>
 </div>
 
 <style>
-  .rf-brand-families { min-width: 0; }
-  .rf-family-coca { position: relative; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; align-items: stretch; padding-block: clamp(75px, 9vw, 135px); background: #e9eee8; perspective: 1600px; transform-style: preserve-3d; }
-  .rf-coca-parent,.rf-coca-register { min-width: 0; }
-  .rf-coca-register { padding: clamp(28px, 3vw, 48px); background: #fff; border-top: 5px solid #d84142; border-left: 1px solid #dbe4df; transform: translateZ(30px) rotateY(2deg); transform-origin: left center; box-shadow: 7px 12px 0 #c7d4d0, 0 25px 35px #1b352215; transition: transform 650ms var(--ease-out); }
-  .rf-coca-parent { position: relative; padding: clamp(28px, 3vw, 48px); background: #fff; border-top: 5px solid #d84142; transform: translateZ(30px) rotateY(-2deg); transform-origin: right center; box-shadow: -7px 12px 0 #c7d4d0, 0 25px 35px #1b352215; transition: transform 650ms var(--ease-out); }
-  .rf-family-spread { display: inline-flex; align-items: center; gap: 12px; margin-top: 23px; min-height: 44px; font-size: 12px; line-height: 1.4; cursor: pointer; }
-  .rf-family-spread input { width: 18px; height: 18px; margin: 0; accent-color: var(--blue); cursor: pointer; }
-  .rf-family-spread:focus-within { outline: 3px solid var(--focus,var(--blue)); outline-offset: 5px; }
-  .rf-family-context { font-size: 12px; line-height: 1.5; color: var(--muted); }
-  .rf-coca-signature { display: flex; align-items: center; margin-top: 46px; margin-bottom: 40px; min-height: 85px; }
-  .rf-coca-signature :global(.brand-mark) { width: 100%; max-width: 390px; height: auto; max-height: 100px; object-fit: contain; object-position: left center; }
-  .rf-coca-parent h3 { font: 450 clamp(40px, 5.2vw, 78px)/.98 var(--display); letter-spacing: -.055em; scroll-margin-top: 110px; }
-  .rf-family-description { max-width: 29ch; color: var(--muted); font-size: 14px; line-height: 1.7; margin-top: 26px; }
-  .rf-register-label { color: var(--muted); font-size: 12px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
-  .rf-beverage-brands { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 25px; padding-block: 35px 45px; }
-  .rf-beverage-brands > li { min-width: 0; }
-  .rf-family-coca:has(#coca-spread:checked) .rf-coca-parent { transform: translate3d(-8px,0,55px) rotateY(-6deg); }
-  .rf-family-coca:has(#coca-spread:checked) .rf-coca-register { transform: translate3d(8px,0,55px) rotateY(5deg); }
-  .rf-beverage-mark { display: flex; align-items: center; justify-content: flex-start; height: 78px; margin-bottom: 17px; }
-  .rf-beverage-mark :global(.brand-mark) { width: 100%; max-width: 125px; height: 70px; object-fit: contain; object-position: left center; }
-  .rf-beverage-brands > li > span { display: block; color: var(--muted); font-size: 12px; line-height: 1.5; }
-  .rf-register-note { color: var(--muted); font-size: 12px; line-height: 1.7; max-width: 48ch; padding-top: 23px; border-top: 1px solid var(--line); }
-  .rf-family-unga { color: #edf1ed; background: #172a27; --focus: #bdd5f8; padding-block: clamp(70px, 9vw, 140px); }
-  .rf-unga-composition { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.65fr); gap: clamp(45px, 6vw, 95px); align-items: start; perspective: 1600px; transform-style: preserve-3d; }
-  .rf-unga-parent { min-width: 0; transform: translateZ(30px); }
-  .rf-unga-parent > .rf-family-context { color: #b8c9c3; }
-  .rf-unga-parent h3 { font: 450 clamp(45px, 5.8vw, 86px)/.95 var(--display); letter-spacing: -.055em; margin-top: 29px; }
-  .rf-unga-signature { display: flex; align-items: center; justify-content: center; margin-top: 39px; padding: 25px; min-height: 145px; background: #fff; border-top: 4px solid #8da95a; box-shadow: 9px 11px 0 #416b60, 13px 17px 0 #0c1c19; }
-  .rf-unga-signature :global(.brand-mark) { width: 100%; max-width: 250px; height: auto; max-height: 140px; object-fit: contain; }
-  .rf-unga-description { max-width: 29ch; color: #b8c9c3; font-size: 14px; line-height: 1.7; margin-top: 26px; }
-  .rf-unga-divisions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(18px, 2.5vw, 38px); align-items: start; transform-style: preserve-3d; padding-bottom: 28px; }
-  .rf-division { position: relative; min-width: 0; color: var(--ink); background: #fff; padding: clamp(22px, 2.7vw, 40px); scroll-margin-top: 110px; transform: translateZ(20px); border-top: 5px solid #e9c84a; box-shadow: 8px 12px 0 #426f64, 13px 18px 0 #0c1c19, 0 30px 40px #06150e30; transition: transform 650ms var(--ease-out); }
-  .rf-division + .rf-division { margin-top: 70px; border-top-color: #55b5b7; }
-  .rf-family-unga:has(#unga-spread:checked) .rf-division:nth-child(1) { transform: translate3d(-7px,-12px,72px); }
-  .rf-family-unga:has(#unga-spread:checked) .rf-division:nth-child(2) { transform: translate3d(7px,12px,48px); }
-  .rf-division-heading { padding-bottom: 23px; border-bottom: 1px solid var(--line); }
-  .rf-division-signature { display: flex; align-items: center; min-height: 66px; margin-bottom: 21px; }
-  .rf-division-signature :global(.brand-mark) { width: 100%; max-width: 180px; height: 60px; object-fit: contain; object-position: left center; }
-  .rf-division-heading h4 { font: 500 clamp(19px, 1.7vw, 25px)/1.2 var(--display); letter-spacing: -.03em; }
-  .rf-division-brands { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 20px; padding-top: 28px; }
-  .rf-division-brands > li { min-width: 0; }
-  .rf-product-mark { display: flex; align-items: center; height: 45px; margin-bottom: 12px; }
-  .rf-product-mark :global(.brand-mark) { width: 100%; max-width: 100px; height: 40px; object-fit: contain; object-position: left center; }
-  .rf-product-mark :global(.brand-mark--compact) { max-width: 42px; }
-  .rf-division-brands > li > span { color: #52626a; display: block; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
-  @media (max-width: 1100px) {
-    .rf-family-coca { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-    .rf-beverage-brands { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px; padding-block: 28px; }
-    .rf-unga-composition { grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); gap: 40px; }
-    .rf-unga-divisions { gap: 18px; }
-    .rf-division { padding: 24px 20px; }
-    .rf-division-brands { gap: 22px 17px; }
+  .brand-families { min-width: 0; max-width: 1600px; margin-inline: auto; background: #fff; color: var(--ink, #262d2b); }
+  .bf-family { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.7fr); gap: clamp(45px, 7.5vw, 120px); padding-block: clamp(55px, 6.5vw, 95px); }
+  .bf-family + .bf-family { border-top: 1px solid var(--line, #d0d7d0); }
+  .bf-parent,.bf-portfolio,.bf-divisions,.bf-division { min-width: 0; }
+  .bf-parent-mark { display: flex; align-items: center; justify-content: flex-start; min-height: 100px; margin-bottom: 28px; }
+  .bf-parent-mark :global(.brand-mark) { display: block; width: 100%; height: auto; object-fit: contain; object-position: left center; }
+  .bf-parent-mark--coca :global(.brand-mark) { max-width: 300px; max-height: 95px; }
+  .bf-parent-mark--unga { min-height: 122px; }
+  .bf-parent-mark--unga :global(.brand-mark) { max-width: 225px; max-height: 123px; }
+  .bf-parent-copy h3 { font: 430 clamp(27px, 2.6vw, 39px)/1.12 var(--display); letter-spacing: -.045em; scroll-margin-top: 110px; text-wrap: initial; }
+  .bf-parent-copy p { max-width: 28ch; margin-top: 15px; font-size: 13px; line-height: 1.75; color: var(--muted, #626c66); }
+  .bf-group-label { margin-bottom: 35px; font-size: 11px; line-height: 1.6; color: var(--muted, #626c66); }
+  .bf-brand-register { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 25px; padding: 0; margin: 0; list-style: none; }
+  .bf-brand-register--beverages { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .bf-brand-register > li { min-width: 0; }
+  .bf-product-mark { display: flex; align-items: center; justify-content: flex-start; height: 60px; margin-bottom: 13px; }
+  .bf-product-mark :global(.brand-mark) { display: block; width: 100%; max-width: 100px; height: 44px; object-fit: contain; object-position: left center; }
+  .bf-product-mark :global(.brand-mark--compact) { max-width: 40px; }
+  .bf-brand-register--beverages .bf-product-mark { height: 72px; }
+  .bf-brand-register--beverages .bf-product-mark :global(.brand-mark) { max-width: 110px; height: 58px; }
+  .bf-brand-register > li > span { display: block; font-size: 11px; line-height: 1.55; color: var(--muted, #626c66); overflow-wrap: anywhere; }
+  .bf-contribution { max-width: 57ch; margin-top: 38px; font-size: 11px; line-height: 1.75; color: var(--muted, #626c66); }
+  .bf-divisions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(35px, 4vw, 65px); }
+  .bf-division { scroll-margin-top: 110px; }
+  .bf-division-heading { padding-bottom: 23px; margin-bottom: 25px; border-bottom: 1px solid var(--line, #d0d7d0); }
+  .bf-division-mark { display: flex; align-items: center; min-height: 58px; margin-bottom: 19px; }
+  .bf-division-mark :global(.brand-mark) { display: block; width: 100%; max-width: 150px; height: 48px; object-fit: contain; object-position: left center; }
+  .bf-division-heading h4 { font: 450 20px/1.3 var(--display); letter-spacing: -.025em; }
+  @media (max-width: 1150px) {
+    .bf-family { grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); gap: 50px; }
+    .bf-divisions { gap: 35px; }
+    .bf-division .bf-brand-register { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bf-brand-register--beverages { gap: 25px 20px; }
   }
-  @media (max-width: 850px) {
-    .rf-unga-composition { grid-template-columns: 1fr; gap: 42px; }
-    .rf-unga-parent { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 45px; align-items: center; }
-    .rf-unga-parent > .rf-family-context { grid-column: 1; }
-    .rf-unga-parent h3 { grid-column: 1; margin-top: 23px; font-size: 62px; }
-    .rf-unga-signature { grid-column: 2; grid-row: 1 / 4; margin: 0; padding: 30px; }
-    .rf-unga-description { grid-column: 1; margin-top: 23px; }
-    .rf-unga-parent .rf-family-spread { grid-column: 1 / -1; }
-    .rf-unga-divisions { gap: 26px; }
-    .rf-division { padding: 30px; }
-    .rf-division-brands { gap: 25px; }
+  @media (max-width: 900px) {
+    .bf-family { grid-template-columns: 1fr; gap: 40px; padding-block: 55px; }
+    .bf-parent { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 40px; align-items: center; }
+    .bf-parent-mark { margin: 0; }
+    .bf-parent-copy h3 { font-size: 30px; }
+    .bf-parent-copy p { max-width: 34ch; }
+    .bf-division .bf-brand-register { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .bf-group-label { margin-bottom: 24px; }
+    .bf-contribution { margin-top: 30px; }
   }
-  @media (max-width: 650px) {
-    .rf-family-coca { grid-template-columns: 1fr; gap: 0; padding-block: 55px; }
-    .rf-coca-signature { margin-top: 30px; margin-bottom: 28px; min-height: 65px; }
-    .rf-coca-signature :global(.brand-mark) { max-width: 300px; max-height: 75px; }
-    .rf-coca-parent h3 { font-size: clamp(36px,9vw,48px); }
-    .rf-coca-parent { padding: 27px; transform: none; margin-right: 14px; box-shadow: 7px 12px 0 #c7d4d0; }
-    .rf-coca-register { padding: 27px; margin-right: 14px; border-left: 0; border-top: 1px solid #dbe4df; transform: none; }
-    .rf-family-coca:has(#coca-spread:checked) .rf-coca-parent { transform: translateZ(15px); }
-    .rf-family-coca:has(#coca-spread:checked) .rf-coca-register { transform: translate3d(0,6px,15px); }
-    .rf-family-description { margin-top: 22px; font-size: 13px; max-width: 35ch; }
-    .rf-register-label { padding-bottom: 19px; font-size: 11px; }
-    .rf-beverage-brands { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 22px; padding-block: 27px; }
-    .rf-beverage-mark { height: 60px; margin-bottom: 12px; }
-    .rf-beverage-mark :global(.brand-mark) { height: 55px; max-width: 108px; }
-    .rf-beverage-brands > li > span { font-size: 11px; }
-    .rf-register-note { font-size: 11px; }
-    .rf-family-unga { padding-block: 55px; }
-    .rf-unga-composition { gap: 34px; }
-    .rf-unga-parent { transform: none; }
-    .rf-unga-parent { gap: 0 25px; }
-    .rf-unga-parent h3 { font-size: 48px; margin-top: 20px; }
-    .rf-unga-parent > .rf-family-context { font-size: 11px; }
-    .rf-unga-signature { padding: 20px; min-height: 115px; }
-    .rf-unga-description { font-size: 12px; margin-top: 20px; }
-    .rf-unga-divisions { grid-template-columns: 1fr; gap: 22px; }
-    .rf-division + .rf-division { margin-top: 18px; }
-    .rf-family-unga:has(#unga-spread:checked) .rf-division:nth-child(n) { transform: translate3d(0,-6px,12px); }
-    .rf-division { padding: 27px; }
-    .rf-division-heading { display: flex; justify-content: space-between; gap: 25px; align-items: center; }
-    .rf-division-signature { min-width: 0; width: 140px; min-height: 54px; margin: 0; }
-    .rf-division-signature :global(.brand-mark) { height: 50px; max-width: 140px; }
-    .rf-division-heading h4 { font-size: 20px; max-width: 135px; }
-    .rf-division-brands { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 23px 20px; }
-    .rf-product-mark :global(.brand-mark) { max-width: 92px; height: 37px; }
+  @media (max-width: 600px) {
+    .bf-family { padding-block: 45px; gap: 32px; }
+    .bf-parent { display: block; }
+    .bf-parent-mark { min-height: 0; margin-bottom: 24px; }
+    .bf-parent-mark--coca :global(.brand-mark) { max-width: 260px; max-height: 65px; }
+    .bf-parent-mark--unga :global(.brand-mark) { max-width: 205px; max-height: 112px; }
+    .bf-parent-copy h3 { font-size: 29px; }
+    .bf-parent-copy p { font-size: 12px; margin-top: 12px; }
+    .bf-brand-register--beverages { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .bf-brand-register { gap: 27px 22px; }
+    .bf-product-mark { height: 53px; margin-bottom: 10px; }
+    .bf-product-mark :global(.brand-mark) { max-width: 94px; height: 39px; }
+    .bf-brand-register--beverages .bf-product-mark { height: 60px; }
+    .bf-brand-register--beverages .bf-product-mark :global(.brand-mark) { max-width: 102px; height: 50px; }
+    .bf-contribution { font-size: 11px; margin-top: 27px; }
+    .bf-divisions { grid-template-columns: 1fr; gap: 40px; }
+    .bf-division-heading { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-bottom: 20px; margin-bottom: 22px; }
+    .bf-division-mark { flex: 0 1 145px; min-width: 0; min-height: 50px; margin: 0; }
+    .bf-division-mark :global(.brand-mark) { max-width: 145px; height: 45px; }
+    .bf-division-heading h4 { max-width: 140px; font-size: 19px; }
   }
-  @media (max-width: 390px) {
-    .rf-unga-parent { display: block; }
-    .rf-unga-signature { margin-top: 27px; max-width: 235px; }
-    .rf-unga-description { max-width: 29ch; }
-    .rf-beverage-brands { gap: 22px 17px; }
-    .rf-division { padding: 23px; }
-    .rf-division-heading { gap: 17px; }
-    .rf-division-signature { width: 115px; flex: 0 1 115px; }
-    .rf-division-heading h4 { font-size: 18px; }
-    .rf-division-brands { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 360px) {
+    .bf-parent-copy h3 { font-size: 27px; }
+    .bf-brand-register { column-gap: 18px; }
+    .bf-division-heading { gap: 18px; }
+    .bf-division-mark { flex-basis: 125px; }
+    .bf-division-heading h4 { max-width: 115px; font-size: 18px; }
   }
-  @media (prefers-reduced-motion: reduce) { .rf-coca-parent,.rf-coca-register,.rf-division { transition: none; } }
-  :global(html[data-motion='paused']) .rf-coca-parent,:global(html[data-motion='paused']) .rf-coca-register,:global(html[data-motion='paused']) .rf-division { transition: none; }
-  @supports not selector(:has(*)) { .rf-family-spread { display: none; } }
 </style>

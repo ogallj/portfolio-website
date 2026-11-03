@@ -9,7 +9,7 @@ Two targeted one-page resumes are available as editable Word documents in `outpu
 
 The website’s `/cv/` page offers both reviewed CVs as PDFs and editable Word files, with actual first-page previews. Navigation, Contact and the footer link to this page; each portfolio hero downloads its matching PDF, and About offers both. `scripts/prepare-assets.mjs` copies the current PDF and Word files without restoring the original CV. `Joshua Odero Ogallo CV.pdf` remains the preserved legacy source.
 
-After approving updated documents, run `python scripts/prepare-resume-assets.py` with a Python environment containing Pillow and pypdf, with Poppler on PATH (the script also detects the bundled Windows runtime’s Poppler). It publishes all four documents, renders responsive WebP previews from the actual PDFs, and updates file sizes, page counts and cache versions in `src/data/resume-assets.json`. Do this after any native Word PDF exports, then rebuild the site. Page descriptions and role labels are in `src/data/resumes.ts`.
+After approving updated documents, run `python scripts/prepare-resume-assets.py` with a Python environment containing Pillow and pypdf, with Poppler on PATH (the script also detects the bundled Windows runtime’s Poppler). It publishes all four documents, renders responsive 400/800px WebP previews plus a complete 1600px lossless WebP from the actual PDFs, and updates file sizes, page counts and cache versions in `src/data/resume-assets.json`. Do this after any native Word PDF exports, then rebuild the site. Page descriptions and role labels are in `src/data/resumes.ts`.
 
 ## Content basis
 

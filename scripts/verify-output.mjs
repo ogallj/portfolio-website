@@ -147,11 +147,12 @@ for (const [path, html] of documents) {
   }
 }
 requireContent((software.match(/<h1\b/g)||[]).length===1, 'Software: expected one semantic page title.');
-for (const [route,kind] of [['creative-marketing','creative'],['contact','contact']]) {
-  const html=documents.get(resolve(output,`${route}/index.html`))||'';
-  requireContent(html.includes(`data-spatial-kind="${kind}"`), `${route}: tailored spatial experience is missing.`);
-  requireContent((html.match(/<h1\b/g)||[]).length===1, `${route}: expected one semantic page title.`);
-}
+requireContent(contact.includes('data-contact-page') && !contact.includes('data-spatial-kind') && !contact.includes('data-spatial-root') && !/<canvas\b/.test(contact), 'Contact must use the clean conversation layout without the rejected spatial scene.');
+requireContent((contact.match(/<h1\b/g)||[]).length === 1 && contact.includes('id="direct-contact"') && contact.includes('data-inquiry-form') && contact.includes('data-copy-email'), 'Contact must preserve one title, the established entry anchor, draft form and copy action.');
+requireContent(creative.includes('data-creative-page') && !creative.includes('data-spatial-kind') && !creative.includes('data-spatial-root'), 'Creative must use its clean brand-led presentation without the rejected 3D scene.');
+requireContent(creative.includes('data-creative-video') && creative.includes('/videos/creative-waves.mp4') && creative.includes('/images/creative/hero-poster.webp'), 'Creative hero must keep the supplied circular-waves video and a real frame poster.');
+requireContent((creative.match(/<h1\b/g)||[]).length === 1 && creative.includes('Skizia Utamu') && creative.includes('Creative work &amp; ideation.'), 'Creative must preserve one title and the confirmed Fanta contribution.');
+for (const fragment of ['brand-experience','coca-family-title','unga-family-title','unga-limited','unga-farmcare','creative-capabilities-title','creative-work','team-experience-title']) requireContent(creative.includes(`id="${fragment}"`), `Creative must keep fragment ${fragment}.`);
 requireContent(cvs.includes('data-cv-page') && !cvs.includes('data-spatial-kind') && !cvs.includes('data-spatial-root'), 'CVs must use the clean document layout without the rejected glass scene.');
 requireContent((cvs.match(/<h1\b/g)||[]).length === 1 && (cvs.match(/class="cv-edition"/g)||[]).length === 2, 'CVs must keep one title and two equal editions.');
 for (const fragment of ['cv-documents','edition-software','edition-creative','cv-software','cv-creative','document-software','document-creative']) requireContent(cvs.includes(`id="${fragment}"`), `CVs must keep fragment ${fragment}.`);
@@ -164,7 +165,13 @@ requireContent(/<div\b[^>]*data-experience-tabs[^>]*\shidden(?:\s|=|>)/.test(abo
 for (const file of ['joshua-ogallo-cv.pdf','joshua-ogallo-cv.docx','joshua-ogallo-creative-cv.pdf','joshua-ogallo-creative-cv.docx']) requireContent(about.includes('/'+file), `About must keep native CV access: ${file}.`);
 for (const project of projects) {
   const detail=documents.get(resolve(output,`software/${project.slug}/index.html`))||'';
-  requireContent(detail.includes('data-spatial-kind="project"'), `${project.title}: spatial presentation is missing.`);
+  const view = project.kind === 'website' ? 'website' : 'system';
+  const fragment = project.kind === 'website' ? 'web' : 'system';
+  requireContent(detail.includes('data-project-page') && !detail.includes('data-spatial-kind') && !detail.includes('data-spatial-root') && !/<canvas\b/.test(detail), `${project.title}: must use the clean project presentation without the rejected spatial scene.`);
+  requireContent((detail.match(/<h1\b/g)||[]).length === 1 && detail.includes('id="project-evidence"'), `${project.title}: title or evidence anchor is missing.`);
+  requireContent(detail.includes(`/software/?view=${view}#${fragment}-${project.slug}`) && detail.includes(`project=${encodeURIComponent(project.title)}#direct-contact`), `${project.title}: collection return or enquiry prefill is missing.`);
+  requireContent(detail.includes('data-project-video') && detail.includes('/videos/project-hexagon-wave.mp4') && detail.includes('/images/projects/hero-poster.webp'), `${project.title}: supplied video or actual-frame poster is missing.`);
+  requireContent(detail.includes('site-footer--compact') && !detail.includes('class="footer-invitation"'), `${project.title}: use the compact footer after project-specific actions.`);
 }
 const websites = projects.filter(project => project.kind === 'website');
 const websiteMedia = JSON.parse(await readFile(resolve(root, 'src/data/website-assets.json'), 'utf8'));

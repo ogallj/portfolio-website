@@ -3,175 +3,139 @@ import Base from '../../layouts/Base.astro';
 import Arrow from '../../components/Arrow.astro';
 import BrandMark from '../../components/BrandMark.astro';
 import BrandExperience from '../../components/BrandExperience.astro';
-import SpatialExperience from '../../components/SpatialExperience.astro';
 import { creativeServices } from '../../data/portfolio';
 import { creativeResume } from '../../data/resumes';
-import dimensions from '../../data/logo-dimensions.json';
 const tools = ['Photoshop', 'Illustrator', 'InDesign', 'Affinity'];
-const brandAssets = ['fanta', 'coca-cola-africa', 'unga'].map(id => {
-  const size = (dimensions as Record<string, { width: number; height: number; revision?: string }>)[id];
-  return { id, src: '/images/brand-marks/' + id + '.webp?v=' + size.revision, width: size.width, height: size.height };
-});
 ---
-<Base title="Digital creative & marketing" theme="creative" description="Joshua Ogallo’s creative and marketing practice: campaign ideation, visual communication, brand content and experience across brands and agencies.">
-  <div class="rf-creative-page">
-    <SpatialExperience
-      kind="creative"
-      title={['Creative', '& marketing.']}
-      description="Campaign ideation, visual communication and brand content. Agency, in-house and independent experience."
-      assets={brandAssets}
-      poster={brandAssets[0].src}
-      actions={[{ href: creativeResume.pdf, label: 'Download creative CV', download: creativeResume.pdfFilename }, { href: '#brand-experience', label: 'Brand experience' }]}
-      choices={[{ id: 'ink', label: 'Ink plates' }, { id: 'brands', label: 'Brand experience' }]}
-      target="brand-experience"
-      hold={1.15}
-      caption="An original colour-registration study."
-    />
-
-    <section class="rf-contribution frame" aria-labelledby="fanta-contribution-title">
-      <div class="rf-proof-stage">
-        <div class="rf-proof-layers" aria-hidden="true"><span></span><span></span><span></span></div>
-        <div class="rf-contribution-mark">
-          <BrandMark id="fanta" decorative />
-          <span>Fanta / Brand experience</span>
-        </div>
-      </div>
-      <div class="rf-contribution-copy" data-enter>
-        <p class="rf-contribution-context">A confirmed contribution</p>
-        <h2 id="fanta-contribution-title">Skizia Utamu<br />Challenge.</h2>
-        <div class="rf-contribution-record"><p>My contribution</p><p>Creative work &amp; ideation.</p></div>
-        <p class="rf-contribution-note">Original campaign material is not yet published here. A fuller project presentation will include the work and individual credits.</p>
-        <a class="rf-inline-link" href="#coca-family-title">View the brand family <Arrow diagonal={false} /></a>
-      </div>
+<Base title="Digital creative & marketing" theme="creative" footerVariant="compact" description="Creative ideas, visual communication and brand content by Joshua Ogallo. Explore his creative and marketing practice, brand experience and professional background.">
+  <div class="creative-page" data-creative-page>
+    <section class="creative-opening frame" data-creative-opening aria-labelledby="creative-title">
+      <div class="creative-backdrop" data-creative-backdrop aria-hidden="true"><img src="/images/creative/hero-poster.webp" alt="" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async" /><video data-creative-video muted loop playsinline preload="none" poster="/images/creative/hero-poster.webp" tabindex="-1"><source src="/videos/creative-waves.mp4" type="video/mp4" /></video></div>
+      <div class="creative-opening-meta"><p>Creative &amp; marketing</p><p>Joshua Ogallo<span>Digital creative &amp; marketer</span></p></div>
+      <h1 id="creative-title"><span class="creative-title-line"><span>Good ideas.</span></span><span class="creative-title-line"><span>Made visible.</span></span></h1>
+      <div class="creative-opening-bottom"><p>I connect campaign ideas with visual craft, bringing a clear voice to brand content and digital communication.</p><div><a class="creative-explore" href="#brand-experience">Explore brand experience <span aria-hidden="true">↓</span></a><a class="creative-download" href={creativeResume.pdf} download={creativeResume.pdfFilename}>Download creative CV <Arrow /></a></div></div>
     </section>
-
+    <section class="creative-contribution frame" aria-labelledby="fanta-contribution-title">
+      <div class="creative-fanta-mark"><BrandMark id="fanta" decorative /><p>Fanta / Brand experience</p></div>
+      <div class="creative-contribution-title"><p>Recent contribution</p><h2 id="fanta-contribution-title">Skizia Utamu<br />Challenge.</h2></div>
+      <div class="creative-contribution-copy"><h3>Creative work &amp; ideation.</h3><p>Original campaign material will be added with the work, its context and individual credits.</p><a href="#coca-family-title">Explore the brand family <Arrow diagonal={false} /></a></div>
+    </section>
     <BrandExperience />
-
-    <section class="rf-creative-capabilities frame" aria-labelledby="creative-capabilities-title">
-      <div class="rf-capabilities-heading" data-enter>
-        <h2 id="creative-capabilities-title">The practice<br />behind the work.</h2>
-        <p>I bring ideas and visual craft to digital communication, brand content and marketing projects.</p>
-      </div>
-      <div class="rf-capabilities-record rf-ink-ledger">
-        <div class="rf-capability-list">
-          {creativeServices.map(service => <div class="rf-capability-row" data-enter><h3>{service.title}</h3><p>{service.description}</p></div>)}
-        </div>
-        <div class="rf-creative-tools" data-enter>
-          <h3>Tools I work with</h3>
-          <ul aria-label="Creative software">{tools.map(tool => <li>{tool}</li>)}</ul>
-        </div>
-      </div>
+    <section class="creative-practice frame" aria-labelledby="creative-capabilities-title">
+      <header><h2 id="creative-capabilities-title">From the first idea<br />to the final detail.</h2><p>Ideas and visual craft for digital communication, brand content and marketing projects.</p></header>
+      <div class="creative-services">{creativeServices.map(service => <article><h3>{service.title}</h3><p>{service.description}</p></article>)}</div>
+      <div class="creative-tools"><p>Tools I work with</p><ul aria-label="Creative software">{tools.map(tool => <li>{tool}</li>)}</ul></div>
     </section>
-
-    <section class="rf-forthcoming frame" id="creative-work" aria-labelledby="creative-work-title" data-creative-forthcoming>
-      <div data-enter>
-        <p class="rf-forthcoming-status">Work in preparation</p>
-        <h2 id="creative-work-title">Original work,<br />coming soon.</h2>
-      </div>
-      <div class="rf-forthcoming-copy" data-enter>
-        <p>Selected campaign and design pieces will appear here with my contribution and the context behind each project.</p>
-        <p>The brand experience above is the current record of this side of my practice.</p>
-      </div>
-    </section>
-
-    <nav class="rf-creative-continuation frame" aria-label="Continue exploring">
-      <a class="rf-continuation-primary" href="/contact/"><span><span>For a creative brief or a new role</span><span>Let’s talk.</span></span><Arrow /></a>
-      <div class="rf-continuation-links">
-        <a href="/cv/#cv-creative">View the creative CV <Arrow diagonal={false} /></a>
-        <a href="/software/">Explore software engineering <Arrow diagonal={false} /></a>
-      </div>
-    </nav>
+    <section class="creative-forthcoming frame" id="creative-work" aria-labelledby="creative-work-title" data-creative-forthcoming><div><p>Selected work</p><h2 id="creative-work-title">Original work,<br />coming soon.</h2></div><p>Campaign and design pieces will appear here with my contribution and the context behind each project. The brand experience above is the current record of this side of my practice.</p></section>
+    <section class="creative-closing frame" aria-labelledby="creative-closing-title"><div><p>For a creative brief or a new role</p><h2 id="creative-closing-title">Let’s make the<br />next idea count.</h2><a class="creative-contact" href="/contact/#direct-contact">Let’s talk <Arrow /></a></div><div class="creative-closing-links"><p>Take a closer look.</p><a href="/cv/#cv-creative">View the creative CV <Arrow /></a><a href="/software/">Explore software engineering <Arrow /></a></div></section>
   </div>
 </Base>
-
+<script>import { initCreativeExperience } from '../../scripts/creative-experience'; initCreativeExperience();</script>
 <style>
-  .rf-creative-page { color: var(--ink); background: var(--ground); }
-  .rf-proof-stage { position: relative; isolation: isolate; perspective: 1100px; transform-style: preserve-3d; margin: 15px 22px 25px 15px; }
-  .rf-proof-layers { position: absolute; inset: 0; transform-style: preserve-3d; pointer-events: none; }
-  .rf-proof-layers > span { position: absolute; inset: 0; clip-path: polygon(0 0,86% 0,100% 15%,100% 100%,0 100%); }
-  .rf-proof-layers > span:nth-child(1) { background: #02b5d0; transform: translate3d(-21px,22px,-38px) rotate(-5deg); }
-  .rf-proof-layers > span:nth-child(2) { background: #e53585; transform: translate3d(17px,17px,-23px) rotate(4deg); }
-  .rf-proof-layers > span:nth-child(3) { background: #f5cc38; transform: translate3d(-3px,30px,-9px) rotate(-2deg); }
-  .rf-contribution { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: clamp(45px, 9vw, 150px); padding-block: clamp(70px, 9vw, 135px); background: var(--ground); }
-  .rf-contribution-mark { position: relative; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: clamp(35px, 5vw, 75px); aspect-ratio: 1.12; background: #fff; transform: translateZ(25px); box-shadow: 0 22px 35px #10202a1c; border: 1px solid #ffffff; }
-  .rf-contribution-mark :global(.brand-mark) { width: min(100%, 235px); height: auto; max-height: 235px; object-fit: contain; }
-  .rf-contribution-mark > span { margin-top: 40px; color: var(--muted); font-size: 11px; }
-  .rf-contribution-copy { min-width: 0; }
-  .rf-contribution-context { color: var(--muted); font-size: 12px; margin-bottom: 20px; }
-  .rf-contribution-copy h2 { font: 450 clamp(38px, 4.1vw, 64px)/1.04 var(--display); letter-spacing: -.05em; }
-  .rf-contribution-record { display: grid; grid-template-columns: .7fr 1.3fr; gap: 20px; padding-top: 23px; border-top: 1px solid var(--line); margin-top: 32px; font-size: 14px; }
-  .rf-contribution-record > p:first-child { color: var(--muted); font-size: 12px; }
-  .rf-contribution-note { font-size: 13px; line-height: 1.65; color: var(--muted); margin-top: 25px; max-width: 48ch; }
-  .rf-inline-link { display: inline-flex; align-items: center; min-height: 44px; gap: 23px; font-size: 12px; margin-top: 14px; }
-  .rf-inline-link :global(.arrow-icon) { width: 16px; height: 16px; }
-  .rf-creative-capabilities { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); column-gap: clamp(55px, 9vw, 145px); padding-block: clamp(75px, 10vw, 150px); background: var(--paper); }
-  .rf-ink-ledger { position: relative; padding: 35px; background: #fff; box-shadow: 8px 9px 0 #d3dce0, 12px 14px 0 #263241; border-top: 3px solid #263241; }
-  .rf-capability-list > .rf-capability-row { position: relative; padding-left: 18px; }
-  .rf-capability-list > .rf-capability-row::before { content: ''; position: absolute; top: 28px; bottom: 28px; left: 0; width: 3px; background: #02b5d0; }
-  .rf-capability-list > .rf-capability-row:first-child::before { top: 0; }
-  .rf-capability-list > .rf-capability-row:nth-child(2)::before { background: #e53585; }
-  .rf-capability-list > .rf-capability-row:nth-child(3)::before { background: #edc535; }
-  .rf-capabilities-heading h2 { font: 450 clamp(36px, 4.3vw, 65px)/1.04 var(--display); letter-spacing: -.05em; }
-  .rf-capabilities-heading p { max-width: 33ch; margin-top: 28px; color: var(--muted); font-size: 16px; line-height: 1.7; }
-  .rf-capability-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 25px; padding-block: 28px; border-top: 1px solid var(--line); }
-  .rf-capability-row:first-child { padding-top: 0; border-top: 0; }
-  .rf-capability-row h3 { font: 500 clamp(20px, 1.8vw, 27px)/1.2 var(--display); letter-spacing: -.03em; }
-  .rf-capability-row p { color: var(--muted); font-size: 13px; line-height: 1.7; }
-  .rf-creative-tools { padding-top: 25px; margin-top: 15px; border-top: 1px solid var(--line); }
-  .rf-creative-tools h3 { font: 500 12px/1.5 var(--body); letter-spacing: 0; color: var(--muted); }
-  .rf-creative-tools ul { display: flex; flex-wrap: wrap; gap: 8px 25px; margin-top: 15px; font-size: 14px; }
-  .rf-forthcoming { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); align-items: end; gap: clamp(45px, 10vw, 155px); padding-block: clamp(65px, 8vw, 115px); scroll-margin-top: 110px; background: #f1f2e9; }
-  .rf-forthcoming::after { content: ''; position: absolute; left: var(--gutter); right: var(--gutter); bottom: 0; height: 10px; background: repeating-linear-gradient(0deg,#b8c4c2 0 1px,#f8faf5 1px 3px); transform: skewX(-24deg); transform-origin: left bottom; }
-  .rf-forthcoming-status { color: var(--blue); font-size: 12px; margin-bottom: 23px; }
-  .rf-forthcoming h2 { font: 450 clamp(37px, 4.3vw, 65px)/1.05 var(--display); letter-spacing: -.05em; }
-  .rf-forthcoming-copy p { color: var(--muted); max-width: 43ch; font-size: 15px; line-height: 1.7; }
-  .rf-forthcoming-copy p + p { font-size: 12px; margin-top: 17px; }
-  .rf-creative-continuation { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(40px, 9vw, 140px); padding-block: 36px 65px; }
-  .rf-continuation-primary { display: flex; justify-content: space-between; align-items: center; gap: 25px; padding-block: 24px; border-top: 1px solid var(--ink); }
-  .rf-continuation-primary > span > span { display: block; }
-  .rf-continuation-primary > span > span:first-child { color: var(--muted); font-size: 12px; margin-bottom: 13px; }
-  .rf-continuation-primary > span > span:last-child { font: 450 clamp(35px, 3.8vw, 58px)/1.05 var(--display); letter-spacing: -.05em; }
-  .rf-continuation-primary > :global(.arrow-icon) { width: 35px; height: 35px; }
-  .rf-continuation-links { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-  .rf-continuation-links > a { display: inline-flex; align-items: center; justify-content: space-between; gap: 25px; min-height: 44px; width: 100%; font-size: 13px; }
-  .rf-continuation-links :global(.arrow-icon) { width: 17px; height: 17px; }
-  @media (hover: hover) and (pointer: fine) {
-    .rf-continuation-primary:hover { color: var(--blue); }
+  .creative-page { --ink:#26352d;--muted:#64705f;--line:#d0d8cb;--focus:#3b5c40;background:#f6f8f3;color:var(--ink); }
+  :global(body[data-theme='creative']) { background:#f6f8f3; }
+  :global(body[data-theme='creative'] .site-header) { --header-ground:#f6f8f3;--header-surface:#fcfdf9;--header-ink:#26352d;--header-muted:#64705f;--focus:#3b5c40; }
+  :global(body[data-theme='creative'] .motion-toggle) { background:#f6f8f3;color:#26352d;border-color:#cbd5c7;border-radius:24px; }
+  .creative-opening { position:relative;isolation:isolate;overflow:clip;display:grid;grid-template-rows:auto 1fr auto;gap:45px;min-height:700px;min-height:max(700px,95svh);padding-top:135px;padding-bottom:60px; }
+  .creative-backdrop { position:absolute;inset:0;z-index:-1;pointer-events:none;background:#f6f8f3; }
+  .creative-backdrop img,.creative-backdrop video { position:absolute;inset:0;width:100%;height:100%;object-fit:cover; }
+  .creative-backdrop video { opacity:0;transition:opacity 500ms var(--ease-out); }
+  .creative-opening[data-video-ready='true']:not([data-video-failed='true']) .creative-backdrop video { opacity:1; }
+  .creative-backdrop::after { content:'';position:absolute;inset:0;background:linear-gradient(180deg,#f6f8f326,transparent 65%,#f6f8f3); }
+  .creative-opening-meta { display:flex;justify-content:space-between;gap:30px;font-size:11px;line-height:1.7; }
+  .creative-opening-meta > p:last-child { text-align:right; }
+  .creative-opening-meta span { display:block;color:var(--muted); }
+  .creative-opening h1 { align-self:center;font-size:clamp(76px,9.8vw,158px);font-weight:420;line-height:1.04;letter-spacing:-.065em;padding-block:.04em; }
+  .creative-title-line { display:block;overflow:hidden;padding-bottom:.04em; }
+  .creative-title-line > span { display:block; }
+  .creative-title-line:last-child { text-align:right; }
+  .creative-opening-bottom { display:flex;align-items:end;justify-content:space-between;gap:50px; }
+  .creative-opening-bottom > p { max-width:340px;font-size:13px;line-height:1.85;color:var(--muted); }
+  .creative-opening-bottom > div { display:flex;align-items:center;gap:32px; }
+  .creative-explore { display:inline-flex;align-items:center;gap:23px;min-height:48px;font-size:11px; }
+  .creative-explore > span { font-size:22px; }
+  .creative-download { display:inline-flex;align-items:center;justify-content:space-between;gap:26px;min-height:50px;padding:13px 21px;border-radius:28px;background:#2c4934;color:#f9fcf5;font-size:11px; }
+  .creative-download :global(.arrow-icon) { width:16px;height:16px; }
+  :global(html[data-motion='playing']) .creative-title-line > span { animation:creative-type-in 850ms var(--ease-out) both; }
+  :global(html[data-motion='playing']) .creative-title-line:last-child > span { animation-delay:80ms; }
+  @keyframes creative-type-in { from { transform:translateY(105%); } to { transform:translateY(0); } }
+  :global(html[data-motion='paused']) .creative-title-line > span { animation:none;transform:none; }
+  .creative-contribution { display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1.25fr) minmax(0,1fr);gap:6%;align-items:center;background:#edf1e9;padding-block:clamp(65px,7vw,110px); }
+  .creative-fanta-mark { min-width:0; }
+  .creative-fanta-mark :global(.brand-mark) { width:min(100%,175px);height:auto;max-height:175px;object-fit:contain;object-position:left center; }
+  .creative-fanta-mark > p { margin-top:24px;font-size:10px;color:var(--muted);line-height:1.7; }
+  .creative-contribution-title > p { color:var(--muted);font-size:11px;margin-bottom:23px; }
+  .creative-contribution-title h2 { font-size:clamp(36px,4vw,62px);font-weight:420;line-height:1.06;letter-spacing:-.05em; }
+  .creative-contribution-copy { min-width:0; }
+  .creative-contribution-copy h3 { font:500 clamp(20px,1.8vw,27px)/1.4 var(--display);letter-spacing:-.025em; }
+  .creative-contribution-copy > p { color:var(--muted);font-size:12px;line-height:1.85;margin-top:20px;max-width:350px; }
+  .creative-contribution-copy > a { display:inline-flex;align-items:center;gap:23px;min-height:44px;margin-top:15px;font-size:11px; }
+  .creative-contribution-copy :global(.arrow-icon) { width:16px;height:16px; }
+  .creative-practice { padding-block:clamp(75px,9vw,135px);background:#e8eee4; }
+  .creative-practice > header { display:flex;align-items:end;justify-content:space-between;gap:60px;margin-bottom:60px; }
+  .creative-practice h2 { font-size:clamp(42px,5vw,76px);font-weight:420;line-height:1.05; }
+  .creative-practice > header > p { max-width:290px;font-size:13px;color:var(--muted);line-height:1.85; }
+  .creative-services { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6%; }
+  .creative-services > article { min-width:0;padding-top:25px;border-top:1px solid #b9c8b2; }
+  .creative-services h3 { font-size:clamp(24px,2.4vw,37px);font-weight:430;line-height:1.1; }
+  .creative-services p { max-width:330px;font-size:13px;color:var(--muted);line-height:1.85;margin-top:22px; }
+  .creative-tools { display:flex;align-items:center;justify-content:space-between;gap:35px;margin-top:65px;padding-top:25px;border-top:1px solid #b9c8b2; }
+  .creative-tools > p { font-size:11px;color:var(--muted); }
+  .creative-tools ul { display:flex;flex-wrap:wrap;gap:15px 35px;font-size:13px; }
+  .creative-forthcoming { display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:12%;align-items:center;padding-block:clamp(65px,8vw,115px);scroll-margin-top:20px; }
+  .creative-forthcoming > div > p { font-size:11px;color:var(--muted);margin-bottom:25px; }
+  .creative-forthcoming h2 { font-size:clamp(37px,4.1vw,63px);font-weight:420;line-height:1.07; }
+  .creative-forthcoming > p { max-width:440px;font-size:13px;color:var(--muted);line-height:1.85; }
+  .creative-closing { display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.75fr);gap:12%;align-items:end;background:#101820;color:#edf1f2;--focus:#bfd2ff;padding-top:clamp(75px,8vw,125px);padding-bottom:75px; }
+  .creative-closing > div > p { color:#a9bcc8;font-size:11px;line-height:1.7;margin-bottom:26px; }
+  .creative-closing h2 { font-size:clamp(47px,5.6vw,86px);font-weight:410;line-height:1.04; }
+  .creative-contact { display:inline-flex;align-items:center;justify-content:space-between;gap:55px;min-height:54px;padding:14px 23px;margin-top:32px;border-radius:30px;background:#edf2e8;color:#213123;font-size:12px; }
+  .creative-contact :global(.arrow-icon) { width:17px;height:17px; }
+  .creative-closing-links { padding-bottom:4px;min-width:0; }
+  .creative-closing .creative-closing-links > p { margin-bottom:15px; }
+  .creative-closing-links > a { display:flex;align-items:center;justify-content:space-between;gap:25px;min-height:52px;padding-block:12px;border-bottom:1px solid #41505a;font-size:12px;line-height:1.7; }
+  .creative-closing-links :global(.arrow-icon) { width:16px;height:16px; }
+  @media (hover:hover) and (pointer:fine) { .creative-explore:hover,.creative-contribution-copy > a:hover,.creative-closing-links > a:hover { text-decoration:underline;text-underline-offset:5px; }.creative-download:hover { background:#3b5c42; }.creative-contact:hover { background:#dce7d4; } }
+  @media (max-width:1050px) { .creative-opening-bottom { gap:35px; }.creative-opening-bottom > div { flex-direction:column;align-items:end;gap:8px; }.creative-opening-bottom > p { max-width:290px;font-size:12px; }.creative-contribution { grid-template-columns:minmax(0,.75fr) minmax(0,1.35fr);gap:35px 9%; }.creative-contribution-copy { grid-column:2; }.creative-practice > header { gap:45px; } }
+  @media (max-width:700px) {
+    .creative-opening { min-height:100svh;padding-top:120px;padding-bottom:65px;gap:55px; }
+    .creative-opening-meta { font-size:10px;gap:20px; }
+    .creative-opening-meta > p:first-child { max-width:120px; }
+    .creative-opening h1 { font-size:clamp(54px,12.8vw,82px);line-height:1.08; }
+    .creative-backdrop img,.creative-backdrop video { object-position:20% center; }
+    .creative-title-line:last-child { margin-top:12px; }
+    .creative-opening-bottom { flex-direction:column;align-items:start;gap:28px; }
+    .creative-opening-bottom > p { max-width:330px;font-size:12px; }
+    .creative-opening-bottom > div { flex-direction:row;align-items:center;justify-content:space-between;width:100%;gap:20px; }
+    .creative-explore { font-size:10px;gap:12px;max-width:145px; }
+    .creative-download { font-size:10px;gap:15px;padding:12px 16px; }
+    .creative-contribution { grid-template-columns:1fr;gap:30px;padding-block:60px; }
+    .creative-fanta-mark { display:flex;align-items:center;gap:25px; }
+    .creative-fanta-mark :global(.brand-mark) { width:105px;max-height:100px; }
+    .creative-fanta-mark > p { margin-top:0;font-size:10px; }
+    .creative-contribution-title > p { font-size:10px;margin-bottom:18px; }
+    .creative-contribution-title h2 { font-size:clamp(40px,10vw,57px); }
+    .creative-contribution-copy { grid-column:auto; }
+    .creative-contribution-copy h3 { font-size:23px; }
+    .creative-contribution-copy > p { font-size:12px;max-width:430px; }
+    .creative-practice { padding-block:65px; }
+    .creative-practice > header { display:block;margin-bottom:38px; }
+    .creative-practice h2 { font-size:clamp(39px,9vw,58px); }
+    .creative-practice > header > p { margin-top:25px;max-width:350px;font-size:12px; }
+    .creative-services { grid-template-columns:1fr;gap:28px; }
+    .creative-services > article { padding-top:22px; }
+    .creative-services h3 { font-size:29px; }
+    .creative-services p { margin-top:16px;font-size:12px;max-width:450px; }
+    .creative-tools { align-items:start;flex-direction:column;gap:22px;margin-top:40px; }
+    .creative-tools ul { gap:14px 25px;font-size:12px; }
+    .creative-forthcoming { grid-template-columns:1fr;gap:25px;padding-block:60px; }
+    .creative-forthcoming h2 { font-size:clamp(39px,9vw,57px); }
+    .creative-forthcoming > p { font-size:12px;max-width:450px; }
+    .creative-closing { grid-template-columns:1fr;gap:45px;padding-top:65px;padding-bottom:50px; }
+    .creative-closing h2 { font-size:clamp(43px,10vw,63px); }
+    .creative-closing > div > p { margin-bottom:23px; }
+    .creative-closing-links { max-width:450px; }
   }
-  @media (max-width: 1000px) {
-    .rf-contribution { gap: 50px; }
-    .rf-creative-capabilities { column-gap: 55px; }
-    .rf-capability-row { grid-template-columns: 1fr; gap: 12px; }
-    .rf-contribution-record { grid-template-columns: 1fr; gap: 8px; }
-  }
-  @media (max-width: 700px) {
-    .rf-proof-stage { margin: 6px 16px 24px 10px; }
-    .rf-contribution { grid-template-columns: 1fr; gap: 34px; padding-block: 55px 65px; }
-    .rf-contribution-mark { aspect-ratio: 1.7; padding: 28px; }
-    .rf-contribution-mark :global(.brand-mark) { max-width: 160px; max-height: 130px; }
-    .rf-contribution-mark > span { margin-top: 22px; font-size: 10px; }
-    .rf-contribution-context { font-size: 11px; margin-bottom: 17px; }
-    .rf-contribution-copy h2 { font-size: clamp(37px, 9vw, 54px); }
-    .rf-contribution-record { grid-template-columns: .8fr 1.2fr; gap: 18px; margin-top: 26px; }
-    .rf-contribution-note { font-size: 12px; margin-top: 20px; }
-    .rf-creative-capabilities { grid-template-columns: 1fr; gap: 42px; padding-block: 65px; }
-    .rf-ink-ledger { padding: 25px 22px; margin-right: 10px; }
-    .rf-capabilities-heading h2 { font-size: 38px; }
-    .rf-capabilities-heading p { font-size: 14px; margin-top: 23px; max-width: 39ch; }
-    .rf-capability-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 22px; padding-block: 23px; }
-    .rf-capability-row h3 { font-size: 20px; }
-    .rf-capability-row p { font-size: 12px; }
-    .rf-creative-tools ul { font-size: 13px; gap: 7px 20px; }
-    .rf-forthcoming { grid-template-columns: 1fr; gap: 27px; padding-block: 60px 40px; }
-    .rf-forthcoming h2 { font-size: 38px; }
-    .rf-forthcoming-status { margin-bottom: 19px; }
-    .rf-forthcoming-copy p { font-size: 14px; max-width: 41ch; }
-    .rf-creative-continuation { grid-template-columns: 1fr; gap: 12px; padding-block: 15px 50px; }
-    .rf-continuation-primary > span > span:last-child { font-size: 39px; }
-    .rf-continuation-primary > :global(.arrow-icon) { width: 29px; height: 29px; }
-    .rf-continuation-links { gap: 4px; }
-  }
-  @media (max-width: 360px) {
-    .rf-contribution-record,.rf-capability-row { grid-template-columns: 1fr; gap: 9px; }
-  }
+  @media (max-width:360px) { .creative-opening h1 { font-size:49px; }.creative-opening-bottom > div { align-items:start;flex-direction:column;gap:14px; }.creative-explore { max-width:none; }.creative-title-line:last-child { text-align:left; }.creative-fanta-mark { gap:20px; } }
+  @media (prefers-reduced-motion:reduce) { .creative-backdrop video { display:none; }.creative-title-line > span { animation:none !important;transform:none; } }
 </style>

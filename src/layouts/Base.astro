@@ -7,7 +7,7 @@ import '../styles/global.css';
 interface Props { title: string; description?: string; theme?: string; footer?: boolean; footerVariant?: 'full' | 'compact'; noindex?: boolean }
 const { title, description = 'Joshua Ogallo — software engineer and digital creative based in Nairobi. Explore business systems, websites, and digital creative & marketing work.', theme = 'default', footer = true, footerVariant = 'full', noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const dark = ['home','refraction-study','creative','project','contact','error'].includes(theme);
+const dark = ['home','refraction-study','error'].includes(theme);
 ---
 <!doctype html>
 <html lang="en">
