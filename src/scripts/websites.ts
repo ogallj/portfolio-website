@@ -12,17 +12,11 @@ export function initWebsiteExhibitions(): () => void {
     if (existing) { disposers.push(existing); return; }
     const panels = [...root.querySelectorAll<HTMLElement>('[data-web-panel]')];
     const selectors = [...root.querySelectorAll<HTMLAnchorElement>('[data-web-select]')];
-    const index = root.querySelector<HTMLElement>('.website-index');
-    const rail = root.querySelector<HTMLElement>('.website-index ol');
-    const directory = root.querySelector<HTMLDetailsElement>('[data-web-directory]');
-    const directorySummary = directory?.querySelector<HTMLElement>('summary');
-    const directoryBody = directory?.querySelector<HTMLElement>('.website-directory');
-    const chooser = root.querySelector<HTMLSelectElement>('[data-web-chooser]');
-    const chooserWrap = root.querySelector<HTMLElement>('[data-web-chooser-wrap]');
     const position = root.querySelector<HTMLElement>('[data-web-position]');
     const controls = root.querySelector<HTMLElement>('[data-web-controls]');
     const announcement = root.querySelector<HTMLElement>('[data-web-announcement]');
     const stage = root.querySelector<HTMLElement>('[data-web-stage]');
+    const initialHash = location.hash;
     if (!panels.length || panels.length !== selectors.length) return;
     const abort = new AbortController();
     const options = { signal: abort.signal };
@@ -38,17 +32,6 @@ export function initWebsiteExhibitions(): () => void {
       if (frame && viewport.clientWidth > 0) frame.style.transform = 'scale(' + viewport.clientWidth / 1440 + ')';
     };
     const updateSticky = () => root.toggleAttribute('data-stage-fits', !!stage && innerWidth > 800 && stage.getBoundingClientRect().height <= innerHeight - 125);
-    const positionDirectory = () => {
-      if (!directory?.open || !directoryBody) return;
-      const bounds = directory.closest('.website-browse-bar')?.getBoundingClientRect();
-      if (!bounds) return;
-      const below = Math.max(140, innerHeight - bounds.bottom - 24);
-      const above = Math.max(0, bounds.top - 115);
-      const opensAbove = below < 240 && above > below;
-      directory.toggleAttribute('data-directory-above', opensAbove);
-      directoryBody.style.maxHeight = Math.min(innerHeight * .66, opensAbove ? above : below) + 'px';
-    };
-    directory?.addEventListener('toggle', () => { positionDirectory(); }, options);
     const observer = new ResizeObserver(entries => { entries.forEach(entry => resizeFrame(entry.target as HTMLElement)); updateSticky(); });
     root.querySelectorAll<HTMLElement>('[data-web-live-viewport]').forEach(viewport => observer.observe(viewport));
     if (stage) observer.observe(stage);
@@ -89,25 +72,12 @@ export function initWebsiteExhibitions(): () => void {
         if (item === active) selector.setAttribute('aria-current', 'true');
         else selector.removeAttribute('aria-current');
       });
-      if (chooser) chooser.value = panels[active].dataset.webPanel || '';
       if (position) position.textContent = (active + 1) + ' / ' + panels.length;
       if (updateUrl && announcement) announcement.textContent = panels[active].querySelector('h3')?.textContent + '. Website ' + (active + 1) + ' of ' + panels.length + '.';
-      if (index && index.scrollHeight > index.clientHeight && selectors[active].getBoundingClientRect().height > 0) {
-        const itemBounds = selectors[active].getBoundingClientRect();
-        const bounds = index.getBoundingClientRect();
-        if (itemBounds.top < bounds.top) index.scrollTop += itemBounds.top - bounds.top;
-        else if (itemBounds.bottom > bounds.bottom) index.scrollTop += itemBounds.bottom - bounds.bottom;
-      }
-      if (rail && rail.scrollWidth > rail.clientWidth && selectors[active].getClientRects().length > 0) {
-        const itemBounds = selectors[active].getBoundingClientRect();
-        const bounds = rail.getBoundingClientRect();
-        if (itemBounds.left < bounds.left) rail.scrollLeft += itemBounds.left - bounds.left - 3;
-        else if (itemBounds.right > bounds.right) rail.scrollLeft += itemBounds.right - bounds.right + 3;
-      }
       if (updateUrl) {
         const url = new URL(location.href);
         url.hash = panels[active].id;
-        history.replaceState(null, '', url.pathname + url.search + url.hash);
+        if (url.href !== location.href) history.pushState(null, '', url.pathname + url.search + url.hash);
       }
       if (transferFocus) panels[active].focus({ preventScroll: true });
       if (animate && !reduce.matches && document.body.dataset.motion !== 'paused') {
@@ -125,30 +95,21 @@ export function initWebsiteExhibitions(): () => void {
     const syncFromUrl = () => {
       const selected = panels.findIndex(panel => '#' + panel.id === location.hash);
       if (selected >= 0 && selected !== active) select(selected, false);
+      else if (selected < 0 && location.hash === initialHash && active !== 0) select(0, false);
+    };
+    const revealSelection = () => {
+      const panel = panels[active];
+      panel.focus({ preventScroll: true });
+      const headerHeight = document.querySelector<HTMLElement>('.site-header')?.getBoundingClientRect().height || 0;
+      const top = scrollY + panel.getBoundingClientRect().top - headerHeight - 24;
+      window.scrollTo({ top: Math.max(0, top), behavior: reduce.matches || document.documentElement.dataset.motion === 'paused' ? 'instant' : 'smooth' });
     };
     selectors.forEach((selector, item) => selector.addEventListener('click', event => {
+      if (event.defaultPrevented || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
       event.preventDefault();
       select(item, true, event.detail !== 0);
-      if (directory) directory.open = false;
-      const bounds = panels[active].querySelector('.website-artboard')?.getBoundingClientRect();
-      const outside = !!bounds && (bounds.bottom < 0 || bounds.top > innerHeight);
-      if (directory || event.detail === 0 || outside) panels[active].focus({ preventScroll: !outside });
+      revealSelection();
     }, options));
-    directory?.addEventListener('keydown', event => {
-      if (event.key !== 'Escape' || !directory.open) return;
-      event.preventDefault();directory.open = false;directorySummary?.focus({ preventScroll:true });
-    }, options);
-    document.addEventListener('click', event => {
-      if (!directory?.open || !(event.target instanceof Node) || directory.contains(event.target)) return;
-      const restoreFocus = directory.contains(document.activeElement);
-      directory.open = false;
-      if (restoreFocus) directorySummary?.focus({ preventScroll:true });
-    }, options);
-    if (chooser) chooser.addEventListener('change', () => {
-      const selected = panels.findIndex(panel => panel.dataset.webPanel === chooser.value);
-      if (selected >= 0) select(selected);
-      // Keep native select focus so keyboard arrows and the next Tab stay predictable.
-    }, options);
     root.querySelector<HTMLButtonElement>('[data-web-previous]')?.addEventListener('click', event => select(active - 1, true, event.detail !== 0), options);
     root.querySelector<HTMLButtonElement>('[data-web-next]')?.addEventListener('click', event => select(active + 1, true, event.detail !== 0), options);
 
@@ -207,14 +168,13 @@ export function initWebsiteExhibitions(): () => void {
     const hashIndex = panels.findIndex(panel => '#' + panel.id === location.hash);
     root.dataset.enhanced = 'true';
     if (controls) controls.hidden = false;
-    if (chooserWrap) chooserWrap.hidden = false;
     select(hashIndex >= 0 ? hashIndex : 0, false);
     const onFilter = () => { stopAllLive(); settleMotion(); syncFromUrl(); updateSticky(); };
     const onMotion = () => { if (document.body.dataset.motion === 'paused' || reduce.matches) { stopAllLive(); settleMotion(); } };
     const onVisibility = () => { if (document.hidden) { stopAllLive(); settleMotion(); } };
     const visibilityObserver = new IntersectionObserver(entries => { if (!entries[0]?.isIntersecting) stopAllLive(); });
     if (stage) visibilityObserver.observe(stage);
-    window.addEventListener('resize', () => { updateSticky(); positionDirectory(); }, options);
+    window.addEventListener('resize', updateSticky, options);
     window.addEventListener('hashchange', syncFromUrl, options);
     window.addEventListener('popstate', syncFromUrl, options);
     window.addEventListener('portfolio:filter', onFilter, options);
@@ -230,7 +190,6 @@ export function initWebsiteExhibitions(): () => void {
       observer.disconnect(); visibilityObserver.disconnect();
       delete root.dataset.enhanced; delete root.dataset.stageFits;
       if (controls) controls.hidden = true;
-      if (chooserWrap) chooserWrap.hidden = true;
       root.querySelectorAll<HTMLButtonElement>('[data-web-live]').forEach(button => { button.hidden = true; });
       controllers.delete(root);
     };

@@ -1,5 +1,6 @@
 ---
 import Arrow from './Arrow.astro';
+import LogoMark from './LogoMark.astro';
 import { profile } from '../data/portfolio';
 interface Props { variant?: 'full' | 'compact' }
 const { variant = 'full' } = Astro.props;
@@ -7,7 +8,7 @@ const { variant = 'full' } = Astro.props;
 <footer class:list={['site-footer', 'frame', { 'site-footer--compact': variant === 'compact' }]}>
   {variant === 'full' && <div class="footer-invitation"><div><p>A project, a role, a new idea.</p><a class="footer-talk" href="/contact/">Let’s talk.<span aria-hidden="true"><Arrow /></span></a></div><div class="footer-direct"><p>Or write directly</p><a class="footer-email" href={`mailto:${profile.email}`}>{profile.email}<Arrow /></a></div></div>}
   <div class="footer-navigation">
-    <div class="footer-identity"><a href="/" class="footer-mark" aria-label="Joshua Ogallo — home"><span class="footer-monogram" aria-hidden="true">jo.</span><span class="footer-name">Joshua<br />Ogallo</span></a><p class="footer-practice">Software engineering.<br />Digital creative &amp; marketing.</p>{variant === 'compact' && <a class="footer-compact-email" href={`mailto:${profile.email}`}>{profile.email}<Arrow /></a>}</div>
+    <div class="footer-identity"><a href="/" class="footer-mark" aria-label="Joshua Ogallo — home"><span class="footer-monogram" aria-hidden="true"><LogoMark /></span><span class="footer-name">Joshua<br />Ogallo</span></a><p class="footer-practice">Software engineering.<br />Digital creative &amp; marketing.</p>{variant === 'compact' && <a class="footer-compact-email" href={`mailto:${profile.email}`}>{profile.email}<Arrow /></a>}</div>
     <nav class="footer-link-columns" aria-label="Footer navigation">
       <div class="footer-column"><p>Work</p><a href="/software/">Software</a><a href="/creative-marketing/">Creative &amp; marketing</a></div>
       <div class="footer-column"><p>Information</p><a href="/about/">About</a><a href="/cv/">CVs &amp; résumés</a><a href="/contact/">Contact</a></div>
@@ -30,7 +31,7 @@ const { variant = 'full' } = Astro.props;
   .footer-navigation { display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.7fr);align-items:start;gap:10%;padding-top:48px;border-top:1px solid #40525e; }
   .footer-identity { min-width:0; }
   .footer-mark { display:inline-flex;align-items:center;gap:24px;min-height:70px; }
-  .footer-monogram { font:700 72px/.85 var(--display);letter-spacing:-.1em;padding-right:7px; }
+  .footer-monogram { display:block;flex:0 0 auto;width:99px;height:72px; }
   .footer-name { font:430 26px/1.04 var(--display);letter-spacing:-.045em; }
   .footer-practice { margin-top:24px;color:#a9bcc8;font-size:12px;line-height:1.8; }
   .footer-compact-email { display:inline-flex;align-items:center;gap:19px;min-height:44px;margin-top:12px;font-size:12px;overflow-wrap:anywhere; }
@@ -46,7 +47,7 @@ const { variant = 'full' } = Astro.props;
   .site-footer--compact { padding-top:28px; }
   .site-footer--compact .footer-navigation { border-top:0;padding-top:0; }
   @media (hover:hover) and (pointer:fine) { .footer-talk:hover :global(.arrow-icon) { transform:translate(3px,-3px); }.footer-email:hover,.footer-compact-email:hover,.footer-column > a:hover,.footer-baseline > a:hover { color:#fff;text-decoration:underline;text-underline-offset:5px; } }
-  @media (max-width:1000px) { .footer-invitation { gap:35px; }.footer-navigation { gap:7%;grid-template-columns:minmax(0,.85fr) minmax(0,1.7fr); }.footer-mark { gap:17px; }.footer-monogram { font-size:62px; }.footer-name { font-size:24px; }.footer-link-columns { gap:20px; }.footer-email { font-size:16px;gap:17px; } }
+  @media (max-width:1000px) { .footer-invitation { gap:35px; }.footer-navigation { gap:7%;grid-template-columns:minmax(0,.85fr) minmax(0,1.7fr); }.footer-mark { gap:17px; }.footer-monogram { width:85px;height:62px; }.footer-name { font-size:24px; }.footer-link-columns { gap:20px; }.footer-email { font-size:16px;gap:17px; } }
   @media (max-width:800px) { .footer-invitation { flex-direction:column;align-items:start;gap:35px; }.footer-navigation { grid-template-columns:minmax(0,1fr);gap:40px; }.footer-identity { display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:15px 30px; }.footer-practice { margin-top:0; }.footer-compact-email { grid-column:1/-1;margin-top:0; }.footer-link-columns { gap:35px; } }
   @media (max-width:600px) {
     .site-footer { padding-top:60px;padding-bottom:80px; }
@@ -59,7 +60,7 @@ const { variant = 'full' } = Astro.props;
     .footer-navigation { padding-top:35px;gap:35px; }
     .footer-identity { display:block; }
     .footer-mark { gap:22px; }
-    .footer-monogram { font-size:66px; }
+    .footer-monogram { width:91px;height:66px; }
     .footer-name { font-size:26px; }
     .footer-practice { margin-top:20px;font-size:12px; }
     .footer-compact-email { margin-top:10px; }

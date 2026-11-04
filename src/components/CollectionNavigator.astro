@@ -1,0 +1,38 @@
+---
+import type { Project } from '../data/portfolio';
+import ProjectCover from './ProjectCover.astro';
+import WebsiteCover from './WebsiteCover.astro';
+interface Props { projects: Project[]; kind: 'system' | 'website' }
+const { projects, kind } = Astro.props;
+const prefix = kind === 'system' ? 'system' : 'web';
+const label = kind === 'system' ? 'systems' : 'websites';
+---
+<nav class="collection-map" id={prefix + '-index'} data-collection-map={kind} data-system-directory={kind === 'system' ? '' : undefined} data-web-directory={kind === 'website' ? '' : undefined} aria-label={'Choose a ' + kind}>
+  <div class="collection-map-heading"><p>Choose a {kind} to explore.</p><span>All {projects.length} {label}</span></div>
+  <ol>{projects.map((project, index) => <li><a href={'#' + prefix + '-' + project.slug} data-system-select={kind === 'system' ? project.slug : undefined} data-web-select={kind === 'website' ? project.slug : undefined} aria-controls={prefix + '-' + project.slug} aria-current={index === 0 ? 'true' : undefined}>
+    <span class="collection-map-preview" aria-hidden="true">{kind === 'system' ? <ProjectCover project={project} sizes="72px" /> : <WebsiteCover project={project} sizes="72px" />}</span>
+    <span class="collection-map-copy"><span class="collection-map-name">{project.title}</span><span class="collection-map-category">{project.category}</span></span>
+    <span class="collection-map-position" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+  </a></li>)}</ol>
+</nav>
+<style>
+  .collection-map { margin-bottom:32px;scroll-margin-top:110px; }
+  .collection-map-heading { display:flex;align-items:center;justify-content:space-between;gap:25px;margin-bottom:16px;color:#596452;font-size:11px; }
+  .collection-map-heading > span { white-space:nowrap;font-variant-numeric:tabular-nums; }
+  .collection-map ol { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 30px;list-style:none;padding:0;margin:0; }
+  .collection-map li { min-width:0;border-top:1px solid #c5cec0; }
+  .collection-map a { display:grid;grid-template-columns:72px minmax(0,1fr) 16px;align-items:center;gap:15px;min-height:108px;padding:17px 0; }
+  .collection-map-preview { display:flex;align-items:center;justify-content:center;width:72px;height:72px;background:#f4f6f1; }
+  .collection-map-preview :global(.project-cover),.collection-map-preview :global(.website-cover) { width:100%;max-height:100%; }
+  .collection-map-preview :global(img) { display:block;max-height:72px;object-fit:contain; }
+  .collection-map-copy { min-width:0; }
+  .collection-map-name { display:block;font-size:12px;font-weight:600;line-height:1.5;overflow-wrap:anywhere; }
+  .collection-map-category { display:block;margin-top:5px;color:#596452;font-size:10px;line-height:1.6; }
+  .collection-map-position { align-self:start;padding-top:3px;color:#63705b;font-size:9px;font-variant-numeric:tabular-nums;text-align:right; }
+  .collection-map a[aria-current] .collection-map-name { text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px; }
+  .collection-map a[aria-current] .collection-map-position { color:#263a29;font-weight:700; }
+  @media(hover:hover) and (pointer:fine) { .collection-map a:hover .collection-map-name { text-decoration:underline;text-underline-offset:4px; } }
+  @media(max-width:1100px) { .collection-map ol { grid-template-columns:repeat(2,minmax(0,1fr));gap:0 30px; } }
+  @media(max-width:700px) { .collection-map { margin-bottom:25px;scroll-margin-top:100px; }.collection-map-heading { font-size:10px;gap:15px; }.collection-map ol { gap:0 20px; }.collection-map a { grid-template-columns:56px minmax(0,1fr) 14px;gap:12px;min-height:95px;padding:15px 0; }.collection-map-preview { width:56px;height:56px; }.collection-map-preview :global(img) { max-height:56px; }.collection-map-name { font-size:11px; }.collection-map-category { font-size:9px; }.collection-map-position { font-size:8px; } }
+  @media(max-width:560px) { .collection-map ol { grid-template-columns:minmax(0,1fr); }.collection-map a { grid-template-columns:64px minmax(0,1fr) 18px;min-height:94px;gap:17px; }.collection-map-preview { width:64px;height:64px; }.collection-map-preview :global(img) { max-height:64px; }.collection-map-name { font-size:12px; }.collection-map-category { font-size:10px; } }
+</style>

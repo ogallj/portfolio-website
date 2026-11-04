@@ -1,16 +1,18 @@
 ---
 import Arrow from './Arrow.astro';
 import ProjectCover from './ProjectCover.astro';
+import CollectionNavigator from './CollectionNavigator.astro';
 import { projects } from '../data/portfolio';
 import { systemMockups } from '../data/system-media';
 const systems = projects.filter(project => project.kind === 'system');
 ---
 <section class="system-collection frame" data-project-group="system" aria-labelledby="systems-title" id="systems" data-system-collection>
   <header class="system-collection-heading"><h3 id="systems-title">Systems for<br />real work.</h3><p>Commerce, teams, payments, care and hospitality. Explore nine systems through my work in frontend engineering and UI/UX.</p></header>
+  <CollectionNavigator projects={systems} kind="system" />
   <div class="system-browse-bar">
     <p class="system-collection-label">Business systems</p>
     <div class="system-controls" data-system-controls hidden><span data-system-position>1 / {systems.length}</span><div><button type="button" data-system-previous aria-label="Previous system"><Arrow diagonal={false} /></button><button type="button" data-system-next aria-label="Next system"><Arrow diagonal={false} /></button></div></div>
-    <details class="system-index" data-system-directory><summary><span>All systems <span class="system-directory-count">{systems.length}</span></span><span class="system-directory-symbol" aria-hidden="true"><i></i><i></i></span></summary><nav class="system-directory" aria-label="Choose a business system"><p>Choose a system to explore.</p><ol>{systems.map((project,index) => <li><a href={'#system-' + project.slug} data-system-select={project.slug} aria-controls={'system-' + project.slug} aria-current={index === 0 ? 'true' : undefined}><span class="system-directory-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span><span><span class="system-directory-name">{project.title}</span><span class="system-directory-category">{project.category}</span></span><Arrow /></a></li>)}</ol></nav></details>
+    <a class="system-index-link" href="#system-index">Choose a system <Arrow diagonal={false} /></a>
   </div>
   <div class="system-presentations">{systems.map((project,index) => {
     const mockup = systemMockups[project.mockup!];
@@ -36,26 +38,9 @@ const systems = projects.filter(project => project.kind === 'system');
   .system-controls button { display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid #bfc9b9;border-radius:50%;background:transparent;transition:background 180ms ease,border-color 180ms ease; }
   .system-controls button :global(.arrow-icon) { width:17px;height:17px; }
   .system-controls button:first-child :global(.arrow-icon) { transform:rotate(180deg); }
-  .system-index summary { display:flex;align-items:center;justify-content:space-between;gap:40px;min-height:46px;padding:10px 18px;border:1px solid #b0bda9;border-radius:30px;font-size:11px;list-style:none; }
-  .system-index summary::-webkit-details-marker { display:none; }
-  .system-directory-count { margin-left:7px;font-size:9px;color:var(--muted); }
-  .system-directory-symbol { position:relative;width:13px;height:13px;transition:transform 180ms var(--ease-out); }
-  .system-directory-symbol i { position:absolute;top:6px;left:0;width:13px;height:1px;background:currentColor; }
-  .system-directory-symbol i:last-child { transform:rotate(90deg); }
-  .system-index[open] .system-directory-symbol { transform:rotate(45deg); }
-  .system-index[open] summary { background:#fff; }
-  .system-directory { position:absolute;right:0;top:calc(100% + 10px);width:min(100%,820px);padding:30px;max-height:min(66svh,600px);overflow-y:auto;overscroll-behavior:contain;background:#f9faf7;border:1px solid #cbd4c5;border-radius:16px;box-shadow:0 18px 45px #17212812;scrollbar-width:thin;scrollbar-color:#a5b29e transparent; }
-  .system-index[data-directory-above] .system-directory { top:auto;bottom:calc(100% + 10px); }
-  .system-directory > p { padding-bottom:22px;font-size:11px;color:var(--muted); }
-  .system-directory ol { display:grid;grid-template-columns:1fr 1fr;gap:0 40px;padding:0;margin:0;list-style:none; }
-  .system-directory a { display:grid;grid-template-columns:25px minmax(0,1fr) 16px;gap:11px;align-items:center;min-height:76px;padding:15px 3px;border-top:1px solid #d5dcd0; }
-  .system-directory-number { align-self:start;padding-top:3px;font-size:9px;font-variant-numeric:tabular-nums;color:#6d7768; }
-  .system-directory-name { display:block;font-size:13px;font-weight:550;line-height:1.4; }
-  .system-directory-category { display:block;margin-top:5px;font-size:10px;line-height:1.5;color:var(--muted); }
-  .system-directory :global(.arrow-icon) { width:15px;height:15px;opacity:0; }
-  .system-directory a[aria-current] :global(.arrow-icon) { opacity:1; }
-  .system-directory a[aria-current] .system-directory-name { text-decoration:underline;text-underline-offset:4px; }
-  .system-presentation { display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:8%;align-items:center;scroll-margin-top:100px; }
+  .system-index-link { display:inline-flex;align-items:center;gap:20px;min-height:46px;font-size:11px; }
+  .system-index-link :global(.arrow-icon) { width:16px;height:16px;transform:rotate(-90deg); }
+  .system-presentation { display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:8%;align-items:center;scroll-margin-top:80px; }
   .system-presentation + .system-presentation { margin-top:100px; }
   .system-evidence { min-width:0;margin:0; }
   .system-image { display:block;max-width:min(100%,68svh);overflow:hidden;border-radius:9px; }
@@ -82,7 +67,7 @@ const systems = projects.filter(project => project.kind === 'system');
   .system-collection-close :global(.arrow-icon) { width:17px;height:17px; }
   .system-collection[data-system-enhanced] .system-presentation:not([data-active]) { display:none; }
   .system-collection[data-system-enhanced] .system-presentation + .system-presentation { margin-top:0; }
-  @media(hover:hover) and (pointer:fine) { .system-controls button:hover { background:#fff;border-color:#8a9c81; }.system-explore:hover { background:#3c4937; }.system-directory a:hover .system-directory-name,.system-discuss:hover,.system-evidence figcaption a:hover,.system-collection-close a:hover { text-decoration:underline;text-underline-offset:5px; } }
+  @media(hover:hover) and (pointer:fine) { .system-controls button:hover { background:#fff;border-color:#8a9c81; }.system-explore:hover { background:#3c4937; }.system-index-link:hover,.system-discuss:hover,.system-evidence figcaption a:hover,.system-collection-close a:hover { text-decoration:underline;text-underline-offset:5px; } }
   @media(max-width:1040px) { .system-collection[data-system-enhanced] .system-browse-bar { top:78px; } }
   @media(max-width:1000px) and (min-width:801px) { .system-presentation { gap:6%;grid-template-columns:1.1fr 1fr; }.system-description h4 { font-size:4.8vw; }.system-overview { font-size:13px; }.system-project-actions { gap:5px 17px; }.system-project-actions a { font-size:10px; }.system-project-facts { margin-top:25px; } }
   @media(max-width:800px) { .system-presentation { grid-template-columns:minmax(0,1fr);gap:30px; }.system-image { max-width:620px; }.system-evidence figcaption { max-width:620px; }.system-description { padding-block:0;max-width:620px; }.system-description h4 { font-size:clamp(36px,6.2vw,55px); }.system-overview { max-width:550px;font-size:13px;margin-top:20px; }.system-project-facts { display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:27px; }.system-project-facts > div + div { margin-top:0; }.system-project-actions { margin-top:25px; } }
@@ -96,11 +81,8 @@ const systems = projects.filter(project => project.kind === 'system');
     .system-controls { gap:9px;margin-right:auto; }
     .system-controls > span { min-width:37px;font-size:10px; }
     .system-controls > div { gap:5px; }
-    .system-index summary { padding-inline:15px;gap:22px;font-size:10px; }
-    .system-directory { width:100%;padding:23px 18px;border-radius:10px; }
-    .system-directory ol { grid-template-columns:1fr; }
-    .system-directory a { min-height:69px; }
-    .system-directory-name { font-size:12px; }
+    .system-index-link { font-size:10px;gap:15px; }
+    .system-presentation { scroll-margin-top:110px; }
     .system-image { border-radius:6px; }
     .system-evidence figcaption { font-size:9px;gap:12px;padding-top:9px; }
     .system-evidence figcaption a { gap:10px; }
@@ -115,5 +97,5 @@ const systems = projects.filter(project => project.kind === 'system');
     .system-collection-close { display:block;margin-top:45px;font-size:11px; }
     .system-collection-close a { margin-top:13px; }
   }
-  @media(max-width:360px) { .system-index summary { padding-inline:12px;gap:16px; }.system-controls { gap:4px; }.system-controls > div { gap:4px; }.system-browse-bar { gap:15px 5px; }.system-project-facts { grid-template-columns:1fr;gap:18px; } }
+  @media(max-width:360px) { .system-index-link { gap:10px; }.system-controls { gap:4px; }.system-controls > div { gap:4px; }.system-browse-bar { gap:15px 5px; }.system-project-facts { grid-template-columns:1fr;gap:18px; } }
 </style>

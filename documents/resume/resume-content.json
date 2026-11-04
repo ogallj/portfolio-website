@@ -4,69 +4,69 @@
   "email": "ogallo254@gmail.com",
   "phone": "+254 713 135 014",
   "links": [
-    {"label": "github.com/ogallj", "url": "https://github.com/ogallj"},
-    {"label": "linkedin.com/in/joshua-ogallo-9a2628251", "url": "https://www.linkedin.com/in/joshua-ogallo-9a2628251/"}
+    {"label": "GitHub", "url": "https://github.com/ogallj"},
+    {"label": "LinkedIn", "url": "https://www.linkedin.com/in/joshua-ogallo-9a2628251/"}
   ],
   "education": "Bachelor's degree in Software Engineering, Kisii University",
   "software": {
     "title": "Frontend Software Engineer",
-    "summary": "Frontend software engineer at Baruchsoft Technologies with contributions to the frontend and UI/UX of business systems and public-facing websites. Works primarily with Next.js, React and Angular, translating business requirements into responsive interfaces and connecting them to backend APIs.",
+    "portfolio": "https://ogallo.netlify.app/software/",
+    "summary": "Frontend software engineer combining Next.js, React and Angular with UI/UX design to create clear, responsive interfaces. Experience spans business systems, healthcare, ecommerce and public websites through Baruchsoft Technologies and independent work.",
     "skills": [
-      {"label": "Frontend", "text": "Next.js, React, Angular, JavaScript, HTML, CSS, Tailwind CSS, Bootstrap"},
-      {"label": "UI and UX", "text": "Interface design, responsive layouts, reusable components, prototyping"},
-      {"label": "Integration and tools", "text": "REST APIs, state management, client-side routing, Git, GitHub; additional knowledge of Java, SQL and PostgreSQL"}
+      {"label": "Development", "text": "Next.js, React, Angular, JavaScript, HTML, CSS, Tailwind CSS, Bootstrap"},
+      {"label": "Interface design", "text": "UI/UX, responsive layouts, reusable components, prototyping"},
+      {"label": "Integration and workflow", "text": "REST APIs, state management, client-side routing, Git, GitHub"}
     ],
     "experience": [
       {
         "company": "Baruchsoft Technologies",
         "role": "Frontend Software Engineer and Digital Marketer",
         "bullets": [
-          "Developed frontend interfaces for custom client applications, translating business requirements into responsive web experiences.",
-          "Contributed to frontend development and UI/UX across ecommerce, leave management, payments, finance, church administration and hospitality projects.",
-          "Built with Next.js, React and Angular across the project portfolio, integrating interfaces with backend APIs."
+          "Develop frontend interfaces and contribute UI/UX design for client systems across commerce, people management, payments, finance and hospitality.",
+          "Translate business requirements into responsive screens and reusable components, using Next.js, React and Angular across the project portfolio.",
+          "Connect frontend interfaces to backend APIs, including state management and client-side routing."
         ]
       },
       {
         "company": "Independent freelance work",
-        "role": "Freelancer through Freelancer.com",
-        "bullets": ["Deliver freelance frontend, website and creative work through Freelancer.com."]
+        "role": "Frontend and Website Development",
+        "bullets": ["Deliver independent frontend, website and interface design work, including projects through Freelancer.com."]
       }
     ],
     "projects": [
-      {"name": "B-Officio", "text": "Production leave-management system, evolving toward broader employee management."},
-      {"name": "B-Commerce", "text": "Ecommerce system for online shopping."},
+      {"name": "B-Officio", "text": "Production leave management system, with broader employee management on its roadmap."},
+      {"name": "B-Commerce", "text": "Ecommerce storefront for online shopping."},
       {"name": "Neosave Sentinel", "text": "Mobile command interface for monitoring neonatal health risks."},
-      {"name": "TheHub RMS", "text": "Hotel and restaurant management, including food ordering and delivery."},
-      {"name": "Community CBE Campaign", "text": "Public-facing circular bio-economy campaign website.", "url": "https://communitycbe.africa/", "label": "communitycbe.africa"},
-      {"name": "INNOECOFOOD", "text": "Public-facing aquaculture research website.", "url": "https://innoecofood.eu/", "label": "innoecofood.eu"}
+      {"name": "TheHub RMS", "text": "Hotel and restaurant management with food ordering and delivery."},
+      {"name": "Selected websites", "text": "Community CBE Campaign and INNOECOFOOD, alongside community, research and business websites."}
     ],
-    "additional": "Digital Creative, Socialmeds Digital Marketing Agency; Digital Marketer, Ogre Digital.",
-    "training": "Java Programming and Software Engineering Fundamentals, Duke University via Coursera; Web Development Bootcamp, PowerLearn Project and Safaricom Hook.",
+    "projectContext": "Frontend development and UI/UX across the following systems and websites.",
+    "training": "Additional training: Java Programming and Software Engineering Fundamentals, Duke University via Coursera; Web Development Bootcamp, PowerLearn Project and Safaricom Hook.",
     "languages": "English and Kiswahili"
   },
   "creative": {
     "title": "Digital Creative and Marketer",
-    "summary": "Digital creative and marketer with experience at Socialmeds, Ogre Digital and Baruchsoft Technologies. Contributed creative work and ideation to Fanta's Skizia Utamu Challenge, alongside internal organizational campaigns, brand content and visual communication. Brings complementary frontend and UI/UX experience.",
+    "portfolio": "https://ogallo.netlify.app/creative-marketing/",
+    "summary": "Digital creative and marketer working across campaign ideation, visual identity and brand content. Combines agency, in-house and freelance experience with frontend development and UI/UX.",
     "skills": [
-      {"label": "Creative delivery", "text": "Campaign ideation, brand content, graphic design, visual communication"},
-      {"label": "Marketing", "text": "Campaign creative, digital marketing, internal organizational campaigns"},
-      {"label": "Design tools", "text": "Adobe Photoshop, Adobe Illustrator, Adobe InDesign, Affinity"},
-      {"label": "Digital skills", "text": "Website design, frontend development, UI/UX"}
+      {"label": "Creative practice", "text": "Campaign ideation, visual identity, graphic design, brand content"},
+      {"label": "Marketing", "text": "Digital marketing, campaign creative, internal organisational campaigns"},
+      {"label": "Design tools", "text": "Adobe Photoshop, Illustrator and InDesign; Affinity"}
     ],
     "experience": [
-      {"company": "Socialmeds Digital Marketing Agency", "role": "Digital Creative", "bullets": []},
-      {"company": "Ogre Digital", "role": "Digital Marketer", "bullets": []},
-      {"company": "Baruchsoft Technologies", "role": "Frontend Software Engineer and Digital Marketer", "bullets": ["Combine digital marketing and visual communication with frontend software engineering and interface design."]},
-      {"company": "Independent freelance work", "role": "Freelancer through Freelancer.com", "bullets": ["Deliver independent work across software and creative projects."]}
+      {"company": "Socialmeds Digital Marketing Agency", "role": "Digital Creative", "bullets": ["Creative work and visual communication within a digital marketing agency."]},
+      {"company": "Ogre Digital", "role": "Digital Marketer", "bullets": ["Work across digital marketing and creative content for brands."]},
+      {"company": "Baruchsoft Technologies", "role": "Frontend Software Engineer and Digital Marketer", "bullets": ["Combine digital marketing and visual communication with frontend development and UI/UX."]},
+      {"company": "Independent freelance work", "role": "Creative and Website Services", "bullets": ["Deliver independent creative and website work, including projects through Freelancer.com."]}
     ],
-    "brands": "Coca-Cola Africa and its subbrands; UNGA Group and its subbrands; Junction Mall; SGA Group; Uhai Africa; T&S Solutions; KWS; The Hub Homa Bay; Mustard Christian Centre; JOOUST.",
-    "brandContext": "Experience includes work through agencies and employers, alongside independent work.",
+    "brands": "Coca-Cola Africa and its subbrands; UNGA Group and its subbrands; The Junction Mall; SGA Group; Uhai Africa; T&S Solutions; Kenya Wildlife Service; The Hub Homa Bay; Mustard Christian Centre; JOOUST.",
+    "brandContext": "Includes agency and employer engagements alongside independent work.",
     "projects": [
-      {"name": "Fanta Skizia Utamu Challenge", "text": "Contributed campaign ideation and creative work."},
-      {"name": "Internal organizational campaigns", "text": "Delivered creative and marketing work for organizations' internal campaigns."},
-      {"name": "Website and interface design", "text": "Frontend and UI/UX contributions to Community CBE, INNOECOFOOD and other public-facing websites.", "url": "https://communitycbe.africa/", "label": "communitycbe.africa"}
+      {"name": "Fanta Skizia Utamu Challenge", "text": "Campaign ideation and creative work."},
+      {"name": "Visual identity boards", "text": "Selected studies for OGRE Digital, Uhai Innovations and other brands."},
+      {"name": "Internal campaigns", "text": "Creative and marketing work for organisational communication."}
     ],
-    "training": "Leadership and Personal Development, ALX; Web Development Bootcamp, PowerLearn Project and Safaricom Hook.",
+    "training": "Additional training: Leadership and Personal Development, ALX; Web Development Bootcamp, PowerLearn Project and Safaricom Hook.",
     "languages": "English and Kiswahili"
   }
 }

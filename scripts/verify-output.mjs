@@ -105,6 +105,7 @@ if (sitemapFile) {
 function requireContent(condition, message) { if (!condition) errors.push(message); }
 const contact = documents.get(resolve(output, 'contact/index.html')) || '';
 const creative = documents.get(resolve(output, 'creative-marketing/index.html')) || '';
+const creativeCatalog = documents.get(resolve(output, 'creative-marketing/work/index.html')) || '';
 const hub = documents.get(resolve(output, 'software/the-hub-homa-bay/index.html')) || '';
 const software = documents.get(resolve(output, 'software/index.html')) || '';
 const home = documents.get(resolve(output, 'index.html')) || '';
@@ -113,7 +114,16 @@ const about = documents.get(resolve(output, 'about/index.html')) || '';
 await checkReference('/social-preview.png', resolve(output, 'index.html'));
 requireContent(/<button\b[^>]*data-inquiry-submit[^>]*\bdisabled\b/.test(contact), 'Contact draft submit is not disabled in static HTML.');
 requireContent(contact.includes('mailto:ogallo254@gmail.com'), 'Contact static email route is missing.');
-requireContent(creative.includes('data-creative-forthcoming') && /Original work,?\s+coming soon/i.test(creative.replace(/<[^>]+>/g, ' ')), 'Creative collection must clearly label forthcoming original work.');
+const creativePieces = JSON.parse(await readFile(resolve(root, 'src/data/creative-work.json'), 'utf8'));
+requireContent(creative.includes('data-creative-gallery') && !creative.includes('data-creative-forthcoming') && creativePieces.length === 48, 'Creative must show the supplied selection of 48 artworks.');
+requireContent(creative.includes('data-artwork-dialog') && creative.includes('data-work-collection') && creative.includes('Browse all 48 artworks') && creative.includes('/creative-marketing/work/'), 'Creative must expose the complete collection before its featured work.');
+requireContent(!/<details\b[^>]*data-work-collection/.test(creative) && creativeCatalog.includes('data-work-catalog') && (creativeCatalog.match(/data-work-card/g)||[]).length === 48, 'All creative work must be visible on its native collection page.');
+for (const [kind,count] of [['campaign',8],['identity',5],['brand-content',35]]) {
+  const category = documents.get(resolve(output, `creative-marketing/work/${kind}/index.html`)) || '';
+  requireContent(creative.includes(`/creative-marketing/work/${kind}/`) && category.includes('catalog-categories') && (category.match(/data-work-card/g)||[]).length === count && (category.match(/<h1\b/g)||[]).length === 1 && category.includes('data-artwork-dialog'), `Creative ${kind}: visible category access or complete collection is missing.`);
+}
+for (const piece of creativePieces) requireContent(creativeCatalog.includes(`data-artwork-open="${piece.id}"`) && creativeCatalog.includes(piece.src) && creativeCatalog.includes(piece.sourceHref), `Creative artwork ${piece.id}: preview or native original access is missing.`);
+for (const [, html] of documents) requireContent(html.includes('data-jo-mark') && html.includes('data-animated-favicon') && html.includes('/favicon-32.png') && html.includes('/apple-touch-icon.png'), 'Production pages must retain the shared JO identity and static favicon fallbacks.');
 requireContent(home.includes('data-refraction-study') && home.includes('/images/cinematic/refraction-1600.webp'), 'Production homepage is missing its optical portrait experience and static poster.');
 requireContent(![...documents.values()].some(html => /data-kinetic|data-depth-planes|data-scene(?:\s|=|>)/.test(html)), 'Obsolete generic sculpture or kinetic markup remains in production.');
 requireContent(!files.some(path => relative(output, path).split(sep).join('/').startsWith('lab/')), 'Review lab must be excluded from production output.');
@@ -127,13 +137,13 @@ for (const system of systems) {
   requireContent(!!system.mockup && detail.includes(`/images/systems/${system.mockup}-`), `${system.title}: supplied system mockup is missing.`);
   requireContent(detail.includes('Project interface mockup') && detail.includes('View full mockup'), `${system.title}: mockup caption or full-size link is missing.`);
 }
-requireContent((software.match(/class="system-mockup"/g) || []).length === systems.length, 'The software gallery does not show all nine system mockups.');
+requireContent((software.match(/<article\b[^>]*class="system-presentation"[\s\S]*?<\/article>/g) || []).filter(panel => panel.includes('class="system-mockup"')).length === systems.length, 'The software gallery does not show all nine system mockups.');
 const officio = systems.find(project => project.slug === 'b-officio');
 requireContent(officio?.status === 'In production' && /leave management/i.test(officio.overview) && /evolving toward.*employee management/i.test(officio.overview) && software.includes(officio.overview), 'B-Officio current production scope is missing.');
 requireContent(software.includes('data-engineering-page') && !software.includes('data-spatial-kind="software"'), 'Software must use its restrained image-led design, without the rejected 3D display.');
 requireContent(software.includes('data-opening-video') && software.includes('/videos/software-geometric.mp4') && software.includes('/images/software/hero-poster.webp') && !software.includes('data-opening-image'), 'Software hero must use the supplied geometric video and its poster, without the former project image.');
-requireContent(/<details\b[^>]*data-web-directory/.test(software), 'Website collection is missing its native project directory.');
-requireContent(/<details\b[^>]*data-system-directory/.test(software) && software.includes('data-system-previous') && software.includes('data-system-next'), 'Systems collection is missing its native directory or browsing controls.');
+requireContent(/<nav\b[^>]*data-web-directory/.test(software), 'Website collection is missing its native project directory.');
+requireContent(/<nav\b[^>]*data-system-directory/.test(software) && software.includes('data-system-previous') && software.includes('data-system-next'), 'Systems collection is missing its native directory or browsing controls.');
 requireContent((software.match(/data-system-select=/g)||[]).length === systems.length && (software.match(/data-system-panel=/g)||[]).length === systems.length, 'Each system must have one directory entry and one presentation.');
 requireContent(software.includes('id="next-step"') && software.includes('site-footer--compact') && !software.includes('class="footer-invitation"'), 'Software must have one dedicated closing invitation and a compact footer.');
 requireContent(software.includes('/contact/?topic=software#direct-contact') && software.includes('Joshua-Ogallo-Software-Engineer-CV.pdf') && software.includes('Joshua-Ogallo-Software-Engineer-CV.docx'), 'Software closing is missing its inquiry or native CV downloads.');

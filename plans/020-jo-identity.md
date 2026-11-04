@@ -1,0 +1,11 @@
+# JO identity and favicon
+
+4 November 2026. The owner requested an artistic, professional JO logo and an animated favicon. The supplied creative-work addition subsequently joined the active task; both authorised changes are completed together.
+
+The mark is an original two-path vector: a tailored J meets a rounded O with an optical incision. One geometry source, `src/data/identity.ts`, drives the inline `LogoMark.astro`, transparent dark/light SVG and PNG exports, static favicon and animation frames. Header and footer retain their existing home-link names, name lockups, navigation and 88px/78px header heights. The logo itself remains still.
+
+`scripts/prepare-identity.mjs` produces the exports under `public/brand/`, favicon SVG/32px PNG and 180px touch icon. Sixteen 32px PNG frames provide a short sage-coloured sweep across the complete, readable mark. The lazy-loaded controller waits 900ms, advances at 90ms/frame and rests on the canonical static SVG for nine seconds. It restores the static icon when motion is paused, the document is hidden, the OS requests reduced motion, loading fails or the page is disposed. Async work is invalidated safely; BFCache restoration follows the shared motion policy. There is no canvas, continuous RAF or new dependency.
+
+Frame updates are used because native animated favicon support is inconsistent; [Chromium’s animated-icon issue](https://github.com/GoogleChrome/chromium-dashboard/issues/3595) and [MDN’s icon selection rules](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel#icon) informed the SVG/PNG fallback setup. The 20KB frame-data module is requested only when animation is eligible. Browser-tab rendering outside the in-app browser was not visually profiled; link-state updates were verified.
+
+Browser evidence: the shared header shows the new mark in the gallery screenshots. At 320px the mark is 44px wide and the header remains 78px high. Pause restores `/favicon.svg?v=jo-20261104` with SVG type and static state. Resume produces PNG frame URLs, `32x32` size and animating state; resting state was also observed. Source review retains the original home-link focus fallback. Dark/light artwork is in `artifacts/identity/jo-review.png`; vector/raster exports are in `public/brand/`.

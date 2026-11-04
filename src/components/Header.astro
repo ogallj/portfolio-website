@@ -1,5 +1,6 @@
 ---
 import Arrow from './Arrow.astro';
+import LogoMark from './LogoMark.astro';
 interface Props { dark?: boolean }
 const { dark = false } = Astro.props;
 const path = Astro.url.pathname;
@@ -7,7 +8,7 @@ const links = [ ['/software/', 'Software'], ['/creative-marketing/', 'Creative &
 ---
 <header class:list={['site-header', { 'site-header--dark': dark }]}>
   <div class="header-shell">
-    <a class="wordmark" href="/" aria-label="Joshua Ogallo — home" aria-current={path === '/' ? 'page' : undefined}><span class="wordmark-symbol" aria-hidden="true">jo.</span><span class="wordmark-name">Joshua Ogallo<span>Engineer &amp; creative</span></span></a>
+    <a class="wordmark" href="/" aria-label="Joshua Ogallo — home" aria-current={path === '/' ? 'page' : undefined}><span class="wordmark-symbol" aria-hidden="true"><LogoMark /></span><span class="wordmark-name">Joshua Ogallo<span>Engineer &amp; creative</span></span></a>
     <nav class="desktop-nav" aria-label="Main navigation">{links.map(([href, title]) => <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{title}</a>)}</nav>
     <a href="/contact/" class="header-contact" aria-current={path === '/contact/' ? 'page' : undefined}>Contact <Arrow /></a>
     <details class="mobile-menu">
@@ -21,7 +22,7 @@ const links = [ ['/software/', 'Software'], ['/creative-marketing/', 'Creative &
   .site-header--dark { --header-ground:#101820;--header-ink:#edf3f3;--header-muted:#b1c0c9;--header-surface:#17232c;--header-line:#43535e;--header-active:#2c3d48;--header-action:#edf3f3;--header-action-ink:#14212a;--focus:#bfd2ff; }
   .header-shell { position:relative;display:flex;align-items:center;gap:22px;width:100%;max-width:1600px;height:62px;margin-inline:auto;padding:7px 8px 7px 20px;border:1px solid var(--header-line);border-radius:40px;background:var(--header-surface);box-shadow:0 4px 18px #17212805; }
   .wordmark { display:inline-flex;align-items:center;gap:15px;min-width:0;min-height:44px;margin-right:auto;color:var(--header-ink); }
-  .wordmark-symbol { flex:0 0 auto;padding-right:4px;font:700 35px/.9 var(--display);letter-spacing:-.095em; }
+  .wordmark-symbol { display:block;flex:0 0 auto;width:48px;height:35px; }
   .wordmark-name { display:block;font-size:11px;font-weight:650;line-height:1.4;white-space:nowrap; }
   .wordmark-name > span { display:block;margin-top:3px;color:var(--header-muted);font-size:9px;font-weight:400; }
   .desktop-nav { display:flex;align-items:center;gap:3px; }
@@ -52,7 +53,7 @@ const links = [ ['/software/', 'Software'], ['/creative-marketing/', 'Creative &
     .mobile-menu nav .mobile-contact { background:var(--header-action);color:var(--header-action-ink); }
     .mobile-contact :global(.arrow-icon) { width:20px;height:20px; }
   }
-  @media (max-width:500px) { .header-shell { padding-left:14px;gap:10px; }.wordmark { gap:11px; }.wordmark-symbol { font-size:32px; }.wordmark-name { font-size:10px; }.wordmark-name > span { font-size:8px; }.mobile-menu summary { gap:14px;padding-inline:13px;font-size:10px; }.mobile-menu nav { grid-template-columns:minmax(0,1fr);gap:2px;padding:13px; }.mobile-menu nav a { min-height:51px;font-size:22px; } }
+  @media (max-width:500px) { .header-shell { padding-left:14px;gap:10px; }.wordmark { gap:11px; }.wordmark-symbol { width:44px;height:32px; }.wordmark-name { font-size:10px; }.wordmark-name > span { font-size:8px; }.mobile-menu summary { gap:14px;padding-inline:13px;font-size:10px; }.mobile-menu nav { grid-template-columns:minmax(0,1fr);gap:2px;padding:13px; }.mobile-menu nav a { min-height:51px;font-size:22px; } }
   @media (prefers-reduced-motion:reduce) { .header-contact :global(.arrow-icon) { transition:none;transform:none !important; }.menu-cross { transition:none; } }
   :global(html[data-motion='paused']) .header-contact :global(.arrow-icon) { transition:none;transform:none !important; }
   :global(html[data-motion='paused']) .menu-cross { transition:none; }

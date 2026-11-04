@@ -1,8 +1,8 @@
 # Cinematic portfolio production plan
 
-**Current update:** [019 — Project pages](019-project-detail-rebuild.md) follows the owner-approved [018 — Contact conversation](018-contact-conversation.md), [017 — Creative & marketing rebuild](017-creative-marketing-restraint.md) and [016 — CV reading room](016-cv-reading-room.md). The accepted About experience panel remains in [015](015-about-experience-panel.md).
+**Current update:** [022 — Collection discovery](022-collection-discovery.md) exposes the complete Software indexes and native Creative catalog routes; local build, output-audit and browser checks passed. It extends [021 — Selected creative work](021-selected-creative-work.md) and [020 — JO identity](020-jo-identity.md), following the rebuilt [019 — Project pages](019-project-detail-rebuild.md), [018 — Contact conversation](018-contact-conversation.md) and [017 — Creative & marketing](017-creative-marketing-restraint.md). The accepted About experience panel remains in [015](015-about-experience-panel.md).
 
-**Current scope, 3 November 2026:** preserve Home and the reviewed Software, About, CV, Creative and Contact directions. The owner has explicitly moved on to a full rebuild of all individual project overview pages with a supplied video. Earlier completion notes record implementation, not design approval.
+**Current scope, 4 November 2026:** preserve the reviewed page compositions and supplied video treatments. After adding the JO identity and 48 supplied creative pieces, make the complete work discoverable at each collection's introduction: visible thumbnail indexes for nine systems and fourteen websites, plus direct all-work and category catalog links for Creative. Earlier completion notes record implementation, not design approval.
 
 Prepared on 1 November 2026 after the owner named Jesko Jets as the quality reference and selected **Refraction — portrait through optical glass**, following a free-first, portrait-and-work production path. The positively reviewed proof is now integrated into the production homepage, and all page families have been rebuilt locally. See plan 007 for actual checks and remaining device-review limits.
 
@@ -18,4 +18,4 @@ Prepared on 1 November 2026 after the owner named Jesko Jets as the quality refe
 
 Execution order: complete the shared identity/shell → promote the reviewed Home sequence → redesign Software and details → redesign Creative → complete About/CVs/Contact/recovery → retire old runtime and lab from production → verify complete journeys and real-device performance. See plan 006 for exact files and completion gates.
 
-This folder preserves the research, selected studies, original plans and implementation review. `DESIGN.md` describes the current system. All existing evidence and CVs remain. Local integration is complete; physical-device profiling, field performance and publication are separate from the recorded local checks.
+This folder preserves the research, selected studies, original plans and implementation review. `DESIGN.md` describes the current system. All existing evidence and CVs remain. Earlier local checks remain recorded in their respective plans; plan 022 records the latest local integration checks. Physical-device profiling, field performance and publication are separate from recorded local checks.

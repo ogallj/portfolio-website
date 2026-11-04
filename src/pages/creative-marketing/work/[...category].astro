@@ -1,0 +1,14 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CreativeCollection from '../../../components/CreativeCollection.astro';
+import { creativeCategories } from '../../../data/creative-work';
+export function getStaticPaths() {
+  return [
+    { params: { category: undefined }, props: { category: 'all' } },
+    ...creativeCategories.map(item => ({ params: { category: item.key }, props: { category: item.key } })),
+  ];
+}
+const { category } = Astro.props;
+const selected = creativeCategories.find(item => item.key === category);
+---
+<Base title={selected ? selected.label : 'Creative work'} theme="creative" footerVariant="compact" description="Explore Joshua Ogallo’s selected campaign creative, identity boards and brand content."><CreativeCollection category={category} /></Base>

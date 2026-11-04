@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Arrow from '../../components/Arrow.astro';
 import BrandMark from '../../components/BrandMark.astro';
 import BrandExperience from '../../components/BrandExperience.astro';
+import CreativeGallery from '../../components/CreativeGallery.astro';
 import { creativeServices } from '../../data/portfolio';
 import { creativeResume } from '../../data/resumes';
 const tools = ['Photoshop', 'Illustrator', 'InDesign', 'Affinity'];
@@ -13,12 +14,13 @@ const tools = ['Photoshop', 'Illustrator', 'InDesign', 'Affinity'];
       <div class="creative-backdrop" data-creative-backdrop aria-hidden="true"><img src="/images/creative/hero-poster.webp" alt="" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async" /><video data-creative-video muted loop playsinline preload="none" poster="/images/creative/hero-poster.webp" tabindex="-1"><source src="/videos/creative-waves.mp4" type="video/mp4" /></video></div>
       <div class="creative-opening-meta"><p>Creative &amp; marketing</p><p>Joshua Ogallo<span>Digital creative &amp; marketer</span></p></div>
       <h1 id="creative-title"><span class="creative-title-line"><span>Good ideas.</span></span><span class="creative-title-line"><span>Made visible.</span></span></h1>
-      <div class="creative-opening-bottom"><p>I connect campaign ideas with visual craft, bringing a clear voice to brand content and digital communication.</p><div><a class="creative-explore" href="#brand-experience">Explore brand experience <span aria-hidden="true">↓</span></a><a class="creative-download" href={creativeResume.pdf} download={creativeResume.pdfFilename}>Download creative CV <Arrow /></a></div></div>
+      <div class="creative-opening-bottom"><p>I connect campaign ideas with visual craft, bringing a clear voice to brand content and digital communication.</p><div><a class="creative-explore" href="#creative-work">Explore selected work <span aria-hidden="true">↓</span></a><a class="creative-download" href={creativeResume.pdf} download={creativeResume.pdfFilename}>Download creative CV <Arrow /></a></div></div>
     </section>
+    <CreativeGallery />
     <section class="creative-contribution frame" aria-labelledby="fanta-contribution-title">
       <div class="creative-fanta-mark"><BrandMark id="fanta" decorative /><p>Fanta / Brand experience</p></div>
       <div class="creative-contribution-title"><p>Recent contribution</p><h2 id="fanta-contribution-title">Skizia Utamu<br />Challenge.</h2></div>
-      <div class="creative-contribution-copy"><h3>Creative work &amp; ideation.</h3><p>Original campaign material will be added with the work, its context and individual credits.</p><a href="#coca-family-title">Explore the brand family <Arrow diagonal={false} /></a></div>
+      <div class="creative-contribution-copy"><h3>Creative work &amp; ideation.</h3><p>Explore campaign creative and brand visuals in the selected work.</p><a href="#coca-family-title">Explore the brand family <Arrow diagonal={false} /></a></div>
     </section>
     <BrandExperience />
     <section class="creative-practice frame" aria-labelledby="creative-capabilities-title">
@@ -26,7 +28,6 @@ const tools = ['Photoshop', 'Illustrator', 'InDesign', 'Affinity'];
       <div class="creative-services">{creativeServices.map(service => <article><h3>{service.title}</h3><p>{service.description}</p></article>)}</div>
       <div class="creative-tools"><p>Tools I work with</p><ul aria-label="Creative software">{tools.map(tool => <li>{tool}</li>)}</ul></div>
     </section>
-    <section class="creative-forthcoming frame" id="creative-work" aria-labelledby="creative-work-title" data-creative-forthcoming><div><p>Selected work</p><h2 id="creative-work-title">Original work,<br />coming soon.</h2></div><p>Campaign and design pieces will appear here with my contribution and the context behind each project. The brand experience above is the current record of this side of my practice.</p></section>
     <section class="creative-closing frame" aria-labelledby="creative-closing-title"><div><p>For a creative brief or a new role</p><h2 id="creative-closing-title">Let’s make the<br />next idea count.</h2><a class="creative-contact" href="/contact/#direct-contact">Let’s talk <Arrow /></a></div><div class="creative-closing-links"><p>Take a closer look.</p><a href="/cv/#cv-creative">View the creative CV <Arrow /></a><a href="/software/">Explore software engineering <Arrow /></a></div></section>
   </div>
 </Base>
@@ -82,10 +83,6 @@ const tools = ['Photoshop', 'Illustrator', 'InDesign', 'Affinity'];
   .creative-tools { display:flex;align-items:center;justify-content:space-between;gap:35px;margin-top:65px;padding-top:25px;border-top:1px solid #b9c8b2; }
   .creative-tools > p { font-size:11px;color:var(--muted); }
   .creative-tools ul { display:flex;flex-wrap:wrap;gap:15px 35px;font-size:13px; }
-  .creative-forthcoming { display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:12%;align-items:center;padding-block:clamp(65px,8vw,115px);scroll-margin-top:20px; }
-  .creative-forthcoming > div > p { font-size:11px;color:var(--muted);margin-bottom:25px; }
-  .creative-forthcoming h2 { font-size:clamp(37px,4.1vw,63px);font-weight:420;line-height:1.07; }
-  .creative-forthcoming > p { max-width:440px;font-size:13px;color:var(--muted);line-height:1.85; }
   .creative-closing { display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,.75fr);gap:12%;align-items:end;background:#101820;color:#edf1f2;--focus:#bfd2ff;padding-top:clamp(75px,8vw,125px);padding-bottom:75px; }
   .creative-closing > div > p { color:#a9bcc8;font-size:11px;line-height:1.7;margin-bottom:26px; }
   .creative-closing h2 { font-size:clamp(47px,5.6vw,86px);font-weight:410;line-height:1.04; }
@@ -128,10 +125,7 @@ const tools = ['Photoshop', 'Illustrator', 'InDesign', 'Affinity'];
     .creative-services p { margin-top:16px;font-size:12px;max-width:450px; }
     .creative-tools { align-items:start;flex-direction:column;gap:22px;margin-top:40px; }
     .creative-tools ul { gap:14px 25px;font-size:12px; }
-    .creative-forthcoming { grid-template-columns:1fr;gap:25px;padding-block:60px; }
-    .creative-forthcoming h2 { font-size:clamp(39px,9vw,57px); }
-    .creative-forthcoming > p { font-size:12px;max-width:450px; }
-    .creative-closing { grid-template-columns:1fr;gap:45px;padding-top:65px;padding-bottom:50px; }
+          .creative-closing { grid-template-columns:1fr;gap:45px;padding-top:65px;padding-bottom:50px; }
     .creative-closing h2 { font-size:clamp(43px,10vw,63px); }
     .creative-closing > div > p { margin-bottom:23px; }
     .creative-closing-links { max-width:450px; }

@@ -81,7 +81,6 @@ export function initEngineeringExperience() {
   window.addEventListener('resize', () => {
     visible = measureVisibility();
     syncVideo();
-    positionDirectory();
   }, options);
   document.addEventListener('visibilitychange', syncVideo, options);
   window.addEventListener('portfolio:motion', setMotion, options);
@@ -91,28 +90,10 @@ export function initEngineeringExperience() {
   const root = page.querySelector<HTMLElement>('[data-system-collection]');
   const panels = [...page.querySelectorAll<HTMLElement>('[data-system-panel]')];
   const selectors = [...page.querySelectorAll<HTMLAnchorElement>('[data-system-select]')];
-  const directory = root?.querySelector<HTMLDetailsElement>('[data-system-directory]');
-  const directorySummary = directory?.querySelector<HTMLElement>('summary');
-  const directoryBody = directory?.querySelector<HTMLElement>('.system-directory');
   const controls = root?.querySelector<HTMLElement>('[data-system-controls]');
   const position = root?.querySelector<HTMLElement>('[data-system-position]');
+  const initialHash = location.hash;
   let selected = 0;
-  const positionDirectory = () => {
-    if (!directory?.open || !directoryBody) return;
-    const bounds = directory.closest('.system-browse-bar')?.getBoundingClientRect();
-    if (!bounds) return;
-    const below = Math.max(0, innerHeight - bounds.bottom - 24);
-    const above = Math.max(0, bounds.top - 115);
-    const opensAbove = below < 240 && above > below;
-    directory.toggleAttribute('data-directory-above', opensAbove);
-    directoryBody.style.maxHeight = Math.min(innerHeight * .66, opensAbove ? above : below) + 'px';
-  };
-  const closeDirectory = (restoreFocus = false) => {
-    if (!directory?.open) return;
-    const focusWasInside = directory.contains(document.activeElement);
-    directory.open = false;
-    if (restoreFocus && focusWasInside) directorySummary?.focus({ preventScroll: true });
-  };
   const choose = (index: number, updateUrl = false, animate = false) => {
     if (disposed || !panels.length) return;
     const previous = panels[selected];
@@ -126,7 +107,7 @@ export function initEngineeringExperience() {
     if (updateUrl) {
       const url = new URL(location.href);
       url.hash = panels[selected].id;
-      history.replaceState(null, '', url.pathname + url.search + url.hash);
+      if (url.href !== location.href) history.pushState(null, '', url.pathname + url.search + url.hash);
       const status = root?.querySelector('[data-system-status]');
       if (status) status.textContent = panels[selected].querySelector('h4')?.textContent || '';
     }
@@ -136,6 +117,16 @@ export function initEngineeringExperience() {
   const fromHash = () => {
     const index = panels.findIndex(panel => '#' + panel.id === location.hash);
     if (index >= 0) choose(index);
+    else if (location.hash === initialHash) choose(0);
+  };
+  const revealSelection = () => {
+    const panel = panels[selected];
+    panel.focus({ preventScroll: true });
+    const headerHeight = document.querySelector<HTMLElement>('.site-header')?.getBoundingClientRect().height || 0;
+    const bar = root?.querySelector<HTMLElement>('.system-browse-bar');
+    const barHeight = bar && getComputedStyle(bar).position === 'sticky' ? bar.getBoundingClientRect().height : 0;
+    const top = scrollY + panel.getBoundingClientRect().top - headerHeight - barHeight - 18;
+    window.scrollTo({ top: Math.max(0, top), behavior: reduce.matches || document.documentElement.dataset.motion === 'paused' ? 'instant' : 'smooth' });
   };
   if (root && panels.length === selectors.length && panels.length) {
     root.dataset.systemEnhanced = 'true';
@@ -143,29 +134,16 @@ export function initEngineeringExperience() {
     choose(0);
     fromHash();
     selectors.forEach((link, i) => link.addEventListener('click', event => {
+      if (event.defaultPrevented || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
       event.preventDefault();
       choose(i, true, event.detail !== 0);
-      closeDirectory();
-      const bounds = panels[selected].getBoundingClientRect();
-      const outside = bounds.bottom < 115 || bounds.top > innerHeight;
-      if (directory || event.detail === 0 || outside) panels[selected].focus({ preventScroll: !outside });
+      revealSelection();
     }, options));
     root.querySelector<HTMLButtonElement>('[data-system-previous]')?.addEventListener('click', event => choose(selected - 1, true, event.detail !== 0), options);
     root.querySelector<HTMLButtonElement>('[data-system-next]')?.addEventListener('click', event => choose(selected + 1, true, event.detail !== 0), options);
-    directory?.addEventListener('toggle', positionDirectory, options);
-    directory?.addEventListener('keydown', event => {
-      if (event.key !== 'Escape' || !directory.open) return;
-      event.preventDefault();
-      closeDirectory(true);
-    }, options);
-    document.addEventListener('click', event => {
-      if (!directory?.open || !(event.target instanceof Node) || directory.contains(event.target)) return;
-      closeDirectory(true);
-    }, options);
-    window.addEventListener('scroll', positionDirectory, { ...options, passive: true });
     window.addEventListener('hashchange', fromHash, options);
     window.addEventListener('popstate', fromHash, options);
-    window.addEventListener('portfolio:filter', () => { closeDirectory(true); fromHash(); }, options);
+    window.addEventListener('portfolio:filter', fromHash, options);
   }
   window.addEventListener('pagehide', event => {
     suspended = true;
@@ -181,7 +159,6 @@ export function initEngineeringExperience() {
     suspended = false;
     visible = measureVisibility();
     fromHash();
-    positionDirectory();
     // Let the global motion preference refresh before resuming a cached page.
     queueMicrotask(() => { if (!disposed) setMotion(); });
   }, options);
